@@ -16,6 +16,7 @@ Each brief was written against standing rules that appear in most of them verbat
 | The terminal result survives or fails a convention sweep | `15` §2, §5 — κ defined as a diagnostic coordinate, "do not nominate a preferred κ", and a requirement to report a result that reverses the previous task |
 | Northern latitudes are excluded by the signals, not fuel | `17b` §4 — χ² and fuel reported separately as functions of latitude, with reporting bands declared in advance |
 | The arc-1 sweep tier was not chosen for convenience | `18f` §4 — the fallback ladder pre-authorised, arc-1 resolution never cut on any rung |
+| The ERA5 extension will not silently splice two reanalysis vintages | `19` §3 — the overlap gate (agreement to 1×10⁻³) with "if the gate fails, do not splice" written in before any download |
 
 ## Corrections in the record
 
@@ -42,5 +43,6 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 | `16` | Graded source-region likelihood with a recovery gate |
 | `17a`, `17b` | Latitude reachability (v1 superseded, v2 current) |
 | `18a`–`18f` | The full arc-1 sweep and its amendments |
+| `19` | Extending the ERA5 forcing domain east and north |
 
 Results packages are not in this repository. The atlas pages report their contents, and the briefs state what was asked for.

@@ -8,8 +8,9 @@
 <div class="card"><h2>What was established</h2>
 <h3>1. The cruise model fits, under heavy constraint</h3>
 <p class="sub">C120 fits the nine-term score at &chi;&sup2; = 8.117071 with nine active constraints, including k pinned at its lower bound, start latitude pinned at its 0.5&deg; limit, and a fuel allowance margin of about 0.1 kg. It is a fuel-limited solution, not a free optimum. Within the TASK_021 diagnostic it does not require a slow startup: forcing one costs +0.62 in &chi;&sup2;. The C-box variant failed to converge; its flight verified independently but it cannot separate the bound widening from extra optimisation of a non-stationary reference.</p>
-<h3>2. The endpoint latitude is set by the handshake sequence, not by fuel</h3>
-<p class="sub">Seven solutions in this family land at 00:11 between 35.85&deg;S and 36.85&deg;S. TASK_029 found that northern commands reach 23.9&deg;S to 26.4&deg;S with fuel to spare, but miss every handshake ring by 108 to 127 km, at 24.8 to 29.2&sigma;. The ring radii expand through the night at a rate set by ground speed, and a flight slow enough to finish north cannot match that expansion. Those northern flights are also still powered at 00:25, so they cannot produce the 00:19 log-on. Northern reach and a 00:17 flameout are mutually exclusive in this family.</p>
+<h3>2. The endpoint latitude is constrained by the handshake sequence &mdash; within the region the model can see</h3>
+<p class="sub">Seven solutions in this family land at 00:11 between 35.85&deg;S and 36.85&deg;S. TASK_029 found that northern commands reach 23.9&deg;S to 26.4&deg;S with fuel to spare, but miss every handshake ring by 108 to 127 km, at 24.8 to 29.2&sigma;. Those northern flights are also still powered at 00:25, so they cannot produce the 00:19 log-on.</p>
+<div class="note bad"><b>Corrected 7 October.</b> This finding was previously stated as a physical exclusion of northern endpoints. It is not one. TASK_030 established that the ERA5 subset ends at 100&deg;E while the 7th arc crosses 100&deg;E at 27.5&deg;S, so <b>no flight in this model can reach the arc north of about 27.5&deg;S &mdash; there is no forcing there</b>. The large northern BTO residuals are what you get when a flight cannot go east far enough to meet the arc, not evidence that the aircraft did not. Northern endpoints have never been evaluable here.</div>
 <h3>3. Twelve terminal continuations match the final frequency pair, and none is a location</h3>
 <p class="sub">TASK_022 searched 582 histories from C120&rsquo;s frozen engine-loss state. Twelve matched the adopted envelopes. All twelve arrive at the water supersonic, at 2.1 to 2.7 times Vmo, banked 76&deg; to 89&deg;, inside the aerodynamic proxy the model itself flags as unsupported. An aircraft in that descent breaks up well above the surface, so debris would not reach those coordinates. The two controls that stay inside the supported aerodynamic domain and arrive at survivable speed miss the 00:19:37 BFO by more than 100 Hz.</p>
 <h3>4. The compensation convention is published</h3>
@@ -23,6 +24,7 @@
 <li><b>The frequency matches are fragile.</b> Sweeping the vertical-compensation fraction &kappa;, all twelve hold to &kappa; = 0.042, the last warm-up case ends at &kappa; = 0.269, and nothing survives past &kappa; = 0.317.</li>
 <li><b>But there is no inversion.</b> R0 and G0 never become compatible anywhere in [0, 1], under any geometry switch. The sensitivity runs from &ldquo;dives match&rdquo; to &ldquo;nothing matches&rdquo;, never to &ldquo;glides match&rdquo;.</li>
 <li><b>The cruise score cannot arbitrate.</b> &chi;&sup2; moves 0.00255 across the whole &kappa; range, with a largest BFO change of 0.116 Hz against &sigma;<sub>BFO</sub> of 4.3. Measurably non-flat, and far too small to discriminate.</li>
+<li><b>The arc north of 27&deg;S is outside the model and outside the search.</b> The northern limit of every seabed search box in the project manifest is 27&deg;S; the arc leaves the forcing data at 27.5&deg;S. About 1,460 km of arc, from 27&deg;S to 15&deg;S, falls outside both. The ERA5 subset was evidently clipped to the region the search already assumed, so the model has never been able to challenge the assumption that defined its inputs.</li>
 <li><b>A one-engine fuel hypothesis was retired.</b> The README warns that single-engine burn may be too generous, which would add range and push the endpoint south. The evaluator has no single-engine phase, so the warning does not apply to it.</li></ul></div>
 
 <div class="card"><h2>What it all rests on</h2>
@@ -36,7 +38,9 @@
 <tr><td>Incoming route before 19:41</td><td>Unproved. The 18:22 position is derived-approximate from published waypoints; DSTG cautioned on long-range angular error and did not use it quantitatively.</td></tr>
 <tr><td>Systems chronology</td><td>Continuous feed assumed. Antenna orientation and hydraulic authority unresolved. A feasible mathematical warm-up offset does not establish electrical or thermal history.</td></tr>
 <tr><td>Fuel model</td><td>One tank feeding both engines; no single-engine phase exists.</td></tr>
-<tr><td>TASK_029 coverage</td><td>36 points of 3,276. Mid-range pressures never sampled.</td></tr></table></div></div>
+<tr><td>TASK_029 coverage</td><td>36 points of 3,276. Mid-range pressures never sampled.</td></tr>
+<tr><td>Forcing domain</td><td><b>ERA5 ends at 10&deg;N and 100&deg;E.</b> The arc is outside it north of 27.5&deg;S, so that region is unmodellable rather than excluded.</td></tr>
+<tr><td>TASK_030 grid</td><td>Does not contain C120: its bearing (184.6&deg;), Mach schedule (0.8406&rarr;0.8306) and pressure (214.2 hPa) all fall between grid nodes.</td></tr></table></div></div>
 
 <div class="card"><h2>Appendix: readings that were wrong, including mine</h2>
 <ul>
@@ -47,6 +51,8 @@
 <li><b>I specified a half-normal kernel that converges to a 100 km indicator.</b> It does not; it converges to a point mass. The verification step built on that was wrong and was replaced.</li>
 <li><b>I fixed the initial bearing and set a Mach floor of 0.70</b> in the first reachability directive. Either alone would have made a northern endpoint unreachable by construction rather than by physics.</li>
 <li><b>I expected fuel to bind the northern reach.</b> The signals bind; fuel has tonnes to spare.</li>
+<li><b>I read the northern BTO residuals as a physical exclusion.</b> They are a forcing-coverage artifact: the arc north of 27.5&deg;S lies outside the weather data, so no flight could reach it regardless of physics. Corrected 7 October.</li>
+<li><b>I predicted the dt 15 s mesh would halve the sweep cost.</b> It saved 8%, and I then inferred a fixed overhead from two benchmarks that turned out to use the same timestep, so their difference measured nothing. The execution agent's diagnostic contradicted both.</li>
 <li><b>Superseded:</b> the stale Task 9 text on the combined map, corrected in atlas v6.</li></ul></div>
 
 <div class="card"><h2>For whoever picks this up</h2>
@@ -54,5 +60,6 @@
 <li>The BFO bias calibration epoch is the single most consequential unresolved item in this chapter. Everything frequency-based inherits it.</li>
 <li>Three histories (S03, S07, S11) need no warm-up offset at all. S03 fits all three final observations within 2&sigma;. If the warm-up envelope is ever tightened on evidence, those three are the ones that survive it.</li>
 <li>The twelve contact coordinates must not be propagated as locations, into drift work or anywhere else. The two branches were deliberately kept separate and should stay that way.</li>
-<li>A northern endpoint reachable only by a path with turns, step climbs or a speed schedule would not appear in TASK_029, which tested only the commanded-flight family as implemented.</li></ul></div>
+<li>A northern endpoint reachable only by a path with turns, step climbs or a speed schedule would not appear in TASK_029 or TASK_030, which tested only the commanded-flight family as implemented.</li>
+<li><b>The single highest-value next step is data, not computation:</b> extending ERA5 east to 120&deg;E and north to 20&deg;N. Until the forcing covers the arc, the northern question cannot be asked, and the chapter's southern conclusion rests on a domain drawn around the hypothesis it was meant to test.</li></ul></div>
 <script>MH.nav("closing.html");</script></div></body></html>
