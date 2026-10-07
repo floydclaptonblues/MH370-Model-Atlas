@@ -1,0 +1,231 @@
+<h1>Drift diagnostics: Tasks 10 and 11 <span class="tag prov">diagnostic / conditional</span></h1>
+<p class="sub">Codex results read from your files, plus my mean-flow check on your forcing cache. Frozen B0 physics, assumed find coordinates and dates, zero-delay matching. State as of 6 Oct 2026: boxes B, W and M are finished through stage 2, the permutation null and delay runs are in, B1 stopped at Step A, and the Task 16 source-region likelihood is complete. The E box was not run because the forcing domain ends at 115°E.</p>
+
+<div class="card"><h2>What the results say, in short</h2>
+<ul>
+<li><b>The western focus is not shown to depend on the finds.</b> Both nulls keep the western receiving geography, so the Task 9 result is weak evidence about cause.</li>
+<li><b>The model under-delivers westward motion in drifter tests.</b> The median zonal error is positive (model too far east) at 180 days in all four starting regions and all three splits. The size is about 100–340 km. This is a plausible contributor to a source placed too far west. It is not shown to explain the plume.</li>
+<li><b>Mean currents in the release box are weak.</b> The model's 1.2% wind-slip term is as large as the mean current or larger in every latitude band, so transport depends heavily on the assigned slip and the unvalidated wind and Stokes treatment.</li>
+<li><b>No source region can be determined, and now we know why.</b> With a graded likelihood and a detection term, the method recovers synthetic sources it knows are there, but on the real finds the answer moves 1,000 to 1,900 km when an unmeasured assumption changes &mdash; further than any single answer is wide. The obstacle is identifiability, not computation.</li>
+<li><b>No single release cell supplies the collection.</b> Under the primary rule the best cell matches 7 of 32 items, which is 3 to 4 independent date windows. Réunion-matching cells match at most one other item.</li>
+<li><b>The B1 bias fit stopped at Step A.</b> The calibration data support none of the three registered correction forms (current scale, wind slip, constant drift), so no correction was fitted and the model stays frozen. The eastward bias is documented but has no supported fix.</li>
+<li><b>The permutation null finds nothing.</b> No box and class set has its best cell beyond the shuffle at the 0.05 level (0 of 30 tests), and W and M look like B. Réunion timing separates W from B and M, not B from M.</li>
+<li><b>Zero-delay matching favours distant sources.</b> It cannot be used to prefer the 80–100°E box over nearer boxes.</li>
+</ul></div>
+
+<div class="card"><h2>Task 10: where does the western focus come from? <span class="tag ok">complete</span></h2>
+<div class="scroll"><table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td>Scope of the nulls</td><td>The shuffled null can change the joint mixture of location, dates, classes and jitter. Both nulls retain western receiving geography.</td></tr>
+<tr><td>Inputs and zero-motion test</td><td>Launch tables differ as intended. Zero-motion differences are zero.</td></tr>
+<tr><td>Attrition, original N2 run (16,000)</td><td class="n">6,602 survive · 5,725 land · 3,664 leave the domain · 9 invalid forcing</td></tr>
+<tr><td>Contributors to the western peak (observed replicate 1)</td><td>C2 64%, C3 30%, C1 6%. C2 is untestable and C3 unsupported as measured classes. All entered the last 11.68 h hold, as every event survivor must.</td></tr>
+<tr><td>Denominator variants</td><td>Peak moves 414 km between pooled and equal-item smoothing. Changing only the pooled denominator leaves it unchanged.</td></tr>
+<tr><td>Checkpoint divergence</td><td>Shuffled total variation 1.000 at start → 0.454 at event (minimum 0.352 at 360 d). Random coast 0.096 → 0.585. No common convergence interval.</td></tr>
+<tr><td>Synthetic recovery (original 5-site design)</td><td>Untestable: 0–2 matched items per site under the primary rule, 0–7 under the regional rule, none reach all 32. No reverse set was substituted.</td></tr>
+<tr><td>Ring distance</td><td>Task 9 peaks are 726–1,059 km inside the full ring (earlier values used the truncated arc).</td></tr>
+</table></div>
+<div class="note" style="margin-top:8px">Codex ran the original Task 10 Step E, not the revised one, so the drifter hindcast and forward grid became Task 11.</div></div>
+
+<div class="card"><h2>Task 11, Step E: drifter hindcast of the frozen model</h2>
+<p class="sub">NOAA GDP drifter tracks, known-track transport tests with the frozen B0 model (daily NCEP wind, K = 10 m²/s, absorbing mask, wind slip floor of 1.2%). C0 is the pre-declared primary undrogued proxy. These are not flaperon proxies.</p>
+<img src="img/hindcast_bias_b0.png" alt="Median model-minus-observed zonal displacement versus horizon, all classes, undrogued and drogued, three splits" style="width:100%;height:auto;border-radius:6px">
+<p class="sub" style="margin-top:4px">Median and interquartile range, east positive, by drogue status and split (Codex figure).</p>
+<div class="grid"><div>
+<h3>Holdout, C0 undrogued, all directions</h3>
+<div class="scroll"><table>
+<tr><th class="n">Horizon d</th><th class="n">Median error / persistence km</th><th class="n">Skill</th><th class="n">Zonal error median [IQR] km</th></tr>
+<tr><td class="n">1</td><td class="n">12.65 / 20.98</td><td class="n">0.398</td><td class="n">+1.0 [−6.5, 7.7]</td></tr>
+<tr><td class="n">3</td><td class="n">31.48 / 55.91</td><td class="n">0.418</td><td class="n">+1.8 [−16.7, 20.6]</td></tr>
+<tr><td class="n">7</td><td class="n">58.78 / 107.17</td><td class="n">0.414</td><td class="n">+2.1 [−31.5, 39.0]</td></tr>
+<tr><td class="n">14</td><td class="n">98.73 / 172.35</td><td class="n">0.349</td><td class="n">+4.8 [−53.1, 66.7]</td></tr>
+<tr><td class="n">30</td><td class="n">204.88 / 318.70</td><td class="n">0.294</td><td class="n">+19.9 [−96.3, 150.1]</td></tr>
+<tr><td class="n">60</td><td class="n">362.89 / 523.72</td><td class="n">0.303</td><td class="n">+91.1 [−122.8, 290.2]</td></tr>
+<tr><td class="n">90</td><td class="n">491.87 / 699.81</td><td class="n">0.319</td><td class="n">+135.5 [−106.3, 419.7]</td></tr>
+<tr><td class="n">180</td><td class="n">824.95 / 1139.85</td><td class="n">0.314</td><td class="n">+330.9 [−39.0, 774.1]</td></tr>
+</table></div>
+<p class="sub" style="margin-top:6px">No frozen criterion failed for C0 undrogued (the pre-declared primary). C2 and C3 do fail some criteria, see the Task 12 section below. The pre-set B1 trigger (all-direction calibration errors at 7 and 14 d) was false. That design cannot see an effect that only appears after about 30 days.</p></div>
+<div>
+<h3>Median zonal error at 14 d / 180 d by starting region, C0 undrogued, both directions (km)</h3>
+<div class="scroll"><table>
+<tr><th>Start longitude</th><th class="n">Calibration</th><th class="n">Validation</th><th class="n">Holdout</th></tr>
+<tr><td>Western 40–55°E</td><td class="n">+0.8 / +111.7</td><td class="n">+3.1 / +171.5</td><td class="n">+4.1 / +311.9</td></tr>
+<tr><td>Transit 55–80°E</td><td class="n">+2.5 / +106.0</td><td class="n">+19.6 / +278.1</td><td class="n">+10.4 / +342.7</td></tr>
+<tr><td>Source 80–100°E</td><td class="n">−1.9 / +105.0</td><td class="n">−14.3 / +159.7</td><td class="n">−3.4 / +340.7</td></tr>
+<tr><td>Eastern >100–110°E</td><td class="n">+4.8 / +338.9</td><td class="n">+5.2 / +199.1</td><td class="n">+13.6 / +112.5</td></tr>
+</table></div>
+<p class="sub" style="margin-top:6px">All 14-day IQRs span zero. At 180 d the holdout source and transit IQRs are entirely positive (+6.6 to +827.3 and +2.5 to +720.8 km).</p>
+<h3 style="margin-top:10px">Observed-westward subset, C0 undrogued, 180 d</h3>
+<div class="scroll"><table>
+<tr><th>Split</th><th class="n">Median [IQR] km</th></tr>
+<tr><td>Calibration</td><td class="n">+396.8 [−137.5, 943.1]</td></tr>
+<tr><td>Validation</td><td class="n">+488.2 [−82.7, 1,000.5]</td></tr>
+<tr><td>Holdout</td><td class="n">+473.3 [+95.1, +946.2] (observed −754.5)</td></tr>
+</table></div></div></div>
+<div class="note" style="margin-top:8px"><b>Reading.</b> Positive means model minus observed is east, so insufficient westward motion for westward-moving drifters. Equivalent speed is about 0.6–2.2 cm/s. A linear extrapolation to 500 days gives roughly 290–950 km, the same order as the 726–1,059 km offset from the ring. That extrapolation is mine and the growth is not shown to be linear.</div>
+<div class="note" style="margin-top:8px"><b>Limits.</b> The windows overlap and are not independent drifters. Conditioning on observed westward motion builds in part of the positive error, so the unconditioned regional table carries more weight. The holdout has been seen and cannot now be used for tuning. A B1 fit has not been made. My proposal is a regression of model on observed displacement on the calibration split first, with a speed scale used only if the slope and intercept support it.</div>
+<div class="note" style="margin-top:8px"><b>Drogued drifters</b> show a negative error (model too far west) that grows with the assigned slip, as expected when wind slip is applied to objects with almost none. They are not used to judge the slip classes.</div></div>
+
+<div class="card"><h2>Task 11, Step F: forward release from 24.5–41°S, 80–100°E (box B)</h2>
+<p class="sub">1,394 cells at 0.5°, 100 particles per cell per class, released 8 Mar 2014 00:19, classes C0–C3 separately, frozen B0 physics. Stage 1 integrates to 31 Jul 2015 (only item 1, Réunion, is scored). Stage 2 continues offshore particles to the end of the last find interval (day 1,638). Controls W (40–60°E) and M (60–80°E) use 25 particles per cell per class.</p>
+<div class="grid"><div>
+<h3>Accounting against released mass, box B</h3>
+<div class="scroll"><table>
+<tr><th>Stage</th><th class="n">Released</th><th class="n">Landed</th><th class="n">Left domain</th><th class="n">Invalid</th><th class="n">Offshore at horizon</th></tr>
+<tr><td>1 (day 510)</td><td class="n">557,600</td><td class="n">116,607 (20.9%)</td><td class="n">146,548 (26.3%)</td><td class="n">886</td><td class="n">293,559 (52.6%)</td></tr>
+<tr><td>2 (day 1,638)</td><td class="n">557,600</td><td class="n">252,840 (45.3%)</td><td class="n">210,285 (37.7%)</td><td class="n">2,686 (0.5%)</td><td class="n">91,789 (16.5%)</td></tr>
+</table></div><p class="sub" style="margin-top:6px">Accounting residual is zero for every class and stage. Stage 2 landed by class: C0 75,044 · C1 65,358 · C2 60,100 · C3 52,338.</p>
+<h3 style="margin-top:10px">Where left-domain particles exit (box B, stage 2)</h3>
+<div class="scroll"><table>
+<tr><th>Edge</th><th class="n">Particles</th><th class="n">Median day</th></tr>
+<tr><td>East, 115°E</td><td class="n">135,596 (64%)</td><td class="n">178</td></tr>
+<tr><td>North, 5°N</td><td class="n">40,304 (19%)</td><td class="n">548</td></tr>
+<tr><td>West, 20°E</td><td class="n">34,124 (16%)</td><td class="n">985</td></tr>
+<tr><td>South, 55°S</td><td class="n">261 (0.1%)</td><td class="n">171</td></tr>
+</table></div>
+<p class="sub" style="margin-top:6px">For release cells at 36–41°S, 93% of leavers exit east. In total 24% of every particle released leaves by the east edge, so the closed domain boundary removes mass that could recirculate in the real gyre.</p></div>
+<div>
+<h3>Matching, box B, stage 2 (all 32 items scored)</h3>
+<div class="scroll"><table>
+<tr><th>Rule · class</th><th class="n">Cells with ≥1 match (of 1,394)</th><th class="n">Max items by one cell</th><th class="n">Max distinct date windows</th><th class="n">Cells matching Réunion</th></tr>
+<tr><td>Primary · C0</td><td class="n">898</td><td class="n">7</td><td class="n">4</td><td class="n">1</td></tr>
+<tr><td>Primary · C1</td><td class="n">428</td><td class="n">5</td><td class="n">3</td><td class="n">4</td></tr>
+<tr><td>Primary · C2</td><td class="n">160</td><td class="n">6</td><td class="n">3</td><td class="n">7</td></tr>
+<tr><td>Primary · C3</td><td class="n">68</td><td class="n">3</td><td class="n">1</td><td class="n">3</td></tr>
+<tr><td>Primary · assigned</td><td class="n">146</td><td class="n">5</td><td class="n">3</td><td class="n">4</td></tr>
+<tr><td>Regional · C0</td><td class="n">1,297</td><td class="n">15</td><td class="n">7</td><td class="n">1</td></tr>
+<tr><td>Regional · assigned</td><td class="n">733</td><td class="n">10</td><td class="n">4</td><td class="n">4</td></tr>
+</table></div>
+<p class="sub" style="margin-top:6px">There are 23 distinct date windows across the 32 items. Items 13, 14, 16, 17 and 18 share one window, so one landing counts for five items. The best primary cell (34°S, 92.5°E, C0, 110 km inside the ring) matches items 13, 14, 16, 17, 18, 24 and 31 but not Réunion. Under the primary rule no release cell matches items 2, 6, 7, 9, 20 or 27.</p>
+<p class="sub">Réunion (item 1, window day 508–509) matches 15 of 557,600 particles. Cells that match it match at most one other item, and that one has a wide window (day 938–1,395).</p></div></div>
+<h3>Controls W and M against B, stage 1 (Réunion region)</h3>
+<div class="scroll"><table>
+<tr><th>Box</th><th class="n">C0 median arrival day</th><th class="n">C1</th><th class="n">C2</th><th class="n">C3</th><th class="n">Exact-date matches</th></tr>
+<tr><td>B 80–100°E</td><td class="n">404</td><td class="n">369</td><td class="n">355</td><td class="n">294</td><td class="n">1 / 4 / 7 / 3 (C0–C3)</td></tr>
+<tr><td>M 60–80°E</td><td class="n">301</td><td class="n">203</td><td class="n">183</td><td class="n">142</td><td class="n">0</td></tr>
+<tr><td>W 40–60°E</td><td class="n">161</td><td class="n">130</td><td class="n">124</td><td class="n">97</td><td class="n">0</td></tr>
+</table></div>
+<p class="sub" style="margin-top:6px">In stage 2, box W has no cell matching Réunion either, and its best cell matches 5 items under the primary rule (2 date windows). Box M stage 2 is now complete (see the follow-up below).</p>
+<div class="note" style="margin-top:8px"><b>How to read this.</b> The primary rule requires a landing within 100 km, inside a window often one day wide, with zero delay. Most of the filtering comes from that rule, not from transport. Nearer boxes deliver to Réunion too early, which any beach residence, refloat or detection delay would repair, so the zero-delay comparison favours the farther box by construction. The stage 1 median arrival days above only count particles that arrived before day 510, so they are biased early. Over the full horizon, box B's median Réunion arrival is day 814, 591, 530 and 326 for C0 to C3, against the find at day 508 (see the Task 12 section). That removes the timing conflict with Task 7 that I flagged earlier: it came from comparing a truncated median. The best-cell counts are maxima over 5,576 cell-classes at 100 particles each, and the permutation null is reported in the follow-up below (it shows transport coherence, not a joint source). B0 under-delivers westward motion, so a miss here is not an exclusion of any cell.</div></div>
+
+<div class="card"><h2>Task 11 follow-up: permutation null, delay sensitivity, controls M and W <span class="tag ok">complete, 6 Oct</span></h2>
+<p>Source: <code>MH370_requested_diagnostics_v1.zip</code> (frozen B0, stage 2, all 32 items, 23 distinct date windows). Zero-delay counts reproduce the saved summaries in all 66,000+ cell/class/rule rows. B1 stopped at Step A (next section).</p>
+<h3>Common-source permutation null (1,000 shuffles of window hit flags among cells)</h3>
+<p>Observed maximum number of distinct windows matched by one cell, against the null. Stage 2, 30 tests (3 boxes, 5 class sets, 2 rules).</p>
+<ul>
+<li>Tests with corrected tail probability &le; 0.05: <b>0</b> of 30. &le; 0.10: 4. &le; 0.15: 6. About 3 and 4.5 would be expected at the last two thresholds if nothing were there.</li>
+<li>Smallest tail probabilities: M C3 regional 0.064, B C2 regional 0.071, W assigned regional 0.079, B C0 regional 0.095.</li>
+<li>Box B, assigned classes, primary rule: 3 windows observed, null mean 2.1, tail 0.115. Regional: 4 windows, null mean 3.9, tail 0.86.</li>
+<li><b>Reading:</b> window hits are not more concentrated in single cells than the shuffle produces, in any box. The grid does not pick B over W or M. This is a conditional diagnostic. The shuffle destroys spatial coherence, and with 1 to 7 windows per cell its power is low. It does not show that there is no common source.</li>
+</ul>
+<h3>Delay sensitivity (delay added to first land hit)</h3>
+<p>The maximum number of distinct windows for C0 is unchanged by delay: B primary 4, 4, 4, 4; W 2, 2, 2, 2; M 3, 4, 3, 3 at 0, 30, 90, 180 d. Raw items rise slightly (B primary 7 to 10). Beach residence does not create a convergent source in these runs.</p>
+<h3>R&eacute;union (item 1, one-day window 29 July 2015), primary rule, stage 2</h3>
+<table><tr><th>Box</th><th>Class</th><th>Released</th><th>Before window</th><th>Inside</th><th>After</th><th>Landed 0&ndash;180 d before</th></tr>
+<tr><td>B</td><td>C0</td><td>139,400</td><td>570</td><td>1</td><td>2,983</td><td>408 (0.29%)</td></tr>
+<tr><td>B</td><td>C1</td><td>139,400</td><td>779</td><td>4</td><td>1,462</td><td>490 (0.35%)</td></tr>
+<tr><td>B</td><td>C2</td><td>139,400</td><td>858</td><td>7</td><td>965</td><td>509 (0.37%)</td></tr>
+<tr><td>B</td><td>C3</td><td>139,400</td><td>947</td><td>3</td><td>212</td><td>360 (0.26%)</td></tr>
+<tr><td>M</td><td>C0&ndash;C3</td><td>34,850 each</td><td>306&ndash;701</td><td>0</td><td>57&ndash;947</td><td>87&ndash;138 (0.25&ndash;0.40%)</td></tr>
+<tr><td>W</td><td>C0&ndash;C3</td><td>about 34,400 each</td><td>160&ndash;273</td><td>0</td><td>81&ndash;412</td><td>21&ndash;32 (0.06&ndash;0.09%)</td></tr></table>
+<ul>
+<li>Exact-day landings are very rare (B 15 of 557,600 across classes at zero delay; W and M none). The last column is my own derivation: it is the fall in the "before" count between delay 0 and delay 180 d, so it counts particles that landed 0 to 180 d before the window. That is the fraction that matches if an undetected beach residence of up to 180 d is allowed.</li>
+<li>B and M give similar fractions (0.25&ndash;0.40%). W gives about five times less, because its particles arrive earlier than 180 d before the find. R&eacute;union timing therefore separates W from B and M, but not B from M.</li>
+<li>A delay added to the landing time is the right sign for "found after it landed". It is an assumption, not data: no residence time, refloat or detection delay is measured.</li>
+</ul>
+<h3>Limits</h3>
+<p>Cell samples are 100 particles in B and 25 in W and M (smallest nonzero fraction 1% and 4%). The per-item intervals are pooled and do not cover between-cell differences. Window 5 (items 28, 29, 31, 32) spans 15 months and window 0 one month, so the wide windows are easy to hit; the shuffle preserves each window's prevalence. Class assignment, assumed find coordinates, daily NCEP winds, no explicit Stokes, the 1.2% floor, the static absorbing coast and noon boundary holds remain assumptions.</p></div>
+
+<div class="card"><h2>Task 12 (B1 bias fit) and the final Task 11 report <span class="tag ok">complete, 6 Oct</span></h2>
+<p><b>B1 stopped at Step A, as registered.</b> Using calibration drifters only (C0 undrogued, 139 to 179 drifters), none of the three correction forms was supported at both 90 and 180 days. Steps B, C and D (fit, gates, corrected grids) were not run, so there is no corrected model. This is exploratory and post-hoc, because the holdout has been seen.</p>
+<ul>
+<li><b>Speed scale: not supported.</b> Regressing observed on modelled zonal displacement gives a slope of 0.91 at 90 d and 0.92 at 180 d (model too fast). The total-least-squares fit gives 1.14 and 1.15 (model too slow). The two bracket 1, and the true value depends on an error ratio nobody has measured. So the data cannot say which way the scale is off.</li>
+<li><b>Constant offset: not supported</b> for the zonal direction (intercept interval includes 0 at both horizons). Meridionally, the intercept is +66 km at 90 d and +88 km at 180 d and excludes 0, but the slope (0.64 to 0.78) fails the pure-offset rule.</li>
+<li><b>Wind response: not supported.</b> The error against mean wind has slope intervals that include 0 at both horizons (180 d zonal: &minus;9.9 km per m/s, interval &minus;36.6 to +17.5).</li>
+</ul>
+<div class="note"><b>One thing worth knowing, not a finding.</b> The error does correlate with the mean current along the observed track (R&sup2; about 0.11 at 180 d, slope excluding zero). That correlation is not part of the registered rule and I would not read it as a current-speed error. The current is sampled along the track the drifter actually took, so a drifter that moved west met westward current by construction. Telling the two apart would need the same regression on the model's own track, which was not run and was not authorized.</div>
+<p class="sub" style="margin-top:8px">This does not show the model is unbiased. It shows the calibration data do not identify one of the three allowed fixes under the declared thresholds. The 100 to 340 km eastward error at 180 d stays a documented limit.</p>
+<h3>Class gates from the final report (undrogued drifters)</h3>
+<div class="scroll"><table><tr><th>Class</th><th>Result against the frozen drifter criteria</th></tr>
+<tr><td>C0 (primary)</td><td>Passes every criterion in all three splits.</td></tr>
+<tr><td>C1</td><td>Fails only the 180 d endpoint criterion on the calibration split.</td></tr>
+<tr><td>C2</td><td>Fails the 90 d endpoint criterion in all splits and 180 d in two.</td></tr>
+<tr><td>C3</td><td>Fails the 14 d endpoint and skill criteria and all longer endpoint criteria, in all splits.</td></tr></table></div>
+<p class="sub" style="margin-top:6px">Why this matters: in the Task 10 reverse run, C2 and C3 supply 64% and 30% of the western peak. Those are the two classes with the weakest drifter support. A failure on drifters says that high wind slip is not plausible for objects that mostly follow the water. It does not say the slip is wrong for a flaperon, whose slip is not measured.</p>
+<h3>R&eacute;union arrival over the full horizon (box B, stage 2)</h3>
+<div class="scroll"><table><tr><th>Class</th><th class="n">C0</th><th class="n">C1</th><th class="n">C2</th><th class="n">C3</th></tr>
+<tr><td>Median R&eacute;union arrival day (find at day 508)</td><td class="n">814</td><td class="n">591</td><td class="n">530</td><td class="n">326</td></tr></table></div>
+<p class="sub" style="margin-top:6px">Box B delivers 8,791 particles to R&eacute;union over the full horizon, 97,600 to Madagascar and 24,736 to Mozambique. Arrival at a coast is not the same as exact-date recovery.</p>
+<h3>Coastline sensitivity</h3>
+<p class="sub">Replacing only the beaching rule with the GSHHG coast changes the landed fraction by &minus;12 to +8 percentage points across the sampled cells and classes. The paired median difference in first-hit position reaches 963 km. The coast treatment is therefore a first-order assumption for any landing-location result here. The comparison keeps the original missing-current areas, so it is not a pure geometric bound.</p>
+<h3>Synthetic recovery and the eastern control</h3>
+<p class="sub">All five fixed synthetic sites matched no items under either rule at this sample size, so no synthetic observation set formed and no reverse peak was computed for them. Control E (100&ndash;120&deg;E) was not run because the box extends past the forcing domain at 115&deg;E.</p>
+<p class="sub">The report's own decision table: <i>forward reproduces the collection</i> is NOT ESTABLISHED, and <i>conditional mismatch among source, object and observation assumptions</i> is SUPPORTED WITH LIMITATIONS. No source location is established or excluded.</p></div>
+
+<div class="card"><h2>Gyre and mean-flow check (mine, from your forcing cache)</h2>
+<p class="sub">Mean daily surface current (0.494 m GLORYS, cache on your computer), weekly sample of 73 days over the first 510 days, averaged to 0.5°. Mean winds from the atlas's monthly NCEP file, assuming it is stored in hundredths of m/s (it gives about 5 m/s, which is plausible). Nothing here is a new transport run.</p>
+<img src="img/gyre_mean_flow.png" alt="Mean surface speed and divergence of mean flow with release boxes and reverse density peak" style="width:100%;height:auto;border-radius:6px">
+<div class="grid" style="margin-top:8px"><div>
+<h3>Mean zonal drift, 80–100°E (cm/s, east positive)</h3>
+<div class="scroll"><table>
+<tr><th>Latitude</th><th class="n">Mean current</th><th class="n">1.2% wind slip</th></tr>
+<tr><td>36–41°S</td><td class="n">+4.7</td><td class="n">+6.2</td></tr>
+<tr><td>31–36°S</td><td class="n">+1.5</td><td class="n">+1.3</td></tr>
+<tr><td>26–31°S</td><td class="n">−0.8</td><td class="n">−3.1</td></tr>
+<tr><td>21–26°S</td><td class="n">−1.5</td><td class="n">−6.3</td></tr>
+</table></div>
+<p class="sub" style="margin-top:6px">The hindcast bias (0.6–2.2 cm/s) is the same size as the whole mean current in the gyre interior. Slip and wind therefore dominate the transport, and a few tenths of a percent in slip is as large as the bias.</p></div>
+<div><img src="img/zonal_profile.png" alt="Mean zonal flow versus latitude in three longitude sectors" style="width:100%;height:auto;border-radius:6px"><p class="sub" style="margin-top:4px">Mean zonal flow by latitude, three sectors.</p></div></div>
+<div class="note" style="margin-top:8px"><b>What this does not show.</b> Mean divergence is near zero everywhere at this resolution (box average about −0.03×10⁻⁶ s⁻¹), so I cannot identify a convergence or accumulation zone. The reverse peak (35.25°S, 55.75°E) sits in the band where mean wind and mean current are both close to zero. That makes it plausible that reverse trajectories linger there whatever the finds are. It is a hypothesis: it needs residence-time tracks, and the saved outputs only hold end states. The weekly sample is noisy, so these means are indicative.</div></div>
+
+<div class="card"><h2>Task 16: can a source region be determined at all? <span class="tag ok">complete, 6 Oct</span></h2>
+<p class="sub">The binary rule (100 km, exact interval, zero delay) found nothing and the permutation null said its best cells matched a shuffle. Task 16 replaced hit-counting with a likelihood: a distance kernel instead of a hard radius, a landing-to-discovery delay distribution instead of a fixed offset, and &mdash; for the first time &mdash; an explicit detection term, since every item was found on populated accessible coast and none on uninhabited shoreline. 36 configurations: three kernel scales &times; three delay means &times; four detection models.</p>
+<h3>The gate passed, so this is not a power problem</h3>
+<p class="sub">Before touching the real finds, the method had to recover sources it knew were there. Synthetic collections were drawn from known cells in the same particle bank and scored blind against preregistered thresholds. <b>32 of 36 configurations passed</b>, with HPD50 coverage from 41.0% to 97.5%; the four failures fell below the 60% bar. Only 0 to 3.5% of draws were unformable, so nearly every cell can produce a 32-item collection. The machinery works where a source exists.</p>
+<h3>On the real finds, the answer is set by the assumptions</h3>
+<img src="img/t16_spread.png" alt="Horizontal bar chart comparing, for each box and class, how far the posterior mode moves between assumption sets against the widest 90 percent mass region within any single assumption set. In thirteen of fifteen cases the movement exceeds the width." style="width:100%;height:auto;border-radius:6px">
+<p class="sub" style="margin-top:4px">Orange exceeding blue means the preregistered failure condition is met: the answer moves further when you change an unmeasured assumption than any single answer is wide.</p>
+<div class="scroll"><table><tr><th>Box / class</th><th class="n">Mode spread across configurations</th><th class="n">Widest 90% region</th><th>Verdict</th></tr>
+<tr><td>B / C0</td><td class="n">1,552 km</td><td class="n">905 km</td><td>assumptions dominate</td></tr>
+<tr><td>B / C1</td><td class="n">1,367 km</td><td class="n">1,345 km</td><td>assumptions dominate</td></tr>
+<tr><td>B / C3</td><td class="n">1,383 km</td><td class="n">1,101 km</td><td>assumptions dominate</td></tr>
+<tr><td>B / assigned</td><td class="n">675 km</td><td class="n">0 km</td><td>assumptions dominate</td></tr>
+<tr><td>W / C3</td><td class="n">1,914 km</td><td class="n">1,424 km</td><td>assumptions dominate</td></tr>
+<tr><td>M / C0</td><td class="n">1,167 km</td><td class="n">747 km</td><td>assumptions dominate</td></tr></table></div>
+<p class="sub" style="margin-top:6px">Thirteen of fifteen box/class combinations fail the test; only M/C1 and M/assigned come in under their <i>widest</i> configuration, which is already a generous comparison. Authoritative per-subset flags are in <code>configuration_spread.csv</code>.</p>
+<div class="note bad"><b>There is no source region here, only a map of our assumptions.</b> Zero distributions are effectively flat and 135 are multimodal, and the 90% widths run down to 0 km. So each configuration returns a <i>confident, concentrated</i> answer &mdash; sometimes a single cell &mdash; and those confident answers disagree with each other by 1,000 to 1,900 km. Box B is about 1,830 by 1,760 km, so the mode wanders across essentially the whole release region depending on which kernel scale, delay mean and detection model you pick. The declared sensitivities move it by as much as 1,848 km.</div>
+<h3>What this does and does not mean</h3>
+<ul>
+<li><b>It is not a failure of the data to contain signal.</b> The gate shows the method localises a source when one is there under these assumptions. The problem is identifiability: find coordinates, detection probability, retention time and slip class are all unmeasured, and each choice of them yields a different confident answer.</li>
+<li><b>The recovery test is optimistic by construction.</b> The same particle bank generates and scores the synthetic finds, generation is conditional while the scoring sum uses marginal contributions, so it is a composite likelihood. Passing is weaker than it reads and is not independent transport validation.</li>
+<li><b>The detection weights are judgement.</b> D1 is my three-level ordinal ranking, not measured detection rates. D2 was never available and no proxy was acquired. D3 is circular by construction and is labelled on every row and separated in every map.</li>
+<li><b>The plumbing is sound.</b> Binary primary and regional counts reproduce exactly, and all 1,049 historical files verified unchanged by streamed hashing, with arc, flight, candidate and contact contents never parsed.</li></ul>
+<p class="sub">This is the same wall reached from two other directions: Task 12 found no supported correction for the transport bias, and Tasks 13 and 14 found the inputs unmeasured. More computation cannot move it.</p></div>
+
+<div class="card"><h2>Provenance audit: what the inputs actually rest on <span class="tag ok">Tasks 13 and 14, 6 Oct</span></h2>
+<p class="sub">Task 13 catalogued what the project files state about the five open inputs (805 rows across 32 items, 387 sourced rows resolving, 344 of 344 historical hashes unchanged). Task 14 then checked nine claims from an external source index against the documents themselves. Seven of nine documents were obtained; eight claims verified, one locator mismatch, two unobtainable. <b>Nothing was promoted to a model input and no value changed.</b></p>
+<h3>The 1.2% wind-slip floor: resolved, and not in the model&rsquo;s favour</h3>
+<p>The CSIRO 2016 report&rsquo;s forcing products are confirmed: <b>ERA-Interim</b> 10 m winds, <b>BRAN2015</b> currents, and Stokes drift from a <b>CAWCR Wave Hindcast</b> extension. The 1.2% is defined there as the value minimising the unexplained velocities of undrogued drifters &mdash; an effective windage fitted to that particular combination of products.</p>
+<div class="note bad"><b>B0 does not use any of those products.</b> It applies the same 1.2% floor with daily NCEP/NCAR R1 T62 winds and GLORYS12V1 currents. A coefficient fitted to absorb residual motion under one forcing set carries no guarantee under another, and no transfer validation exists anywhere in the project files. This is a plausible contributor to the documented eastward hindcast bias, and it is now a named limitation rather than an unresolved citation.</div>
+<h3>Still no measured slip for any item</h3>
+<p class="sub">The French DGA report&rsquo;s 3.29% and 2.76% coefficients were confirmed as <b>numerical-model results</b>, not measurements &mdash; its cover and conclusion pages identify the method. Nesterov&rsquo;s 2018 paper describes the same parameters as experimentally established, which the original report contradicts; that conflict is recorded and left unresolved. Neither those values, nor the mean flaperon deflection near 16&deg; from CSIRO Part II, nor a fitted effective windage, map onto the C0&ndash;C3 slip minima, maxima or divergence widths. They are different quantities measured on a different object. The class table stays an assumption.</p>
+<h3>Item 4 (&ldquo;Roy&rdquo;, Mossel Bay): the matching window is probably wrong</h3>
+<p class="sub">The CSIRO report records Roy as first seen at Mossel Bay on <b>23 December 2015</b>. The Malaysian catalogue gives a discovery date of <b>22 March 2016</b>, and B0 uses that as a one-day matching window. The gap is about 90 days.</p>
+<p class="sub">This is not a drop-in replacement, because it changes the kind of constraint: item 4 stops being &ldquo;landed on day 745&rdquo; and becomes &ldquo;ashore by day 655&rdquo;, an upper bound the matching rule has no mode for. It is flagged, not changed. The delay-sensitivity runs already bound how much it could matter: shifting every landing by 30, 90 and 180 days left the maximum distinct-window count unchanged in every box, and one item moving is a smaller perturbation than that.</p>
+<p class="sub"><b>The general point carries further than the one item.</b> All 32 windows are discovery dates. One is demonstrably 90 days later than its own first sighting, and nothing establishes that the other 31 are better. That is an argument about the zero-delay exact-interval rule as a whole.</p>
+<h3>Coordinates: unchanged, and one claim did not survive</h3>
+<p class="sub">An external claim of an explicit flaperon coordinate at Saint-Andr&eacute;, R&eacute;union (20&deg;56.20&prime;S, 55&deg;40.87&prime;E) from a 2016 M&eacute;t&eacute;o-France report <b>could not be verified</b>: the report was not found locally or at its publisher, and the corroborating press page was unreachable. No mirror or search-index text was substituted. The verified side of that conflict is the Malaysian catalogue&rsquo;s Saint-Denis. The two are 20 to 25 km apart, so both sit well inside the 100 km matching radius and nothing about matching changes either way. Item 6&rsquo;s examination report was read in full, images included: it gives dimensions but no coordinate or extent. Every page of the items 28&ndash;32 report was read; no finer recovery dates exist, so those broad windows stay broad.</p>
+<p class="sub">All five original gaps still affect all 32 items. Coordinates remain ASSUMED_GEOCODE with no stated centroid construction or extent, so the &ldquo;wider than 100 km&rdquo; check cannot be run at all.</p></div>
+
+<div class="card"><h2>Appendix: failed or superseded readings and open items</h2>
+<ul>
+<li><b>Superseded:</b> my first reading of the hindcast figure ("no sign of a westward deficit"). With the regional table the eastward error is positive in all 12 regional medians at 180 days.</li>
+<li><b>Doubtful:</b> a single current-speed scale for B1. The error is positive in every direction, which looks more like an additive offset or a wind-response error than a speed that is too low. A regression check comes before any fit.</li>
+<li><b>Not valid as a test:</b> stage 1 common-source counts. Only item 1 is scored in stage 1, so the maximum is one by construction.</li>
+<li><b>Not executed:</b> the E box (100–120°E), residence-time tracks, and any corrected-model grid (B1 stopped at Step A, so none was fitted). The permutation null, delay runs and B1 Step A are reported above.</li>
+<li><b>Superseded:</b> the stage 1 median Réunion arrival days (294 to 404) are truncated at day 510; use the full-horizon medians. The apparent conflict with Task 7 was an artifact of that.</li>
+<li><b>Resolved, 6 Oct:</b> the CSIRO wind source. The 1.2% was fitted with ERA-Interim winds, BRAN2015 currents and a CAWCR wave hindcast; B0 uses NCEP winds and GLORYS currents, with no transfer validation. See the provenance card above.</li>
+<li><b>Known defect, not corrected:</b> item 4&rsquo;s one-day window is about 90 days later than its own first sighting. Flagged, not changed.</li>
+<li><b>Unverified external claim:</b> the Saint-Andr&eacute; flaperon coordinate. Its source document could not be obtained. Not adopted.</li>
+<li><b>Ryan to confirm:</b> find coordinates and extents, class assignments and measured slip and divergence (none exist in any obtained document), wind and Stokes adequacy (ERA5 and WAVERYS are not used, and the full WAVERYS subset is absent), beach residence and refloat, detection delay, and the discovery-time versus first-beaching-time assumption.</li>
+</ul></div>

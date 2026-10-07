@@ -1,0 +1,38 @@
+<title>MH370 Models Atlas</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css"><script src="common.js"></script>
+<div class="wrap"><nav id="nav"></nav>
+<h1>MH370 models in one place</h1>
+<p class="sub">Satcom, flight models and drift, drawn from your own files. Where a source is missing or provisional, the page says so. The satellite and flight chapter closed on 6 October 2026; the drift branch is still open.</p>
+<div class="grid">
+ <a class="card" href="satcom.html" style="text-decoration:none;color:inherit"><h2>Satcom <span class="tag frozen">frozen</span></h2><p>5,029 BTO/BFO rows from the Inmarsat log, the canonical 19-row event table and the published satellite states.</p></a>
+ <a class="card" href="flight.html" style="text-decoration:none;color:inherit"><h2>Flight models <span class="tag prov">provisional</span></h2><p>Average Day flights re-flown from your package, the High-Fidelity Average Day Solver (TASK_021), the TASK_022 terminal experiment, 97 Phase 5A candidates, BTO-only survivors.</p></a>
+ <a class="card" href="map.html" style="text-decoration:none;color:inherit"><h2>Combined map</h2><p>Arc, candidates, search areas and the reverse-drift density on one switchable map.</p></a>
+ <a class="card" href="drift.html" style="text-decoration:none;color:inherit"><h2>Drift <span class="tag prov">assumption-dependent</span></h2><p>17-month currents map, reverse-drift density, currents-only forward test, Tasks 7 to 9 (Task 9 complete).</p></a>
+ <a class="card" href="closing.html" style="text-decoration:none;color:inherit"><h2>Closing report <span class="tag frozen">satellite chapter</span></h2><p>What the satcom and flight branch established, what it rests on, and an appendix of readings that were wrong.</p></a>
+ <a class="card" href="drift2.html" style="text-decoration:none;color:inherit"><h2>Drift diagnostics <span class="tag prov">conditional</span></h2><p>Task 10 results, drifter hindcast, forward release grid, permutation null, the B1 stop, the provenance audit, and why no source region can be determined.</p></a>
+</div>
+<div class="card"><h2>Status of each model</h2><table>
+<tr><th>Model</th><th>Status</th><th>What this atlas shows</th><th>What is missing here</th></tr>
+<tr><td>Satellite BTO/BFO</td><td><span class="tag frozen">frozen</span></td><td>Raw burst log; June manifest facts (bias, calibration residual)</td><td>Frozen v06 scorer outputs are not in the folders I could read</td></tr>
+<tr><td>Average Day flight model</td><td><span class="tag frozen">frozen</span></td><td>3 reference flights re-flown from your 3 Oct package (verify.py passes), TASK_021 solver, TASK_022 terminal experiment, TASK_026 convention sweep, TASK_029 reachability</td><td>Score stops at 00:11; no endpoint by design. Chapter closed 6 Oct &mdash; see the closing report</td></tr>
+<tr><td>Other endpoint work</td><td><span class="tag prov">provisional</span></td><td>Aug 2026 Phase 5A candidate table; June BTO-only survivors; TASK_021, TASK_022 and the TASK_026 convention sweep on the Flight models page</td><td>No final coordinate exists in any source. TASK_022's frequency-compatible continuations end beyond the airframe envelope in unsupported aerodynamics, so its contacts are not candidate locations. The convention sweep removes those matches above &kappa; &asymp; 0.32 without making any glide compatible</td></tr>
+<tr><td>Ocean currents</td><td><span class="tag ok">data</span></td><td>GLORYS12V1 daily surface currents, 17 months</td><td>Not a drift result by itself</td></tr>
+<tr><td>Debris drift</td><td><span class="tag prov">assumption-dependent</span></td><td>Baseline density; Tasks 7 and 8 results</td><td>Tasks 9&ndash;16: no source region is determinable. The method recovers known synthetic sources, but on the real finds the answer moves 1,000&ndash;1,900 km when an unmeasured assumption changes. B1 found no supported bias correction; the 1.2% slip floor was fitted to forcing products B0 does not use</td></tr></table></div>
+<div class="card"><h2>Sources used</h2><table>
+<tr><th>Data</th><th>File</th><th>Snapshot</th></tr>
+<tr><td>Canonical events, satellite state, Average Day flights</td><td><code>MH370_AverageDay_algorithm_2026-10-03.zip</code> (data/, examples/, re-flown here)</td><td>3 Oct 2026</td></tr>
+<tr><td>Forward currents-only test</td><td><code>reverse_drift_forward_summary.csv</code></td><td>Mar 2014 test</td></tr>
+<tr><td>Burst log</td><td><code>satcom_observations.csv</code> (WS-004 canon)</td><td>13 Jul 2026 recovery</td></tr>
+<tr><td>Event table, survivors</td><td><code>satcom_events.csv</code>, <code>candidate_survivors_top.csv</code> (WS-002)</td><td>11 Jun 2026 restart</td></tr>
+<tr><td>Candidates</td><td><code>MH370_PHASE5A_CANDIDATE_STATUS.csv</code> (WS-008)</td><td>2 Aug 2026</td></tr>
+<tr><td>7th arc</td><td><code>reference_arc.json</code> (Codex 2026-10-03), 40,000 ft reference</td><td>3 Oct 2026</td></tr>
+<tr><td>Radar, search areas</td><td><code>radar_track_points.csv</code>, <code>search_history_manifest.csv</code> (WS-004)</td><td>13 Jul 2026</td></tr>
+<tr><td>Drift density, Tasks 7 to 9 (Task 9 complete)</td><td>Codex outputs, <code>diagnostics_v2</code></td><td>3–5 Oct 2026</td></tr>
+<tr><td>Currents</td><td>GLORYS12V1 via Copernicus Marine; NCEP/NCAR winds</td><td>Mar 2014 – Jul 2015</td></tr></table></div>
+<div class="card"><h2>Appendix: sources set aside</h2><ul>
+<li>Satellite ephemeris in WS-004: one fixed position with zero velocity for all 5,029 rows. Not used.</li>
+<li>The reference arc file stops at 64.46°E. Its western continuation is my circle fit and is drawn dotted.</li>
+<li>Point 34.86°S, 93.107°E: circular as a calibration benchmark, per the June candidate-state file.</li>
+<li>The archive domain folders (satcom, flight dynamics, terminal event, search) are empty placeholders. The material is in <code>archive/source_snapshots</code>.</li></ul></div>
+</div>
+<script>MH.nav("index.html")</script>

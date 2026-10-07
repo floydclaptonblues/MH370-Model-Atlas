@@ -1,0 +1,416 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0"><title>Indian Ocean Surface Currents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one wide chart-plate map, controls above, a measured-current table below. */
+:root{
+  --bg:#e9eff1; --panel:#ffffff; --fg:#10242d; --muted:#53686f; --line:#c5d2d7;
+  --accent:#b4570f; --accent-fg:#ffffff;
+  --land:#cfc9bb; --particle:rgba(8,32,54,.62); --label:#0a2231; --halo:rgba(255,255,255,.9);
+  --r0:#f1f5f6; --r1:#bcd9e2; --r2:#5aa3bd; --r3:#1d5f8a; --r4:#0a2a4a; --front:#c2410c;
+  --font-body:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#07131b; --panel:#0d1f2a; --fg:#e4eef0; --muted:#8fa6ae; --line:#1f3846;
+  --accent:#f0b04a; --accent-fg:#1b1200;
+  --land:#34434d; --particle:rgba(255,255,255,.72); --label:#f2f7f8; --halo:rgba(5,15,22,.85);
+  --r0:#0a1c28; --r1:#0f4a5c; --r2:#1f8a8a; --r3:#d6c35a; --r4:#fff3c8; --front:#ff8a5c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#07131b; --panel:#0d1f2a; --fg:#e4eef0; --muted:#8fa6ae; --line:#1f3846;
+  --accent:#f0b04a; --accent-fg:#1b1200;
+  --land:#34434d; --particle:rgba(255,255,255,.72); --label:#f2f7f8; --halo:rgba(5,15,22,.85);
+  --r0:#0a1c28; --r1:#0f4a5c; --r2:#1f8a8a; --r3:#d6c35a; --r4:#fff3c8; --front:#ff8a5c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:14px;line-height:1.5;
+  padding-inline:16px;padding-block:20px 40px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-wrap:wrap;gap:6px 24px;align-items:baseline;justify-content:space-between}
+h1{font-size:22px;line-height:1.2;margin:0;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);font-size:13px;margin:0}
+.bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.grp{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.lab{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+button{font:inherit;font-size:13px;color:var(--fg);background:var(--panel);border:1px solid var(--line);
+  border-radius:6px;padding:5px 10px;cursor:pointer}
+button:hover{border-color:var(--muted)}
+button[aria-pressed="true"],button.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.chk{display:inline-flex;gap:6px;align-items:center;font-size:13px;cursor:pointer}
+.yrs{display:flex;flex-wrap:wrap;gap:6px 14px}.yr{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center}.yr .lab{margin-right:2px}
+.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;line-height:0}
+.stage canvas{position:absolute;left:0;top:0;width:100%;height:100%}
+.stage canvas.base{position:relative;display:block;height:auto}
+.readout{position:absolute;left:10px;bottom:10px;line-height:1.4;font-family:var(--font-mono);font-size:12px;
+  background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 9px;pointer-events:none;max-width:calc(100% - 20px)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;font-size:12px;color:var(--muted)}
+.ramp{height:10px;width:200px;border-radius:2px;border:1px solid var(--line);background:linear-gradient(90deg,var(--r0),var(--r1),var(--r2),var(--r3),var(--r4))}
+.ticks{display:flex;justify-content:space-between;width:200px;font-family:var(--font-mono);font-size:10px}
+.cols{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px}
+@media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}}
+h2{font-size:12px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;font-weight:500}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:13px}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;position:sticky;top:0;background:var(--panel)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td.nm{font-weight:500;white-space:nowrap}
+tr.hl td{background:color-mix(in srgb,var(--accent) 14%,transparent)}
+tbody tr{cursor:pointer}
+td:last-child{min-width:230px}
+@media (max-width:600px){.stage{min-height:300px}}
+.rng{display:inline-flex;gap:8px;align-items:center;font-size:13px}
+.rng input[type=range]{width:150px;accent-color:var(--accent)}
+.rng output{font-family:var(--font-mono);font-size:12px;min-width:3.6em;font-variant-numeric:tabular-nums}
+.bar.off .rng,.bar.off #presets{opacity:.45}
+.note{margin:0;color:var(--muted);font-size:12.5px;max-width:110ch}
+.notes p{margin:0 0 8px;color:var(--muted);max-width:62ch}
+.notes b{color:var(--fg);font-weight:500}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:6px}
+@media (prefers-reduced-motion:reduce){.stage canvas.fx{display:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Indian Ocean surface currents, March 2014 to July 2015</h1>
+    <p class="sub" id="stamp"></p>
+  </header>
+
+  <div class="bar">
+    <div class="grp" role="group" aria-label="Month"><span class="lab">Month</span><span id="months" class="yrs"></span></div>
+    <div class="grp"><button id="play" type="button">Play Mar 2014 → Jul 2015</button></div>
+    <div class="grp" role="group" aria-label="Field"><span class="lab">Field</span>
+      <button id="mMean" type="button" aria-pressed="true">Monthly mean</button>
+      <button id="mSnap" type="button" aria-pressed="false">Single day</button></div>
+  </div>
+  <div class="bar">
+    <div class="grp" role="group" aria-label="View"><span class="lab">View</span><span id="views"></span></div>
+    <label class="chk"><input type="checkbox" id="cFlow" checked> Flow</label>
+    <label class="chk"><input type="checkbox" id="cFront"> East–west flow boundary</label>
+    <label class="chk"><input type="checkbox" id="cLab" checked> Current labels</label>
+  </div>
+
+  <div class="bar" id="driftBar">
+    <div class="grp" role="group" aria-label="Drift"><span class="lab">Drift</span>
+      <button id="dWater" type="button" aria-pressed="true">Water only</button>
+      <button id="dObj" type="button" aria-pressed="false">Floating object</button></div>
+    <div class="grp" id="presets" role="group" aria-label="Leeway class"><span class="lab">Class</span></div>
+    <label class="rng">Slip <input id="slip" type="range" min="0" max="5" step="0.1" value="1.2"><output id="slipV">1.2%</output></label>
+    <label class="rng">Angle <input id="ang" type="range" min="-35" max="35" step="1" value="0"><output id="angV">0°</output></label>
+    <label class="chk"><input type="checkbox" id="cWind"> Wind arrows</label>
+  </div>
+  <p class="note" id="driftNote"></p>
+
+  <div class="stage" id="stage">
+    <canvas class="base" id="cBase"></canvas>
+    <canvas class="fx" id="cFx"></canvas>
+    <canvas id="cTop"></canvas>
+    <div class="readout" id="readout">Move over the map for local speed and direction.</div>
+  </div>
+
+  <div class="legend">
+    <span>Speed</span>
+    <span><div class="ramp"></div><div class="ticks"><span>0</span><span>0.3</span><span>0.6</span><span>0.9</span><span>1.2+ m/s</span></div></span>
+    <span><i style="display:inline-block;width:14px;border-top:2px dashed var(--front);vertical-align:middle"></i> smoothed boundary where eastward and westward flow meet (best seen in monthly means)</span>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h2><span id="tkind">Strongest flow</span> along each current's axis, <span id="tmon"></span></h2>
+      <div class="tw"><table>
+        <thead><tr><th>Current</th><th>Speed</th><th>Flows toward</th><th>Where / what</th></tr></thead>
+        <tbody id="tbody"></tbody></table></div>
+    </div>
+    <div class="notes">
+      <h2>Reading the map</h2>
+      <p><b>Color</b> is current speed. <b>Moving streaks</b> show direction. Each animation frame covers about 17 hours of flow, so streaks show where water goes, with relative speeds kept.</p>
+      <p><b>Mean vs single day.</b> The monthly mean smooths eddies and shows the broad pattern. A single day (the middle of each month) shows eddies and meanders that a drifting object would actually meet.</p>
+      <p><b>Seasonal shift.</b> The window covers the 2014 south-west monsoon, the 2014–15 north-east monsoon and the start of the 2015 south-west monsoon. Press play and watch the equatorial jets, the Somali Current and the Bay of Bengal flow reverse and return.</p>
+      <h2 style="margin-top:14px">Data and limits</h2>
+      <p>GLORYS12V1 (Mercator Ocean) via Copernicus Marine: daily surface currents at 0.49 m depth from your MH370-External-Data archive, averaged to 1/3° from the original 1/12°. March 2014 starts on 8 March, the date of the MH370 event, and July 2015 ends on 29 July. In Water only mode the map shows currents alone, with no wind drift and no Stokes drift.</p>
+      <p><b>Floating object mode</b> adds wind drift to the current: slip is the share of the 10 m wind speed the object moves at, and the angle turns that drift to the right (+) or left (−) of the wind. The wind is NCEP/NCAR Reanalysis 1 daily 10 m wind (about 1.9° grid), averaged the same way as the currents. The C0 to C3 classes use the midpoint of the slip range I assumed for each class in the debris model. They are assumptions, not measurements. The model's lowest total slip is 1.2%, a stand-in for Stokes drift that is already inside total slip and never added on top. No explicit wave drift is shown. This is a snapshot of drift velocity, not a debris path.</p>
+      <p>Current names and boxes are my placement. The speeds and directions in the table come from the data, not from the labels.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+let MONTHS=[],MFULL=[],SNAPDAY=[],NM=0;
+const NY=225, NX=345, LA0=-59.875, LO0=15.125, D=1/3, NMAX=17;
+function dec(b){const s=atob(b),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return new Int16Array(u.buffer)}
+function toF(a){const f=new Float32Array(a.length);for(let i=0;i<a.length;i++)f[i]=a[i]===-32768?NaN:a[i]/1000;return f}
+const F={mean:[],snap:[]};
+async function loadAll(){
+  const idx=await (await fetch("fields/index.json")).json();
+  MONTHS=idx.map(m=>({l:m.short,y:m.year}));MFULL=idx.map(m=>m.full);SNAPDAY=idx.map(m=>m.snap);NM=idx.length;
+  const wj=await (await fetch("fields/winds.json")).json();WLAT=wj.lat;WLON=wj.lon;
+  const bufs=await Promise.all(idx.map(m=>fetch("fields/"+m.file).then(r=>r.text())));
+  bufs.forEach(b=>{const a=dec(b.trim()),n=NX*NY;
+    const w=wj.months[F.mean.length];
+    F.mean.push({u:toF(a.subarray(0,n)),v:toF(a.subarray(n,2*n)),wu:regridWind(w.um,WLAT,WLON),wv:regridWind(w.vm,WLAT,WLON)});F.snap.push({u:toF(a.subarray(2*n,3*n)),v:toF(a.subarray(3*n,4*n)),wu:regridWind(w.us,WLAT,WLON),wv:regridWind(w.vs,WLAT,WLON)})});
+}
+const cs=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+const VIEWS={all:{n:"Whole basin",b:[15,130,-60,15]},sw:{n:"Agulhas to Madagascar",b:[15,65,-50,-5]},
+  eq:{n:"Equator and Arabian Sea",b:[38,100,-14,15]},east:{n:"Leeuwin and Java",b:[88,130,-42,-4]}};
+const CURR=[
+ {n:"Agulhas Current",ax:225,sg:1,box:[-37,-29,24,34],d:"Western boundary current off southeast Africa"},
+ {n:"Agulhas Return Current",ax:90,sg:1,box:[-42,-36,30,60],d:"Eastward return flow south of Africa after the retroflection"},
+ {n:"Mozambique Channel eddies",ax:0,sg:0,box:[-26,-12,34,44],d:"Eddy-dominated; direction varies day to day",eddy:1},
+ {n:"East Madagascar Current",ax:190,sg:1,box:[-25,-13,47,54],d:"Southward along Madagascar's east coast"},
+ {n:"South Equatorial Current",ax:270,sg:1,box:[-20,-8,55,100],d:"Broad westward flow across the tropical basin"},
+ {n:"Counter-current (SECC)",ax:90,sg:1,box:[-10,-4,60,95],d:"Weaker eastward flow north of the South Equatorial Current"},
+ {n:"Equatorial Jet",ax:90,sg:0,box:[-3,3,50,95],d:"Reverses with the monsoon; strong eastward flow in May"},
+ {n:"Somali Current",ax:0,sg:0,box:[3,10,48,54],d:"Flow off the Somali coast; reverses with the monsoon"},
+ {n:"West India Coastal Current",ax:0,sg:0,box:[8,14,70,76],d:"Along India's west coast"},
+ {n:"East India Coastal Current",ax:0,sg:0,box:[8,15,79,87],d:"Along India's east coast"},
+ {n:"Leeuwin Current",ax:180,sg:1,box:[-35,-22,111,117],d:"Southward along Western Australia"},
+ {n:"West Australian Current",ax:330,sg:1,box:[-32,-24,100,110],d:"Offshore of Western Australia, toward the equator"},
+ {n:"South Java Current",ax:90,sg:0,box:[-11,-7,103,115],d:"Along Java and Sumatra's south coasts"},
+ {n:"Throughflow outflow",ax:250,sg:1,box:[-14,-9,113,122],d:"Where Indonesian Throughflow water enters the Indian Ocean"},
+ {n:"Antarctic Circumpolar Current",ax:90,sg:1,box:[-52,-44,20,120],d:"Eastward, circles Antarctica"}
+];
+let mode="mean", t=0, view="all", playing=false, layers={flow:true,front:false,lab:true}, hlIdx=-1;
+
+/* field at fractional month t */
+const U0=new Float32Array(NX*NY),V0=new Float32Array(NX*NY),WU=new Float32Array(NX*NY),WV=new Float32Array(NX*NY),U=new Float32Array(NX*NY),V=new Float32Array(NX*NY);
+let drift=false,slip=1.2,ang=0,windOn=false,WLAT=[],WLON=[];
+function blend(){
+  const set=F[mode]; const i=Math.min(NM-2,Math.floor(t)), f=mode==="mean"?t-i:0;
+  const a=set[i], b=set[Math.min(NM-1,i+1)];
+  for(let k=0;k<U0.length;k++){
+    U0[k]=f?a.u[k]*(1-f)+b.u[k]*f:a.u[k]; V0[k]=f?a.v[k]*(1-f)+b.v[k]*f:a.v[k];
+    WU[k]=f?a.wu[k]*(1-f)+b.wu[k]*f:a.wu[k]; WV[k]=f?a.wv[k]*(1-f)+b.wv[k]*f:a.wv[k];
+  }
+  applyDrift();
+}
+function applyDrift(){
+  const s=drift?slip/100:0,c=Math.cos(ang*Math.PI/180),sn=Math.sin(ang*Math.PI/180);
+  for(let k=0;k<U.length;k++){const u0=U0[k];
+    if(Number.isNaN(u0)){U[k]=NaN;V[k]=NaN;continue}
+    if(!s){U[k]=u0;V[k]=V0[k];continue}
+    const wu=WU[k],wv=WV[k];U[k]=u0+s*(wu*c+wv*sn);V[k]=V0[k]+s*(-wu*sn+wv*c)}
+}
+function regridWind(arr,wlat,wlon){
+  arr=Array.isArray(arr[0])?arr.flat():arr;
+  const nlat=wlat.length,nlon=wlon.length,out=new Float32Array(NX*NY);
+  const order=[...wlat.keys()].sort((p,q)=>wlat[p]-wlat[q]),la=order.map(i=>wlat[i]),wdx=(wlon[nlon-1]-wlon[0])/(nlon-1);
+  for(let y=0;y<NY;y++){const lat=LA0+y*D;let j=0;while(j<la.length-2&&la[j+1]<lat)j++;
+    const fy=Math.min(1,Math.max(0,(lat-la[j])/(la[j+1]-la[j]))),r0=order[j]*nlon,r1=order[j+1]*nlon;
+    for(let x=0;x<NX;x++){let gx=(LO0+x*D-wlon[0])/wdx;gx=Math.min(nlon-1.0001,Math.max(0,gx));const i=gx|0,fx=gx-i;
+      out[y*NX+x]=((arr[r0+i]*(1-fx)+arr[r0+i+1]*fx)*(1-fy)+(arr[r1+i]*(1-fx)+arr[r1+i+1]*fx)*fy)/100}}
+  return out;
+}
+function samp(lon,lat){
+  const gx=(lon-LO0)/D, gy=(lat-LA0)/D; if(gx<0||gy<0||gx>=NX-1||gy>=NY-1)return null;
+  const x=gx|0,y=gy|0,fx=gx-x,fy=gy-y; let su=0,sv=0,sw=0;
+  for(let dy=0;dy<2;dy++)for(let dx=0;dx<2;dx++){
+    const k=(y+dy)*NX+x+dx, w=(dx?fx:1-fx)*(dy?fy:1-fy);
+    if(!Number.isNaN(U[k])){su+=U[k]*w;sv+=V[k]*w;sw+=w}
+  }
+  if(sw<0.5)return null; return [su/sw,sv/sw];
+}
+const dirName=(u,v)=>{const b=(Math.atan2(u,v)*180/Math.PI+360)%360;return ["N","NE","E","SE","S","SW","W","NW"][Math.round(b/45)%8]+" ("+Math.round(b)+"°)"};
+
+/* canvases */
+const stage=document.getElementById("stage"),cB=document.getElementById("cBase"),cF=document.getElementById("cFx"),cT=document.getElementById("cTop");
+const gB=cB.getContext("2d"),gF=cF.getContext("2d"),gT=cT.getContext("2d");
+const heat=document.createElement("canvas");heat.width=NX;heat.height=NY;const gH=heat.getContext("2d");
+let W=0,H=0,dpr=1,B=VIEWS.all.b,PX=1,PY=1;
+function hex(c){c=c.trim();if(c[0]!=="#")return[0,0,0];return[parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)]}
+let RAMP=[],LAND=[0,0,0],FRONT=[255,0,0];
+function readTheme(){RAMP=["--r0","--r1","--r2","--r3","--r4"].map(n=>hex(cs(n)));LAND=hex(cs("--land"));FRONT=hex(cs("--front"))}
+function ramp(s){const x=Math.min(1,s/1.2)*4,i=Math.min(3,x|0),f=x-i,a=RAMP[i],b=RAMP[i+1];return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f]}
+function boxBlur(src,r){ // NaN-aware, separable
+  const tmp=new Float32Array(src.length),out=new Float32Array(src.length);
+  for(let y=0;y<NY;y++)for(let x=0;x<NX;x++){let s=0,n=0;for(let k=-r;k<=r;k++){const xx=x+k;if(xx<0||xx>=NX)continue;const v=src[y*NX+xx];if(!Number.isNaN(v)){s+=v;n++}}tmp[y*NX+x]=n?s/n:NaN}
+  for(let y=0;y<NY;y++)for(let x=0;x<NX;x++){let s=0,n=0;for(let k=-r;k<=r;k++){const yy=y+k;if(yy<0||yy>=NY)continue;const v=tmp[yy*NX+x];if(!Number.isNaN(v)){s+=v;n++}}out[y*NX+x]=n?s/n:NaN}
+  return out;
+}
+function drawHeat(){
+  const img=gH.createImageData(NX,NY),d=img.data;
+  let ub=null; if(layers.front){ub=boxBlur(boxBlur(U,6),6);for(let k=0;k<ub.length;k++)if(Number.isNaN(U[k]))ub[k]=NaN}
+  for(let y=0;y<NY;y++){for(let x=0;x<NX;x++){
+    const k=y*NX+x,o=((NY-1-y)*NX+x)*4; let c;
+    if(Number.isNaN(U[k])){c=LAND}else{c=ramp(Math.hypot(U[k],V[k]))}
+    if(ub&&x<NX-1&&y<NY-1){const a=ub[k],b=ub[k+1],e=ub[k+NX];
+      if(!Number.isNaN(a)&&!Number.isNaN(b)&&a*b<0&&Math.abs(a-b)>0.05||(!Number.isNaN(a)&&!Number.isNaN(e)&&a*e<0&&Math.abs(a-e)>0.05))c=FRONT}
+    d[o]=c[0];d[o+1]=c[1];d[o+2]=c[2];d[o+3]=255}}
+  gH.putImageData(img,0,0);
+  paintBase();
+}
+function paintBase(){
+  gB.imageSmoothingEnabled=true;
+  const sx=(B[0]-LO0)/D, sw=(B[1]-B[0])/D, sy=(LA0+NY*D-D/2-B[3])/D, sh=(B[3]-B[2])/D;
+  // row 0 of heat is north edge = lat LA0+(NY-1)*D
+  const top=LA0+(NY-1)*D, syy=(top-B[3])/D+0.5, sxx=(B[0]-LO0)/D+0.5;
+  gB.clearRect(0,0,cB.width,cB.height);
+  gB.drawImage(heat,sxx,syy,sw,sh,0,0,cB.width,cB.height);
+}
+const lonToX=l=>(l-B[0])*PX, latToY=l=>(B[3]-l)*PY;
+function size(){
+  W=stage.clientWidth; const dlon=B[1]-B[0],dlat=B[3]-B[2];
+  H=Math.round(W*dlat/dlon*0.82);if(W<600)H=Math.max(H,Math.round(W*0.95)); dpr=Math.min(2,window.devicePixelRatio||1);
+  for(const c of [cB,cF,cT]){c.width=Math.round(W*dpr);c.height=Math.round(H*dpr)}
+  cB.style.height=H+"px"; stage.style.height=H+"px";
+  PX=cB.width/dlon; PY=cB.height/dlat; // device px per deg
+  paintBase(); spawnAll(); drawTop(); gF.clearRect(0,0,cF.width,cF.height);
+}
+
+/* labels */
+const MARK=[];
+const proj=(u,v,c)=>{const a=c.ax*Math.PI/180,s=u*Math.sin(a)+v*Math.cos(a);return c.sg?s:Math.abs(s)};
+function findCores(){
+  const mu=new Float32Array(NX*NY),mv=new Float32Array(NX*NY);
+  for(let k=0;k<mu.length;k++){let su=0,sv=0,n=0;for(let i=0;i<NM;i++){const a=F.mean[i].u[k];if(!Number.isNaN(a)){su+=a;sv+=F.mean[i].v[k];n++}}mu[k]=n===NM?su/NM:NaN;mv[k]=n===NM?sv/NM:NaN}
+  for(const c of CURR){const [la0,la1,lo0,lo1]=c.box;let best=-1,bk=-1;
+    if(c.eddy){c.lat=(la0+la1)/2;c.lon=(lo0+lo1)/2;continue}
+    for(let y=Math.max(0,((la0-LA0)/D)|0);y<=Math.min(NY-1,((la1-LA0)/D)|0);y++)for(let x=Math.max(0,((lo0-LO0)/D)|0);x<=Math.min(NX-1,((lo1-LO0)/D)|0);x++){
+      const k=y*NX+x;if(Number.isNaN(mu[k]))continue;const s=proj(mu[k],mv[k],c);if(s>best){best=s;bk=k}}
+    c.lat=LA0+((bk/NX)|0)*D;c.lon=LO0+(bk%NX)*D}
+}
+function boxStat(c){ // strongest cell in box for current field
+  const [la0,la1,lo0,lo1]=c.box;let best=-1,bu=0,bv=0,su=0,sv=0,n=0,sp=0;
+  for(let y=Math.max(0,((la0-LA0)/D)|0);y<=Math.min(NY-1,((la1-LA0)/D)|0);y++)for(let x=Math.max(0,((lo0-LO0)/D)|0);x<=Math.min(NX-1,((lo1-LO0)/D)|0);x++){
+    const k=y*NX+x;if(Number.isNaN(U[k]))continue;const s=Math.hypot(U[k],V[k]);sp+=s;su+=U[k];sv+=V[k];n++;const q=proj(U[k],V[k],c);if(q>best){best=q;bu=U[k];bv=V[k]}}
+  return{best:Math.hypot(bu,bv),bu,bv,mean:n?sp/n:0,mu:n?su/n:0,mv:n?sv/n:0,n};
+}
+function drawTop(){
+  gT.clearRect(0,0,cT.width,cT.height);
+  gT.save();gT.scale(PX*0+1,1);
+  const lab=cs("--label"),halo=cs("--halo"),muted=cs("--muted");
+  gT.font=`${11*dpr}px ${getComputedStyle(document.body).fontFamily}`;gT.textBaseline="middle";
+  // graticule
+  gT.strokeStyle=muted;gT.globalAlpha=.28;gT.lineWidth=dpr*0.6;gT.fillStyle=lab;
+  const step=(B[1]-B[0])>60?10:5;
+  for(let lo=Math.ceil(B[0]/step)*step;lo<=B[1];lo+=step){const x=lonToX(lo)*1;gT.beginPath();gT.moveTo(x,0);gT.lineTo(x,cT.height);gT.stroke()}
+  for(let la=Math.ceil(B[2]/step)*step;la<=B[3];la+=step){const y=latToY(la);gT.beginPath();gT.moveTo(0,y);gT.lineTo(cT.width,y);gT.stroke()}
+  gT.globalAlpha=.85;gT.font=`${10*dpr}px ${getComputedStyle(document.body).getPropertyValue("--font-mono")}`;gT.fillStyle=lab;gT.lineWidth=3*dpr;gT.strokeStyle=halo;gT.lineJoin="round";
+  for(let lo=Math.ceil(B[0]/step)*step;lo<=B[1];lo+=step){const x=lonToX(lo);gT.textAlign="center";gT.strokeText(lo+"°E",x,cT.height-8*dpr);gT.fillText(lo+"°E",x,cT.height-8*dpr)}
+  for(let la=Math.ceil(B[2]/step)*step;la<=B[3];la+=step){const y=latToY(la);gT.textAlign="left";const s=Math.abs(la)+"°"+(la<0?"S":la>0?"N":"");gT.strokeText(s,4*dpr,y-6*dpr);gT.fillText(s,4*dpr,y-6*dpr)}
+  gT.globalAlpha=1;
+  if(layers.lab){
+    gT.font=`500 ${11.5*dpr}px ${getComputedStyle(document.body).fontFamily}`;
+    const placed=[];
+    CURR.forEach((c,i)=>{if(c.lon<B[0]||c.lon>B[1]||c.lat<B[2]||c.lat>B[3])return;
+      const x=lonToX(c.lon),y=latToY(c.lat);
+      gT.beginPath();gT.arc(x,y,(i===hlIdx?5:3)*dpr,0,7);gT.fillStyle=cs("--accent");gT.fill();gT.lineWidth=1.2*dpr;gT.strokeStyle=halo;gT.stroke();
+      const w=gT.measureText(c.n).width,h2=13*dpr;let ok=null;
+      const pref=x<cT.width*0.72?1:-1;
+      for(const dy of [-9,9,-22,22,-35,35]){for(const sd of [pref,-pref]){
+        const tx=x+sd*8*dpr,ty=y+dy*dpr,x0=sd>0?tx:tx-w;
+        const r=[x0-2,ty-h2/2,x0+w+2,ty+h2/2];
+        if(r[0]<0||r[2]>cT.width||r[1]<0||r[3]>cT.height)continue;
+        if(placed.every(q=>r[2]<q[0]||r[0]>q[2]||r[3]<q[1]||r[1]>q[3])){ok={tx,ty,sd,r};break}}if(ok)break}
+      if(!ok)return;placed.push(ok.r);
+      gT.textAlign=ok.sd>0?"left":"right";
+      gT.lineWidth=3.5*dpr;gT.strokeStyle=halo;gT.strokeText(c.n,ok.tx,ok.ty);gT.fillStyle=lab;gT.fillText(c.n,ok.tx,ok.ty)});
+  }
+  if(windOn){
+    const sp=(B[1]-B[0])>60?2:1;gT.strokeStyle=lab;gT.globalAlpha=.6;gT.lineWidth=1.1*dpr;gT.lineCap="round";
+    for(let yy=0;yy<WLAT.length;yy+=sp){const la=WLAT[yy];if(la<B[2]||la>B[3])continue;
+      for(let xx=0;xx<WLON.length;xx+=sp){const lo=WLON[xx];if(lo<B[0]||lo>B[1])continue;
+        const gi=Math.round((la-LA0)/D)*NX+Math.round((lo-LO0)/D);const u=WU[gi],v=WV[gi];if(!u&&!v)continue;
+        const m=Math.hypot(u,v),L=Math.min(22,2.1*m)*dpr,x0=lonToX(lo),y0=latToY(la),dx=u/m,dy=-v/m,x1=x0+dx*L,y1=y0+dy*L,hl=Math.min(5,L*.4);
+        gT.beginPath();gT.moveTo(x0,y0);gT.lineTo(x1,y1);gT.moveTo(x1,y1);gT.lineTo(x1-(dx*Math.cos(.5)-dy*Math.sin(.5))*hl,y1-(dy*Math.cos(.5)+dx*Math.sin(.5))*hl);
+        gT.moveTo(x1,y1);gT.lineTo(x1-(dx*Math.cos(.5)+dy*Math.sin(.5))*hl,y1-(dy*Math.cos(.5)-dx*Math.sin(.5))*hl);gT.stroke()}}
+    gT.globalAlpha=1}
+  gT.restore();
+}
+
+/* particles */
+let P=[];const NP=()=>Math.round(Math.min(7000,(W*H)/220));
+function spawn(p){for(let n=0;n<30;n++){const lon=B[0]+Math.random()*(B[1]-B[0]),lat=B[2]+Math.random()*(B[3]-B[2]);const s=samp(lon,lat);if(s){p.x=lon;p.y=lat;p.px=lon;p.py=lat;p.a=0;p.l=50+Math.random()*90;return}}p.x=NaN;p.l=0;p.a=0}
+function spawnAll(){P=[];for(let i=0;i<NP();i++){const p={};spawn(p);p.a=Math.random()*p.l;P.push(p)}}
+const K=0.55; // degrees per frame per m/s (visual only)
+function step(){
+  if(!layers.flow||matchMedia("(prefers-reduced-motion: reduce)").matches){gF.clearRect(0,0,cF.width,cF.height);return}
+  gF.globalCompositeOperation="destination-out";gF.fillStyle="rgba(0,0,0,0.07)";gF.fillRect(0,0,cF.width,cF.height);
+  gF.globalCompositeOperation="source-over";gF.strokeStyle=cs("--particle");gF.lineWidth=1.1*dpr;gF.beginPath();
+  for(const p of P){
+    if(p.a++>p.l||Number.isNaN(p.x)){spawn(p);continue}
+    const s=samp(p.x,p.y);if(!s){spawn(p);continue}
+    const nx=p.x+s[0]*K/Math.max(.35,Math.cos(p.y*Math.PI/180)),ny=p.y+s[1]*K;
+    if(nx<B[0]||nx>B[1]||ny<B[2]||ny>B[3]){spawn(p);continue}
+    gF.moveTo(lonToX(p.x),latToY(p.y));gF.lineTo(lonToX(nx),latToY(ny));p.x=nx;p.y=ny}
+  gF.stroke();
+}
+
+/* table */
+const tb=document.getElementById("tbody");
+CURR.forEach((c,i)=>{const tr=document.createElement("tr");tr.innerHTML=`<td class="nm"></td><td class="num"></td><td class="num"></td><td></td>`;tr.children[0].textContent=c.n;tr.children[3].textContent=c.d;
+  tr.addEventListener("click",()=>{hlIdx=i;updateTable();drawTop()});tb.appendChild(tr);c.tr=tr});
+function updateTable(){
+  CURR.forEach((c,i)=>{const s=boxStat(c);const t=c.tr.children;
+    if(c.eddy){t[1].textContent=s.best.toFixed(2)+" peak · "+s.mean.toFixed(2)+" avg";t[2].textContent="varies"}
+    else{t[1].textContent=s.best.toFixed(2)+" m/s";t[2].textContent=dirName(s.bu,s.bv)}
+    c.tr.classList.toggle("hl",i===hlIdx)});
+}
+
+/* controls */
+const mEl=document.getElementById("months"),vEl=document.getElementById("views");
+function buildMonths(){let cy=0,row;MONTHS.forEach((m,i)=>{if(m.y!==cy){cy=m.y;row=document.createElement("span");row.className="yr";const s=document.createElement("span");s.className="lab";s.textContent=cy;row.appendChild(s);mEl.appendChild(row)}
+  const b=document.createElement("button");b.type="button";b.textContent=m.l;b.dataset.i=i;b.addEventListener("click",()=>{stop();setT(i)});row.appendChild(b)})}
+Object.entries(VIEWS).forEach(([k,v])=>{const b=document.createElement("button");b.type="button";b.textContent=v.n;b.dataset.k=k;b.addEventListener("click",()=>{view=k;B=v.b;syncUI();size()});vEl.appendChild(b)});
+function stamp(){const i=Math.min(NM-1,Math.round(t));document.getElementById("tmon").textContent=(mode==="snap"?SNAPDAY[i]:MFULL[i]+" mean");
+  document.getElementById("stamp").textContent=(mode==="snap"?"Daily field, "+SNAPDAY[i]:(Math.abs(t-Math.round(t))<.001?MFULL[i]+", monthly mean":"Blending "+MONTHS[Math.floor(t)].l+" to "+MONTHS[Math.ceil(t)].l))+" · GLORYS12V1 0.49 m"}
+function syncUI(){
+  [...mEl.children].forEach(b=>{const on=Math.abs(+b.dataset.i-t)<.5;b.setAttribute("aria-pressed",on)});
+  [...vEl.children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.k===view));
+  document.getElementById("mMean").setAttribute("aria-pressed",mode==="mean");document.getElementById("mSnap").setAttribute("aria-pressed",mode==="snap");
+  const pb=document.getElementById("play");pb.textContent=playing?"Pause":"Play Mar 2014 → Jul 2015";pb.classList.toggle("on",playing);
+}
+function setT(v){t=v;blend();drawHeat();updateTable();stamp();syncUI();if(windOn)drawTop()}
+function stop(){playing=false;syncUI()}
+document.getElementById("play").addEventListener("click",()=>{if(mode==="snap"){mode="mean"}playing=!playing;if(playing&&t>=NM-1.01)t=0;syncUI()});
+document.getElementById("mMean").addEventListener("click",()=>{mode="mean";setT(Math.round(t))});
+document.getElementById("mSnap").addEventListener("click",()=>{stop();mode="snap";setT(Math.round(t))});
+const bind=(id,k)=>document.getElementById(id).addEventListener("change",e=>{layers[k]=e.target.checked;if(k==="front")drawHeat();if(k==="lab")drawTop();if(k==="flow"&&!e.target.checked)gF.clearRect(0,0,cF.width,cF.height)});
+bind("cFlow","flow");bind("cFront","front");bind("cLab","lab");
+
+/* drift controls */
+const CLS=[["C0",1.2,"1.2% fixed"],["C1",2.1,"0.8 to 3.3%, midpoint"],["C2",2.5,"1.5 to 3.5%, midpoint"],["C3",3.75,"2.5 to 5%, midpoint"]];
+const pEl=document.getElementById("presets");
+CLS.forEach(c=>{const b=document.createElement("button");b.type="button";b.textContent=c[0];b.title=c[0]+": assumed slip "+c[2];b.addEventListener("click",()=>{drift=true;slip=c[1];document.getElementById("slip").value=c[1];driftChanged()});pEl.appendChild(b)});
+function updateNote(){
+  const n=document.getElementById("driftNote"),bar=document.getElementById("driftBar");
+  bar.classList.toggle("off",!drift);
+  for(const id of ["slip","ang"])document.getElementById(id).disabled=!drift;
+  [...pEl.querySelectorAll("button")].forEach((b,i)=>b.disabled=false);
+  document.getElementById("dWater").setAttribute("aria-pressed",!drift);document.getElementById("dObj").setAttribute("aria-pressed",drift);
+  document.getElementById("slipV").textContent=slip.toFixed(1)+"%";document.getElementById("angV").textContent=(ang>0?"+":"")+ang+"°";
+  [...pEl.querySelectorAll("button")].forEach((b,i)=>b.setAttribute("aria-pressed",drift&&Math.abs(CLS[i][1]-slip)<.001));
+  document.getElementById("tkind").textContent=drift?"Strongest object drift":"Strongest flow";
+  n.textContent=drift?`Colors and streaks show how a floating object drifts: water current plus ${slip.toFixed(1)}% of the 10 m wind${ang?`, turned ${Math.abs(ang)}° to the ${ang>0?"right":"left"} of the wind`:""}.${slip<1.2?" Below the model's 1.2% minimum total slip.":""} Class values are assumptions.`:"Water only: colors and streaks show the ocean current. Switch to Floating object to add wind drift.";
+}
+function driftChanged(){applyDrift();drawHeat();updateTable();updateNote();drawTop()}
+document.getElementById("dWater").addEventListener("click",()=>{drift=false;driftChanged()});
+document.getElementById("dObj").addEventListener("click",()=>{drift=true;driftChanged()});
+document.getElementById("slip").addEventListener("input",e=>{slip=+e.target.value;driftChanged()});
+document.getElementById("ang").addEventListener("input",e=>{ang=+e.target.value;driftChanged()});
+document.getElementById("cWind").addEventListener("change",e=>{windOn=e.target.checked;drawTop()});
+
+/* hover */
+const ro=document.getElementById("readout");
+function hover(e){const r=cT.getBoundingClientRect();const cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left,cy=(e.touches?e.touches[0].clientY:e.clientY)-r.top;
+  const lon=B[0]+cx/r.width*(B[1]-B[0]),lat=B[3]-cy/r.height*(B[3]-B[2]);const s=samp(lon,lat);
+  const ll=Math.abs(lat).toFixed(1)+"°"+(lat<0?"S":"N")+" "+lon.toFixed(1)+"°E";
+  const gi=Math.round((lat-LA0)/D)*NX+Math.round((lon-LO0)/D),wi=(drift||windOn)&&WU[gi]!==undefined?` · wind ${Math.hypot(WU[gi],WV[gi]).toFixed(1)} m/s toward ${dirName(WU[gi],WV[gi])}`:"";
+  ro.textContent=s?`${ll} · ${drift?"drift":"flow"} ${Math.hypot(s[0],s[1]).toFixed(2)} m/s toward ${dirName(s[0],s[1])}${wi}`:`${ll} · land or no data`}
+stage.addEventListener("mousemove",hover);stage.addEventListener("touchstart",hover,{passive:true});stage.addEventListener("touchmove",hover,{passive:true});
+
+/* loop */
+let fr=0;
+function loop(){
+  if(playing){t+=0.009;if(t>=NM-1){t=NM-1;playing=false}if(fr%3===0){blend();drawHeat();stamp();syncUI();if(windOn)drawTop()}if(fr%20===0)updateTable()}
+  step();fr++;requestAnimationFrame(loop)}
+function themeChange(){readTheme();drawHeat();drawTop();gF.clearRect(0,0,cF.width,cF.height)}
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",themeChange);
+new MutationObserver(themeChange).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+document.getElementById("readout").textContent="Loading 17 months of currents…";
+loadAll().then(()=>{buildMonths();readTheme();findCores();blend();drawHeat();size();updateTable();stamp();syncUI();updateNote();
+  new ResizeObserver(()=>{if(stage.clientWidth!==W){size()}}).observe(stage);ro.textContent="Move over the map for local speed and direction.";requestAnimationFrame(loop)})
+ .catch(e=>{ro.textContent="Could not load the current fields: "+e.message});
+</script>
+</body></html>

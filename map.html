@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MH370 Combined Map</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav>
+<h1>Combined map</h1>
+<p class="sub">Every layer is real data from your files, drawn on one map. Switch layers on and off. Nothing here is fitted to the arc.</p>
+<div class="card"><div class="ctl" id="tg"></div><div class="ctl" id="views" style="margin-top:6px"></div><div class="read" id="ro">Hover the map for coordinates.</div>
+ <canvas id="mp"></canvas><p class="sub" id="lg" style="margin-top:6px"></p></div>
+<div class="grid">
+ <div class="card"><h2>Reading this map</h2><p>The <b>7th arc</b> is the locus of positions at the final handshake (00:19 UTC) from your reference file. <b>Candidates</b> are Phase 5A points near it (65 to 1,306 km away). The <b>density</b> is the combined <i>reverse-drift</i> distribution from the baseline run with assigned classes. It is a different kind of quantity from the arc and candidates, and it depends on assumed find coordinates, the class table and no explicit Stokes.</p></div>
+ <div class="card"><h2>What the overlay does and does not show</h2><p>The density peak (35.25°S, 55.75°E) sits about 870 km inside the 7th-arc ring and 918 km from the June BTO-only endpoint box (43.5°S, 55.5°E), which is on the ring. The two share a longitude and differ by about 8° of latitude. That is as far as the data goes. The drift side does not locate the aircraft. Task 9 (complete) found the same broad western focus in the shuffled-region and random-coast nulls, so the peak is not specific to the finds; its cause is the open question, and Task 10 is set up to isolate it.</p><div id="rd"></div></div>
+</div>
+<script>
+MH.nav("map.html");const VIEWS={"Average Day tracks":[84,100,-40,2],"Terminal area":[86,93,-39,-35],"Whole basin":[15,130,-60,15],"Search area":[80,112,-42,-20],"Western drift focus":[35,80,-52,-20],"Southern Africa to Réunion":[25,70,-40,-5]};
+(async()=>{
+const [mask,arc,cand,radar,den,fnd,adf]=await Promise.all(["mask","arc7","phase5a","radar","density","finds","avgday"].map(n=>MH.J("data/"+n+".json")));
+const map=new MH.Map(document.getElementById("mp"),mask,VIEWS["Whole basin"]);
+map.layers.density=MH.L.density(den,false);map.layers.ring=MH.L.ring();map.layers.arc=MH.L.arc(arc);map.layers.bto=MH.L.box(MH.BTOBOX,'June BTO-only endpoint box');map.layers.search=MH.L.search(MH.SEARCH);map.layers.finds=MH.L.finds(fnd);map.layers.cand=MH.L.cand(cand);map.layers.flights=MH.L.flights(adf);
+map.layers.radar=MH.L.radar(radar.filter(r=>r.lat_deg).map(r=>({lat:+r.lat_deg,lon:+r.lon_deg})));
+const names={density:"Reverse-drift density",hpd:"Density 90% HPD cells",arc:"7th arc",ring:"Ring extension (my fit)",bto:"June BTO-only endpoint box",cand:"Phase 5A candidates",finds:"Debris find sites",flights:"Average Day flights (star = 00:11)",search:"Search areas (approx)",radar:"IGARI radar point"};
+const tg=document.getElementById("tg");
+tg.innerHTML=Object.entries(names).map(([k,l])=>`<label><input type="checkbox" data-k="${k}" ${k==="hpd"?"":"checked"}>${l}</label>`).join("");
+tg.querySelectorAll("input").forEach(i=>i.onchange=()=>{const k=i.dataset.k;if(k==="hpd")map.layers.density.hpd=i.checked;else map.layers[k].on=i.checked;map.draw()});
+let cur="Whole basin";const vb=document.getElementById("views");
+function vb2(){vb.innerHTML="<span class=muted>View:</span> "+Object.keys(VIEWS).map(k=>`<button class="${k===cur?"on":""}" data-k="${k}">${k}</button>`).join("");vb.querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.k;map.setView(VIEWS[cur]);vb2()})}vb2();
+document.getElementById("lg").innerHTML=MH.legend([[MH.css("--accent"),"reverse-drift probability mass (0.5° cells, √ scale)"],[MH.css("--c3"),"7th arc"],[MH.css("--c1"),"Phase 5A candidate"],[MH.css("--ok"),"debris find site (assumed geocode)"]])+" Average Day tracks are coloured, with stars at 00:11. Dashed boxes: approximate search areas. Map shows 15–130°E, 60°S–15°N in the whole-basin view; the arc continues north beyond the frame.";
+map.onhover=h=>{const r=document.getElementById("ro");if(!h){r.textContent="Hover the map for coordinates.";return}let t=`${Math.abs(h.lat).toFixed(2)}°${h.lat<0?"S":"N"}  ${h.lon.toFixed(2)}°E`;
+ const ff=MH.findNear(fnd,map,h);if(ff)t=MH.findText(ff);const c=ff?null:den.cells.find(c=>Math.abs(c[0]-h.lat)<.25&&Math.abs(c[1]-h.lon)<.25);if(c)t+=`   density mass ${c[2].toExponential(2)}${c[3]?" (HPD"+(c[3]===2?" 50/90":" 90")+")":""}`;r.textContent=t};
+const pk=den.cells.reduce((a,b)=>b[2]>a[2]?b:a);const tot=den.cells.reduce((a,c)=>a+c[2],0);const h90=den.cells.filter(c=>c[3]>=1);
+document.getElementById("rd").innerHTML=`<table><tr><td>Peak cell</td><td class=n>${Math.abs(pk[0])}°S ${pk[1]}°E</td></tr><tr><td>Peak cell mass</td><td class=n>${(pk[2]*100).toFixed(2)}%</td></tr><tr><td>Cells in 90% HPD</td><td class=n>${h90.length}</td></tr><tr><td>Mass in HPD-90 cells</td><td class=n>${(h90.reduce((a,c)=>a+c[2],0)*100).toFixed(1)}%</td></tr></table>`;
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>setTimeout(()=>map.draw(),50));
+map.draw();
+})();
+</script></div></body></html>
