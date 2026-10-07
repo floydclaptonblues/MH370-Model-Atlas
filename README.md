@@ -25,6 +25,10 @@ A static site collecting the satellite, flight-model and debris-drift work on MH
 - **No drift source region is determinable.** The method recovers known synthetic sources, but on the real finds the posterior mode moves 1,000–1,900 km when an unmeasured assumption changes — further than any single posterior is wide.
 - **The 1.2% wind-slip floor was fitted to forcing products this model does not use** (ERA-Interim winds, BRAN2015 currents, a CAWCR wave hindcast), with no transfer validation.
 
+## Directives
+
+`directives/` holds the task briefs written for the execution agent, in the order issued, with superseded and withdrawn versions kept. They are there so the thresholds quoted in the atlas can be checked against the record: several were fixed in advance, then failed, and the failures were reported rather than adjusted. `directives/README.md` maps each claim to the brief that declared its threshold, and lists the briefs that were wrong and how they were corrected.
+
 ## Building
 
 `gen.py` writes every `.html` page from inline templates plus the two bodies in `src/`. Run it from the repository root:
