@@ -17,6 +17,11 @@ Each brief was written against standing rules that appear in most of them verbat
 | Northern latitudes are excluded by the signals, not fuel | `17b` §4 — χ² and fuel reported separately as functions of latitude, with reporting bands declared in advance |
 | The arc-1 sweep tier was not chosen for convenience | `18f` §4 — the fallback ladder pre-authorised, arc-1 resolution never cut on any rung |
 | The ERA5 extension will not silently splice two reanalysis vintages | `19` §3 — the overlap gate (agreement to 1×10⁻³) with "if the gate fails, do not splice" written in before any download |
+| Whatever the arc-1 sweep concludes, the grid that produced it could find a known answer | `20` §5 — Gate E: the grid must contain C120's own command vector as an explicit node and must reach χ² ≤ 8.2 at C120's own arc-1 start, declared with "if it does not, no comparison between starts is interpretable — stop" |
+| The sweep's northern result is not read off a coarse grid | `20` §6.2 — two stages with Stage-1 and Stage-2 χ² required in separate columns, and "never compare a Stage-1 value against a Stage-2 value" |
+| A northern arc-1 start is not a northern endpoint | `20` §6.3 — the 00:11 position required on every row, for that reason, before any row existed |
+| The northern indication can be retired by its own test | `20` §7 — outcomes G1 to G4 written out before the numbers existed, G1 being "the northern indication is retired … it was my reading and it was wrong" |
+| The 18:22 radar position never selected anything | `20` §9 — declared a zero-weight diagnostic: "not a term, not a prior, not a filter" |
 
 ## Corrections in the record
 
@@ -27,6 +32,7 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 - **`18e` §4 set a branch threshold at "more than half", which was wrong**, and `18f` §2 corrects it: 25.4% of per-flight time was worth 224 minutes across the grid and should not have been discarded for missing an arbitrary line.
 - **`18f` §6 records an inference drawn from two benchmarks that turned out to use the same timestep**, so the difference between them measured nothing. The execution agent's diagnostic contradicted it and was right.
 - **`16` §F** (answered in conversation, not in the file) corrected a half-normal kernel asserted to converge to a 100 km indicator. It converges to a point mass. The verification step built on it was replaced.
+- **`18a`–`18f` built a grid that did not contain the reference flight**, and `20` §5 is the correction. The grid's bearing resolution was 18° against C120's 184.6°, its Mach ceiling 0.86 against C120's 0.8406, and its pressure nodes bracketed 214.198 hPa without landing on it. Absolute χ² was then compared across starts as though that meant something. `20` requires the grid to recover C120's score at C120's own start before any other start is read, and stops the run if it cannot.
 
 ## Files
 
@@ -43,6 +49,8 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 | `16` | Graded source-region likelihood with a recovery gate |
 | `17a`, `17b` | Latitude reachability (v1 superseded, v2 current) |
 | `18a`–`18f` | The full arc-1 sweep and its amendments |
-| `19` | Extending the ERA5 forcing domain east and north |
+| `19`, `19b` | Extending the ERA5 forcing domain east and north; amendment once the files were supplied rather than downloaded |
+| `20` | Activating the extended domain, then sweeping arc 1 on a grid that must first prove itself |
+| `_slides_prompt…` | The brief for a walkthrough deck, kept because it fixes what a public presentation of this work may and may not claim |
 
 Results packages are not in this repository. The atlas pages report their contents, and the briefs state what was asked for.
