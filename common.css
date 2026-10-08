@@ -93,7 +93,7 @@ img{max-width:100%;height:auto}.note{border-radius:0;box-shadow:inset 0 0 0 1px 
 .w98-tools a:hover,.w98-tools button:hover{border-color:#fff #808080 #808080 #fff;background:#d0d0d0}
 .w98-tools svg{width:21px;height:21px}.w98-tools .w98-print{margin-left:auto}
 .w98-address{display:flex;align-items:center;gap:8px;font-size:12px;margin:0 -5px;padding:4px 2px}
-.w98-address-path{display:flex;align-items:center;gap:6px;flex:1;background:#fff;box-shadow:var(--w98-sunkenken);padding:5px 8px;min-width:0;overflow:hidden;color:#111;white-space:nowrap;text-overflow:ellipsis}
+.w98-address-path{display:flex;align-items:center;gap:6px;flex:1;background:#fff;box-shadow:var(--w98-sunken);padding:5px 8px;min-width:0;overflow:hidden;color:#111;white-space:nowrap;text-overflow:ellipsis}
 .w98-address svg{width:17px;height:17px;flex:none}.w98-address-end{font-size:10px;color:#666;margin-left:auto}
 .w98-hero{display:grid;grid-template-columns:1fr 144px;gap:20px;background:#f6f6ee;box-shadow:var(--w98-sunken);padding:28px 30px;align-items:center;position:relative}
 .w98-hero h1{margin-bottom:12px}.w98-hero p{font-size:14px;max-width:80ch;color:#3e4749}
