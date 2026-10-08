@@ -57,6 +57,8 @@
 <li><b>I then read TASK_030's table as confirming the south.</b> It does the opposite. I compared absolute &chi;&sup2; across starts without first checking what that grid achieves at the one start where the right answer is known &mdash; 1,174 against 8.117. With that in view the 112 at 6&deg;N is the headline, and I had buried it. Ryan caught this.</li>
 <li><b>I read the northern BTO residuals as a physical exclusion.</b> They are a forcing-coverage artifact: the arc north of 27.5&deg;S lies outside the weather data, so no flight could reach it regardless of physics. Corrected 7 October.</li>
 <li><b>I predicted the dt 15 s mesh would halve the sweep cost.</b> It saved 8%, and I then inferred a fixed overhead from two benchmarks that turned out to use the same timestep, so their difference measured nothing. The execution agent's diagnostic contradicted both.</li>
+<li><b>I told the execution agent the density field was unsmoothed.</b> That was true of the locator in <code>common.js</code>, not of the field, which TASK_021 Part A confirmed is smoothed upstream. It matters: smoothing pulls a maximum toward broad mass and so biases toward exactly the verdict I had predicted.</li>
+<li><b>I specified a synthetic harvester the archive already recorded as returning zero matches.</b> The strict match rule had already failed for five fixed synthetic sites. A pilot now fails in minutes instead of hours. Both this and the item above were caught by the execution agent&rsquo;s questions, not by me.</li>
 <li><b>Superseded:</b> the stale Task 9 text on the combined map, corrected in atlas v6.</li></ul></div>
 
 <div class="card"><h2>For whoever picks this up</h2>
