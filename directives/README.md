@@ -35,6 +35,7 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 - **`18e` §4 set a branch threshold at "more than half", which was wrong**, and `18f` §2 corrects it: 25.4% of per-flight time was worth 224 minutes across the grid and should not have been discarded for missing an arbitrary line.
 - **`18f` §6 records an inference drawn from two benchmarks that turned out to use the same timestep**, so the difference between them measured nothing. The execution agent's diagnostic contradicted it and was right.
 - **`16` §F** (answered in conversation, not in the file) corrected a half-normal kernel asserted to converge to a 100 km indicator. It converges to a point mass. The verification step built on it was replaced.
+- **`21` §2 specified a synthetic harvester the archive already records as returning zero**, and `21b` §2 corrects it. The earlier synthetic work found that "all five fixed synthetic sites matched no items under either rule at this sample size" — so Gate B's qualification floor would have failed on every cell and spent the budget rediscovering a known null. `21b` adds a five-cell pilot that fails in minutes, a declared fallback ladder, and the requirement that whichever rung is used be applied to both the synthetic and the real side. The execution agent's question about which density field to read is what surfaced it.
 - **`18a`–`18f` built a grid that did not contain the reference flight**, and `20` §5 is the correction. The grid's bearing resolution was 18° against C120's 184.6°, its Mach ceiling 0.86 against C120's 0.8406, and its pressure nodes bracketed 214.198 hPa without landing on it. Absolute χ² was then compared across starts as though that meant something. `20` requires the grid to recover C120's score at C120's own start before any other start is read, and stops the run if it cannot.
 
 ## Files
@@ -54,7 +55,7 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 | `18a`–`18f` | The full arc-1 sweep and its amendments |
 | `19`, `19b` | Extending the ERA5 forcing domain east and north; amendment once the files were supplied rather than downloaded |
 | `20` | Activating the extended domain, then sweeping arc 1 on a grid that must first prove itself |
-| `21` | Whether the reverse-drift density peak is a source signal, a circulation feature, or a windage mixture — Ryan's hypothesis, tested |
+| `21`, `21b` | Whether the reverse-drift density peak is a source signal, a circulation feature, or a windage mixture — Ryan's hypothesis, tested; amendment identifying the field and fixing a dead gate |
 | `_slides_prompt…` | The brief for a walkthrough deck, kept because it fixes what a public presentation of this work may and may not claim |
 
 Results packages are not in this repository. The atlas pages report their contents, and the briefs state what was asked for.
