@@ -35,6 +35,7 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 - **`18b` is withdrawn**, by `18c` §1. It prepared a terminal handoff that was not wanted.
 - **`18e` §4 set a branch threshold at "more than half", which was wrong**, and `18f` §2 corrects it: 25.4% of per-flight time was worth 224 minutes across the grid and should not have been discarded for missing an arbitrary line.
 - **`18f` §6 records an inference drawn from two benchmarks that turned out to use the same timestep**, so the difference between them measured nothing. The execution agent's diagnostic contradicted it and was right.
+- **`22` §2 asked a question that silently required a number the archive does not contain.** Gate B tested whether a crossing δ is "physically admissible", which is a probability statement needing a standard uncertainty for the ground-calibrated BFO bias. No such figure exists in the records: 4.3 Hz is in-flight residual scatter, ±7 Hz is a validation tolerance, and 150 Hz is the point estimate. `22b` rewrites the gate to test the crossing against C120's frozen χ² under two thresholds already on the record, importing nothing. The execution agent declined to substitute a value and asked instead.
 - **`22` §4 retires the endpoint-latitude bins as my own artifact.** Every bin's best fit pressed on its southern edge, which on a monotone surface is a property of the binning rather than a finding about the data. A continuous profile replaces them.
 - **`22` §3.3 withdraws a claim made in reporting rather than in a brief:** the northern fit's −51 µs miss at 20:41 was offered as evidence against it. It is 1.76σ, and the worst of four residuals exceeds that about 28% of the time.
 - **`16` §F** (answered in conversation, not in the file) corrected a half-normal kernel asserted to converge to a 100 km indicator. It converges to a point mass. The verification step built on it was replaced.
@@ -59,7 +60,7 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 | `19`, `19b` | Extending the ERA5 forcing domain east and north; amendment once the files were supplied rather than downloaded |
 | `20` | Activating the extended domain, then sweeping arc 1 on a grid that must first prove itself |
 | `21`, `21b`–`21d` | Whether the reverse-drift density peak is a source signal, a circulation feature, or a windage mixture — Ryan's hypothesis, tested; amendments identifying the field, fixing a dead gate, and handling the exclusion bias |
-| `22` | Whether the north–south preference survives the BFO bias — a sweep, not a fit, because the bias is one physical constant |
+| `22`, `22b` | Whether the north–south preference survives the BFO bias — a sweep, not a fit, because the bias is one physical constant; amendment removing a step that needed an uncertainty nobody has |
 | `_slides_prompt…` | The brief for a walkthrough deck, kept because it fixes what a public presentation of this work may and may not claim |
 
 Results packages are not in this repository. The atlas pages report their contents, and the briefs state what was asked for.
