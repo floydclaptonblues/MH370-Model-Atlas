@@ -343,6 +343,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>setTime
 })();
 </script>'''+TAIL
 pages["drift2.html"]=HEAD%"MH370 Drift Diagnostics"+open("src/drift2_body.html").read()+'<script>MH.nav("drift2.html");</script>'+TAIL
+pages["canonical.html"]=HEAD%"MH370 Canonical Map"+open("src/canonical_body.html").read()+"<script>"+open("src/canonical_script.js").read()+"</script>"+TAIL
 pages["closing.html"]=HEAD%"MH370 Closing Report"+open("src/closing_body.html").read()+'<script>MH.nav("closing.html");</script>'+TAIL
 pages["index.html"]='''<title>MH370 Models Atlas</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="common.css"><script src="common.js"></script>
@@ -353,6 +354,7 @@ pages["index.html"]='''<title>MH370 Models Atlas</title><link rel="preconnect" h
  <a class="card" href="satcom.html" style="text-decoration:none;color:inherit"><h2>Satcom <span class="tag frozen">frozen</span></h2><p>5,029 BTO/BFO rows from the Inmarsat log, the canonical 19-row event table and the published satellite states.</p></a>
  <a class="card" href="flight.html" style="text-decoration:none;color:inherit"><h2>Flight models <span class="tag prov">provisional</span></h2><p>Average Day flights re-flown from your package, the High-Fidelity Average Day Solver (TASK_021), the TASK_022 terminal experiment, 97 Phase 5A candidates, BTO-only survivors.</p></a>
  <a class="card" href="map.html" style="text-decoration:none;color:inherit"><h2>Combined map</h2><p>Arc, candidates, search areas and the reverse-drift density on one switchable map.</p></a>
+ <a class="card" href="canonical.html" style="text-decoration:none;color:inherit"><h2>Canonical map <span class="tag ok">observations only</span></h2><p>The measurement record and the published fields, with every output of this project's modelling deliberately left off. The published 7th arc in full, both arms, to 45&deg;N.</p></a>
  <a class="card" href="drift.html" style="text-decoration:none;color:inherit"><h2>Drift <span class="tag prov">assumption-dependent</span></h2><p>17-month currents map, reverse-drift density, currents-only forward test, Tasks 7 to 9 (Task 9 complete).</p></a>
  <a class="card" href="closing.html" style="text-decoration:none;color:inherit"><h2>Closing report <span class="tag frozen">satellite chapter</span></h2><p>What the satcom and flight branch established, what it rests on, and an appendix of readings that were wrong.</p></a>
  <a class="card" href="drift2.html" style="text-decoration:none;color:inherit"><h2>Drift diagnostics <span class="tag prov">conditional</span></h2><p>Task 10 results, drifter hindcast, forward release grid, permutation null, the B1 stop, the provenance audit, and why no source region can be determined.</p></a>

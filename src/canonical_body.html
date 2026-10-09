@@ -1,0 +1,66 @@
+<h1>Canonical reference map <span class="tag ok">observations only</span></h1>
+<p class="sub">Everything on this page is a measurement, a published figure, or a third-party reanalysis product. No output of this project&rsquo;s own modelling appears here &mdash; no reverse-drift density, no candidate endpoints, no Average Day flights, no fitted rings. The list of what is deliberately excluded is at the foot of the page.</p>
+
+<div class="note"><b>Two things this map shows that the rest of the atlas does not.</b> The published 7th arc is drawn <b>in full, both arms</b>, from 43.9&deg;S to 45.0&deg;N &mdash; the canonical observation never excluded the northern arm. And the satellite is drawn where the published state table puts it, which is not a fixed point: it drifts between 0.53&deg;N and 1.64&deg;N over the eight hours that matter.</p></div>
+
+<div class="card"><h2>The map</h2>
+ <div class="ctl" id="tg"></div>
+ <div class="read" id="ro">Hover for position.</div>
+ <canvas id="mp"></canvas>
+ <p class="sub" id="lg" style="margin-top:8px"></p>
+ <div class="ctl" style="margin-top:8px"><span class="muted">View:</span><span id="vw"></span></div>
+</div>
+
+<div class="grid">
+<div class="card"><h2>Provenance of every layer</h2>
+<div class="scroll"><table>
+<tr><th>Layer</th><th>Status</th><th>Source as recorded</th></tr>
+<tr><td>7th arc</td><td><span class="tag ok">published</span></td><td>Reference arc supplied with the project, positioned 40,000&nbsp;ft above sea level. 200 points, 64.46&ndash;108.80&deg;E.</td></tr>
+<tr><td>Satellite states</td><td><span class="tag ok">published</span></td><td><code>INMARSAT_TABLE4_SATELLITE_STATE</code> &mdash; 11 states, 16:30 to 00:20 UTC, position and velocity.</td></tr>
+<tr><td>Handshake observations</td><td><span class="tag ok">canonical</span></td><td>19 rows, each tagged <code>canonical_observation</code> in the project&rsquo;s own event table, with raw and corrected BTO.</td></tr>
+<tr><td>IGARI radar fix</td><td><span class="tag ok">measured</span></td><td>Malaysian Preliminary Report on MH370. 17:21:13Z, 6.9478&deg;N 103.5772&deg;E, 10,668&nbsp;m, secondary radar.</td></tr>
+<tr><td>18:22 radar report</td><td><span class="tag blocked">no coordinates</span></td><td><i>Bayesian Methods in the Search for MH370</i>, ch. 4: a position was reported at 18:22:12 but <b>no coordinates were published</b>, and the authors noted poor accuracy. Nothing is plotted.</td></tr>
+<tr><td>Debris find sites</td><td><span class="tag prov">assumed geocode</span></td><td>Place-name geocodes drafted by Claude, <b>not independently verified</b>, nominal 100&nbsp;km radius. The items, dates and regions are from the find record; the coordinates are not.</td></tr>
+<tr><td>Seabed search areas</td><td><span class="tag prov">approximate</span></td><td>Bounding boxes, <code>coverage_confidence: approx</code>. The project manifest states the actual swath is curved along the arc and narrower than the box.</td></tr>
+<tr><td>Surface currents</td><td><span class="tag prov">reanalysis</span></td><td>GLORYS12V1 via Copernicus Marine, 0.494&nbsp;m depth, daily means averaged monthly, March 2014 &ndash; July 2015.</td></tr>
+<tr><td>Winds</td><td><span class="tag prov">reanalysis</span></td><td>NCEP/NCAR Reanalysis 1, T62 grid, about 1.9&deg;.</td></tr>
+</table></div>
+<div class="note" style="margin-top:8px">A reanalysis is a model product, not an observation. The currents and winds are here because they are third-party published fields this project did not fit, estimate or tune &mdash; not because they are measurements.</div></div>
+
+<div class="card"><h2>The 19 canonical observations</h2>
+<p class="sub">The measurement record, as recorded. <code>BTO used</code> and <code>BFO used</code> are the project&rsquo;s inclusion flags, shown so it is visible which rows any scoring rests on and which it does not.</p>
+<div class="scroll"><table id="ev"></table></div>
+<div class="note" style="margin-top:8px">Ten rows carry a BTO. Nine are flagged for BTO use and five for BFO use in the nine-term score. The 19:41 BTO is deliberately not scored, because a start constrained to the first ring satisfies it by construction.</div></div>
+</div>
+
+<div class="card"><h2>Why only one arc is drawn</h2>
+<p class="sub">Ten handshakes carry a canonical BTO, so in principle there are ten rings. Only the published 7th arc is drawn, and the reason is worth stating rather than leaving as an omission.</p>
+<p class="sub">The published arc <b>is</b> a circle: measured against a centre of 0.5327&deg;N, 64.3347&deg;E it has an angular radius of 44.4701&deg; with a standard deviation of 0.0093&deg; across all 200 points &mdash; a spread of 4.1&nbsp;km. So the ring geometry is recoverable from published data and is not an invention of this project.</p>
+<p class="sub">Deriving the other nine rings needs one more thing: the constant that converts a BTO reading into a slant range, absorbing the ground-station leg and the instrument bias. Solving for that constant from the first ring and from the seventh gives two answers that differ by <b>573&nbsp;&micro;s, which is 86&nbsp;km of range</b>. A single constant does not reconcile them, so the remaining rings cannot be drawn to a standard this page is willing to call canonical.</p>
+<div class="note bad" style="margin-top:4px"><b>What is missing, specifically.</b> The published BTO bias constant and the ground-station position. The station-to-satellite leg appears twice in every BTO and changes as the satellite drifts, so it cannot be folded into a constant across eight hours. The project record separately flags the <b>BFO</b> bias calibration epoch as MISSING with a conflict on its locator; this is the BTO counterpart and it is equally unresolved. Supply either and the other nine rings become drawable here.</div></div>
+
+<div class="card"><h2>Surface currents, March 2014 &ndash; July 2015 <span class="tag prov">reanalysis</span></h2>
+<p class="sub">All 17 months, monthly mean and mid-month snapshot, with a floating-object drift mode. March 2014 starts on the 8th. This is the forcing field as published, with no trajectory computed on it.</p>
+<iframe src="currents.html" style="height:1500px" title="Indian Ocean surface currents, March 2014 to July 2015" loading="lazy"></iframe>
+<p class="sub" style="margin-top:6px"><a href="currents.html" style="color:var(--accent)">Open the currents map full page</a></p></div>
+
+<div class="card"><h2>The debris record</h2>
+<p class="sub">32 items at 21 sites. The item descriptions, find dates and regions come from the find record. <b>The coordinates do not</b> &mdash; they are unverified place-name geocodes with a nominal 100&nbsp;km radius, which is why each site is drawn as a circle rather than a point. One of them, Saint-Andr&eacute; on R&eacute;union, failed to verify against an external source.</p>
+<div class="scroll"><table id="fi"></table></div>
+<div class="note bad" style="margin-top:8px"><b>There is no observed drift path.</b> The find record gives a place and a date for each item and nothing in between. Every line that has ever been drawn from a find back toward an origin &mdash; including every line in this project &mdash; is a model output, which is why none appears on this page. The currents above and the finds here are the two ends; the middle is inference.</div></div>
+
+<div class="card"><h2>What is deliberately not on this map</h2>
+<p class="sub">Listed so that the absences are visible as choices rather than gaps.</p>
+<div class="scroll"><table>
+<tr><th>Excluded</th><th>Why</th></tr>
+<tr><td>Reverse-drift density and its peak</td><td>Model output. Its interpretation is under test; TASK_021 Part A also found it rests on 21 of the 32 items and is smoothed upstream.</td></tr>
+<tr><td>Phase 5A candidate endpoints</td><td>Model output, conditional on this project&rsquo;s solver and its assumptions.</td></tr>
+<tr><td>Average Day reference flights, including C120</td><td>Model output. C120 is a fitted solution under nine active constraints, not an observed track.</td></tr>
+<tr><td>The twelve TASK_022 terminal contacts</td><td>Model output, and all twelve sit inside an aerodynamic proxy the model itself flags as unsupported. They must never be propagated as locations.</td></tr>
+<tr><td>Ring extension beyond the published arc</td><td>A circle fit of mine. The published arc is drawn to its own published extent and no further.</td></tr>
+<tr><td>Rings 1 to 6, and the final-log-on ring</td><td>Not derivable to a canonical standard &mdash; see the 86&nbsp;km disagreement above.</td></tr>
+<tr><td>The 18:22 position</td><td>No coordinates were ever published. The figure used elsewhere in this project is derived-approximate from waypoints, and DSTG declined to use it quantitatively.</td></tr>
+<tr><td>Forward drift tests, null replicates, Task 7&ndash;9 diagnostics</td><td>All model output.</td></tr>
+</table></div></div>
+
+<div class="note"><b>No part of this page locates the aircraft.</b> It is a reference frame: what was measured, what was published, and where the published fields end. The one thing it adds to the record is negative &mdash; the arc runs to 45&deg;N as published, while every seabed search box in the manifest stops at 27&deg;S.</div>
