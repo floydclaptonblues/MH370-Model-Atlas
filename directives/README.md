@@ -55,7 +55,7 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 | `18a`–`18f` | The full arc-1 sweep and its amendments |
 | `19`, `19b` | Extending the ERA5 forcing domain east and north; amendment once the files were supplied rather than downloaded |
 | `20` | Activating the extended domain, then sweeping arc 1 on a grid that must first prove itself |
-| `21`, `21b` | Whether the reverse-drift density peak is a source signal, a circulation feature, or a windage mixture — Ryan's hypothesis, tested; amendment identifying the field and fixing a dead gate |
+| `21`, `21b`| `21`, `21b` | Whether the reverse-drift density peakndash;`21d` | Whether the reverse-drift density peak is a source signal, a circulation feature, or a windage mixture — Ryan's hypothesis, tested; amendment identifying the field and fixing a dead gate |
 | `_slides_prompt…` | The brief for a walkthrough deck, kept because it fixes what a public presentation of this work may and may not claim |
 
 Results packages are not in this repository. The atlas pages report their contents, and the briefs state what was asked for.
