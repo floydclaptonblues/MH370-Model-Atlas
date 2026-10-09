@@ -1,6 +1,7 @@
 MH.nav("reference.html");
-const VIEWS={"Whole basin":[15,130,-60,50],"Full arc, both arms":[55,115,-50,50],"Southern arc and search":[55,115,-50,-10],
- "Debris coasts":[25,70,-40,-5],"Northern arm":[60,110,-5,48],"Takeoff to last radar":[95,112,-2,14]};
+const VIEWS={"Indian Ocean \u2014 full current field":[15,130,-60,15],"Agulhas to Madagascar":[15,68,-50,-5],
+ "Debris coasts":[25,70,-40,-5],"Southern arc and search":[55,115,-50,-10],"Arc, both arms":[55,115,-50,50],
+ "Whole basin with northern arm":[15,130,-60,50],"Takeoff to last radar":[95,112,-2,14]};
 const NX=345,NY=225,LA0=-59.875,LO0=15.125,D=1/3;
 const dec=b=>{const s=atob(b),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return new Int16Array(u.buffer)};
 const toF=a=>{const f=new Float32Array(a.length);for(let i=0;i<a.length;i++)f[i]=a[i]===-32768?NaN:a[i]/1000;return f};
@@ -42,21 +43,23 @@ function vecLayer(pick,colVar,gain){return {on:true,draw(x,m){
  if(!cur)return;const f=cur[mode];const step=+document.getElementById("dn").value;
  const[b0,b1,b2,b3]=m.view;const cellPx=m.W/(b1-b0)*D;
  const st=Math.max(1,Math.round(step/cellPx));
- x.strokeStyle=MH.css(colVar);x.lineWidth=1;x.globalAlpha=.75;
+ const col=MH.css(colVar);x.strokeStyle=col;x.fillStyle=col;const spacing=st*cellPx;
  for(let y=0;y<NY;y+=st){const la=LA0+y*D;if(la<b2||la>b3)continue;
   for(let i=0;i<NX;i+=st){const lo=LO0+i*D;if(lo<b0||lo>b1)continue;
    const u=pick.u(f)[y*NX+i],v=pick.v(f)[y*NX+i];
    if(!isFinite(u)||!isFinite(v))continue;
    const sp=Math.hypot(u,v);if(sp<0.01)continue;
-   const p=m.pt(lo,la);const L=Math.min(13,sp*gain);
+   const w=Math.min(1,sp/0.6);
+   x.globalAlpha=0.3+0.7*w;x.lineWidth=0.8+0.9*w;
+   const p=m.pt(lo,la);const L=Math.min(spacing*0.9,sp*gain*spacing/26);
    const ex=p[0]+u/sp*L, ey=p[1]-v/sp*L;
    x.beginPath();x.moveTo(p[0],p[1]);x.lineTo(ex,ey);x.stroke();
    const a=Math.atan2(-(ey-p[1]),ex-p[0]);
    x.beginPath();x.moveTo(ex,ey);
    x.lineTo(ex-3.5*Math.cos(a-0.4),ey+3.5*Math.sin(a-0.4));
    x.lineTo(ex-3.5*Math.cos(a+0.4),ey+3.5*Math.sin(a+0.4));
-   x.closePath();x.fillStyle=MH.css(colVar);x.fill()}}
- x.globalAlpha=1}}}
+   x.closePath();x.fill()}}
+ x.globalAlpha=1;x.lineWidth=1}}}
 
 const ringLayer=(G)=>({on:true,draw(x,m){const r=Math.PI/180;
  G.rings.forEach((g,i)=>{const last=i===G.rings.length-1;
@@ -94,9 +97,9 @@ const findLayer=(F)=>({on:true,draw(x,m){for(const s of F.sites){
  x.globalAlpha=.9;x.fillStyle=MH.css("--ok");
  x.beginPath();x.arc(c[0],c[1],3+Math.min(3.5,s.items.length*.7),0,6.3);x.fill();x.globalAlpha=1}}});
 
-const map=new MH.Map(document.getElementById("mp"),mask,VIEWS["Full arc, both arms"]);
-map.layers.cur=vecLayer({u:f=>f.u,v:f=>f.v},"--accent",34);
-map.layers.wind=vecLayer({u:f=>f.wu,v:f=>f.wv},"--c4",0.9);
+const map=new MH.Map(document.getElementById("mp"),mask,VIEWS["Indian Ocean \u2014 full current field"]);
+map.layers.cur=vecLayer({u:f=>f.u,v:f=>f.v},"--accent",46);
+map.layers.wind=vecLayer({u:f=>f.wu,v:f=>f.wv},"--c4",1.6);
 map.layers.wind.on=false;
 map.layers.search=MH.L.search(MH.SEARCH);
 map.layers.rings=ringLayer(rng);

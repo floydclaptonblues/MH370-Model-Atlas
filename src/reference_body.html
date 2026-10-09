@@ -6,14 +6,14 @@
  <div class="ctl" style="margin-top:4px">
   <label>Month <select id="mo"></select></label>
   <label>Field <select id="fm"><option value="mean">monthly mean</option><option value="snap">mid-month snapshot</option></select></label>
-  <label>Vectors <select id="dn"><option value="18">dense</option><option value="26" selected>medium</option><option value="38">sparse</option></select></label>
+  <label>Vectors <select id="dn"><option value="18" selected>dense</option><option value="26">medium</option><option value="38">sparse</option></select></label>
   <span class="muted" id="st">&nbsp;</span>
  </div>
  <div class="read" id="ro">Hover anywhere for position, current, wind and distance to the 7th arc.</div>
  <canvas id="mp"></canvas>
  <p class="sub" id="lg" style="margin-top:8px"></p>
  <div class="ctl" style="margin-top:8px"><span class="muted">View:</span><span id="vw"></span></div>
- <div class="note" style="margin-top:10px">Currents are loaded one month at a time, about 0.8&nbsp;MB each, so the first draw of a new month takes a moment. Vectors are thinned to roughly even pixel spacing as you change view; the underlying field is full resolution and the hover readout reads the grid cell, not the drawn arrow. <b>The current grid ends at 14.8&deg;N</b>, so no arrows are drawn north of there.</div>
+ <div class="note" style="margin-top:10px">Currents are loaded one month at a time, about 0.8&nbsp;MB each, so the first draw of a new month takes a moment. Arrows are thinned to roughly even pixel spacing as you change view, and are drawn darker and heavier where the water moves faster, so the western boundary currents read at a glance; the underlying field is full resolution and the hover readout reads the grid cell, not the drawn arrow. The current field covers <b>15.1&deg;E to 129.8&deg;E and 59.9&deg;S to 14.8&deg;N</b> &mdash; the default view is exactly that extent, so the edges of the arrows are the edges of the data.</div>
 </div>
 
 <div class="card"><h2>What is on the map, and where it came from</h2>

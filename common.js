@@ -19,7 +19,7 @@ MH.Map=class{
  pt(lon,lat){const[b0,b1,b2,b3]=this.view;return[(lon-b0)/(b1-b0)*this.W,(b3-lat)/(b3-b2)*this.H]}
  inv(x,y){const[b0,b1,b2,b3]=this.view;return{lon:b0+x/this.W*(b1-b0),lat:b3-y/this.H*(b3-b2)}}
  draw(){const[b0,b1,b2,b3]=this.view;const r=this.c.getBoundingClientRect();const asp=(b3-b2)/((b1-b0)*Math.cos(((b2+b3)/2)*Math.PI/180));
-  const W=Math.max(300,r.width),H=Math.max(260,Math.min(640,W*asp));const f=MH.fit(this.c,H);const x=f.x;this.W=W;this.H=H;
+  const W=Math.max(300,r.width),H=Math.max(260,Math.min(780,W*asp));const f=MH.fit(this.c,H);const x=f.x;this.W=W;this.H=H;
   x.fillStyle=MH.css("--panel");x.fillRect(0,0,W,H);
   // land
   const m=this.mask,D=m.D;x.fillStyle=MH.css("--land");
