@@ -1,7 +1,7 @@
 MH.nav("canonical.html");
 const VIEWS={"Whole basin":[15,130,-60,50],"Full published arc":[55,115,-50,50],"Northern arm":[60,110,-5,48],"Southern arm and search":[55,115,-50,-10],"Debris coasts":[25,70,-40,-5],"Takeoff to IGARI":[95,112,-2,12]};
 (async()=>{
-const [mask,arc,sat,ev,rad,fnd]=await Promise.all(["mask","arc7","satstate","events_canon","radar","finds"].map(n=>MH.J("data/"+n+".json")));
+const [mask,arc,sat,ev,rad,fnd,rng]=await Promise.all(["mask","arc7","satstate","events_canon","radar","finds","rings"].map(n=>MH.J("data/"+n+".json")));
 
 // --- radar rows arrive as {"null":[...]} arrays: header then data
 const rr=rad.map(r=>r.null||r).filter(Array.isArray);
@@ -31,7 +31,31 @@ const findCircles=(F)=>({on:true,draw(x,m){
   x.beginPath();x.arc(c[0],c[1],3+Math.min(3.5,s.items.length*.7),0,6.3);x.fill();x.globalAlpha=1}
  }});
 
+const btoRings=(G)=>({on:true,draw(x,m){
+ const r=Math.PI/180;
+ G.rings.forEach((g,i)=>{
+  const last=i===G.rings.length-1;
+  x.strokeStyle=MH.css(last?"--c3":"--c1");x.globalAlpha=last?1:.55;
+  x.lineWidth=last?2:1.2;x.setLineDash(last?[]:[3,3]);x.beginPath();
+  let st=false,pv=null;
+  for(let b=0;b<=360;b+=0.5){
+   const d=g.theta*r,p0=g.clat*r,br=b*r;
+   const p1=Math.asin(Math.sin(p0)*Math.cos(d)+Math.cos(p0)*Math.sin(d)*Math.cos(br));
+   const l1=g.clon*r+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(p0),Math.cos(d)-Math.sin(p0)*Math.sin(p1));
+   const P=m.pt(l1/r,p1/r);
+   if(pv&&Math.abs(P[0]-pv[0])>m.W/2){st=false}
+   if(!st){x.moveTo(P[0],P[1]);st=true}else x.lineTo(P[0],P[1]);pv=P}
+  x.stroke();
+  const d=g.theta*r,p0=g.clat*r,br=(i%2?168:192)*r;
+  const p1=Math.asin(Math.sin(p0)*Math.cos(d)+Math.cos(p0)*Math.sin(d)*Math.cos(br));
+  const l1=g.clon*r+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(p0),Math.cos(d)-Math.sin(p0)*Math.sin(p1));
+  const P=m.pt(l1/r,p1/r);
+  x.globalAlpha=1;x.fillStyle=MH.css(last?"--c3":"--c1");x.font="11px "+MH.css("--font-mono");
+  x.fillText(g.hm,P[0]+4,P[1]-3)});
+ x.setLineDash([]);x.globalAlpha=1;x.lineWidth=1}});
+
 const map=new MH.Map(document.getElementById("mp"),mask,VIEWS["Full published arc"]);
+map.layers.rings=btoRings(rng);
 map.layers.search=MH.L.search(MH.SEARCH);
 map.layers.arc=MH.L.arc(arc);
 map.layers.sat=satTrack(sat);
@@ -39,13 +63,14 @@ map.layers.finds=findCircles(fnd);
 map.layers.radar=MH.L.radar(rpts);
 map.draw();
 
-const names={arc:"7th arc (published, both arms)",sat:"Satellite states 16:30–00:20",finds:"Debris find sites (assumed geocode, 100 km)",radar:"IGARI last SSR 17:21 UTC",search:"Seabed search areas (approximate)"};
+const names={rings:"All 10 BTO rings (derived)",arc:"7th arc (published, both arms)",sat:"Satellite states 16:30–00:20",finds:"Debris find sites (assumed geocode, 100 km)",radar:"IGARI last SSR 17:21 UTC",search:"Seabed search areas (approximate)"};
 const tg=document.getElementById("tg");
 tg.innerHTML=Object.keys(names).map(k=>`<label><input type="checkbox" data-k="${k}" checked> ${names[k]}</label>`).join("");
 tg.querySelectorAll("input").forEach(i=>i.onchange=()=>{map.layers[i.dataset.k].on=i.checked;map.draw()});
 
 document.getElementById("lg").innerHTML=MH.legend([
  [MH.css("--c3"),"7th arc, as published"],
+ [MH.css("--c1"),"the other nine BTO rings, derived"],
  [MH.css("--c2"),"subsatellite track"],
  [MH.css("--ok"),"debris finds, 100 km nominal"],
  [MH.css("--c4"),"search areas, approximate (dashed outlines, one colour each)"]]);

@@ -1,0 +1,108 @@
+{
+ "method": "theta solved from canonical BTO, published satellite state and the ground-station leg; bias calibrated on the published 7th arc only",
+ "bias_us": -495858.41,
+ "aircraft_alt_ft": 40000,
+ "station": {
+  "lat": -31.8,
+  "lon": 115.887,
+  "status": "SUPPLIED_BY_CLAUDE_not_in_archive"
+ },
+ "arc7_check_km": {
+  "mean": -9.1,
+  "sd": 4.58,
+  "max_abs": 15.64
+ },
+ "arc1_check_km": 6.39,
+ "rings": [
+  {
+   "t": "2014-03-07T16:42:32Z",
+   "hm": "16:42",
+   "day": "7 Mar",
+   "bto": 14900.0,
+   "theta": 37.394,
+   "clat": 1.1885,
+   "clon": 64.5473
+  },
+  {
+   "t": "2014-03-07T16:55:53Z",
+   "hm": "16:55",
+   "day": "7 Mar",
+   "bto": 15240.0,
+   "theta": 37.9768,
+   "clat": 1.253,
+   "clon": 64.5448
+  },
+  {
+   "t": "2014-03-07T17:07:19Z",
+   "hm": "17:07",
+   "day": "7 Mar",
+   "bto": 15660.0,
+   "theta": 38.7246,
+   "clat": 1.3017,
+   "clon": 64.5426
+  },
+  {
+   "t": "2014-03-07T18:25:27Z",
+   "hm": "18:25",
+   "day": "7 Mar",
+   "bto": 12520.0,
+   "theta": 31.9419,
+   "clat": 1.5605,
+   "clon": 64.5279
+  },
+  {
+   "t": "2014-03-07T19:41:03Z",
+   "hm": "19:41",
+   "day": "7 Mar",
+   "bto": 11500.0,
+   "theta": 29.4757,
+   "clat": 1.6379,
+   "clon": 64.5148
+  },
+  {
+   "t": "2014-03-07T20:41:05Z",
+   "hm": "20:41",
+   "day": "7 Mar",
+   "bto": 11740.0,
+   "theta": 30.1281,
+   "clat": 1.5719,
+   "clon": 64.5038
+  },
+  {
+   "t": "2014-03-07T21:41:27Z",
+   "hm": "21:41",
+   "day": "7 Mar",
+   "bto": 12780.0,
+   "theta": 32.7093,
+   "clat": 1.3975,
+   "clon": 64.4937
+  },
+  {
+   "t": "2014-03-07T22:41:22Z",
+   "hm": "22:41",
+   "day": "7 Mar",
+   "bto": 14540.0,
+   "theta": 36.7018,
+   "clat": 1.1288,
+   "clon": 64.4818
+  },
+  {
+   "t": "2014-03-08T00:11:00Z",
+   "hm": "00:11",
+   "day": "8 Mar",
+   "bto": 18040.0,
+   "theta": 43.7872,
+   "clat": 0.5913,
+   "clon": 64.4658
+  },
+  {
+   "t": "2014-03-08T00:19:29Z",
+   "hm": "00:19",
+   "day": "8 Mar",
+   "bto": 18400.0,
+   "theta": 44.4701,
+   "clat": 0.5345,
+   "clon": 64.4641
+  }
+ ]
+}

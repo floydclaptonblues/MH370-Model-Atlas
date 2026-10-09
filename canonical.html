@@ -35,11 +35,20 @@
 <div class="note" style="margin-top:8px">Ten rows carry a BTO. Nine are flagged for BTO use and five for BFO use in the nine-term score. The 19:41 BTO is deliberately not scored, because a start constrained to the first ring satisfies it by construction.</div></div>
 </div>
 
-<div class="card"><h2>Why only one arc is drawn</h2>
-<p class="sub">Ten handshakes carry a canonical BTO, so in principle there are ten rings. Only the published 7th arc is drawn, and the reason is worth stating rather than leaving as an omission.</p>
-<p class="sub">The published arc <b>is</b> a circle: measured against a centre of 0.5327&deg;N, 64.3347&deg;E it has an angular radius of 44.4701&deg; with a standard deviation of 0.0093&deg; across all 200 points &mdash; a spread of 4.1&nbsp;km. So the ring geometry is recoverable from published data and is not an invention of this project.</p>
-<p class="sub">Deriving the other nine rings needs one more thing: the constant that converts a BTO reading into a slant range, absorbing the ground-station leg and the instrument bias. Solving for that constant from the first ring and from the seventh gives two answers that differ by <b>573&nbsp;&micro;s, which is 86&nbsp;km of range</b>. A single constant does not reconcile them, so the remaining rings cannot be drawn to a standard this page is willing to call canonical.</p>
-<div class="note bad" style="margin-top:4px"><b>What is missing, specifically.</b> The published BTO bias constant and the ground-station position. The station-to-satellite leg appears twice in every BTO and changes as the satellite drifts, so it cannot be folded into a constant across eight hours. The project record separately flags the <b>BFO</b> bias calibration epoch as MISSING with a conflict on its locator; this is the BTO counterpart and it is equally unresolved. Supply either and the other nine rings become drawable here.</div></div>
+<div class="card"><h2>All ten BTO rings, derived from canonical data <span class="tag ok">corrected 8 Oct</span></h2>
+<p class="sub">Ten handshakes carry a canonical BTO, so there are ten rings. All ten are drawn. This page said otherwise for about an hour, and the correction is worth setting out because the error was mine and the fix came from Ryan.</p>
+<div class="note bad"><b>What I got wrong.</b> I solved for the constant that turns a BTO reading into a slant range, using the first ring and the seventh, and got two answers 573&nbsp;&micro;s apart &mdash; 86&nbsp;km of range. I called the rings underivable and said what was missing was &ldquo;the published BTO bias constant and the ground-station position&rdquo;. In the same breath I wrote that the station-to-satellite leg &ldquo;appears twice in every BTO and changes as the satellite drifts, so it cannot be folded into a constant&rdquo;. That sentence is the answer, not the obstacle. The leg is not an unknown &mdash; it is computable from the published satellite states, which were already loaded on this page.</p></div>
+<p class="sub"><b>Computing it closes the gap.</b> The satellite&rsquo;s range to the ground station falls by 82.3&nbsp;km between 19:41 and 00:19 as it drifts south, which moves the BTO term by &minus;549&nbsp;&micro;s. The disagreement was &minus;573&nbsp;&micro;s. The moving station leg accounts for <b>95.8%</b> of it, leaving 24&nbsp;&micro;s &mdash; 3.6&nbsp;km, comparable to the published arc&rsquo;s own scatter about a circle.</p>
+<h3>The method, and what it rests on</h3>
+<p class="sub">Each ring is solved from the canonical BTO, the published satellite state at that moment, and the station leg, with a single bias calibrated <b>on the published 7th arc alone</b>. Every other ring, including the first, is then a free prediction. Aircraft altitude is taken as 40,000&nbsp;ft, the published arc&rsquo;s own reference; altitude sensitivity is about 5.5&nbsp;&micro;s per km, so even a 2&nbsp;km error moves a ring by under 2&nbsp;km.</p>
+<div class="scroll"><table>
+<tr><th>Check</th><th class="n">Result</th><th>Meaning</th></tr>
+<tr><td>Derived ring 7 against the 200 published arc points</td><td class="n">&minus;9.1 km mean, 4.6 km sd, 15.6 km max</td><td>The derivation reproduces the published object it was not fitted to the shape of.</td></tr>
+<tr><td><b>Derived ring 1 against this project&rsquo;s own fitted arc-1 radius (29.4182&deg;)</b></td><td class="n"><b>6.4 km</b></td><td>A free prediction. Nothing about arc 1 entered the calibration.</td></tr>
+<tr><td>Recovered BTO bias constant</td><td class="n">&minus;495,858 &micro;s</td><td>Against the value of &minus;495,679&nbsp;&micro;s in the public literature &mdash; 179&nbsp;&micro;s apart, or 27&nbsp;km, well inside the slop in the station coordinate and the interpolated ephemeris.</td></tr>
+</table></div>
+<div class="note ok"><b>Why this matters beyond the picture.</b> The arc-1 ring is the spine of the arc-1 sweep: every candidate start in that work is placed on it. And the 19:41 BTO is deliberately <b>not scored</b>, on the stated grounds that a start constrained to the ring satisfies it by construction. That reasoning assumed the ring was right, and the one measurement that could have caught an error in it was the one switched off. <b>It is now checked against published data instead of assumed, and it holds to 6.4&nbsp;km.</b> Had it come back 130&nbsp;km out &mdash; which is what a single constant implied &mdash; every start in the sweep would have been systematically displaced with nothing in the score able to detect it.</div>
+<div class="note"><b>The one number here that is not from the archive.</b> The ground station is taken as Perth at 31.80&deg;S, 115.887&deg;E, supplied from general knowledge, not from any project file. It is the only external input on this page and it is load-bearing for the rings. A station 2&deg; further south would make the residual vanish exactly, so the true figure is probably a little off the one used; the archive should carry the real coordinate. The rings are drawn as <b>derived</b>, not canonical, for exactly this reason.</div></div>
 
 <div class="card"><h2>Surface currents, March 2014 &ndash; July 2015 <span class="tag prov">reanalysis</span></h2>
 <p class="sub">All 17 months, monthly mean and mid-month snapshot, with a floating-object drift mode. March 2014 starts on the 8th. This is the forcing field as published, with no trajectory computed on it.</p>
@@ -60,7 +69,6 @@
 <tr><td>Average Day reference flights, including C120</td><td>Model output. C120 is a fitted solution under nine active constraints, not an observed track.</td></tr>
 <tr><td>The twelve TASK_022 terminal contacts</td><td>Model output, and all twelve sit inside an aerodynamic proxy the model itself flags as unsupported. They must never be propagated as locations.</td></tr>
 <tr><td>Ring extension beyond the published arc</td><td>A circle fit of mine. The published arc is drawn to its own published extent and no further.</td></tr>
-<tr><td>Rings 1 to 6, and the final-log-on ring</td><td>Not derivable to a canonical standard &mdash; see the 86&nbsp;km disagreement above.</td></tr>
 <tr><td>The 18:22 position</td><td>No coordinates were ever published. The figure used elsewhere in this project is derived-approximate from waypoints, and DSTG declined to use it quantitatively.</td></tr>
 <tr><td>Forward drift tests, null replicates, Task 7&ndash;9 diagnostics</td><td>All model output.</td></tr>
 </table></div></div>
@@ -69,7 +77,7 @@
 <script>MH.nav("canonical.html");
 const VIEWS={"Whole basin":[15,130,-60,50],"Full published arc":[55,115,-50,50],"Northern arm":[60,110,-5,48],"Southern arm and search":[55,115,-50,-10],"Debris coasts":[25,70,-40,-5],"Takeoff to IGARI":[95,112,-2,12]};
 (async()=>{
-const [mask,arc,sat,ev,rad,fnd]=await Promise.all(["mask","arc7","satstate","events_canon","radar","finds"].map(n=>MH.J("data/"+n+".json")));
+const [mask,arc,sat,ev,rad,fnd,rng]=await Promise.all(["mask","arc7","satstate","events_canon","radar","finds","rings"].map(n=>MH.J("data/"+n+".json")));
 
 // --- radar rows arrive as {"null":[...]} arrays: header then data
 const rr=rad.map(r=>r.null||r).filter(Array.isArray);
@@ -99,7 +107,31 @@ const findCircles=(F)=>({on:true,draw(x,m){
   x.beginPath();x.arc(c[0],c[1],3+Math.min(3.5,s.items.length*.7),0,6.3);x.fill();x.globalAlpha=1}
  }});
 
+const btoRings=(G)=>({on:true,draw(x,m){
+ const r=Math.PI/180;
+ G.rings.forEach((g,i)=>{
+  const last=i===G.rings.length-1;
+  x.strokeStyle=MH.css(last?"--c3":"--c1");x.globalAlpha=last?1:.55;
+  x.lineWidth=last?2:1.2;x.setLineDash(last?[]:[3,3]);x.beginPath();
+  let st=false,pv=null;
+  for(let b=0;b<=360;b+=0.5){
+   const d=g.theta*r,p0=g.clat*r,br=b*r;
+   const p1=Math.asin(Math.sin(p0)*Math.cos(d)+Math.cos(p0)*Math.sin(d)*Math.cos(br));
+   const l1=g.clon*r+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(p0),Math.cos(d)-Math.sin(p0)*Math.sin(p1));
+   const P=m.pt(l1/r,p1/r);
+   if(pv&&Math.abs(P[0]-pv[0])>m.W/2){st=false}
+   if(!st){x.moveTo(P[0],P[1]);st=true}else x.lineTo(P[0],P[1]);pv=P}
+  x.stroke();
+  const d=g.theta*r,p0=g.clat*r,br=(i%2?168:192)*r;
+  const p1=Math.asin(Math.sin(p0)*Math.cos(d)+Math.cos(p0)*Math.sin(d)*Math.cos(br));
+  const l1=g.clon*r+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(p0),Math.cos(d)-Math.sin(p0)*Math.sin(p1));
+  const P=m.pt(l1/r,p1/r);
+  x.globalAlpha=1;x.fillStyle=MH.css(last?"--c3":"--c1");x.font="11px "+MH.css("--font-mono");
+  x.fillText(g.hm,P[0]+4,P[1]-3)});
+ x.setLineDash([]);x.globalAlpha=1;x.lineWidth=1}});
+
 const map=new MH.Map(document.getElementById("mp"),mask,VIEWS["Full published arc"]);
+map.layers.rings=btoRings(rng);
 map.layers.search=MH.L.search(MH.SEARCH);
 map.layers.arc=MH.L.arc(arc);
 map.layers.sat=satTrack(sat);
@@ -107,13 +139,14 @@ map.layers.finds=findCircles(fnd);
 map.layers.radar=MH.L.radar(rpts);
 map.draw();
 
-const names={arc:"7th arc (published, both arms)",sat:"Satellite states 16:30–00:20",finds:"Debris find sites (assumed geocode, 100 km)",radar:"IGARI last SSR 17:21 UTC",search:"Seabed search areas (approximate)"};
+const names={rings:"All 10 BTO rings (derived)",arc:"7th arc (published, both arms)",sat:"Satellite states 16:30–00:20",finds:"Debris find sites (assumed geocode, 100 km)",radar:"IGARI last SSR 17:21 UTC",search:"Seabed search areas (approximate)"};
 const tg=document.getElementById("tg");
 tg.innerHTML=Object.keys(names).map(k=>`<label><input type="checkbox" data-k="${k}" checked> ${names[k]}</label>`).join("");
 tg.querySelectorAll("input").forEach(i=>i.onchange=()=>{map.layers[i.dataset.k].on=i.checked;map.draw()});
 
 document.getElementById("lg").innerHTML=MH.legend([
  [MH.css("--c3"),"7th arc, as published"],
+ [MH.css("--c1"),"the other nine BTO rings, derived"],
  [MH.css("--c2"),"subsatellite track"],
  [MH.css("--ok"),"debris finds, 100 km nominal"],
  [MH.css("--c4"),"search areas, approximate (dashed outlines, one colour each)"]]);
