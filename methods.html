@@ -1,0 +1,123 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MH370 Methods</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav><h1>Methods: what each model actually computes</h1>
+<p class="sub">The rest of this atlas records what was assumed, what failed and what was corrected. This page is the machinery itself &mdash; what goes in, what is integrated, what comes out, and what each tolerance means in metres and seconds. It assumes no prior knowledge of the MH370 datasets.</p>
+
+<div class="card"><h2>1. What the satellite data is</h2>
+<p class="sub">MH370 carried a satellite terminal that stayed powered after the aircraft left radar coverage. It exchanged no position reports &mdash; only link-maintenance messages with a ground station, relayed by a satellite over the Indian Ocean. Each exchange left two numbers in the ground station&rsquo;s log. Those numbers, and the satellite&rsquo;s own recorded position, are the entire remote-sensing basis of the problem.</p>
+
+<figure style="margin:18px 0">
+<svg viewBox="0 0 720 300" role="img" aria-label="Signal path from ground station to satellite to aircraft and back, showing which leg each timing and frequency term belongs to" style="width:100%;max-width:720px;height:auto;color:var(--fg)">
+ <defs><marker id="ah" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="8" markerHeight="7" orient="auto"><polygon points="0,0 10,4 0,8" fill="currentColor"/></marker></defs>
+ <circle cx="360" cy="48" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
+ <line x1="336" y1="48" x2="320" y2="48" stroke="currentColor" stroke-width="2"/>
+ <line x1="384" y1="48" x2="400" y2="48" stroke="currentColor" stroke-width="2"/>
+ <text x="360" y="22" text-anchor="middle" font-size="13" fill="currentColor">satellite (IOR)</text>
+ <rect x="40" y="196" width="150" height="44" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+ <text x="115" y="216" text-anchor="middle" font-size="13" fill="currentColor">ground station</text>
+ <text x="115" y="232" text-anchor="middle" font-size="11" fill="currentColor" opacity="0.75">fixed, known</text>
+ <rect x="530" y="196" width="150" height="44" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+ <text x="605" y="216" text-anchor="middle" font-size="13" fill="currentColor">aircraft terminal</text>
+ <text x="605" y="232" text-anchor="middle" font-size="11" fill="#e2703a">position UNKNOWN</text>
+ <line x1="150" y1="192" x2="338" y2="68" stroke="currentColor" stroke-width="1.8" marker-end="url(#ah)"/>
+ <line x1="338" y1="76" x2="150" y2="200" stroke="currentColor" stroke-width="1.8" marker-end="url(#ah)" opacity="0.55"/>
+ <line x1="382" y1="68" x2="570" y2="192" stroke="#e2703a" stroke-width="1.8" marker-end="url(#ah)"/>
+ <line x1="570" y1="200" x2="382" y2="76" stroke="#e2703a" stroke-width="1.8" marker-end="url(#ah)" opacity="0.55"/>
+ <text x="225" y="118" text-anchor="end" font-size="12" fill="currentColor">leg A &mdash; known</text>
+ <text x="225" y="134" text-anchor="end" font-size="11" fill="currentColor" opacity="0.75">both endpoints known</text>
+ <text x="495" y="118" font-size="12" fill="#e2703a">leg B &mdash; the unknown</text>
+ <text x="495" y="134" font-size="11" fill="#e2703a" opacity="0.85">the only thing being solved</text>
+ <line x1="40" y1="268" x2="680" y2="268" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+ <text x="40" y="288" font-size="12" fill="currentColor"><tspan font-weight="600">BTO</tspan> = total round-trip delay, A + B &nbsp;&middot;&nbsp; <tspan font-weight="600">BFO</tspan> = total Doppler, A + B &nbsp;&middot;&nbsp; subtract A, and B is what remains</text>
+</svg>
+<figcaption class="sub">Satellite position and velocity come from the published 15-minute state table. Every measurement is a sum over both legs. Leg A is fully determined by published data; the aircraft is recovered only by removing it. Getting leg A wrong by a little displaces leg B by the same amount &mdash; see &sect;6.</figcaption>
+</figure>
+
+<h3>BTO &mdash; Burst Timing Offset</h3>
+<p class="sub">A delay, in microseconds. The ground station notes how long after an expected slot the aircraft&rsquo;s reply arrives. That delay is the signal&rsquo;s travel time over both legs plus a fixed instrument constant:</p>
+<p class="sub"><code>BTO = 2 &middot; (d<sub>sat&rarr;aircraft</sub> + d<sub>sat&rarr;station</sub>) / c + bias</code></p>
+<p class="sub">Everything on the right is known except <code>d<sub>sat&rarr;aircraft</sub></code>. Solve for it and you have a distance from the satellite &mdash; <b>not a position</b>. All points at that distance form a circle on the earth&rsquo;s surface, centred on the point directly beneath the satellite. That circle is what the public calls an &ldquo;arc&rdquo;.</p>
+<p class="sub">Converting a distance to a ground circle needs the aircraft&rsquo;s altitude, because the circle is drawn on a sphere of radius <code>R<sub>earth</sub> + altitude</code>. With <code>&theta;</code> the angle at the earth&rsquo;s centre between the aircraft and the subsatellite point:</p>
+<p class="sub"><code>d(&theta;) = &radic;(r<sub>sat</sub>&sup2; + r<sub>aircraft</sub>&sup2; &minus; 2 &middot; r<sub>sat</sub> &middot; r<sub>aircraft</sub> &middot; cos &theta;)</code></p>
+<p class="sub">Inverting that for <code>&theta;</code> is all an &ldquo;arc&rdquo; is. The published 7th arc is this circle at <code>&theta;</code> = 44.4701&deg;, drawn for an aircraft at 40,000 ft.</p>
+
+<h3>BFO &mdash; Burst Frequency Offset</h3>
+<p class="sub">A frequency error, in hertz: how far the received carrier sits from where the ground station expected it. It is a sum of Doppler shifts along the same two legs, plus the terminal&rsquo;s own attempt to cancel its share:</p>
+<p class="sub"><code>BFO = &Delta;f<sub>uplink</sub> + &Delta;f<sub>downlink</sub> + &delta;f<sub>SDU compensation</sub> + &delta;f<sub>satellite</sub> + &delta;f<sub>station AFC</sub> + bias</code></p>
+<p class="sub">The aircraft terminal pre-corrects its transmit frequency for its own motion, using its own navigation estimate. That correction is imperfect by exactly the amount the published convention specifies &mdash; ground speed and track, <b>zero vertical speed</b>, nominal satellite position, sea-level aircraft position &mdash; with real vertical motion left in the physical Doppler term. What survives is a number sensitive to the aircraft&rsquo;s <i>velocity along the line to the satellite</i>, which is why BFO constrains heading and speed where BTO constrains only distance.</p>
+
+<h3>What the tolerances mean in metres</h3>
+<p class="sub">The project scores against &sigma;<sub>BTO</sub> = 29.0 &micro;s and &sigma;<sub>BFO</sub> = 4.3 Hz. Those are meaningless until converted:</p>
+<div class="scroll"><table>
+<tr><th>Quantity</th><th class="n">As stated</th><th>In physical units</th></tr>
+<tr><td>1 &micro;s of BTO</td><td class="n">&mdash;</td><td>150 m of slant range; 192 m across ring 7, 265 m across ring 1</td></tr>
+<tr><td><b>&sigma;<sub>BTO</sub></b></td><td class="n">29.0 &micro;s</td><td>4.35 km of slant range &rarr; <b>5.6 km across ring 7</b>, 7.7 km across ring 1</td></tr>
+<tr><td>1 Hz of BFO</td><td class="n">&mdash;</td><td>0.187 m/s of line-of-sight velocity at L-band</td></tr>
+<tr><td><b>&sigma;<sub>BFO</sub></b></td><td class="n">4.3 Hz</td><td><b>0.81 m/s</b> of line-of-sight velocity</td></tr>
+<tr><td>Ring 7 ground radius</td><td class="n">44.4701&deg;</td><td>4,945 km from the subsatellite point</td></tr>
+<tr><td>Ring 7 circumference</td><td class="n">&mdash;</td><td>28,043 km</td></tr>
+</table></div>
+<div class="note"><b>The shape of the whole problem, in one line.</b> A single BTO locates the aircraft inside a band about <b>5.6 km wide and 28,043 km long</b>. The timing is extraordinarily precise and almost entirely uninformative about position. Everything else in this project exists to cut that band down &mdash; the hourly sequence of rings, the Doppler constraint on heading, and the requirement that one aircraft with one fuel load fly a path touching all of them.</div></div>
+
+<div class="card"><h2>2. The flight model</h2>
+<p class="sub">The flight model answers one question: <i>if the aircraft were commanded to fly a particular way from a particular starting point, where would it be at each handshake, and would the fuel last?</i> It does not search for the aircraft. It evaluates a hypothesis and returns a number.</p>
+<h3>Inputs</h3>
+<div class="scroll"><table>
+<tr><th>Input</th><th>What it is</th></tr>
+<tr><td>Command vector</td><td>Start position and time, bearing, speed (Mach), pressure altitude, starting fuel. A handful of numbers that define one candidate flight.</td></tr>
+<tr><td>Weather</td><td>ERA5 reanalysis on pressure levels &mdash; wind components and temperature, interpolated in space, time and pressure along the track. Wind sets ground speed; temperature sets the speed of sound, so a given Mach is a different true airspeed in different air.</td></tr>
+<tr><td>Aircraft performance</td><td>777-200ER fuel-flow and performance tables as a function of weight, altitude and speed. Below the supported envelope the model substitutes a proxy, which it flags as unsupported rather than silently extrapolating.</td></tr>
+</table></div>
+<h3>What is integrated</h3>
+<p class="sub">The state is position, heading, fuel. At each step the model samples the wind and temperature at the aircraft&rsquo;s position and pressure level, resolves the commanded airspeed and heading into a ground velocity, advances the position, and subtracts the fuel burned. The dominant cost is the forcing evaluation: of 39.28 s per flight measured on this project&rsquo;s hardware, 34.93 s is command-dependent force calculation.</p>
+<p class="sub">Timestep is 7.5 s for reference runs and 15 s for sweeps. The coarser step was tested against the finer and changed &chi;&sup2; by 3.42&times;10<sup>&minus;7</sup> and the final position by 1.48 mm, so it is used where throughput matters.</p>
+<p class="sub">Integration continues to fuel exhaustion. The exhaustion time is a hard constraint, not an output: the aircraft&rsquo;s terminal logged back on at 00:19, which is what a restart on auxiliary power after both engines stop looks like, so any candidate must run out of fuel in a narrow window before that.</p>
+<div class="note"><b>Not yet established in this atlas.</b> Whether the command is held as constant true course and constant true airspeed, or as constant magnetic heading, or constant Mach, is not recorded here. It matters: the reference flight&rsquo;s bearing drifts 184.6&deg;&rarr;185.8&deg; and its Mach drifts 0.8406&rarr;0.8306, which rules out a constant-bearing constant-Mach command but does not identify which one it is. A current task requires it to be read out of the solver rather than assumed.</div></div>
+
+<div class="card"><h2>3. Scoring a candidate flight</h2>
+<p class="sub">Each candidate is reduced to one number. For each scored observation, the model computes what the instrument would have read for that flight, subtracts the reading actually logged, divides by that instrument&rsquo;s standard deviation, and squares it:</p>
+<p class="sub"><code>&chi;&sup2; = &Sigma; z<sub>i</sub>&sup2;&nbsp;&nbsp;where&nbsp;&nbsp;z<sub>i</sub> = (predicted &minus; observed) / &sigma;</code></p>
+<p class="sub">Nine terms: four BTO (20:41, 21:41, 22:41, 00:11) and five BFO (19:41, 20:41, 21:41, 22:41, 00:11). A z of 1 means the prediction missed by exactly one standard deviation, contributing 1. Nine independent terms each missing by about 1&sigma; would give &chi;&sup2; &asymp; 9, so a value near nine is what a correct model with honest error bars should produce &mdash; <b>much lower is as suspicious as much higher</b>.</p>
+<div class="note"><b>Why the 19:41 BTO is not scored.</b> Candidates are required to start on ring 1 by construction, so that BTO is satisfied automatically and scoring it would be counting an input as evidence. That reasoning assumed ring 1 was correctly placed. It has since been checked independently &mdash; derived from the published 7th arc, canonical timings and published satellite states, agreeing with the project&rsquo;s own ring to 6.4 km &mdash; so the exclusion is now justified rather than assumed.</div></div>
+
+<div class="card"><h2>4. The drift model</h2>
+<p class="sub">Separate problem, separate data, deliberately never connected to the flight model. Wreckage came ashore on western Indian Ocean coasts between 2015 and 2016. The drift model asks what ocean and wind conditions would carry a floating object from somewhere to those coasts in those intervals.</p>
+<h3>What a particle is</h3>
+<p class="sub">Each simulated object is a point advected by a velocity that is the sum of three terms:</p>
+<div class="scroll"><table>
+<tr><th>Term</th><th>Source</th><th>Treatment</th></tr>
+<tr><td>Ocean current</td><td>GLORYS12V1 reanalysis, 0.494 m depth, daily</td><td>Used directly</td></tr>
+<tr><td>Wind slip (leeway)</td><td>NCEP/NCAR Reanalysis 1 daily winds, T62 grid</td><td>A fraction of wind speed, by object class: <code>max(class slip, 1.2%)</code></td></tr>
+<tr><td>Turbulent diffusion</td><td>Not a forcing field</td><td>Random walk with horizontal diffusivity K = 10 m&sup2;/s, standing in for motion below the grid&rsquo;s resolution</td></tr>
+</table></div>
+<p class="sub">Stokes drift &mdash; net transport from surface waves &mdash; is set to <b>exactly zero</b>, because no wave product was obtained. It is a real physical term that is simply absent from this model.</p>
+<p class="sub">Integration is RK4 at a 1.5-hour step across 1,638 days, over 55&deg;S&ndash;5&deg;N and 20&deg;&ndash;115&deg;E. Coastlines are absorbing: a particle that reaches land stops there and is recorded as a landfall.</p>
+<h3>Forward and reverse</h3>
+<p class="sub">Run <b>forward</b>, particles are released at a hypothesised origin and the model reports where and when they come ashore. Run <b>reverse</b>, the same equations are integrated backward from each find location and date, and the accumulated density of backward endpoints is read as a map of where objects could have come from.</p>
+<div class="note bad"><b>Reverse drift is not a measurement, and it has a known failure mode.</b> Backward trajectories accumulate on structures that attract in backward time, which are the same structures that make forward trajectories <i>diverge</i>. A concentration in a reverse-drift map can therefore mark where a cluster separated rather than where it began &mdash; a feature of the circulation, which sits in the same place no matter where the debris started. Testing which of those the project&rsquo;s own density peak is, is open work.</div>
+<h3>Why class matters</h3>
+<p class="sub">Wind slip is the whole reason two objects released together end up thousands of kilometres apart. A piece floating high in the water takes more wind and tracks differently from one floating flush. The project sorts items into classes C0&ndash;C3 by how much they protrude. Those assignments are judgements, not measurements, and the audit found one class unsupported as a measured category and another untestable.</p></div>
+
+<div class="card"><h2>5. What the inputs are, and what they are not</h2>
+<p class="sub">Three of the four main datasets are <b>reanalyses</b>. A reanalysis is a physical model run over past observations to produce a complete gridded history &mdash; not a record of what was measured, but a best estimate that is internally consistent and smooth. They are used here because they are published third-party products this project did not fit or tune, not because they are observations.</p>
+<div class="scroll"><table>
+<tr><th>Dataset</th><th>Type</th><th>Role</th></tr>
+<tr><td>Inmarsat signalling log</td><td><b>Measurement</b></td><td>The BTO and BFO values. The only direct observation of the aircraft after radar.</td></tr>
+<tr><td>Satellite state table</td><td><b>Published</b></td><td>Satellite position and velocity. Fixes leg A of both measurements.</td></tr>
+<tr><td>ERA5</td><td>Reanalysis</td><td>Winds and temperature aloft for the flight model.</td></tr>
+<tr><td>GLORYS12V1</td><td>Reanalysis</td><td>Surface currents for the drift model.</td></tr>
+<tr><td>NCEP/NCAR R1</td><td>Reanalysis</td><td>Surface winds for the drift model&rsquo;s leeway term.</td></tr>
+<tr><td>Debris find record</td><td>Mixed</td><td>Items, dates and regions are from the record. The <b>coordinates are geocodes drafted for this project and not independently verified.</b></td></tr>
+</table></div></div>
+
+<div class="card"><h2>6. One worked example of why leg A matters</h2>
+<p class="sub">This is the clearest illustration of how the machinery fails when a term is treated as constant, and it happened in this project rather than in a textbook.</p>
+<p class="sub">The BTO equation has a station leg, <code>d<sub>sat&rarr;station</sub></code>. It is tempting to fold it into the bias constant, since both endpoints are fixed. <b>They are not.</b> The satellite is in a slightly inclined orbit and oscillates about a mean longitude, so its range to the station changes continuously &mdash; by <b>82.3 km between 19:41 and 00:19</b>.</p>
+<p class="sub">Treating it as constant makes the two ends of the evening mutually inconsistent by 573 &micro;s, which is 86 km of apparent range. Computing it from the published states instead accounts for 95.8% of that discrepancy and lets every ring be derived from the canonical timings with a single genuine constant.</p>
+<p class="sub">The same motion has a frequency-domain counterpart, because a changing range is a velocity and a velocity is a Doppler shift. Across the five scored BFO observations the station leg contributes a shift sweeping monotonically from 0.03 Hz to 44.7 Hz at L-band &mdash; against a &sigma;<sub>BFO</sub> of 4.3. That term is standard and is modelled, but its size relative to the tolerance is why a small error in it is indistinguishable from a bias, and why the project treats the unresolved BFO bias calibration as its most consequential open item.</p>
+<div class="note"><b>The general lesson, stated once.</b> Both measurements are sums over two legs. Any error in the known leg transfers, metre for metre and hertz for hertz, into the unknown one. The precision of the instrument is not the precision of the answer.</div></div>
+
+<div class="card"><h2>7. What none of this does</h2>
+<p class="sub">No model here produces a location. The flight model returns a score for a hypothesis; the drift model returns a distribution conditional on assumptions it cannot test. Every coordinate in this atlas is a model state under stated conditions, and the conditions do the work.</p>
+<p class="sub">The pages that follow report what was tried, what the declared thresholds were before the results existed, and which of them failed. That record is in <a href="closing.html" style="color:var(--accent)">the closing report</a> and the <a href="https://github.com/floydclaptonblues/mh370-model-atlas/tree/main/directives" style="color:var(--accent)">task briefs</a>; the measurements themselves, with nothing modelled on top, are on the <a href="canonical.html" style="color:var(--accent)">canonical map</a>.</p></div>
+<script>MH.nav("methods.html");</script></div></body></html>

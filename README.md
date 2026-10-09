@@ -9,6 +9,7 @@ A static site collecting the satellite, flight-model and debris-drift work on MH
 | Page | Contents |
 |---|---|
 | `index.html` | Overview, status of each model, sources used, sources set aside |
+| `methods.html` | **What each model computes.** BTO and BFO explained from first principles, the flight model's inputs and integration, what a drift particle is, every tolerance converted to physical units, and a worked example of why an error in the known signal leg transfers into the unknown one |
 | `satcom.html` | 5,029 BTO/BFO rows from the Inmarsat log, the 19-row canonical event table, published satellite states |
 | `flight.html` | Average Day reference flights, the TASK_021 solver, the TASK_022 terminal experiment, the TASK_026 convention sweep, TASK_029 reachability, Phase 5A candidates |
 | `map.html` | Arc, candidates, search areas and reverse-drift density on one switchable map |
