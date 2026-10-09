@@ -13,6 +13,7 @@ A static site collecting the satellite, flight-model and debris-drift work on MH
 | `satcom.html` | 5,029 BTO/BFO rows from the Inmarsat log, the 19-row canonical event table, published satellite states |
 | `flight.html` | Average Day reference flights, the TASK_021 solver, the TASK_022 terminal experiment, the TASK_026 convention sweep, TASK_029 reachability, Phase 5A candidates |
 | `map.html` | Arc, candidates, search areas and reverse-drift density on one switchable map |
+| `reference.html` | **All canonical data on one map** — ocean currents and winds by month, the published 7th arc and the ten derived rings, the satellite track, the last radar fix, debris finds and search areas, plus where to obtain each dataset at source and how the files are formatted |
 | `canonical.html` | **Observations only.** The measurement record, published satellite states, the published 7th arc in full (both arms, to 45&deg;N), the debris find record and the seabed search boxes &mdash; with every model output deliberately excluded and listed as excluded |
 | `drift.html` | 17-month currents map, reverse-drift density, currents-only forward test, Tasks 7 to 9 |
 | `drift2.html` | Drifter hindcast, forward release grid, permutation null, the B1 stop, provenance audit, and why no source region is determinable |

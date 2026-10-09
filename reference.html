@@ -1,0 +1,201 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MH370 Reference Map</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav><h1>Reference map <span class="tag ok">canonical data only</span></h1>
+<p class="sub">Every canonical dataset in this project on one map: ocean currents, surface winds, the satellite rings, the satellite&rsquo;s own track, the last radar fix, the debris find record and the seabed search areas. Nothing modelled by this project appears here. Built because these datasets live in six different places and nobody publishes them together.</p>
+
+<div class="card"><h2>The map</h2>
+ <div class="ctl" id="tg"></div>
+ <div class="ctl" style="margin-top:4px">
+  <label>Month <select id="mo"></select></label>
+  <label>Field <select id="fm"><option value="mean">monthly mean</option><option value="snap">mid-month snapshot</option></select></label>
+  <label>Vectors <select id="dn"><option value="18">dense</option><option value="26" selected>medium</option><option value="38">sparse</option></select></label>
+  <span class="muted" id="st">&nbsp;</span>
+ </div>
+ <div class="read" id="ro">Hover anywhere for position, current, wind and distance to the 7th arc.</div>
+ <canvas id="mp"></canvas>
+ <p class="sub" id="lg" style="margin-top:8px"></p>
+ <div class="ctl" style="margin-top:8px"><span class="muted">View:</span><span id="vw"></span></div>
+ <div class="note" style="margin-top:10px">Currents are loaded one month at a time, about 0.8&nbsp;MB each, so the first draw of a new month takes a moment. Vectors are thinned to roughly even pixel spacing as you change view; the underlying field is full resolution and the hover readout reads the grid cell, not the drawn arrow. <b>The current grid ends at 14.8&deg;N</b>, so no arrows are drawn north of there.</div>
+</div>
+
+<div class="card"><h2>What is on the map, and where it came from</h2>
+<p class="sub">The right-hand column is what to search for to obtain each dataset at source. These are the originating bodies and product names rather than deep links, because links rot and product names do not. <b>They are pointers, not verified URLs.</b></p>
+<div class="scroll"><table>
+<tr><th>Layer</th><th>What it is</th><th>Status</th><th>Obtain it from</th></tr>
+<tr><td><b>Surface currents</b></td><td>Horizontal velocity at 0.494&nbsp;m depth, daily means aggregated to monthly mean and a mid-month snapshot, 1/3&deg; grid, 17 months</td><td><span class="tag prov">reanalysis</span></td><td>Copernicus Marine Service &mdash; GLORYS12V1 global ocean physics reanalysis</td></tr>
+<tr><td><b>Surface winds</b></td><td>10&nbsp;m wind components, T62 Gaussian grid, about 1.9&deg;, monthly</td><td><span class="tag prov">reanalysis</span></td><td>NOAA Physical Sciences Laboratory &mdash; NCEP/NCAR Reanalysis 1</td></tr>
+<tr><td><b>7th arc</b></td><td>200-point polyline, both arms, drawn for an aircraft at 40,000&nbsp;ft</td><td><span class="tag ok">published</span></td><td>ATSB search reports</td></tr>
+<tr><td><b>Rings 1&ndash;7</b></td><td>Ten circles, one per handshake carrying a timing value</td><td><span class="tag prov">derived</span></td><td>Computed here from the three rows above and below &mdash; see <a href="methods.html" style="color:var(--accent)">Methods &sect;1</a></td></tr>
+<tr><td><b>Satellite states</b></td><td>Position and velocity, 15-minute steps, 16:30&ndash;00:20 UTC</td><td><span class="tag ok">published</span></td><td>Inmarsat satellite state table, released with the signalling log</td></tr>
+<tr><td><b>Signalling log</b></td><td>Timing and frequency values per handshake &mdash; the only direct observation of the aircraft after radar</td><td><span class="tag ok">measurement</span></td><td>Malaysian Ministry of Transport / ATSB, released 2014</td></tr>
+<tr><td><b>Last radar fix</b></td><td>17:21:13Z, 6.9478&deg;N 103.5772&deg;E, 10,668&nbsp;m, secondary radar</td><td><span class="tag ok">measured</span></td><td>Malaysian Preliminary Report on MH370</td></tr>
+<tr><td><b>18:22 radar report</b></td><td>A position was reported; <b>no coordinates were ever published</b> and the authors noted poor accuracy. Nothing is plotted.</td><td><span class="tag blocked">no coordinates</span></td><td>DSTG, <i>Bayesian Methods in the Search for MH370</i>, ch. 4</td></tr>
+<tr><td><b>Debris finds</b></td><td>32 items at 21 sites. Items, dates and regions from the find record</td><td><span class="tag prov">coordinates assumed</span></td><td>ATSB and Malaysian safety investigation reports</td></tr>
+<tr><td><b>Search areas</b></td><td>Three bounding boxes, 2014&ndash;2026</td><td><span class="tag prov">approximate</span></td><td>ATSB and Ocean Infinity search reporting</td></tr>
+</table></div>
+<div class="note bad" style="margin-top:8px"><b>Two cautions a first-time user needs.</b> The debris <b>coordinates</b> are place-name geocodes drafted for this project and never independently verified, with a nominal 100&nbsp;km radius &mdash; which is why each site is drawn as a circle. And the search boxes are rectangles: the real swaths are curved along the arc and narrower, so a point inside a box here was not necessarily searched.</div></div>
+
+<div class="card"><h2>Using the data directly</h2>
+<p class="sub">Every layer on this map reads a file in this repository. If the map is not what you need, the files are plain and documented:</p>
+<div class="scroll"><table>
+<tr><th>File</th><th>Format</th></tr>
+<tr><td><code>data/events_canon.json</code></td><td>19 rows, each tagged <code>canonical_observation</code>: timestamp, message type, observed frequency value, raw and corrected timing value, and inclusion flags</td></tr>
+<tr><td><code>data/satstate.json</code></td><td>11 rows: time, ECEF position <code>x,y,z</code> in km, velocity <code>vx,vy,vz</code> in km/s, subsatellite latitude and longitude</td></tr>
+<tr><td><code>data/arc7.json</code></td><td><code>lonlat</code>: 200 <code>[lon, lat]</code> pairs, plus the published caption</td></tr>
+<tr><td><code>data/rings.json</code></td><td>Ten rings: timestamp, timing value, angular radius in degrees, and the ring centre, with the derivation method and its checks in the header</td></tr>
+<tr><td><code>data/finds.json</code></td><td>21 sites, each with coordinates, place name and an item list carrying id, description, find date, region and leeway class</td></tr>
+<tr><td><code>fields/index.json</code></td><td>17 months: file name, label, snapshot date, first and last day covered</td></tr>
+<tr><td><code>fields/YYYYMM.txt</code></td><td>Base64 of four concatenated Int16 planes &mdash; mean <i>u</i>, mean <i>v</i>, snapshot <i>u</i>, snapshot <i>v</i> &mdash; each 345&times;225 on a 1/3&deg; grid from 15.125&deg;E, 59.875&deg;S. Divide by 1000 for m/s; <code>-32768</code> is land or missing</td></tr>
+<tr><td><code>fields/winds.json</code></td><td><code>lat</code>, <code>lon</code> and 17 monthly entries with <code>um</code>, <code>vm</code>, <code>us</code>, <code>vs</code> in hundredths of m/s</td></tr>
+</table></div>
+<p class="sub" style="margin-top:8px">The repository is <a href="https://github.com/floydclaptonblues/mh370-model-atlas" style="color:var(--accent)">floydclaptonblues/mh370-model-atlas</a>. The field files are a subset prepared for this project; for full resolution or other variables, go to the originating services named above.</p></div>
+
+<div class="note"><b>No part of this page locates the aircraft</b>, and none of it is a result. It is the input material, assembled in one place because assembling it was the slowest part of starting this work. What this project did with it is in the <a href="closing.html" style="color:var(--accent)">closing report</a>; how the models work is in <a href="methods.html" style="color:var(--accent)">Methods</a>.</div>
+<script>MH.nav("reference.html");
+const VIEWS={"Whole basin":[15,130,-60,50],"Full arc, both arms":[55,115,-50,50],"Southern arc and search":[55,115,-50,-10],
+ "Debris coasts":[25,70,-40,-5],"Northern arm":[60,110,-5,48],"Takeoff to last radar":[95,112,-2,14]};
+const NX=345,NY=225,LA0=-59.875,LO0=15.125,D=1/3;
+const dec=b=>{const s=atob(b),u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return new Int16Array(u.buffer)};
+const toF=a=>{const f=new Float32Array(a.length);for(let i=0;i<a.length;i++)f[i]=a[i]===-32768?NaN:a[i]/1000;return f};
+
+(async()=>{
+const [mask,arc,sat,rng,ev,rad,fnd,idx,wj]=await Promise.all(
+ ["data/mask.json","data/arc7.json","data/satstate.json","data/rings.json","data/events_canon.json",
+  "data/radar.json","data/finds.json","fields/index.json","fields/winds.json"].map(MH.J));
+
+const rr=rad.map(r=>r.null||r).filter(Array.isArray);
+const rh=rr[0], rpts=rr.slice(1).map(r=>Object.fromEntries(r.map((v,i)=>[rh[i],v])))
+  .filter(r=>r.lat_deg&&String(r.lat_deg).trim()!=="").map(r=>({lat:+r.lat_deg,lon:+r.lon_deg}));
+
+// ---- wind regrid onto the current grid, nearest neighbour
+const WLAT=wj.lat,WLON=wj.lon;
+function regrid(src){const o=new Float32Array(NX*NY);
+ for(let y=0;y<NY;y++){const la=LA0+y*D;let yi=0,bd=1e9;
+  for(let i=0;i<WLAT.length;i++){const d=Math.abs(WLAT[i]-la);if(d<bd){bd=d;yi=i}}
+  for(let x=0;x<NX;x++){const lo=LO0+x*D;let xi=0,bx=1e9;
+   for(let i=0;i<WLON.length;i++){const d=Math.abs(WLON[i]-lo);if(d<bx){bx=d;xi=i}}
+   o[y*NX+x]=src[yi][xi]/100}}
+ return o}
+
+const cache=new Map(); let cur=null, mi=0, mode="mean";
+async function month(i){
+ if(cache.has(i))return cache.get(i);
+ document.getElementById("st").textContent="loading "+idx[i].full+"…";
+ const txt=await (await fetch("fields/"+idx[i].file)).text();
+ const a=dec(txt.trim()),n=NX*NY,w=wj.months[i];
+ const o={mean:{u:toF(a.subarray(0,n)),v:toF(a.subarray(n,2*n)),wu:regrid(w.um),wv:regrid(w.vm)},
+          snap:{u:toF(a.subarray(2*n,3*n)),v:toF(a.subarray(3*n,4*n)),wu:regrid(w.us||w.um),wv:regrid(w.vs||w.vm)}};
+ cache.set(i,o);document.getElementById("st").textContent="";
+ return o}
+
+const samp=(f,la,lo)=>{const x=Math.round((lo-LO0)/D),y=Math.round((la-LA0)/D);
+ if(x<0||x>=NX||y<0||y>=NY)return null;return f[y*NX+x]};
+
+function vecLayer(pick,colVar,gain){return {on:true,draw(x,m){
+ if(!cur)return;const f=cur[mode];const step=+document.getElementById("dn").value;
+ const[b0,b1,b2,b3]=m.view;const cellPx=m.W/(b1-b0)*D;
+ const st=Math.max(1,Math.round(step/cellPx));
+ x.strokeStyle=MH.css(colVar);x.lineWidth=1;x.globalAlpha=.75;
+ for(let y=0;y<NY;y+=st){const la=LA0+y*D;if(la<b2||la>b3)continue;
+  for(let i=0;i<NX;i+=st){const lo=LO0+i*D;if(lo<b0||lo>b1)continue;
+   const u=pick.u(f)[y*NX+i],v=pick.v(f)[y*NX+i];
+   if(!isFinite(u)||!isFinite(v))continue;
+   const sp=Math.hypot(u,v);if(sp<0.01)continue;
+   const p=m.pt(lo,la);const L=Math.min(13,sp*gain);
+   const ex=p[0]+u/sp*L, ey=p[1]-v/sp*L;
+   x.beginPath();x.moveTo(p[0],p[1]);x.lineTo(ex,ey);x.stroke();
+   const a=Math.atan2(-(ey-p[1]),ex-p[0]);
+   x.beginPath();x.moveTo(ex,ey);
+   x.lineTo(ex-3.5*Math.cos(a-0.4),ey+3.5*Math.sin(a-0.4));
+   x.lineTo(ex-3.5*Math.cos(a+0.4),ey+3.5*Math.sin(a+0.4));
+   x.closePath();x.fillStyle=MH.css(colVar);x.fill()}}
+ x.globalAlpha=1}}}
+
+const ringLayer=(G)=>({on:true,draw(x,m){const r=Math.PI/180;
+ G.rings.forEach((g,i)=>{const last=i===G.rings.length-1;
+  x.strokeStyle=MH.css(last?"--c3":"--c1");x.globalAlpha=last?1:.5;
+  x.lineWidth=last?2:1.1;x.setLineDash(last?[]:[3,3]);x.beginPath();
+  let st=false,pv=null;
+  for(let b=0;b<=360;b+=0.5){const d=g.theta*r,p0=g.clat*r,br=b*r;
+   const p1=Math.asin(Math.sin(p0)*Math.cos(d)+Math.cos(p0)*Math.sin(d)*Math.cos(br));
+   const l1=g.clon*r+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(p0),Math.cos(d)-Math.sin(p0)*Math.sin(p1));
+   const P=m.pt(l1/r,p1/r);
+   if(pv&&Math.abs(P[0]-pv[0])>m.W/2)st=false;
+   if(!st){x.moveTo(P[0],P[1]);st=true}else x.lineTo(P[0],P[1]);pv=P}
+  x.stroke();
+  const d=g.theta*r,p0=g.clat*r,br=(i%2?168:192)*r;
+  const p1=Math.asin(Math.sin(p0)*Math.cos(d)+Math.cos(p0)*Math.sin(d)*Math.cos(br));
+  const l1=g.clon*r+Math.atan2(Math.sin(br)*Math.sin(d)*Math.cos(p0),Math.cos(d)-Math.sin(p0)*Math.sin(p1));
+  const P=m.pt(l1/r,p1/r);
+  x.globalAlpha=1;x.fillStyle=MH.css(last?"--c3":"--c1");x.font="11px "+MH.css("--font-mono");
+  x.fillText(g.hm,P[0]+4,P[1]-3)});
+ x.setLineDash([]);x.globalAlpha=1;x.lineWidth=1}});
+
+const satLayer=(S)=>({on:true,draw(x,m){
+ x.strokeStyle=MH.css("--c2");x.lineWidth=2;x.beginPath();
+ S.forEach((r,i)=>{const p=m.pt(r.lon,r.lat);i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1])});x.stroke();
+ S.forEach(r=>{const p=m.pt(r.lon,r.lat);x.fillStyle=MH.css("--c2");x.beginPath();x.arc(p[0],p[1],2.4,0,6.3);x.fill()});
+ const p=m.pt(S[0].lon,S[0].lat);x.fillStyle=MH.css("--fg");x.font="11px "+MH.css("--font-mono");
+ x.fillText("satellite 16:30–00:20",p[0]+7,p[1]-4);x.lineWidth=1}});
+
+const findLayer=(F)=>({on:true,draw(x,m){for(const s of F.sites){
+ const c=m.pt(s.lon,s.lat);
+ const e=m.pt(s.lon+100/(111.19*Math.cos(s.lat*Math.PI/180)),s.lat);
+ const r=Math.max(2.5,Math.abs(e[0]-c[0]));
+ x.strokeStyle=MH.css("--ok");x.globalAlpha=.5;x.setLineDash([3,3]);
+ x.beginPath();x.arc(c[0],c[1],r,0,6.3);x.stroke();x.setLineDash([]);
+ x.globalAlpha=.9;x.fillStyle=MH.css("--ok");
+ x.beginPath();x.arc(c[0],c[1],3+Math.min(3.5,s.items.length*.7),0,6.3);x.fill();x.globalAlpha=1}}});
+
+const map=new MH.Map(document.getElementById("mp"),mask,VIEWS["Full arc, both arms"]);
+map.layers.cur=vecLayer({u:f=>f.u,v:f=>f.v},"--accent",34);
+map.layers.wind=vecLayer({u:f=>f.wu,v:f=>f.wv},"--c4",0.9);
+map.layers.wind.on=false;
+map.layers.search=MH.L.search(MH.SEARCH);
+map.layers.rings=ringLayer(rng);
+map.layers.arc=MH.L.arc(arc);
+map.layers.sat=satLayer(sat);
+map.layers.finds=findLayer(fnd);
+map.layers.radar=MH.L.radar(rpts);
+
+const names={cur:"Ocean currents",wind:"Surface winds",rings:"Rings 1–7 (derived)",arc:"7th arc (published)",
+ sat:"Satellite track",finds:"Debris finds",radar:"Last radar fix",search:"Search areas"};
+const tg=document.getElementById("tg");
+tg.innerHTML=Object.keys(names).map(k=>`<label><input type="checkbox" data-k="${k}"${map.layers[k].on?" checked":""}> ${names[k]}</label>`).join("");
+tg.querySelectorAll("input").forEach(i=>i.onchange=()=>{map.layers[i.dataset.k].on=i.checked;map.draw()});
+
+const mo=document.getElementById("mo");
+mo.innerHTML=idx.map((m,i)=>`<option value="${i}">${m.full}</option>`).join("");
+async function setMonth(i){mi=i;cur=await month(i);map.draw()}
+mo.onchange=()=>setMonth(+mo.value);
+document.getElementById("fm").onchange=e=>{mode=e.target.value;map.draw()};
+document.getElementById("dn").onchange=()=>map.draw();
+
+document.getElementById("lg").innerHTML=MH.legend([
+ [MH.css("--accent"),"ocean current"],[MH.css("--c4"),"wind"],[MH.css("--c3"),"7th arc, published"],
+ [MH.css("--c1"),"rings 1–6, derived"],[MH.css("--c2"),"satellite track"],[MH.css("--ok"),"debris finds, 100 km nominal"]]);
+
+const vw=document.getElementById("vw");
+vw.innerHTML=Object.keys(VIEWS).map(k=>`<button data-v="${k}">${k}</button>`).join(" ");
+vw.querySelectorAll("button").forEach(b=>b.onclick=()=>map.setView(VIEWS[b.dataset.v]));
+
+const AP=MH.arcPts(arc);
+map.onhover=h=>{const r=document.getElementById("ro");
+ if(!h){r.textContent="Hover anywhere for position, current, wind and distance to the 7th arc.";return}
+ const f=MH.findNear(fnd,map,h);
+ if(f){r.textContent=MH.findText(f);return}
+ let t=`${Math.abs(h.lat).toFixed(2)}°${h.lat<0?"S":"N"}  ${h.lon.toFixed(2)}°E`;
+ if(cur){const F=cur[mode];
+  const u=samp(F.u,h.lat,h.lon),v=samp(F.v,h.lat,h.lon);
+  const wu=samp(F.wu,h.lat,h.lon),wv=samp(F.wv,h.lat,h.lon);
+  if(isFinite(u)&&isFinite(v)){const sp=Math.hypot(u,v);
+   t+=`   current ${sp.toFixed(3)} m/s toward ${((Math.atan2(u,v)*180/Math.PI+360)%360).toFixed(0)}°`}
+  else t+="   current — (land or missing)";
+  if(isFinite(wu)&&isFinite(wv)){const ws=Math.hypot(wu,wv);
+   t+=`   wind ${ws.toFixed(1)} m/s`}}
+ t+=`   ${MH.fmt(MH.arcDist(AP,h.lat,h.lon),0)} km from the 7th arc`;
+ r.textContent=t};
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>setTimeout(()=>map.draw(),50));
+await setMonth(0);
+})();
+</script></div></body></html>
