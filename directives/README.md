@@ -22,6 +22,9 @@ Each brief was written against standing rules that appear in most of them verbat
 | A northern arc-1 start is not a northern endpoint | `20` §6.3 — the 00:11 position required on every row, for that reason, before any row existed |
 | The northern indication can be retired by its own test | `20` §7 — outcomes G1 to G4 written out before the numbers existed, G1 being "the northern indication is retired … it was my reading and it was wrong" |
 | A northern candidate was not quoted at 177:1 before the bias it depends on was swept | `22` §1–§2 — the sweep declared symmetric about zero, one δ applied to both hypotheses, "do not nominate a preferred δ", with the gap-closing value of 6.19 Hz computed and stated before the run |
+| The final-pair work could not be steered toward the glide it might rescue | `23` §0 — "no oscillator model is chosen, shaped or bounded because of what it does to G0", with the result's two-sided consequence stated before the run: a weakened final pair costs the chapter its supersonic finding as well as the glide's rejection |
+| The 18:25 sequence was not mined for a transient | `23` §4 — Gate C: if the residual shape depends on which assumed aircraft state is used, the sequence is "unusable", declared before computing, with state-selection named as the failure mode |
+| An undetermined result was not read as a positive one | `23` §6 — "Undetermined is not permission to revive a glide", written before Part B's status was known |
 | The 18:22 radar position never selected anything | `20` §9 — declared a zero-weight diagnostic: "not a term, not a prior, not a filter" |
 | The reverse-drift density peak was tested against the possibility that it is only a flow feature | `21` §2 — Gate B: synthetic sources on a grid laid out "independent of the observed peak's location", with FLOW-DOMINATED, SOURCE-TRACKING and PARTIAL criteria fixed before the run |
 | The reachability map was not quietly turned into a source estimate | `21` §2.4 — "Label it reachability. It is not a likelihood, not a posterior, and not a source estimate," with the reason given before the map existed |
@@ -61,6 +64,7 @@ The briefs were revised when they were found to be wrong. Those revisions are ke
 | `19`, `19b` | Extending the ERA5 forcing domain east and north; amendment once the files were supplied rather than downloaded |
 | `20` | Activating the extended domain, then sweeping arc 1 on a grid that must first prove itself |
 | `21`, `21b`–`21d` | Whether the reverse-drift density peak is a source signal, a circulation feature, or a windage mixture — Ryan's hypothesis, tested; amendments identifying the field, fixing a dead gate, and handling the exclusion bias |
+| `23` | Whether the 00:19:37 observation can carry what rests on it — the inclusion asymmetry, the oscillator drift rate, and what the chapter loses in both directions |
 | `22`, `22b`–`22c` | Whether the north–south preference survives the BFO bias — a sweep, not a fit, because the bias is one physical constant; amendments removing a step that needed an uncertainty nobody has, and ordering the residuals by time before sweeping anything |
 | `_slides_prompt…` | The brief for a walkthrough deck, kept because it fixes what a public presentation of this work may and may not claim |
 
