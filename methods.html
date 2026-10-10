@@ -40,6 +40,7 @@
 <p class="sub">Converting a distance to a ground circle needs the aircraft&rsquo;s altitude, because the circle is drawn on a sphere of radius <code>R<sub>earth</sub> + altitude</code>. With <code>&theta;</code> the angle at the earth&rsquo;s centre between the aircraft and the subsatellite point:</p>
 <p class="sub"><code>d(&theta;) = &radic;(r<sub>sat</sub>&sup2; + r<sub>aircraft</sub>&sup2; &minus; 2 &middot; r<sub>sat</sub> &middot; r<sub>aircraft</sub> &middot; cos &theta;)</code></p>
 <p class="sub">Inverting that for <code>&theta;</code> is all an &ldquo;arc&rdquo; is. The published 7th arc is this circle at <code>&theta;</code> = 44.4701&deg;, drawn for an aircraft at 40,000 ft.</p>
+<p class="sub"><b>The altitude assumption moves the arc.</b> For the same timing value, a circle drawn for an aircraft at sea level sits <b>9.8 km</b> from one drawn at 40,000 ft. Any statement of the form &ldquo;this point is <i>N</i> km beyond the arc&rdquo; is therefore incomplete until it says which arc, and differences smaller than about 10 km between the two conventions are not differences at all.</p>
 
 <h3>BFO &mdash; Burst Frequency Offset</h3>
 <p class="sub">A frequency error, in hertz: how far the received carrier sits from where the ground station expected it. It is a sum of Doppler shifts along the same two legs, plus the terminal&rsquo;s own attempt to cancel its share:</p>
