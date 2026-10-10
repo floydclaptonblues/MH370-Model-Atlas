@@ -1,0 +1,137 @@
+<h1>The north&ndash;south comparison <span class="tag prov">open, not converged</span></h1>
+<p class="sub">As of 10 October the project has a northern candidate that is not an artifact of a coarse grid. It scores worse than the southern solution, and the whole of that difference turns on one number nobody has measured. This page is the current state of that question.</p>
+
+<div class="note bad"><b>Nothing here is a location.</b> Both candidates are conditional model states. Neither is converged &mdash; every search in the table below terminated on an evaluation cap or a constraint failure, not at a minimum. A difference between two unconverged states is a difference between two unconverged states.</div>
+
+<div class="card"><h2>The two candidates</h2>
+<div class="scroll"><table>
+<tr><th>&nbsp;</th><th class="n">&chi;&sup2;</th><th>00:11 position</th><th>Engine loss</th><th>What is limiting it</th></tr>
+<tr><td><b>Northern</b>, bin 32&ndash;34&deg;S</td><td class="n">16.842</td><td>32.003&deg;S, 95.258&deg;E</td><td>00:16:32</td><td>Nothing flagged &mdash; but it sits 0.003&deg; from its own northern edge</td></tr>
+<tr><td><b>Southern</b>, bin 36&ndash;38&deg;S</td><td class="n">7.915</td><td>36.000&deg;S, 90.176&deg;E</td><td>00:17:59</td><td>Engine-loss window late; bin north edge</td></tr>
+<tr><td>C120, the frozen reference</td><td class="n">8.117</td><td>35.848&deg;S, 90.393&deg;E</td><td>00:17:14</td><td>Nine active constraints, k at its lower bound</td></tr>
+</table></div>
+<p class="sub" style="margin-top:8px">Both candidates are confirmed from two directions. The 30&ndash;32 bin runs to its southern edge at 32.000&deg;S and the 32&ndash;34 bin runs to its northern edge at 32.003&deg;S &mdash; two searches converging on the same point from opposite sides, which is stronger evidence of a real feature than one pinned bin. The same holds at 36&deg;S for the south, with one caveat: that bin&rsquo;s search ran <b>five evaluations</b> before failing on incompatible constraints, so it is effectively the 34&ndash;36 result re-found rather than an independent one.</p></div>
+
+<div class="card"><h2>The comparison is a straight line in the bias</h2>
+<p class="sub">Both candidates are scored against the same five frequency observations, so a common offset applied to the Burst Frequency Offset bias shifts both. Fitting each candidate&rsquo;s score as a function of that offset gives two quadratics &mdash; and <b>their curvature terms are identical to nine decimal places, so they cancel exactly</b>. The difference between the two hypotheses is therefore linear:</p>
+<p class="sub" style="text-align:center;font-size:1.05em"><code>&chi;&sup2;<sub>north</sub> &minus; &chi;&sup2;<sub>south</sub> = 8.926 &minus; 1.568 &times; offset</code></p>
+<p class="sub">Every hertz of common bias error buys the northern candidate exactly <b>1.568</b> of &chi;&sup2;. The question &ldquo;how wrong would the bias have to be&rdquo; has an exact answer rather than a modelled one: <b>+5.69 Hz</b> makes the two indistinguishable.</p>
+
+<figure style="margin:18px 0">
+<svg viewBox="0 0 760 330" role="img" aria-label="Difference in chi-squared between the northern and southern candidates falls linearly with a common BFO offset, reaching zero at plus 5.69 hertz, while the measured ground calibration sits near minus 1 hertz on the opposite side of zero" style="width:100%;max-width:760px;height:auto;color:var(--fg)">
+<defs><pattern id="hx" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1" opacity="0.18"/></pattern></defs>
+<rect x="64.0" y="26.0" width="182.8" height="248.0" fill="url(#hx)"/>
+<text x="69.0" y="39.0" font-size="10.5" fill="currentColor" opacity="0.7">north fails &#967;&#178; &#8804; 20</text>
+<line x1="64.0" y1="274.0" x2="736.0" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="277.5" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">-4</text>
+<line x1="64.0" y1="246.4" x2="736.0" y2="246.4" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="249.9" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">-2</text>
+<line x1="64.0" y1="218.9" x2="736.0" y2="218.9" stroke="currentColor" stroke-width="1" opacity="0.30"/>
+<text x="57.0" y="222.4" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">0</text>
+<line x1="64.0" y1="191.3" x2="736.0" y2="191.3" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="194.8" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">2</text>
+<line x1="64.0" y1="163.8" x2="736.0" y2="163.8" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="167.3" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">4</text>
+<line x1="64.0" y1="136.2" x2="736.0" y2="136.2" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="139.7" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">6</text>
+<line x1="64.0" y1="108.7" x2="736.0" y2="108.7" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="112.2" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">8</text>
+<line x1="64.0" y1="81.1" x2="736.0" y2="81.1" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="84.6" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">10</text>
+<line x1="64.0" y1="53.6" x2="736.0" y2="53.6" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="57.1" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">12</text>
+<line x1="64.0" y1="26.0" x2="736.0" y2="26.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="57.0" y="29.5" font-size="10.5" text-anchor="end" fill="currentColor" opacity="0.65">14</text>
+<line x1="64.0" y1="26.0" x2="64.0" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="64.0" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">-6</text>
+<line x1="138.7" y1="26.0" x2="138.7" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="138.7" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">-4</text>
+<line x1="213.3" y1="26.0" x2="213.3" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="213.3" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">-2</text>
+<line x1="288.0" y1="26.0" x2="288.0" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.26"/>
+<text x="288.0" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">+0</text>
+<line x1="362.7" y1="26.0" x2="362.7" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="362.7" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">+2</text>
+<line x1="437.3" y1="26.0" x2="437.3" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="437.3" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">+4</text>
+<line x1="512.0" y1="26.0" x2="512.0" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="512.0" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">+6</text>
+<line x1="586.7" y1="26.0" x2="586.7" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="586.7" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">+8</text>
+<line x1="661.3" y1="26.0" x2="661.3" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="661.3" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">+10</text>
+<line x1="736.0" y1="26.0" x2="736.0" y2="274.0" stroke="currentColor" stroke-width="1" opacity="0.09"/>
+<text x="736.0" y="290.0" font-size="10.5" text-anchor="middle" fill="currentColor" opacity="0.65">+12</text>
+<rect x="236.2" y="26.0" width="38.2" height="248.0" fill="#e2703a" opacity="0.16"/>
+<line x1="236.2" y1="26.0" x2="236.2" y2="274.0" stroke="#e2703a" stroke-width="2"/>
+<line x1="274.4" y1="26.0" x2="274.4" y2="274.0" stroke="#e2703a" stroke-width="2"/>
+<line x1="64.0" y1="-33.7" x2="595.7" y2="274.0" stroke="currentColor" stroke-width="2.5"/>
+<circle cx="236.2" cy="65.9" r="4.5" fill="currentColor" stroke="var(--panel)" stroke-width="2"/>
+<text x="243.2" y="55.9" font-size="11.5" text-anchor="start" fill="currentColor">pooled ground, −1.39 Hz</text>
+<circle cx="288.0" cy="95.9" r="4.5" fill="currentColor" stroke="var(--panel)" stroke-width="2"/>
+<text x="295.0" y="85.9" font-size="11.5" text-anchor="start" fill="currentColor">no offset: Δ = 8.93</text>
+<circle cx="500.5" cy="218.9" r="4.5" fill="currentColor" stroke="var(--panel)" stroke-width="2"/>
+<text x="491.5" y="238.9" font-size="11.5" text-anchor="end" fill="currentColor">tie at +5.69 Hz</text>
+<text x="255.3" y="266.0" font-size="10.5" text-anchor="middle" fill="#e2703a">measured</text>
+<text x="646.4" y="59.1" font-size="11.5" text-anchor="middle" fill="currentColor" opacity="0.75">south better &#8593;</text>
+<text x="646.4" y="252.0" font-size="11.5" text-anchor="middle" fill="currentColor" opacity="0.75">north better &#8595;</text>
+<text x="400.0" y="320.0" font-size="11.5" text-anchor="middle" fill="currentColor">common BFO offset applied to both candidates (Hz)</text>
+<text x="12" y="150.0" font-size="11.5" text-anchor="middle" fill="currentColor" transform="rotate(-90 12 150.0)">&#967;&#178; north &#8722; south</text>
+</svg>
+<figcaption class="sub">The line is exact, not fitted to points. Above zero the south scores better; below it the north would. The shaded band is where the ground calibration actually sits, and the hatched region on the left is where the northern candidate stops satisfying the &chi;&sup2; &le; 20 gate it was admitted under.</figcaption>
+</figure>
+
+<div class="scroll"><table>
+<tr><th>Common offset</th><th class="n">North &chi;&sup2;</th><th class="n">South &chi;&sup2;</th><th class="n">Difference</th><th>What this offset is</th></tr>
+<tr><td>&minus;1.387 Hz</td><td class="n">20.913</td><td class="n">9.811</td><td class="n">11.101</td><td><b>Measured</b>, pooled ground records (n = 44)</td></tr>
+<tr><td>&minus;1.105 Hz</td><td class="n">20.000</td><td class="n">9.341</td><td class="n">10.659</td><td>Where the north leaves the &chi;&sup2; &le; 20 gate</td></tr>
+<tr><td>&minus;0.363 Hz</td><td class="n">17.807</td><td class="n">8.311</td><td class="n">9.496</td><td><b>Measured</b>, channel 36ED only (n = 2)</td></tr>
+<tr><td>0</td><td class="n">16.842</td><td class="n">7.915</td><td class="n">8.926</td><td>No offset applied</td></tr>
+<tr><td>+4.734 Hz</td><td class="n">10.783</td><td class="n">9.280</td><td class="n">1.503</td><td>What the northern candidate would prefer</td></tr>
+<tr><td>+5.692 Hz</td><td class="n">11.031</td><td class="n">11.031</td><td class="n">0.000</td><td>The two become indistinguishable</td></tr>
+</table></div></div>
+
+<div class="card"><h2>What the bias actually measures, and which way it points</h2>
+<p class="sub">The bias was calibrated against the published ATSB communication logs, using the aircraft while it was stationary at the gate &mdash; a state with no aircraft motion, so the predicted frequency depends only on satellite geometry and the instrument constant. Predicted 88.363 Hz.</p>
+<div class="scroll"><table>
+<tr><th>Channel</th><th class="n">Samples</th><th class="n">Observed mean</th><th class="n">Offset from prediction</th></tr>
+<tr><td>36D3</td><td class="n">33</td><td class="n">87.545 Hz</td><td class="n">&minus;0.637 Hz</td></tr>
+<tr><td>36E3</td><td class="n">11</td><td class="n">84.545 Hz</td><td class="n">&minus;3.637 Hz</td></tr>
+<tr><td><b>36ED</b> &mdash; the channel the scored events use</td><td class="n">2</td><td class="n">88.000 Hz</td><td class="n">&minus;0.363 Hz</td></tr>
+<tr><td>Pooled</td><td class="n">44</td><td class="n">86.795 Hz</td><td class="n">&minus;1.387 Hz</td></tr>
+</table></div>
+<div class="note ok" style="margin-top:10px"><b>The measurement is negative. The northern candidate needs it positive.</b> Applying the measured offset does not narrow the gap &mdash; it widens it, from 8.93 to between 9.50 and 11.10. The northern candidate is rescued only by a bias error of about +5.7 Hz, which is roughly <b>7 Hz away from the measured value and on the other side of zero</b>. At the pooled figure the north scores 20.91 and fails the plausibility gate outright.</div>
+<div class="note bad" style="margin-top:8px"><b>What is still missing, and it is the whole remaining question.</b> The gate measurement is four hours before the scored window. <b>How far the bias drifts in those four hours has not been measured</b>, and a dedicated attempt to measure it found no qualifying records in the inspected sources and correctly stopped rather than substituting a number. Published probability figures for a +5.69 Hz excursion range from 4&times;10<sup>&minus;7</sup> to 0.043 depending on which drift scenario is assumed, and every one of those scenarios is assumed rather than measured. The most permissive of them reuses the 4.3 Hz in-flight scatter, which is a different quantity.</div></div>
+
+<div class="card"><h2>The latitude scan is not a trend</h2>
+<p class="sub">It is tempting to read the bins as a score that falls steadily toward the south. The actual values do not support that:</p>
+<div class="scroll"><table>
+<tr><th>Bin</th><th class="n">&chi;&sup2;</th><th>00:11 position</th><th>Termination</th></tr>
+<tr><td>20&ndash;22&deg;S</td><td class="n">538.08</td><td>21.94&deg;S, 101.92&deg;E</td><td>not converged</td></tr>
+<tr><td>22&ndash;24&deg;S</td><td class="n">186.96</td><td>23.73&deg;S, 101.54&deg;E</td><td>not converged</td></tr>
+<tr><td>24&ndash;26&deg;S</td><td class="n">35.88</td><td>26.00&deg;S, 100.39&deg;E</td><td>evaluation cap</td></tr>
+<tr><td>26&ndash;28&deg;S</td><td class="n"><b>2,025.78</b></td><td>26.57&deg;S, 101.62&deg;E</td><td>not converged</td></tr>
+<tr><td>28&ndash;30&deg;S</td><td class="n">22.34</td><td>30.00&deg;S, 97.23&deg;E</td><td>evaluation cap</td></tr>
+<tr><td>30&ndash;32&deg;S</td><td class="n">16.85</td><td>32.00&deg;S, 95.26&deg;E</td><td>evaluation cap</td></tr>
+<tr><td>32&ndash;34&deg;S</td><td class="n">16.84</td><td>32.00&deg;S, 95.26&deg;E</td><td>not converged</td></tr>
+<tr><td>34&ndash;36&deg;S</td><td class="n">7.92</td><td>36.00&deg;S, 90.18&deg;E</td><td>evaluation cap</td></tr>
+<tr><td>36&ndash;38&deg;S</td><td class="n">7.92</td><td>36.00&deg;S, 90.18&deg;E</td><td>5 evaluations, constraints incompatible</td></tr>
+</table></div>
+<p class="sub" style="margin-top:8px">A sequence running 538, 187, 36, <b>2,026</b>, 22, 17, 17, 8, 8 is not a surface being mapped. The 2,026 at 26&ndash;28&deg;S sits between neighbours of 36 and 22, and the 538 at 20&ndash;22&deg;S between 187 and nothing. <b>Those are searches failing, not topography.</b> Each bin is an independent local search with its own termination, and the ones that failed say nothing about the latitudes they cover. The bins were a choice of mine and they are measuring the optimiser as much as the aircraft; a continuous scan with no edges to press on is the object that should replace them.</p></div>
+
+<div class="card"><h2>One observation carries a quarter of the argument</h2>
+<p class="sub">All three records &mdash; C120, the northern candidate, and the 32&deg;S migrant &mdash; have their largest frequency residual at the <b>same observation</b>, 19:41:03, at 7.32, 6.67 and 6.87 Hz against 0.87 to 5.82 Hz everywhere else. A residual that is large for every candidate regardless of where that candidate flies is not a property of any trajectory; it is a property of that moment.</p>
+<p class="sub">19:41:03 is the first handshake after the 18:25 log-on. Residual warm-up drift is the obvious suspect and is <b>a hypothesis, not a finding</b>. It matters because that single term contributes 2.4 to 2.9 to every &chi;&sup2; in this comparison, so both sides are inflated by it, and the difference between them is being computed partly on a term that may not belong to either.</p></div>
+
+<div class="card"><h2>A hypothesis of mine that this killed</h2>
+<p class="sub">The satellite drifts 82.3 km further from the ground station across the evening. That motion is a Doppler shift sweeping 44.7 Hz at L-band across exactly the five scored frequency observations &mdash; the frequency-domain counterpart of a term whose omission from the timing equation cost 86 km. I proposed that the northern candidate&rsquo;s uniformly positive residuals were that term mis-modelled rather than a bias, which would have made the whole offset sweep the wrong instrument.</p>
+<p class="sub">The test was to order the residuals in time and correlate them against the station&rsquo;s range rate. A scale error in that term requires correlation near <b>+1</b> and a near-zero residual at 19:41, where the term vanishes.</p>
+<div class="scroll"><table>
+<tr><th>Record</th><th class="n">Correlation with station Doppler</th><th>Largest residual at</th></tr>
+<tr><td>C120</td><td class="n">&minus;0.88</td><td>19:41, where the term is 0.03 Hz</td></tr>
+<tr><td>Northern candidate</td><td class="n">&minus;0.26</td><td>19:41</td></tr>
+<tr><td>32&deg;S migrant</td><td class="n">&minus;0.34</td><td>19:41</td></tr>
+</table></div>
+<p class="sub" style="margin-top:8px">Every correlation is negative and every record peaks exactly where the hypothesis requires a null. <b>Refuted.</b> It is a constant-offset question, the sweep was the right instrument, and the figure above is the right object. Recorded here because a hypothesis that fails a preregistered test is worth more on the page than off it.</p></div>
+
+<div class="note"><b>Where this leaves the question.</b> There is a northern candidate at 32&deg;S that the model can represent and score, which was not true a week ago. It is worse than the south by 8.93 under no offset and by 9.50 to 11.10 under the measured one. It becomes competitive only under a bias error of about +5.7 Hz, in the opposite direction from the measurement and roughly 7 Hz away from it. Neither candidate is converged, the latitude scan between them is unreliable, and the drift of the bias across the scored window remains unmeasured. <b>No part of this locates the aircraft.</b></div>

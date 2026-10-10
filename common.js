@@ -1,7 +1,7 @@
 const MH={};
 MH.J=async u=>(await fetch(u)).json();
 MH.css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-MH.nav=function(cur){const p=[["index.html","Overview"],["methods.html","Methods"],["satcom.html","Satcom"],["flight.html","Flight models"],["map.html","Combined map"],["reference.html","Reference map"],["canonical.html","Canonical map"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["closing.html","Closing report"]];
+MH.nav=function(cur){const p=[["index.html","Overview"],["methods.html","Methods"],["satcom.html","Satcom"],["flight.html","Flight models"],["map.html","Combined map"],["reference.html","Reference map"],["canonical.html","Canonical map"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["northsouth.html","North\u2013south"],["closing.html","Closing report"]];
  document.getElementById("nav").innerHTML=p.map(([h,l])=>`<a href="${h}"${h===cur?' aria-current="page"':''}>${l}</a>`).join("")};
 MH.fit=function(c,h){const r=c.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);c.width=Math.round(r.width*d);c.height=Math.round(h*d);c.style.height=h+"px";const x=c.getContext("2d");x.setTransform(d,0,0,d,0,0);return {x,w:r.width,h}};
 MH.fmt=(v,d=0)=>v==null?"–":Number(v).toLocaleString("en",{maximumFractionDigits:d,minimumFractionDigits:d});
