@@ -1,0 +1,109 @@
+<h1>Forward transport: one year in the real ocean <span class="tag ok">executed</span></h1>
+<p class="sub">481 hypothetical floating objects, released on 8 March 2014 and carried for 365 days by the ocean that actually existed. Daily GLORYS12V1 surface currents at 0.494 m depth, plus 1.2% of the monthly-mean NCEP wind. No object was steered toward any discovery, any arc, or any destination. Run 13 October 2026 against the Copernicus originals; code and full reports in <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data" style="color:var(--accent)">MH370-Ocean-GLORYS-Data</a> at commit <code>7d29f63</code>.</p>
+
+<div class="note ok"><b>What this page is, in one sentence.</b> We dropped imaginary bits of floating wreckage into a reconstruction of the Indian Ocean as it was in 2014&ndash;15, let the water and the wind push them around for a year, and recorded where the water took them. It is not a probability map, not a search recommendation, and not a statement about where the aircraft came down. It is a description of ocean transport.</p></div>
+
+<div class="card"><h2>What the words mean, physically</h2>
+<p>Every number below is a statement about water moving, not about computation. Before the results, what each term stands for in the sea:</p>
+<div class="scroll" style="max-height:none"><table>
+<tr><th>Term</th><th>What it is, physically</th></tr>
+<tr><td><b>Particle</b></td><td>A hypothetical floating object with no size, no sail area and no shape &mdash; a marker for a parcel of surface water plus a small wind push. Real debris has a hull, a waterline and a drag signature; this does not. It is the simplest possible floating thing.</td></tr>
+<tr><td><b>Release</b></td><td>The place and moment we put one in the water: eight latitudes from 33&deg;S to 45&deg;S, five longitudes from 85&deg;E to 98&deg;E, twelve objects scattered within about 5&nbsp;km of each cell centre, all at midnight UTC on 8 March 2014. <b>These positions are arbitrary sampling of the ocean, not candidate crash sites.</b></td></tr>
+<tr><td><b>1.2% wind slip</b></td><td>A partly submerged object sits in two fluids. The water carries it; the air above pushes the part that sticks out. The accepted shorthand from professional MH370 drift work is that the net effect is roughly 1.2% of the wind speed, added to the current. In a 10&nbsp;m/s wind that is 12&nbsp;cm/s &mdash; comparable to the currents themselves, which is why it matters.</td></tr>
+<tr><td><b>Tortuosity</b></td><td>Distance actually travelled through the water, divided by straight-line distance from start to finish. <b>It measures how much the ocean stirred an object versus how far it carried it.</b> A value of 1 is a straight drift. A value of 5 means the object sailed five kilometres of ocean for every kilometre of progress &mdash; it spent the year going round in eddies.</td></tr>
+<tr><td><b>Gate crossing</b></td><td>The moment an object drifted past a chosen line of longitude. 80&deg;E, 70&deg;E, 60&deg;E, 50&deg;E head toward Africa, R&eacute;union and Madagascar; 100&deg;E, 105&deg;E, 110&deg;E head toward Australia. Crossing a meridian is a fact about where the water went. <b>It is not an arrival, a landfall or a recovery.</b></td></tr>
+<tr><td><b>Domain exit</b></td><td>The object reached the edge of the ocean we have data for and we stopped watching. In survival-analysis language it is <i>censored</i> &mdash; the object did not finish, it left the experiment. It is emphatically not a beaching, and an object that exits westward has not reached Africa.</td></tr>
+<tr><td><b>Mask exit</b></td><td>The object entered a cell the ocean model marks as land or as having no valid velocity. Without a coastline product we cannot tell a genuine coast contact from a data hole, so these are reported separately and never called a beaching.</td></tr>
+</table></div>
+<p style="margin:10px 0 0"><b>One year of one ocean.</b> This is a single realisation: the weather and circulation that happened, once. There is no ensemble over the uncertainty in the current field itself, because only one reconstruction exists. Nothing here is a frequency, a likelihood or a probability, and nothing here should be multiplied by anything.</p></div>
+
+<div class="card"><h2>What the ocean did</h2>
+<p>Of 481 objects, <b>451 were carried east past 100&deg;E</b>, half of them within 102 days. <b>Thirteen were carried west past 80&deg;E. One reached 50&deg;E</b>, on day 358 of 365.</p>
+<div class="scroll"><table>
+<tr><th>Line of longitude</th><th>Objects that reached it</th><th>Share of 481</th><th>Median day of first crossing</th></tr>
+<tr><td>100&deg;E, eastward</td><td class="n">451</td><td class="n">93.8%</td><td class="n">102</td></tr>
+<tr><td>105&deg;E, eastward</td><td class="n">397</td><td class="n">82.5%</td><td class="n">134</td></tr>
+<tr><td>110&deg;E, eastward</td><td class="n">328</td><td class="n">68.2%</td><td class="n">155</td></tr>
+<tr><td>80&deg;E, westward</td><td class="n">13</td><td class="n">2.7%</td><td class="n">285</td></tr>
+<tr><td>70&deg;E, westward</td><td class="n">4</td><td class="n">0.8%</td><td class="n">298</td></tr>
+<tr><td>60&deg;E, westward</td><td class="n">2</td><td class="n">0.4%</td><td class="n">301</td></tr>
+<tr><td>50&deg;E, westward</td><td class="n">1</td><td class="n">0.2%</td><td class="n">358</td></tr>
+</table></div>
+<p style="margin:10px 0 0">Eastward transport is the ocean's default here, and it is quick. Westward transport is rare and late, and it does not come back: <b>no object that crossed a western gate ever re-crossed it</b>, against 86 objects that oscillated back east across 100&deg;E. What westward motion exists is a one-way departure from the release region, not part of a swing.</p></div>
+
+<div class="card"><h2>The cartwheel: tested, and it does not happen</h2>
+<p>The proposition was that material released around 35.5&ndash;38&deg;S would be carried south and east, spend months circulating in the eddy field, and then turn and run west toward the western Indian Ocean &mdash; a long loop, a cartwheel. 240 objects were released in that band.</p>
+<p><b>The specific motion the idea requires &mdash; go south, then turn west &mdash; occurred zero times in 240.</b> Four of the 240 crossed 80&deg;E at all.</p>
+<p>What <i>did</i> happen is the part that is easy to mistake for the idea working. These objects turn constantly. 155 of 240 made a substantial eastward excursion and then came back west by at least two degrees at some point in the year. Median tortuosity in the band is 3.01, reaching 19.8 at the extreme &mdash; a typical object travelled about 6,100&nbsp;km of ocean to end up about 2,000&nbsp;km from where it started.</p>
+<p><b>That is an eddy field, not a cartwheel.</b> Mesoscale eddies &mdash; rotating parcels of water tens to hundreds of kilometres across &mdash; spin an object through long, looping excursions while the mean flow underneath carries it steadily east. The loops are real and large. They do not add up to net westward transport, and a reversal is not a route. The southward excursion is real too, and small: typical objects in this band got about 1&ndash;2&deg; further south than their release latitude, mostly within the first three or four weeks, and the furthest south anything in the band reached all year was 41.35&deg;S.</p>
+<img src="img/year_transport_panels.png" alt="Four map panels showing one year of trajectories for 481 particles, grouped by release latitude from 33 degrees south to 45 degrees south. Northern releases show dense looping paths that stay in the central basin; southern releases show near-straight eastward paths that terminate at the eastern data boundary." style="width:100%;height:auto;border-radius:6px;margin-top:10px">
+<p class="sub" style="margin-top:4px">One year of transport, split by release latitude so the paths stay legible. Black dots are releases, red circles are final positions. The solid line at 119.92&deg;E is the edge of the available data, not a shore. Note how the looping in the top-left panel gives way to near-straight eastward transport in the bottom-right.</p></div>
+
+<div class="card"><h2>Where the water does go west &mdash; and it is not where we were looking</h2>
+<p>Westward transport exists in this year. It is a <b>northern</b> phenomenon, and it weakens steadily as you move south:</p>
+<div class="scroll"><table>
+<tr><th>Release latitude</th><th>Carried west past 80&deg;E</th><th>Median tortuosity</th><th>Ended against the eastern edge of the data</th></tr>
+<tr><td>33&deg;S</td><td class="n"><b>15.0%</b></td><td class="n">4.84</td><td class="n">1.7%</td></tr>
+<tr><td>35.5&deg;S</td><td class="n">5.0%</td><td class="n">3.69</td><td class="n">13.3%</td></tr>
+<tr><td>36.5&deg;S</td><td class="n">0%</td><td class="n">3.19</td><td class="n">11.7%</td></tr>
+<tr><td>37.5&deg;S</td><td class="n">1.7%</td><td class="n">2.87</td><td class="n">16.7%</td></tr>
+<tr><td>38.7&deg;S</td><td class="n">0%</td><td class="n">1.81</td><td class="n">68.3%</td></tr>
+<tr><td>41&deg;S</td><td class="n">0%</td><td class="n">1.48</td><td class="n">80.0%</td></tr>
+<tr><td>43&deg;S</td><td class="n">0%</td><td class="n">1.26</td><td class="n">98.3%</td></tr>
+<tr><td>45&deg;S</td><td class="n">0%</td><td class="n">1.23</td><td class="n">100%</td></tr>
+</table></div>
+<p style="margin:10px 0 0">Three physically distinct quantities change together, monotonically, with no reversal across eight latitudes. <b>Northern water stirs and holds; southern water runs.</b> At 33&deg;S an object travels nearly five kilometres for every kilometre of progress &mdash; it is sitting in the eddy-rich subtropical interior. At 45&deg;S tortuosity is 1.23, which is close to a straight line: that is the northern flank of the Antarctic Circumpolar Current, a broad eastward conveyor with comparatively little to stir an object sideways. The same gradient that suppresses looping suppresses any chance of turning round.</p>
+<div class="note ok"><b>This is a gradient, not a barrier.</b> The 0% at 36.5&deg;S sits between a 5.0% and a 1.7%, and each band holds only 60 objects. Nothing here identifies a boundary, a separatrix or an &ldquo;event horizon&rdquo; in the water, and the release latitudes were arbitrary sampling rather than a designed boundary experiment. Read the table as a smooth change in regime with latitude.</div>
+<img src="img/year_gate_access.png" alt="Grouped bar chart of the percentage of each release latitude reaching each longitude gate within one year. Eastward gates rise toward 100 percent going south; westward gates are near zero everywhere and only nonzero at 33 and 35.5 degrees south." style="width:100%;height:auto;border-radius:6px;margin-top:10px">
+<p class="sub" style="margin-top:4px">The same thing as a picture. Westward access (warm colours) is a thin sliver confined to the two northernmost release bands; eastward access (cool colours) saturates going south.</p></div>
+
+<div class="card"><h2>How the thirteen got west: around the gyre, the other way</h2>
+<p>All thirteen western crossers took the same route, and it is not the one the cartwheel imagined. <b>They went north first, then west.</b> Their final latitudes run from 10.8&deg;S to 29.3&deg;S &mdash; subtropical, well north of every release.</p>
+<p>Physically this is the South Indian Ocean subtropical gyre. The gyre turns anticlockwise: eastward along its southern flank, equatorward on the east side, then <b>westward along its northern limb as the South Equatorial Current</b>. An object leaves the eddy field by drifting equatorward out of it, catches that westward limb, and runs. Nine of the thirteen started at 33&deg;S, three in a single cell at 35.5&deg;S/90&deg;E, and one at 37.5&deg;S/94&deg;E.</p>
+<p>The cartwheel proposed a southern circuit returning west. The ocean's actual westward pathway in this year goes round the gyre the other way, through the tropics. Four of the 240 band objects found it &mdash; by heading toward the equator, not by completing a loop.</p>
+<img src="img/year_western_crossers.png" alt="Map isolating the thirteen particles that crossed 80 degrees east westward, over a faint grey background of the other 468. Every one of the thirteen moves north out of the release region into the subtropics before turning west." style="width:100%;height:auto;border-radius:6px;margin-top:10px">
+<p class="sub" style="margin-top:4px">Every object that got west of 80&deg;E, with the other 468 in grey. The grey mass stays southeast; the coloured paths climb north into the subtropics before running west along the gyre's northern limb.</p>
+<p style="margin:10px 0 0"><b>None of these is an African arrival.</b> They are objects that crossed a line of longitude in a model. The single object that reached 50&deg;E did so six days before the run ended, and one crossed 80&deg;E on day 363 of 365 &mdash; a crossing the experiment barely contains.</p></div>
+
+<div class="card"><h2>The long glide, G0, in the water <span class="tag frozen">consistent with the satellite rejection</span></h2>
+<p>The G0 conditional water-contact coordinate &mdash; 38.70590&deg;S, 90.41482&deg;E, from the frozen C120 flight continuation &mdash; was released alongside the grid, <b>using its coordinates only</b>. No score, no &chi;&sup2; and no terminal diagnostic entered this experiment.</p>
+<p>It ran straight east. Tortuosity 1.51. Furthest south 40.18&deg;S, on day 34. Past 100&deg;E on day 88. It left the eastern edge of the data at 119.86&deg;E, and <b>over the whole year it never got two degrees west of where it started</b> &mdash; its most westerly point all year was 88.75&deg;E.</p>
+<p style="margin:8px 0 0">Stated carefully, because this is where the project is most tempted to over-claim: <b>this is a property of that coordinate's position in the 2014&ndash;15 circulation, and it is not evidence about the aircraft.</b> It is independent of the satellite frequency argument that already rejected G0 at 28&sigma;, and it happens to point the same way &mdash; an endpoint there would have had difficulty delivering debris westward. But no odds were computed and none can be from a single ocean realisation, so this does not make the rejection stronger in any formal sense. It is one more thing that would have had to go right, and did not.</p></div>
+
+<div class="card"><h2>How much of this is numerics? <span class="tag ok">checked both ways</span></h2>
+<p>Halving the integration timestep from six hours to three and re-running the first 182 days gives a clean, two-sided answer.</p>
+<p><b>Individual paths do not converge.</b> Corresponding objects end a median 54&nbsp;km apart, and in the worst case 1,636&nbsp;km apart, after half a year. This is chaotic advection: neighbouring parcels of water in a stirring flow separate exponentially, so refining the timestep produces a different realisation of a path rather than a more accurate one. It is consistent with this project's earlier measurements &mdash; 864&nbsp;m at 17 days, a median 850&nbsp;km at 508 days under a coarser change.</p>
+<p><b>The ensemble does converge.</b> On every quantity this page actually reports:</p>
+<div class="scroll"><table>
+<tr><th>Measured quantity</th><th>6-hour step</th><th>3-hour step</th><th>Change</th></tr>
+<tr><td>Objects reaching 100&deg;E</td><td class="n">409</td><td class="n">412</td><td class="n">+3 of 481</td></tr>
+<tr><td>Objects reaching 105&deg;E</td><td class="n">310</td><td class="n">311</td><td class="n">+1</td></tr>
+<tr><td>Objects reaching 110&deg;E</td><td class="n">211</td><td class="n">214</td><td class="n">+3</td></tr>
+<tr><td>Objects reaching any western gate</td><td class="n">0</td><td class="n">0</td><td class="n">0</td></tr>
+<tr><td>Median tortuosity</td><td class="n">1.600</td><td class="n">1.612</td><td class="n">+0.8%</td></tr>
+<tr><td>Median furthest south</td><td class="n">38.607&deg;S</td><td class="n">38.607&deg;S</td><td class="n">0.000&deg;</td></tr>
+</table></div>
+<p style="margin:10px 0 0"><b>Both halves of that matter.</b> The second licenses everything on this page; the first forbids anyone &mdash; including this project &mdash; from saying where any individual object went. No trajectory on these maps is a prediction of a journey. The population behaviour is the result; the lines are illustration.</p></div>
+
+<div class="note bad"><b>The largest caveat: half the experiment hit a wall that is not in the ocean.</b> 235 of 481 objects (49%) ended against the eastern edge of the available data, which stops at 119.92&deg;E because that is where the Copernicus subset was cut. All 91 clean domain exits left eastward; <b>none left west, south or north.</b> By release latitude this runs from 1.7% at 33&deg;S to 100% at 45&deg;S. So the southern bands' 0% westward access is <b>0% observed before censoring</b> &mdash; for those latitudes, the year was substantially an experiment in how fast objects reach a boundary we drew. What they would have done in a wider ocean is unobserved, and no one should read the southern zeros as the ocean's answer until the domain is extended past Australia.</div>
+
+<div class="card"><h2>What this does and does not support</h2>
+<ul>
+<li><b>Supported:</b> in 2014&ndash;15, floating material released between 33&deg;S and 45&deg;S in 85&ndash;98&deg;E was overwhelmingly carried east, quickly, and westward transport out of that region was rare, late, one-way, and confined to the two northernmost release latitudes.</li>
+<li><b>Supported:</b> the stirring regime changes smoothly with latitude &mdash; eddy-dominated in the subtropical interior, conveyor-dominated on the circumpolar flank &mdash; and the westward route runs through the tropics along the gyre's northern limb.</li>
+<li><b>Not supported:</b> any crash location, any search recommendation, any probability over origins. This experiment never saw a satellite measurement.</li>
+<li><b>Not supported:</b> a transport barrier, a boundary latitude, or an &ldquo;event horizon of drift&rdquo;. The gradient is smooth and the release grid was arbitrary.</li>
+<li><b>Not supported:</b> that debris could not have come from the south. One year, one ocean, and the southern bands were removed from the experiment by the data boundary before they had a year to try.</li>
+<li><b>Not addressed:</b> discovery-selection bias, which runs the other way and is the reason this experiment was blind. Western debris recoveries are a sample of objects that reached places where people look. Material that stayed at sea, sank, or went east leaves no record. A forward run that never consults the finds is the only way to see the transport without that filter &mdash; and what it shows is that the eastern half of the story is unobservable by beachcombing.</li>
+</ul></div>
+
+<div class="card"><h2>What was and was not run</h2>
+<div class="scroll"><table>
+<tr><th>Run</th><th>Window</th><th>Step</th><th>Status</th></tr>
+<tr><td>Full year</td><td>8 Mar 2014 &ndash; 7 Mar 2015</td><td>6 h</td><td><span class="tag ok">complete</span> primary result</td></tr>
+<tr><td>Convergence pair</td><td>8 Mar &ndash; 5 Sep 2014</td><td>3 h and 6 h</td><td><span class="tag ok">complete</span></td></tr>
+<tr><td>Full year at 3 h</td><td>&mdash;</td><td>3 h</td><td><span class="tag prov">not run</span> &mdash; the execution environment caps a single command below the runtime required</td></tr>
+<tr><td>Current-field uncertainty ensemble</td><td>&mdash;</td><td>&mdash;</td><td><span class="tag prov">not run</span> &mdash; one ocean reconstruction exists; perturbing the slip would sample the debris response, not the ocean</td></tr>
+</table></div>
+<p style="margin:10px 0 0"><b>Physics frozen throughout:</b> daily GLORYS12V1 surface currents, Atlas NCEP monthly-mean winds, 1.2% effective wind slip, no explicit Stokes term (the slip already stands in for unresolved wave transport, so adding one would double-count), no diffusion, no object-specific leeway, no breakup, and no fitting to any debris discovery. Winds are monthly means, so daily ocean circulation is resolved and <b>daily wind variability is not</b>.</p>
+<p style="margin:8px 0 0"><b>A note on why this ran at all.</b> The two Copernicus files are split by variable &mdash; eastward velocity in one, northward velocity in the other, each spanning all 366 days &mdash; and the reader required both components in every file, so it could not open them. That was the obstruction, not any network or storage problem. Full provenance, including file checksums, grid extents and the complete verified date range, is in <code>provenance/DATA_PROVENANCE.json</code> in the data repository.</p></div>

@@ -281,6 +281,7 @@ pages["drift.html"]=HEAD%"MH370 Drift"+'''
 <h1>Drift and currents <span class="tag prov">assumption-dependent</span></h1>
 <p class="sub">Ocean currents (GLORYS12V1 via Copernicus Marine), the debris reverse-drift density, and the three follow-up diagnostics.</p>
 <div class="note ok"><b>Newer results:</b> Task 10 (origin of the western focus), the Task 11 drifter hindcast, the forward release from 24.5–41°S, 80–100°E and the gyre/mean-flow check are on <a href="drift2.html" style="color:var(--accent)">Drift diagnostics</a>.</div>
+<div class="note ok"><b>The one-year forward experiment has now been run.</b> 481 floating objects carried by the real daily circulation from 8 March 2014 to 7 March 2015: where the water actually took them, which latitudes stir and which run, and why the proposed cartwheel does not happen. See <a href="drift3.html" style="color:var(--accent)">Forward transport</a>.</div>
 <div class="card"><h2>Surface currents, March 2014 – July 2015</h2>
  <p class="sub">Monthly mean and mid-month snapshot, 17 months, with a floating-object drift mode. Daily 0.494 m currents averaged to 1/3°. March 2014 starts 8 March. Winds are NCEP/NCAR Reanalysis 1 (about 1.9°).</p>
  <iframe src="currents.html" style="height:1500px" title="Indian Ocean surface currents" loading="lazy"></iframe>
@@ -343,6 +344,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>setTime
 })();
 </script>'''+TAIL
 pages["drift2.html"]=HEAD%"MH370 Drift Diagnostics"+open("src/drift2_body.html").read()+'<script>MH.nav("drift2.html");</script>'+TAIL
+pages["drift3.html"]=HEAD%"MH370 Forward Transport"+open("src/drift3_body.html").read()+'<script>MH.nav("drift3.html");</script>'+TAIL
 pages["methods.html"]=HEAD%"MH370 Methods"+open("src/methods_body.html").read()+'<script>MH.nav("methods.html");</script>'+TAIL
 pages["reference.html"]=HEAD%"MH370 Reference Map"+open("src/reference_body.html").read()+"<script>"+open("src/reference_script.js").read()+"</script>"+TAIL
 pages["canonical.html"]=HEAD%"MH370 Canonical Map"+open("src/canonical_body.html").read()+"<script>"+open("src/canonical_script.js").read()+"</script>"+TAIL
@@ -364,6 +366,7 @@ pages["index.html"]='''<title>MH370 Models Atlas</title><link rel="preconnect" h
  <a class="card" href="drift.html" style="text-decoration:none;color:inherit"><h2>Drift <span class="tag prov">assumption-dependent</span></h2><p>17-month currents map, reverse-drift density, currents-only forward test, Tasks 7 to 9 (Task 9 complete).</p></a>
  <a class="card" href="closing.html" style="text-decoration:none;color:inherit"><h2>Closing report <span class="tag frozen">satellite chapter</span></h2><p>What the satcom and flight branch established, what it rests on, and an appendix of readings that were wrong.</p></a>
  <a class="card" href="drift2.html" style="text-decoration:none;color:inherit"><h2>Drift diagnostics <span class="tag prov">conditional</span></h2><p>Task 10 results, drifter hindcast, forward release grid, permutation null, the B1 stop, the provenance audit, and why no source region can be determined.</p></a>
+ <a class="card" href="drift3.html" style="text-decoration:none;color:inherit"><h2>Forward transport <span class="tag ok">executed</span></h2><p>481 floating objects carried for a year by the ocean that actually existed, March 2014 to March 2015. Where the water goes, what stirs and what runs, and why the cartwheel does not happen.</p></a>
 </div>
 <div class="card"><h2>Status of each model</h2><table>
 <tr><th>Model</th><th>Status</th><th>What this atlas shows</th><th>What is missing here</th></tr>
@@ -374,6 +377,7 @@ pages["index.html"]='''<title>MH370 Models Atlas</title><link rel="preconnect" h
 <tr><td><b>North&ndash;south comparison</b></td><td><span class="tag prov">open, not converged</span></td><td>A northern candidate at 32.00&deg;S scoring &chi;&sup2; 16.84, against 7.92 in the south</td><td>The difference is linear in the frequency bias at 1.568 per hertz. A +5.69 Hz offset would tie them; the bias measures &minus;1.39 Hz, the other way. Drift across the scored window is unmeasured. See the North&ndash;south page</td></tr>
 <tr><td>Other endpoint work</td><td><span class="tag prov">provisional</span></td><td>TASK_021, TASK_022, the TASK_026 convention sweep and the TASK_030 arc-1 sweep, on the Flight models page</td><td>No final coordinate exists in any source. <b>Northern arc-1 starts score ten times better than C120's own start under a grid 145&times; too coarse to represent C120 &mdash; a positive indication that cannot be tested.</b> The arc north of 27.5&deg;S is outside the ERA5 domain and outside every search box in the manifest</td></tr>
 <tr><td>Ocean currents</td><td><span class="tag ok">data</span></td><td>GLORYS12V1 daily surface currents, 17 months</td><td>Not a drift result by itself</td></tr>
+<tr><td><b>Forward transport, one year</b></td><td><span class="tag ok">executed</span></td><td>481 objects, daily GLORYS12V1 + 1.2% slip, 8 Mar 2014 to 7 Mar 2015, on the Forward transport page</td><td>451 of 481 carried east past 100&deg;E, 13 west past 80&deg;E, one to 50&deg;E. The south-then-west motion the cartwheel requires occurs 0 times in 240. Westward access is northern and falls monotonically to zero by 36.5&deg;S &mdash; a gradient, not a barrier. <b>49% ended against the eastern edge of the data, so the southern zeros are observed-before-censoring.</b> Ensemble diagnostics converge under a halved timestep; individual paths do not</td></tr>
 <tr><td>Debris drift</td><td><span class="tag prov">assumption-dependent</span></td><td>Baseline density; Tasks 7 and 8 results</td><td>Tasks 9&ndash;16: no source region is determinable. The method recovers known synthetic sources, but on the real finds the answer moves 1,000&ndash;1,900 km when an unmeasured assumption changes. B1 found no supported bias correction; the 1.2% slip floor was fitted to forcing products B0 does not use</td></tr></table></div>
 <div class="card"><h2>Sources used</h2><table>
 <tr><th>Data</th><th>File</th><th>Snapshot</th></tr>
