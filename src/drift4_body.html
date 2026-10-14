@@ -84,6 +84,35 @@
 </table></div>
 <div class="note bad"><b>This is not evidence for G0 and must not be read as any.</b> The satellite frequency data rejects that endpoint at 28&sigma;, and that rejection is independent of everything on this page. Individual trajectories are not resolved in this flow at any timestep &mdash; halving the step moved corresponding objects a median 846&nbsp;km over one year, and this is four and a half. And 75 other objects, released from across the whole grid, ended in the same box. What this shows is that the G0 <i>region</i> is not disqualified by ocean transport, which was never the question and does not bear on the aircraft.</div></div>
 
+<div class="card"><h2>Does it survive the obvious objections? <span class="tag ok">both tested</span></h2>
+<p>Two things could have produced this result without the ocean doing it: too coarse a timestep, and a wind field averaged to monthly means. Both were tested at full length, each changing one thing and holding the ocean, the releases and the window fixed.</p>
+<div class="scroll" style="max-height:none"><table>
+<tr><th></th><th>Baseline<br>6 h, monthly winds</th><th>3 h, monthly winds</th><th>6 h, <b>daily</b> winds</th></tr>
+<tr><td>Reached 80&deg;E west</td><td class="n">233</td><td class="n">238</td><td class="n"><b>256</b></td></tr>
+<tr><td>Reached 70&deg;E</td><td class="n">224</td><td class="n">233</td><td class="n">251</td></tr>
+<tr><td>Reached 60&deg;E</td><td class="n">205</td><td class="n">214</td><td class="n">233</td></tr>
+<tr><td>Reached 50&deg;E</td><td class="n">168</td><td class="n">154</td><td class="n">180</td></tr>
+<tr><td>Reached 100&deg;E east</td><td class="n">447</td><td class="n">447</td><td class="n">447</td></tr>
+<tr><td>Median first crossing of 80&deg;E</td><td class="n">day 633</td><td class="n">day 655</td><td class="n">day 597</td></tr>
+<tr><td>Median distance travelled</td><td class="n">10,686 km</td><td class="n">11,676 km</td><td class="n"><b>13,378 km</b></td></tr>
+<tr><td>Median net displacement</td><td class="n">3,316 km</td><td class="n">3,445 km</td><td class="n">3,360 km</td></tr>
+<tr><td>Median westernmost longitude</td><td class="n">84.3&deg;E</td><td class="n">84.1&deg;E</td><td class="n"><b>63.5&deg;E</b></td></tr>
+</table></div>
+<p style="margin:10px 0 0"><b>Both conclusions survive, and so does the shape of the story.</b> New crossings of 80&deg;E by year, in the three runs:</p>
+<div class="scroll" style="max-height:none"><table>
+<tr><th>New 80&deg;E crossings</th><th>Baseline</th><th>3 h</th><th>Daily winds</th></tr>
+<tr><td>Year 1</td><td class="n">11</td><td class="n">15</td><td class="n">22</td></tr>
+<tr><td><b>Year 2</b></td><td class="n"><b>134</b></td><td class="n"><b>124</b></td><td class="n"><b>148</b></td></tr>
+<tr><td>Year 3</td><td class="n">77</td><td class="n">84</td><td class="n">74</td></tr>
+<tr><td>Year 4</td><td class="n">10</td><td class="n">15</td><td class="n">11</td></tr>
+<tr><td>Year 5</td><td class="n">1</td><td class="n">0</td><td class="n">1</td></tr>
+</table></div>
+<p style="margin:10px 0 0">Year one is the eastward year and year two is the crossing in every configuration.</p>
+<p style="margin:8px 0 0"><b>Halving the timestep</b> moves western access by 5 objects in 481 at 80&deg;E and 14 at 50&deg;E, and leaves the latitude pattern alone, 43 and 45&deg;S included. It does nothing for individual trajectories: among the 24 objects still drifting in both runs at the end, corresponding positions differ by a median of <b>1,296&nbsp;km</b> and up to 5,039&nbsp;km, and only 77% of the western crossers are the same objects.</p>
+<p style="margin:8px 0 0"><b>Resolving the wind daily</b> is the larger effect, and it runs in the direction that makes the baseline conservative rather than generous: more objects reach the west, not fewer, and about five weeks sooner. It adds a great deal of small-scale motion &mdash; distance travelled up 25%, tortuosity from 2.61 to 3.00 &mdash; while median <i>net</i> displacement is unchanged at about 3,350&nbsp;km. That is what resolving wind variability looks like physically: more wiggle, the same destination. By release latitude the pattern is preserved but not identical (41&deg;S rises to 47%, 37.5&deg;S falls to 67%), and <b>43 and 45&deg;S remain at exactly 0% in all three runs</b>.</p>
+<div class="note ok"><b>Quote the headline figures as ranges.</b> 233&ndash;256 objects past 80&deg;E and 154&ndash;180 past 50&deg;E across the three configurations. The 2016 clustering of western-side terminations is robust too &mdash; 82, 84 and 70 of about 130, median date 11&ndash;21 July 2016. <b>Nothing here licenses a statement about any individual object</b>, and the separations above are the largest measured anywhere in this project.</div>
+<p style="margin:10px 0 0">Neither test samples uncertainty in the <b>ocean</b> field, which remains a single reconstruction. That is now the largest limitation left standing.</p></div>
+
 <div class="card"><h2>What is and is not established</h2>
 <ul>
 <li><b>Established:</b> in 2014&ndash;18, floating material released between 33 and 37.5&deg;S in 85&ndash;98&deg;E was predominantly carried east in the first year and then west across the basin in the second and third, reaching the western Indian Ocean in the majority of cases.</li>
@@ -91,9 +120,9 @@
 <li><b>Not established:</b> any crash location, any probability over origins, any search recommendation. This experiment never saw a satellite measurement.</li>
 <li><b>Not established:</b> a transport barrier or a boundary latitude. The sharp drop below 37.5&deg;S is confounded with censoring.</li>
 <li><b>Not established:</b> any beaching. Terminations are coastline-or-mask contacts in a model with no coastline product and no stranding, survival or detection model.</li>
-<li><b>Not tested:</b> a three-hour comparison over 1,638 days. The one-year pair held ensemble gate fractions to within 3 of 481 while individual paths separated by a median 846&nbsp;km; whether that stability survives four and a half years is unknown.</li>
+<li><b>Tested and passed:</b> a three-hour comparison over the full 1,638 days, and a daily-wind run in place of monthly means. Both are above; both leave every conclusion standing.</li>
 <li><b>Not sampled:</b> uncertainty in the current field itself. One ocean reconstruction exists, so no result here is robust in that sense.</li>
-<li><b>Not resolved:</b> daily wind variability. Winds are monthly means. Daily NCEP fields are now available and were deliberately not used, because adopting them would have changed the forcing at the same moment the window changed. That is the obvious next test.</li>
+<li><b>Partly resolved:</b> daily wind variability. The baseline uses monthly means, and the daily-wind run above shows the choice is conservative &mdash; resolving the wind raises westward access by about 10%.</li>
 </ul></div>
 
 <div class="card"><h2>Provenance</h2>
