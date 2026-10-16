@@ -67,3 +67,16 @@ MH.L.flights=(A)=>({on:true,draw(x,m){const cols=["--c2","--c1","--c4"];A.forEac
 MH.L.fwd=(F)=>({on:true,draw(x,m){x.lineWidth=1;F.forEach(r=>{const a=m.pt(r.arc_lon,r.arc_lat),b=m.pt(r.end_lon,r.end_lat);x.strokeStyle=MH.css("--muted");x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke();x.fillStyle=MH.css("--ok");x.beginPath();x.arc(b[0],b[1],3.5,0,6.3);x.fill();x.fillStyle=MH.css("--fg");x.font="11px "+MH.css("--font-mono");x.fillText(Math.abs(r.arc_lat)+"S",a[0]+4,a[1]-3)})}});
 
 MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_coast:"--c3",observed:"--c2"};for(const k of Object.keys(R)){x.fillStyle=MH.css(cols[k]);x.globalAlpha=.45;for(const q of R[k]){const p=m.pt(q.lon,q.lat);x.beginPath();x.arc(p[0],p[1],5.5,0,6.3);x.fill()}}x.globalAlpha=1;const p=m.pt(55.75,-35.25);x.strokeStyle=MH.css("--fg");x.lineWidth=2;x.beginPath();x.moveTo(p[0]-9,p[1]);x.lineTo(p[0]+9,p[1]);x.moveTo(p[0],p[1]-9);x.lineTo(p[0],p[1]+9);x.stroke();x.lineWidth=1;x.fillStyle=MH.css("--fg");x.font="12px "+MH.css("--font-body");x.fillText("original peak 35.25°S 55.75°E",p[0]+12,p[1]+16)}});
+
+// Dated source-based record, rendered inside the existing pages; no new site root.
+(function () {
+  const page = location.pathname.split('/').pop() || 'index.html';
+  if (!['index.html','satcom.html','flight.html','closing.html','northsouth.html'].includes(page)) return;
+  if (document.querySelector('script[data-mh-research-record]')) return;
+  const base = document.currentScript ? document.currentScript.src : document.baseURI;
+  const script = document.createElement('script');
+  script.src = new URL('src/research_record_20261016.js', base).href;
+  script.defer = true;
+  script.dataset.mhResearchRecord = '2026-10-16';
+  document.head.append(script);
+})();
