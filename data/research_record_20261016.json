@@ -1,0 +1,290 @@
+{
+  "version": "2026-10-16.1",
+  "title": "Completed SATCOM analysis and the joint run record",
+  "updated": "16 October 2026",
+  "headline": "Practical-resolution analysis completed; further SATCOM-only optimization frozen in the recorded decision. The later revised reconstruction remains separately unresolved.",
+  "status_note": "Completed describes the work that was executed and delivered. It does not mean every tested flight passed, every requested cell ran, or a wreckage location was established.",
+  "freeze_points": [
+    "The 23 September freeze record reports diminishing numerical returns: increasing restarts from 20 to 80 moved the best score by no more than about 0.007, while modeling choices could materially change the preferred result.",
+    "Its historical best + 1.0 score contour spanned about 340–430 km along the 00:11 arc, near 36.3–36.6°S. This was a practical result of the tested model family, not a universal information limit or calibrated confidence region; both contour edges remained uncertified.",
+    "The record explicitly withdrew “irreducible noise floor.” It did not establish that finer calculation must fail every possible aircraft history. Numerical precision, measurement discrimination and physical feasibility are different questions."
+  ],
+  "chronology": [
+    [
+      "23 September 2026",
+      "Written practical-resolution freeze",
+      "No further satellite-channel optimization; limited stated reopening conditions.",
+      "freeze"
+    ],
+    [
+      "6 October 2026",
+      "Satellite/flight chapter closed",
+      "Closure is recorded in the saved Atlas overview. It does not mean the aircraft was located.",
+      "chronology"
+    ],
+    [
+      "7 October 2026",
+      "Specific coverage question reopened",
+      "The earlier forcing domain had prevented tests of northern endpoints. Missing weather was not a physical exclusion.",
+      "chronology"
+    ],
+    [
+      "Subsequent TASK_042–053 work",
+      "Separate bounded experiments",
+      "Sensitivity, resource timing, representation changes and connected-prefix searches followed under their own assumptions and authorizations. They do not erase the older results.",
+      "t043"
+    ],
+    [
+      "16 October 2026",
+      "Repair loop paused for reassessment in the discussion",
+      "The recorded direction is to preserve completed findings and require a material scientific reason for any further run. No live process stop is asserted here.",
+      "decisions"
+    ]
+  ],
+  "lanes": [
+    [
+      "Older connected histories",
+      "Already achieved under the native model. Run 020 calculated continuous early-to-late histories through 00:11; selected records passed their declared verification. These do not become nonexistent when a newer evaluator rejects their old controls.",
+      "run020"
+    ],
+    [
+      "Later cruise and terminal studies",
+      "Completed bounded studies with their own conditional fits, resources, numerical checks and remaining systems/proxy qualifications. A cruise fit, a final-frequency match and a water-contact prediction are different results.",
+      "t042"
+    ],
+    [
+      "Newer reconstruction",
+      "A separate attempt under changed force/weather and command representations. TASK_053 preserves production-physical arrivals, but no finely qualified, fully early-SATCOM-assessed replacement connection.",
+      "t053"
+    ]
+  ],
+  "runs": [
+    {
+      "task": "Run 020",
+      "execution": "Completed native-model study",
+      "finding": "Connected 17:06:43 → 00:11 histories; 12/13 selected records verified.",
+      "limit": "No score-stationarity certificate or terminal reconstruction. Later native replays still pass.",
+      "source": "run020"
+    },
+    {
+      "task": "TASK_042",
+      "execution": "Delivered; unresolved cruise checks",
+      "finding": "Measured sensitivity study and bounded terminal queue completed.",
+      "limit": "Coarse winner failed finer cruise eligibility; numerical terminal checks did not establish complete signal/systems compatibility.",
+      "source": "t042"
+    },
+    {
+      "task": "TASK_043",
+      "execution": "Input stop → executed bounded tranche",
+      "finding": "Native controls reproduced; 16 current-model starts assessed.",
+      "limit": "No newer-model connected history; broader five-mode/free-FMT proposal not executed.",
+      "source": "t043"
+    },
+    {
+      "task": "TASK_044",
+      "execution": "Delivered targeted repair",
+      "finding": "36.25°S target repaired; qualified later-cruise samples retained.",
+      "limit": "No complete family extent, common-target overlap or new early-to-late connection.",
+      "source": "t044"
+    },
+    {
+      "task": "TASK_045",
+      "execution": "Finite queue closed",
+      "finding": "69 qualified records; 42/44 loss-time cells; all 10 W120 comparisons qualified.",
+      "limit": "Two cells unfinished; continuous branch tracing and global minima unresolved.",
+      "source": "t045"
+    },
+    {
+      "task": "TASK_046",
+      "execution": "Prefix repair completed",
+      "finding": "Two six-variable repairs qualify through IGARI at 17:20:31.",
+      "limit": "No shared-model defect established; nothing beyond IGARI tested here.",
+      "source": "t046"
+    },
+    {
+      "task": "TASK_047",
+      "execution": "Fixed checks delivered",
+      "finding": "Located earlier finer-grid buffet discrepancy and later thrust barriers.",
+      "limit": "Crossing numerics unresolved at closeout; no qualified arrival at arc 1 or arc 2.",
+      "source": "t047"
+    },
+    {
+      "task": "TASK_048",
+      "execution": "Diagnosis completed",
+      "finding": "Height-interpolant regularity identified as the source of the width-dependent force feature.",
+      "limit": "Representation decision required; no smoothing or path repair executed in this task.",
+      "source": "t048"
+    },
+    {
+      "task": "TASK_049",
+      "execution": "Isolated experiment completed",
+      "finding": "Both prefixes qualify through the crossing plus 30 s under C2_HEIGHT_NAK_V1.",
+      "limit": "Conditional representation result, not shared adoption or a later SATCOM arrival.",
+      "source": "t049"
+    },
+    {
+      "task": "TASK_050",
+      "execution": "Fixed continuations completed",
+      "finding": "Both reach last radar, then fail thrust near 18:22:40.",
+      "limit": "Thrust demand, not fuel exhaustion; no qualified 19:41 handoff.",
+      "source": "t050"
+    },
+    {
+      "task": "TASK_051",
+      "execution": "Finite repair stopped on cap",
+      "finding": "Post-radar minimum-change search with incoming and final boundaries fixed.",
+      "limit": "No complete candidate; endpoint-conditioned negative result, not impossibility.",
+      "source": "t051"
+    },
+    {
+      "task": "TASK_052",
+      "execution": "Finite search delivered; coverage partial",
+      "finding": "Full-length production-physical trials exist; only 2/42 target cells assessed.",
+      "limit": "No verified latitude/BTO endpoint match; no complete latitude survey or fuel maximum.",
+      "source": "t052"
+    },
+    {
+      "task": "TASK_053",
+      "execution": "Pilot delivered; step caps reached",
+      "finding": "Return candidate meets the selected 19:41 BTO band at 0.0492°N, with production physical support.",
+      "limit": "Chosen equator target not met; neither candidate finely qualified; other early signals not evaluated.",
+      "source": "t053"
+    }
+  ],
+  "candidates": [
+    [
+      "tapered_mode1",
+      "0.1215417337°N",
+      "+5.700236689 µs",
+      "26,858.539639 kg",
+      "Outside selected BTO band; equator target missed"
+    ],
+    [
+      "route97_return",
+      "0.0491978364°N",
+      "+4.766040033 µs",
+      "27,199.992870 kg",
+      "Inside selected BTO band; equator target missed"
+    ]
+  ],
+  "candidate_note": "Both values are at 19:41:03 UTC on 7 March 2014 and refer to five-second production calculations. The pilot latitude 0° ±0.01° is a design choice, not a measured aircraft latitude. Neither record received finer qualification or the withheld early-signal calculations. These are not complete SATCOM fits or crash coordinates.",
+  "inventory_note": "The supplied bundle mixes result reports, earlier status snapshots and instructions. TASK_042’s executive report and JSON describe one task. TASK_043’s input-stop and executed reports are successive states of one task. The broad TASK_043 v2 proposal, TASK_048 prompt and source-export handoff are not completed simulation results. TASK_048’s actual closeout and TASK_049/051/052/053 results are supplemented by the already supplied thread records, not inferred from those prompts.",
+  "boundary_note": "The 00:11 coordinate is an aircraft state, not a water-contact location. Later contacts retain their own event times, parent identities, signal and aerodynamic/system qualifications. Early thrust failures are not fuel-exhaustion events. A numerical search target is not measurement accuracy, and a capped or out-of-domain search is not a physical exclusion.",
+  "stop_note": "Publication-only integration: no new flight, optimizer, calibration, drift calculation, shared-model adoption or map-coordinate change. Further science requires separate authorization; this record is not a restart instruction. TASK_040’s recorded paused status is preserved, without claiming a new live-worker inspection.",
+  "sources": [
+    {
+      "id": "freeze",
+      "title": "MH370 Satellite Model — Freeze Record and Resolution Limit",
+      "kind": "Historical freeze record, dated 23 September 2026",
+      "evidence": "The record calls its finding a practical resolution limit, not a proven information floor. It reports a best + 1.0 score-contour span of 340.7–427.5 km at 00:11, withdraws certification of both edges, and rejects a calibrated-confidence reading. It reports a best-score movement of at most 0.007 when restart count increases from 20 to 80.",
+      "quote": "No further optimisation runs on the satellite channel. The frozen outputs pass to the other domains as fixed inputs.",
+      "caveat": "The stronger phrase “irreducible noise floor” was retracted. Its stated reopening conditions were new independent measurements or an early-offset check finding a systematic error large enough to move the arcs. These excerpts do not adopt every other inference in that historical document."
+    },
+    {
+      "id": "chronology",
+      "title": "Atlas overview — saved PREVIEW.html",
+      "kind": "Earlier published-page snapshot",
+      "evidence": "The saved overview states that the satellite and flight chapter closed on 6 October 2026 and was partly reopened on 7 October because northern endpoints had been outside the model’s weather coverage.",
+      "caveat": "This records why that particular question was reopened; it does not turn missing forcing into a physical rejection or say that all later work recovered new satellite information."
+    },
+    {
+      "id": "run020",
+      "title": "MH370_Run020_Report.md",
+      "kind": "Original connected-model execution report",
+      "evidence": "Four workflows completed. Twelve of thirteen selected records passed complete verification, representing all four workflows. Every calculation spans 17:06:43 on 7 March 2014 to 00:11 on 8 March 2014. Nominal initial fuel is 43,800 kg. The report records 52/52 available numerical comparisons passing, no fuel reset, and zero of four score solves reaching the declared stationarity condition.",
+      "caveat": "These are conditional successes under the native model, not global optima, validated real-aircraft histories or crash coordinates. The recorded cutoff is 00:11, not a completed terminal reconstruction."
+    },
+    {
+      "id": "t042",
+      "title": "TASK_042 executive report and results_summary.json",
+      "kind": "Two result documents for one task",
+      "evidence": "Both anchors passed authorized cloud numerical qualification while Windows bit-exact failure stayed separate. Part 1 completed measured sensitivities. Part 2 retained fifteen records; five of six selected cruise checks passed. The lowest coarse-score candidate failed finer eligibility. Part 3 assessed sixty-four configurations: sixty-four message mesh checks and sixty contact mesh checks passed; warm-up compatibility was four, no-warm-up compatibility thirty-three, and nominal two-message resource support zero.",
+      "caveat": "Numerical message/contact checks are not frequency fits or complete systems support. Common-fidelity cruise minimum, branch extent and overlap remained unresolved."
+    },
+    {
+      "id": "t043",
+      "title": "TASK_043 v3 — source-gated and executed native-C2 reports",
+      "kind": "Earlier input stop followed by an executed first tranche",
+      "evidence": "The earlier report was WAITING_FOR_INPUT. After recovery, both nominal Run 020 controls reproduced their saved 2.5-second diagnostics exactly. The current-model search assessed sixteen initializations with 10,348 new evaluator requests and no qualified connected history. Greatest supported duration was 10.7142857 seconds. Only CONNECTED_NATIVE_C2_R with M1/Arm A was searched.",
+      "caveat": "These are chronological snapshots of one task, not two completed flight campaigns. The broad v2 five-mode/free-FMT proposal was not the executed result. Old native replay success and new-model rejection must remain separate."
+    },
+    {
+      "id": "t044",
+      "title": "TASK_044 targeted continuation repair",
+      "kind": "Completed bounded cruise-continuation experiment",
+      "evidence": "The failed 36.25°S target was repaired and verified. The best qualified 7.5-second sample had J = 7.7674870534175025 at 36.399994897937795°S. Retained nodes passed the specified 7.5/3.75-second checks. North-origin southward tracing reached about 34.55°S; no common verified target was reached by both traces.",
+      "caveat": "Gaps, branch merging and contour edges remained unresolved. Adopted 60 + 60 second systems arithmetic was not established as an engineering minimum. No terminal trajectory was rerun."
+    },
+    {
+      "id": "t045",
+      "title": "TASK_045 finite cruise searches — final closeout",
+      "kind": "Finite queue completed with unresolved cells",
+      "evidence": "Sixty-nine new qualified records; forty-two of forty-four requested loss-time cells qualified. All ten W120 comparisons had qualified shared-pool incumbents. Common-target and midpoint checks existed at 35.00, 35.40, 35.80 and 36.10°S.",
+      "caveat": "Direct fits and midpoint samples do not certify continuous branch identity or global minima. Two pin cells remained unfinished. W120 is an adopted timing sensitivity, not an established engineering minimum."
+    },
+    {
+      "id": "t046",
+      "title": "TASK_046 — early native-prefix repair",
+      "kind": "Completed local repair and IGARI qualification",
+      "evidence": "Both ancestries qualified through IGARI at 17:20:31, 828 seconds after the source start. Only six existing 36-second-knot variables changed. Initial pressure, Mach, air heading, resources, pressure coefficients and later kinematic coefficients were preserved. The repaired fuel was propagated continuously.",
+      "caveat": "Both old and current force models include path acceleration. No shared-model defect was demonstrated. This task qualified prefixes through IGARI, not through 19:41 or 00:11."
+    },
+    {
+      "id": "t047",
+      "title": "TASK_047 — two frozen continuations",
+      "kind": "Completed fixed-path checks; numerical issue unresolved at closeout",
+      "evidence": "The finer evaluation rejected a narrow buffet feature near 17:51:07 at 100.5°E. Production and adaptive attempts encountered later thrust failures near 18:22. Neither ancestry qualified through the early satellite observations.",
+      "caveat": "A later passing stage cannot cross a rejected interval. The later production records did not prove support across the earlier finer failure. The two step-size outcomes were kept separate."
+    },
+    {
+      "id": "t048",
+      "title": "TASK_048 — weather-crossing diagnosis",
+      "kind": "Executed closeout supplied in the project thread; distinct from the attached prompt",
+      "evidence": "Both parents were classified REPRESENTATION_DECISION_REQUIRED. The exact material height-rate jump at 100.5°E was about 0.00876 m/s, about 96% from geopotential and 4% from geoid interpolation. Changing the outer differentiation width changed normal-force demand and the verdict at matched epochs while temperature, dynamic pressure and CLmax stayed identical.",
+      "caveat": "No shared-model bug, physical-limit relaxation or qualified crossing was established. The C2 representation was proposed, not implemented, in this task."
+    },
+    {
+      "id": "t049",
+      "title": "TASK_049 — isolated C2 height experiment",
+      "kind": "Executed report and closeout supplied in the project thread",
+      "evidence": "Both frozen parents achieved C2_PREFIX_THROUGH_CROSSING_QUALIFIED under C2_HEIGHT_NAK_V1, from 17:06:43 to each 100.5°E crossing plus thirty seconds. End fuel was 38,617.048237 kg and 38,602.694644 kg. All 5/2.5/1-second and guarded adaptive checks passed for the reported spans.",
+      "caveat": "Free flight parameters and source resources stayed fixed; representation-derived states changed and were re-evaluated. This was an isolated representation experiment, not shared-model adoption, an arc arrival or a test of the later thrust barrier."
+    },
+    {
+      "id": "t050",
+      "title": "TASK_050 — two frozen expanded-domain C2 histories",
+      "kind": "Completed fixed-continuation experiment",
+      "evidence": "Both histories passed the old weather crossing and the source last-radar knot at 18:22:12, then encountered confirmed thrust-availability failures around 18:22:40. Last validated supported states were 18:22:40.163328708 and 18:22:39.906589646. Reached observations and actual fuel were preserved.",
+      "caveat": "This is a prescribed-flight thrust failure, not fuel exhaustion. No supported 19:41 arrival or suffix join exists for these records. The tapered five-second save failed; its retained 2.5/1-second and adaptive records support the rejection, not a four-record qualification."
+    },
+    {
+      "id": "t051",
+      "title": "TASK_051 — post-radar feasibility repair",
+      "kind": "Finite endpoint-conditioned search, reported in the project thread",
+      "evidence": "The supported last-radar boundary and inherited 19:41 endpoint jets were fixed. Existing interior variables were searched without new satellite-driven selection. Both ancestries stopped on finite search caps without a complete production-feasible candidate.",
+      "caveat": "A short partial frontier is not a complete 19:41 history. The fixed-endpoint restriction and finite search did not prove every allowed connection impossible; no arriving fuel or withheld-signal result was obtained."
+    },
+    {
+      "id": "t052",
+      "title": "TASK_052 — speed budget and endpoint reachability",
+      "kind": "Arithmetic diagnostic plus finite commanded-flight search",
+      "evidence": "Native path lengths were about 1,071–1,072 km, requiring about 440 kt over 4,731 seconds. No all-flight impossibility inequality was established. Only two of forty-two requested parent/target cells were assessed. Corrected production records included 201 and 585 full-physical trials, but no verified combined endpoint candidate; no 2.5-second qualification was dispatched.",
+      "caveat": "The remaining targets were unassessed, some outside the fixed map. Formal Part A fuel integrals include unsupported samples. Full-physical production counts include nearby trial evaluations, not independent validated connections. Arriving fuel was not established for a qualified arc-2 match."
+    },
+    {
+      "id": "t053",
+      "title": "TASK_053 — endpoint-matching pilot; REPORT.md and parent_summary.json",
+      "kind": "Finite pilot closeout supplied in the project thread",
+      "evidence": "At five-second production resolution, tapered_mode1 reached 19:41 at 0.1215417337°N with BTO residual +5.700236689 microseconds and fuel 26,858.539639 kg. route97_return reached 0.0491978364°N with residual +4.766040033 microseconds and fuel 27,199.992870 kg. Both remained production-physical but failed the combined BTO/equator pilot target.",
+      "caveat": "The return candidate met the selected ±5-microsecond BTO band, not the chosen 0° ±0.01° latitude band. Both stopped at the major-step cap. Only A/B/C were probed; pressure D was not. No finer qualification, optional one-second replay or withheld-signal prediction ran."
+    },
+    {
+      "id": "decisions",
+      "title": "07_RECENT_DECISIONS.md — context handoff, 16 October 2026",
+      "kind": "Discussion direction, not a worker-control log",
+      "evidence": "The handoff records the older connected successes, the newer unresolved reconstruction, and the concern that repeated task gates were postponing the scientific comparison. The final recommendation was to pause the repair/optimization chain and judge further work by whether it could materially change the SATCOM, endurance or geographical conclusions.",
+      "caveat": "This is not evidence that a live worker or scheduler was stopped. Historical prompts are not new execution authorization; the current request is for publication of the existing record."
+    }
+  ],
+  "provenance": "Source-based editorial integration of the named project reports and recorded discussion through TASK_053. It preserves report-specific outcomes and limitations. No underlying scientific result was independently rerun for this publication."
+}
