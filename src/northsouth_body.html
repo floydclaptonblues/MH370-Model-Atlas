@@ -1,12 +1,26 @@
-<h1>The north&ndash;south comparison <span class="tag prov">open, not converged</span></h1>
+<h1>The north&ndash;south comparison <span class="tag bad">withdrawn &mdash; contradicted by corrected returns</span></h1>
 <p class="sub">As of 10 October the project has a northern candidate that is not an artifact of a coarse grid. It scores worse than the southern solution, and the whole of that difference turns on one number nobody has measured. This page is the current state of that question.</p>
 
 <div class="note bad"><b>Nothing here is a location.</b> Both candidates are conditional model states. Neither is converged &mdash; every search in the table below terminated on an evaluation cap or a constraint failure, not at a minimum. A difference between two unconverged states is a difference between two unconverged states.</div>
 
 <div class="card" style="border-left:4px solid #eb6834">
-<h2>Withdrawn as a resolved comparison, 23 October 2026</h2>
+<h2>Withdrawn 23 October 2026 &mdash; and contradicted by measurement, 24 October 2026</h2>
 <p class="sub"><strong>This page compares two candidate fits. Neither is a qualified fit, and the comparison between them is not resolved.</strong> The measurements and the reasoning below are unchanged and correct; what is withdrawn is the standing of the conclusion they were used to reach.</p>
-<p class="sub"><strong>Why.</strong> <strong>No fit in this project has been shown to be a minimum of its family.</strong> The most recent campaign returned zero qualified fits from twelve assessments, and on 22 October the cause was traced to a numerical-interface defect: that worker passed SciPy&rsquo;s native SLSQP routine a strided view of its objective-gradient row, so four of the five values the optimiser received were constraint derivatives rather than objective derivatives. That specific defect belongs to the October explicit-gradient worker and is not assigned retroactively to the earlier campaigns behind the numbers on this page. What does apply here is that a difference of 8.93 between two unqualified points is a margin no one has shown to be meaningful.</p>
+<p class="sub"><strong>Why.</strong> On 22 October the cause of zero qualified fits was traced to a numerical-interface defect: the worker passed SciPy&rsquo;s native SLSQP routine a <em>strided</em> view of its objective-gradient row, so four of the five values the optimiser received were derivatives of the fuel, buffet and thrust constraints rather than of the objective. It was told the surface was flat where it was steep, and stopped. That defect belongs to the October explicit-gradient worker and is not assigned retroactively to earlier campaigns.</p>
+
+<p class="sub"><strong>The correction has now been applied and the campaign re-run, and it does not merely weaken this comparison &mdash; it contradicts it.</strong> With a correct gradient, both candidates descend to essentially the same score:</p>
+
+<div class="scroll"><table>
+<tr><th>&chi;&sup2;, omitting 19:41</th><th class="n">Southern start</th><th class="n">Northern start</th><th class="n">Margin</th></tr>
+<tr><td>As published here</td><td class="n">7.915</td><td class="n">16.840</td><td class="n">+8.92 favouring south</td></tr>
+<tr><td><b>Corrected, 24 October</b></td><td class="n"><b>4.840</b></td><td class="n"><b>4.821</b></td><td class="n"><b>&minus;0.020</b></td></tr>
+</table></div>
+
+<p class="sub">The margin fell by a factor of <strong>452</strong>, and the ordering <strong>reversed</strong> &mdash; the northern start now scores marginally <em>better</em>, by an amount that is plainly noise. The 8.93 difference this page was built on was not a comparison of two solutions. It was a comparison of two <em>starting vectors</em>, neither of which the blinded optimiser had meaningfully left.</p>
+
+<p class="sub"><strong>The two candidates are not rivals.</strong> Released from the defect, the northern and southern starts converge toward each other. Their 00:11 states were about <strong>636&nbsp;km</strong> apart as published; corrected, they are <strong>89&nbsp;km</strong> apart when 19:41 is withheld, and when 21:41 is withheld they land on the <em>identical</em> point &mdash; 36.686&nbsp;&deg;S, 89.082&nbsp;&deg;E, with residuals matching to 0.01&nbsp;&micro;s. The northern candidate was never a competing hypothesis. It was a search that had not moved.</p>
+
+<p class="sub"><strong>None of this restores a result.</strong> Nothing in the corrected campaign qualified. Every corrected return lies on the engine-loss (<code>loss_late</code>) boundary, where the fine-mesh event check fails, and three of the nine attempts carry no outcome at all. The corrected numbers above are reported because they <em>withdraw</em> this page&rsquo;s claim, not because they replace it with another.</p>
 <p class="sub"><strong>And the margin was already thin.</strong> The entire difference is linear in the frequency bias, so a common offset of <strong>+5.69&nbsp;Hz</strong> makes the two indistinguishable. Against a measurement sigma of 7.0&nbsp;Hz that is <strong>0.81&nbsp;&sigma;</strong> &mdash; the whole north&ndash;south discrimination is worth less than one standard deviation of a single nuisance parameter. The measured bias points the other way and widens the gap, as set out below, but how far that bias drifts across the four hours to the scored window remains unmeasured.</p>
 <p class="sub"><strong>A third assumption underlies both candidates.</strong> Each is propagated forward from an assumed state at 19:41, and no 19:41 state in this project is supported by a connected incoming flight: two reconstructed ancestries flown forward from the primary radar handoff both stopped near 18:27 against a thrust shortfall of under 1%, and neither reached 19:41.</p>
 <p class="sub">Read what follows as the full record of a comparison that cannot presently be settled, not as a preference between two endpoints.</p>
