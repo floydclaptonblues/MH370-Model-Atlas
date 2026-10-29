@@ -17,7 +17,7 @@
 <tr><th>Layer</th><th>Status</th><th>Source as recorded</th></tr>
 <tr><td>7th arc</td><td><span class="tag ok">published</span></td><td>Reference arc supplied with the project, positioned 40,000&nbsp;ft above sea level. 200 points, 64.46&ndash;108.80&deg;E.</td></tr>
 <tr><td>Satellite states</td><td><span class="tag ok">published</span></td><td><code>INMARSAT_TABLE4_SATELLITE_STATE</code> &mdash; 11 states, 16:30 to 00:20 UTC, position and velocity.</td></tr>
-<tr><td>Handshake observations</td><td><span class="tag ok">canonical</span></td><td>19 rows, each tagged <code>canonical_observation</code> in the project&rsquo;s own event table, with raw and corrected BTO.</td></tr>
+<tr><td>Handshake observations</td><td><span class="tag ok">verified at source</span></td><td>19 rows, each tagged <code>canonical_observation</code> in the project&rsquo;s own event table, with raw and corrected BTO. <b>Checked line by line against the Inmarsat ground-station signalling log</b> on 27 Oct 2026: 14 of 14 BFO and raw-BTO values match exactly. See the section below.</td></tr>
 <tr><td>IGARI radar fix</td><td><span class="tag ok">measured</span></td><td>Malaysian Preliminary Report on MH370. 17:21:13Z, 6.9478&deg;N 103.5772&deg;E, 10,668&nbsp;m, secondary radar.</td></tr>
 <tr><td>18:22 radar report</td><td><span class="tag blocked">no coordinates</span></td><td><i>Bayesian Methods in the Search for MH370</i>, ch. 4: a position was reported at 18:22:12 but <b>no coordinates were published</b>, and the authors noted poor accuracy. Nothing is plotted.</td></tr>
 <tr><td>Debris find sites</td><td><span class="tag prov">assumed geocode</span></td><td>Place-name geocodes drafted by Claude, <b>not independently verified</b>, nominal 100&nbsp;km radius. The items, dates and regions are from the find record; the coordinates are not.</td></tr>
@@ -31,6 +31,35 @@
 <p class="sub">The measurement record, as recorded. <code>BTO used</code> and <code>BFO used</code> are the project&rsquo;s inclusion flags, shown so it is visible which rows any scoring rests on and which it does not.</p>
 <div class="scroll"><table id="ev"></table></div>
 <div class="note" style="margin-top:8px">Ten rows carry a BTO. Nine are flagged for BTO use and five for BFO use in the nine-term score. The 19:41 BTO is deliberately not scored, because a start constrained to the first ring satisfies it by construction.</div></div>
+
+<div class="card"><h2>Checked against the ground-station log <span class="tag ok">14 of 14 exact</span></h2>
+<p class="sub">Every table above was inherited: the project read its own event file and trusted it. On 27 October 2026 that file was compared line by line with the primary document &mdash; <i>Notes for Signalling Unit Log for (9M-MRO) Flight MH370</i>, the readable form of the Inmarsat ground earth station logfile, 16:00 UTC to the final Log On Interrogation at 01:16, 47 pages. <b>This is the first time the observation layer has been checked at source rather than inherited.</b></p>
+<div class="scroll"><table>
+<tr><th>Log time (UTC)</th><th>Channel</th><th class=n>Log BFO Hz</th><th class=n>Log raw BTO &micro;s</th><th class=n>Project BFO</th><th class=n>Project raw BTO</th><th>Match</th></tr>
+<tr><td>18:25:27.421</td><td>IOR-R600-0-36E1</td><td class=n>142</td><td class=n>17120</td><td class=n>142</td><td class=n>17120</td><td>&check;</td></tr>
+<tr><td>18:25:34.461</td><td>IOR-R1200-0-36ED</td><td class=n>273</td><td class=n>51700</td><td class=n>273</td><td class=n>51700</td><td>&check;</td></tr>
+<tr><td>18:27:03.905</td><td>IOR-R1200-0-36ED</td><td class=n>176</td><td class=n>12560</td><td class=n>176</td><td class=n>12560</td><td>&check;</td></tr>
+<tr><td>18:27:04.405</td><td>IOR-R1200-0-36ED</td><td class=n>175</td><td class=n>12520</td><td class=n>175</td><td class=n>12520</td><td>&check;</td></tr>
+<tr><td>18:27:08.404</td><td>IOR-R1200-0-36ED</td><td class=n>172</td><td class=n>12520</td><td class=n>172</td><td class=n>12520</td><td>&check;</td></tr>
+<tr><td>18:28:05.904</td><td>IOR-R1200-0-36ED</td><td class=n>144</td><td class=n>12500</td><td class=n>144</td><td class=n>12500</td><td>&check;</td></tr>
+<tr><td>18:28:14.904</td><td>IOR-R1200-0-36ED</td><td class=n>143</td><td class=n>12480</td><td class=n>143</td><td class=n>12480</td><td>&check;</td></tr>
+<tr><td><b>19:41:02.906</b></td><td>IOR-R1200-0-36ED</td><td class=n><b>111</b></td><td class=n><b>11500</b></td><td class=n>111</td><td class=n>11500</td><td>&check;</td></tr>
+<tr><td><b>20:41:04.904</b></td><td>IOR-R1200-0-36ED</td><td class=n><b>141</b></td><td class=n><b>11740</b></td><td class=n>141</td><td class=n>11740</td><td>&check;</td></tr>
+<tr><td><b>21:41:26.905</b></td><td>IOR-R1200-0-36ED</td><td class=n><b>168</b></td><td class=n><b>12780</b></td><td class=n>168</td><td class=n>12780</td><td>&check;</td></tr>
+<tr><td><b>22:41:21.906</b></td><td>IOR-R1200-0-36ED</td><td class=n><b>204</b></td><td class=n><b>14540</b></td><td class=n>204</td><td class=n>14540</td><td>&check;</td></tr>
+<tr><td><b>00:10:59.928</b></td><td>IOR-R1200-0-36ED</td><td class=n><b>252</b></td><td class=n><b>18040</b></td><td class=n>252</td><td class=n>18040</td><td>&check;</td></tr>
+<tr><td>00:19:29.416</td><td>IOR-R600-0-36F8</td><td class=n>182</td><td class=n>23000</td><td class=n>182</td><td class=n>23000</td><td>&check;</td></tr>
+<tr><td>00:19:37.443</td><td>IOR-R1200-0-36F6</td><td class=n>&minus;2</td><td class=n>49660</td><td class=n>&minus;2</td><td class=n>49660</td><td>&check;</td></tr>
+</table></div>
+<p class="sub" style="margin-top:8px">Bold rows are the five scored handshakes. Timestamps round correctly throughout: the log&rsquo;s 22:41:21.906 is the project&rsquo;s <code>22:41:22</code>, 00:10:59.928 is <code>00:11:00</code>, 19:41:02.906 is <code>19:41:03</code>.</p>
+
+<h3>The &minus;4,600&nbsp;&micro;s correction is applied on channel, and only there</h3>
+<p>The project corrects the raw BTO by &minus;4,600&nbsp;&micro;s on exactly two events, and both are the <b>R600</b> log-on requests &mdash; 18:25:27 on <code>IOR-R<b>600</b>-0-36E1</code> and 00:19:29 on <code>IOR-R<b>600</b>-0-36F8</code>. Every scored handshake is <code>IOR-R1200-0-36ED</code> and carries correction zero. The correction is applied where the channel type differs and nowhere else, which is internally consistent. Whether &minus;4,600 is itself the right magnitude is a calibration question, not an observation question.</p>
+
+<h3>The telephony averages check out</h3>
+<p>Two events are voice-channel bursts with no BTO, recorded in the project as averages. The log&rsquo;s appendices list both in full. The 23:14 event is recorded as the mean of 29 BFO values spanning 216&ndash;222&nbsp;Hz; Appendix 2 lists 216, 217, 218, 219, 220 and 222, consistent with the stated span and the recorded mean of 217. The 18:39 event is recorded as 51 values spanning 86&ndash;90&nbsp;Hz; Appendix 1 shows 86&ndash;90.</p>
+
+<div class="note" style="margin-top:8px"><b>What this settles, and what it does not.</b> It settles that the measurement layer is faithful to the source: no transcription error, no mis-assigned channel, no timestamp drift. It does <b>not</b> validate the corrections, the uncertainties, or any model built on these numbers &mdash; those are separate questions, and some remain open. In particular the held-out 22:41 BTO residual is not a data-entry error, which is one of several explanations this check removes.</div></div>
 </div>
 
 <div class="card"><h2>All ten BTO rings, derived from canonical data <span class="tag ok">corrected 8 Oct</span></h2>
