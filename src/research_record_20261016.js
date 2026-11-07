@@ -8,7 +8,7 @@
   const scriptURL = document.currentScript && document.currentScript.src;
   if (!scriptURL) return;
   const page = location.pathname.split('/').pop() || 'index.html';
-  const pages = new Set(['index.html','satcom.html','flight.html','closing.html','northsouth.html']);
+  const pages = new Set(['satcom.html','flight.html','closing.html','northsouth.html']);
   if (!pages.has(page)) return;
   const full = page === 'flight.html' || page === 'closing.html';
   const dataURL = new URL('../data/research_record_20261016.json', scriptURL);

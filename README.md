@@ -8,7 +8,7 @@ A static site collecting the satellite, flight-model and debris-drift work on MH
 
 | Page | Contents |
 |---|---|
-| `index.html` | Overview, status of each model, sources used, sources set aside |
+| `index.html` | What is measured and modelled (with the governing equations), where the evidence stands, how the work is checked, chapters, data sources |
 | `methods.html` | **What each model computes.** BTO and BFO explained from first principles, the flight model's inputs and integration, what a drift particle is, every tolerance converted to physical units, and a worked example of why an error in the known signal leg transfers into the unknown one |
 | `satcom.html` | 5,029 BTO/BFO rows from the Inmarsat log, the 19-row canonical event table, published satellite states |
 | `flight.html` | Average Day reference flights, the TASK_021 solver, the TASK_022 terminal experiment, the TASK_026 convention sweep, TASK_029 reachability, Phase 5A candidates |
@@ -20,18 +20,19 @@ A static site collecting the satellite, flight-model and debris-drift work on MH
 | `northsouth.html` | **The live question.** A northern candidate at 32.00°S scoring χ² 16.84 against 7.92 in the south, why the comparison is exactly linear in the frequency bias, what the bias measures and which way it points |
 | `closing.html` | Closing report for the satellite and flight chapter, including an appendix of readings that turned out to be wrong |
 
-## Headline findings
+## Where the evidence stands
 
-- **The cruise model fits.** C120 scores χ² = 8.117 on nine terms (4 BTO, 5 BFO) with no residual worse than 1.7σ — close to the expected value for nine degrees of freedom. It sits under nine active constraints, with k pinned at its lower bound and about 0.1 kg of fuel margin.
-- **That fit is sharp, not permissive.** Moving the endpoint to 24–26°S raises χ² to 2,507.
-- **The endpoint latitude is constrained by the handshake sequence, within the region the model can see.** Northern commands reach 23.9–26.4°S with fuel to spare but miss every ring by 108–127 km, at 24.8–29.2σ.
-- **There is now a real northern candidate, and it loses.** A solution at 32.00°S, 95.26°E scores χ² = 16.84, found from two bins converging on the same point from opposite sides — not a coarse-grid artifact. The southern solution scores 7.92. The difference is exactly linear in the frequency bias at 1.568 per hertz, so a common offset of +5.69 Hz would make them indistinguishable.
-- **The bias was measured, and it points the wrong way for the north.** Calibrated against the published communication logs with the aircraft stationary at the gate: −1.39 Hz pooled, −0.36 Hz on the channel the scored events use. Applying it *widens* the gap to 9.50–11.10, and at the pooled value the northern candidate fails the χ² ≤ 20 gate it was admitted under. How far the bias drifts in the four hours to the scored window is still unmeasured, and that is the whole remaining question.
-- **Northern endpoints were never testable.** ERA5 ends at 10°N and 100°E; the 7th arc crosses 100°E at 27.5°S. No flight in this model can reach the arc north of that, because there is no forcing there. About 1,460 km of arc, from 27°S to 15°S, lies outside both the forcing domain and every seabed search box in the manifest, whose northern limit is 27°S. The subset was evidently clipped to the region the search already assumed, so the model could never challenge the assumption that defined its inputs.
-- **The long glide was tested and it fails — but it is the only thing in this project pointing at unsearched seabed.** G0/S14, continued from C120 in TASK_022, reaches the water at 38.706°S, 90.415°E — 30 minutes and 230 km after engine loss, **168 km beyond the 7th arc and outside all three search outlines**, wings level at 196 kt, inside the supported aerodynamic domain throughout. It is rejected by the final frequency pair at 28σ (+34.2 Hz and −121.4 Hz against σ 4.3), and that rejection is more than twenty times larger than any bias error the project's open calibration question could supply.
-- **The terminal family is not uniformly supersonic, and the frequency pair never said it was.** TASK_022's twelve all arrived at 2.1–2.7× Vmo under C120. Under a different parent, arrivals range Mach 0.35–1.34, and the best-fitting case of all arrives at 1.1× Vmo while matching the final frequency pair to +0.82 and −0.42 Hz. What separates a survivable arrival from a supersonic one happens after the last transmission, so the observations cannot see it. None of these coordinates is a location.
-- **No drift source region is determinable.** The method recovers known synthetic sources, but on the real finds the posterior mode moves 1,000–1,900 km when an unmeasured assumption changes — further than any single posterior is wide.
-- **The 1.2% wind-slip floor was fitted to forcing products this model does not use** (ERA-Interim winds, BRAN2015 currents, a CAWCR wave hindcast), with no transfer validation.
+The landing page (`index.html`) carries the same summary. Findings later shown to be wrong are withdrawn in place on the pages where they were published, dated and struck through; see `closing.html` and `CORRECTION_AUDIT_20261023.md`.
+
+- **Northern commanded flights reaching 23.9–26.4°S are rejected.** They miss every handshake ring by 108–127 km (24.8–29.2σ) and are still under power at 00:25, so they cannot produce the 00:19 log-on.
+- **North (≈32°S) against south (≈36°S) is unresolved.** With the optimiser gradient defect corrected (22–24 October), the two score 4.840 and 4.821. The earlier 16.84 against 7.92 margin is withdrawn. An enumeration of the 19:41 state surface finds two basins, and which is deeper depends on whether the common frequency offset is held fixed or estimated.
+- **The long glide G0/S14 is rejected.** It reaches the water 168 km beyond the 7th arc, wings level at 196 kt, and misses the final frequency pair by +34.2 Hz and −121.4 Hz. No vertical-compensation fraction in [0, 1] makes a glide compatible.
+- **The final frequency pair does not require a supersonic arrival.** Across 72 terminal continuations, arrival speed ranges from Mach 0.35 to 1.34; a continuation arriving at 1.1× Vmo fits the pair to +0.82 and −0.42 Hz.
+- **One engine could not hold the commanded cruise.** Mach 0.831 cannot be sustained; the best single-engine Mach is 0.688–0.698. Whether a descent was also required depends on which certified thrust rating applies.
+- **The cruise fit has three nominal degrees of freedom** (nine scored values, six parameters). A close fit does not show that the aircraft flew a single course, and no fit has been shown to be the minimum of its family.
+- **The 19:41 state is assumed.** No published connected flight from the primary-radar handoff reaches 19:41.
+- **Four and a half years of debris transport executed.** 233–256 of 481 objects cross 80°E westward in year two and 168 reach 50°E in year three; year one is eastward.
+- **No drift source region is determinable.** On the real finds the answer moves 1,000–1,900 km when an unmeasured assumption changes.
 
 ## Directives
 
@@ -39,7 +40,7 @@ A static site collecting the satellite, flight-model and debris-drift work on MH
 
 ## Building
 
-`gen.py` writes every `.html` page from inline templates plus the two bodies in `src/`. Run it from the repository root:
+`gen.py` writes every `.html` page from inline templates plus the page bodies in `src/`. Run it from the repository root:
 
 ```
 python3 gen.py
