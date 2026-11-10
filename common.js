@@ -1,7 +1,7 @@
 const MH={};
 MH.J=async u=>(await fetch(u)).json();
 MH.css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-MH.nav=function(cur){const p=[["index.html","Overview"],["methods.html","Methods"],["satcom.html","Satcom"],["flight.html","Flight models"],["map.html","Combined map"],["reference.html","Reference map"],["canonical.html","Canonical map"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"],["northsouth.html","North\u2013south"],["closing.html","Closing report"]];
+MH.nav=function(cur){const p=[["index.html","Overview"],["flighthistories.html","Flight histories"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
  document.getElementById("nav").innerHTML=p.map(([h,l])=>`<a href="${h}"${h===cur?' aria-current="page"':''}>${l}</a>`).join("")};
 MH.fit=function(c,h){const r=c.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);c.width=Math.round(r.width*d);c.height=Math.round(h*d);c.style.height=h+"px";const x=c.getContext("2d");x.setTransform(d,0,0,d,0,0);return {x,w:r.width,h}};
 MH.fmt=(v,d=0)=>v==null?"–":Number(v).toLocaleString("en",{maximumFractionDigits:d,minimumFractionDigits:d});
@@ -79,4 +79,138 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
   script.defer = true;
   script.dataset.mhResearchRecord = '2026-10-16';
   document.head.append(script);
+})();
+/* Atlas 98: progressive, presentation-only shell. No data or model mutation. */
+(() => {
+  'use strict';
+  if (!document.querySelector('meta[name="viewport"]')) {
+    const viewport = document.createElement('meta');
+    viewport.name = 'viewport';
+    viewport.content = 'width=device-width, initial-scale=1';
+    document.head.append(viewport);
+  }
+  if (!document.documentElement.lang) document.documentElement.lang = 'en';
+
+  // Small original SVG icons, not third-party Windows assets or font downloads.
+  const drawings = {
+    folder:'<path fill="#806000" d="M2 8h12l3 3h13v19H2z"/><path fill="#ffff80" d="M3 7h10l3 4h13v16H3z"/><path fill="#c0a040" d="M2 14h30l-4 16H2z"/><path fill="#ffe680" d="M3 15h28l-4 13H3z"/><path stroke="#fff" d="M4 16h25"/>',
+    monitor:'<path fill="#404040" d="M1 3h30v22H1zM11 25h10v4h6v3H5v-3h6z"/><path fill="#dfdfdf" d="M2 2h28v22H2zM12 24h8v5h6v2H6v-2h6z"/><path fill="#000080" d="M4 5h24v16H4z"/><path fill="#008080" d="M5 6h22v14H5z"/><path stroke="#8fffff" fill="none" d="M6 14h5l3-6 4 10 3-5h5"/><path fill="#008000" d="M25 22h3v1h-3z"/>',
+    globe:'<path fill="#000" d="M10 1h12v2h5v5h3v15h-3v5h-5v3H10v-3H5v-5H2V8h3V3h5z"/><path fill="#00a6b6" d="M10 2h12v2h4v5h3v13h-3v5h-5v3H11v-3H6v-5H3V9h3V4h4z"/><path fill="#80d060" d="M9 4h7v3h-3v4H8v3H4v-4h3V6h2zM18 10h7v4h3v7h-4v6h-4v-5h-4v-8h2zM9 18h4v4h3v4h-5v-4H8z"/><path stroke="#b1eeee" fill="none" d="M3 16h26M16 3v27M8 5l-2 10 3 11M23 5l3 10-3 11"/>',
+    plane:'<path stroke="#303030" stroke-width="2" fill="#dfdfdf" d="M16 2l3 3v7l11 7v4l-11-3v7l4 2v2l-7-2-7 2v-2l4-2v-7L2 23v-4l11-7V5z"/><path fill="#fff" d="M15 5h2v23h-2z"/><path fill="#008080" d="M14 8h4v4h-4z"/>',
+    dish:'<path stroke="#303030" stroke-width="2" fill="#dfdfdf" d="M6 6l18 18C11 29 2 19 6 6zM14 24l-4 6h17l-8-8"/><path stroke="#303030" stroke-width="2" d="M16 16L26 6"/><path fill="#ffd64d" d="M23 3h6v6h-6z"/><path stroke="#000080" stroke-width="2" fill="none" d="M15 3q10 0 14 12M19 2q9 0 12 8"/>',
+    waves:'<path fill="#eee" stroke="#555" d="M3 2h20l6 6v23H3z"/><path fill="#c0c0c0" d="M23 2v7h6"/><path stroke="#008080" stroke-width="3" fill="none" d="M5 14q3-5 6 0t6 0t6 0t5 0M5 21q3-5 6 0t6 0t6 0t5 0M5 27q3-5 6 0t6 0t6 0t5 0"/>',
+    chart:'<path fill="#eee" stroke="#555" d="M3 2h20l6 6v23H3z"/><path fill="#c0c0c0" d="M23 2v7h6"/><path stroke="#555" fill="none" d="M7 10v17h19"/><path fill="#000080" d="M10 20h3v6h-3z"/><path fill="#008080" d="M15 15h3v11h-3z"/><path fill="#b4570f" d="M20 10h3v16h-3z"/>',
+    report:'<path fill="#eee" stroke="#555" d="M3 2h20l6 6v23H3z"/><path fill="#c0c0c0" d="M23 2v7h6"/><path stroke="#000080" stroke-width="2" d="M7 10h13M7 14h17M7 18h17M7 22h17M7 26h10"/>',
+    help:'<path fill="#000080" d="M7 2h18v3h4v22h-4v4H7v-4H3V5h4z"/><path stroke="#fff" stroke-width="3" fill="none" d="M10 10V8h3V6h7v3h2v4l-6 4v4"/><path fill="#fff" d="M14 25h4v3h-4z"/>'
+  };
+  const icon = (name, cls='') => `<svg class="${cls}" viewBox="0 0 32 34" aria-hidden="true" focusable="false" shape-rendering="crispEdges">${drawings[name] || drawings.folder}</svg>`;
+  const el = (tag, cls, text) => {
+    const node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+  function init() {
+    const app = document.querySelector('body > .wrap');
+    const nav = document.getElementById('nav');
+    if (!app || !nav || document.querySelector('.w98-taskbar')) return;
+    const pages = [
+      ['index.html','Overview','monitor'],['flighthistories.html','Flight histories','plane'],
+      ['canonical.html','Canonical data','dish'],['archive.html','Archive of attempts','folder'],
+      ['methods.html','Methods','report'],['drift.html','Drift','waves'],
+      ['drift2.html','Drift diagnostics','chart'],['drift3.html','Forward transport','waves'],['drift4.html','Four years','chart']
+    ];
+    const selectedLink = nav.querySelector('[aria-current="page"]');
+    const name = selectedLink ? selectedLink.getAttribute('href') : (location.pathname.split('/').pop() || 'index.html');
+    const current = pages.find(p => p[0] === name) || [name,document.title || 'Atlas','folder'];
+    const home = name === 'index.html';
+    const heading = app.querySelector('h1');
+    if (heading && !heading.id) heading.id = 'atlas-content';
+    if (heading) heading.tabIndex = -1;
+    nav.setAttribute('aria-label','Atlas sections');
+    const skip = el('a','w98-skip','Skip to page content');
+    skip.href = '#'+(heading ? heading.id : 'nav');
+    document.body.prepend(skip);
+
+    const titlebar = el('header','w98-titlebar');
+    titlebar.innerHTML = icon('monitor')+'<span class="w98-titlebar-label">MH370 Model Atlas — '+current[1]+'</span>';
+    const controls = el('div','w98-window-buttons');
+    const minimize = el('button','','_');
+    minimize.type='button';minimize.title='Minimize atlas';minimize.setAttribute('aria-label','Minimize atlas');
+    const maximize = el('button','','□');
+    maximize.type='button';maximize.title='Maximize atlas';maximize.setAttribute('aria-label','Maximize atlas');maximize.setAttribute('aria-pressed','false');
+    const help = el('button','','?');help.type='button';help.title='About this interface';help.setAttribute('aria-label','About this interface');
+    controls.append(minimize,maximize,help);titlebar.append(controls);app.prepend(titlebar);
+
+    const about = el('dialog','w98-about');about.setAttribute('aria-labelledby','w98-about-heading');
+    about.innerHTML='<div class="w98-titlebar"><span id="w98-about-heading">About MH370 Model Atlas</span></div><div class="w98-about-body"><strong>Atlas 98</strong><p>A Windows 98-inspired interface for the existing MH370 research atlas. The retro interface does not change the model data, results, or qualifications.</p><p>Open a section using the tabs, desktop shortcuts, or Start menu. Minimize and restore with the taskbar. The clock shows the current time in UTC, not flight time.</p><p>This interface is not affiliated with Microsoft.</p><button type="button">OK</button></div>';
+    document.body.append(about);
+    about.querySelector('button').addEventListener('click',()=>about.close());
+    const showAbout=()=>{ if (!about.open) about.showModal(); };
+    help.addEventListener('click',showAbout);
+
+    const toolbar=el('div','w98-tools');
+    [['index.html','Overview','monitor'],['map.html','Map','globe'],['https://github.com/floydclaptonblues/MH370-Model-Atlas','Source files','folder']].forEach(([href,label,image])=>{
+      const a=el('a');a.href=href;a.innerHTML=icon(image)+'<span>'+label+'</span>';toolbar.append(a);
+    });
+    const aboutButton=el('button');aboutButton.type='button';aboutButton.innerHTML=icon('help')+'<span>About</span>';aboutButton.addEventListener('click',showAbout);toolbar.append(aboutButton);
+    const printButton=el('button','w98-print','Print');printButton.type='button';printButton.addEventListener('click',()=>window.print());toolbar.append(printButton);titlebar.after(toolbar);
+    const address=el('div','w98-address');address.innerHTML='<span>Address</span><div class="w98-address-path">'+icon('folder')+'<span>Atlas / '+current[1]+'</span><span class="w98-address-end">Research directory</span></div>';toolbar.after(address);
+
+    const desktop=el('aside','w98-desktop');desktop.setAttribute('aria-label','Desktop shortcuts');
+    [pages[0],pages[1],pages[2],pages[3],pages[5],pages[6]].forEach(([href,label,image])=>{
+      const a=el('a');a.href=href;a.innerHTML=icon(image)+'<span>'+label+'</span>';desktop.append(a);
+    });document.body.append(desktop);
+
+    if(home && heading){
+      const description=heading.nextElementSibling;
+      const hero=el('section','w98-hero');hero.setAttribute('aria-labelledby',heading.id);
+      const text=el('div');text.append(el('div','w98-eyebrow','MH370 MODEL ATLAS / RESEARCH DIRECTORY'));
+      heading.before(hero);text.append(heading);
+      if(description && description.matches('p.sub')) text.append(description);
+      hero.append(text);hero.insertAdjacentHTML('beforeend',icon('monitor','w98-hero-art'));
+      const grid=[...app.querySelectorAll(':scope > .grid')].find(g=>g.querySelector(':scope > a.card'));
+      if(grid){
+        grid.classList.add('w98-launch-grid');
+        const label=el('div','w98-section-label');label.innerHTML='<b>Explore the atlas</b><span>single-click to open</span>';grid.before(label);
+        grid.querySelectorAll(':scope > a.card').forEach(a=>{
+          const p=pages.find(p=>p[0]===a.getAttribute('href'));
+          if(p) a.insertAdjacentHTML('afterbegin',icon(p[2],'w98-launch-icon'));
+        });
+      }
+    }
+    // Contain wide tables without hiding text or changing IDs/event handlers.
+    app.querySelectorAll('.card > table').forEach(table=>{
+      const box=el('div','w98-table-wrap');box.tabIndex=0;box.setAttribute('role','region');
+      const h=table.parentElement.querySelector('h2,h3');box.setAttribute('aria-label',(h?h.textContent:'Data table')+' — horizontally scrollable');
+      table.before(box);box.append(table);
+    });
+    const status=el('div','w98-status');status.innerHTML='<span>Document: '+current[1]+'</span><span>Windows 98-inspired presentation</span>';app.append(status);
+
+    const taskbar=el('div','w98-taskbar');taskbar.setAttribute('role','navigation');taskbar.setAttribute('aria-label','Desktop taskbar');
+    const start=el('button','w98-start');start.type='button';start.innerHTML=icon('monitor')+'<span>Start</span>';start.setAttribute('aria-expanded','false');start.setAttribute('aria-controls','w98-start-menu');
+    const task=el('button','w98-task');task.type='button';task.innerHTML=icon(current[2])+'<span>'+current[1]+'</span>';task.setAttribute('aria-label','Minimize or restore '+current[1]);
+    const tray=el('div','w98-tray');tray.innerHTML='<span class="w98-tray-indicator" aria-hidden="true"></span>';const clock=el('time');clock.title='Current time in UTC — not model time';tray.append(clock);
+    taskbar.append(start,el('span','w98-task-divider'),task,el('span','w98-theme-note','MH370 Model Atlas'),tray);document.body.append(taskbar);
+    const menu=el('div','w98-start-menu');menu.id='w98-start-menu';menu.hidden=true;menu.innerHTML='<div class="w98-start-brand" aria-hidden="true">MH370 Atlas 98</div>';
+    const menuLinks=el('div','w98-start-links');menuLinks.setAttribute('aria-label','Start navigation');
+    pages.forEach(([href,label,image])=>{const a=el('a');a.href=href;a.innerHTML=icon(image)+'<span>'+label+'</span>';if(href===name)a.setAttribute('aria-current','page');menuLinks.append(a);});
+    menuLinks.append(el('hr'));const menuAbout=el('button');menuAbout.type='button';menuAbout.innerHTML=icon('help')+'<span>About this atlas</span>';menuLinks.append(menuAbout);menu.append(menuLinks);document.body.append(menu);
+    function setMenu(open,focus=false){menu.hidden=!open;start.setAttribute('aria-expanded',String(open));if(open&&focus)menuLinks.querySelector('a').focus();}
+    start.addEventListener('click',()=>setMenu(menu.hidden));
+    start.addEventListener('keydown',e=>{if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();setMenu(true,true);}});
+    menuAbout.addEventListener('click',()=>{setMenu(false);showAbout();});
+    document.addEventListener('pointerdown',e=>{if(!menu.hidden&&!menu.contains(e.target)&&!start.contains(e.target))setMenu(false);});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){setMenu(false);start.focus();}});
+    menu.addEventListener('keydown',e=>{
+      const links=[...menuLinks.querySelectorAll('a,button')];const index=links.indexOf(document.activeElement);
+      if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();links[(index+(e.key==='ArrowDown'?1:-1)+links.length)%links.length].focus();}
+    });
+    menu.addEventListener('focusout',()=>setTimeout(()=>{if(!menu.contains(document.activeElement)&&document.activeElement!==start)setMenu(false);},0));
+    function toggleMinimized(){const hidden=document.body.classList.toggle('w98-minimized');task.setAttribute('aria-pressed',String(!hidden));if(hidden)task.focus();else{window.dispatchEvent(new Event('resize'));if(heading)heading.focus({preventScroll:true});}}
+    minimize.addEventListener('click',toggleMinimized);task.addEventListener('click',toggleMinimized);task.setAttribute('aria-pressed','true');
+    maximize.addEventListener('click',()=>{const max=document.body.classList.toggle('w98-maximized');maximize.setAttribute('aria-pressed',String(max));maximize.setAttribute('aria-label',max?'Restore window size':'Maximize atlas');window.dispatchEvent(new Event('resize'));});
+    const updateClock=()=>{const now=new Date();clock.dateTime=now.toISOString();clock.textContent=now.toISOString().slice(11,16)+' UTC';};updateClock();setInterval(updateClock,30000);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();

@@ -6,101 +6,47 @@
 <meta property="og:type" content="website"><meta property="og:url" content="https://mh370atlasmodel.y2kneverended.net/">
 <link rel="canonical" href="https://mh370atlasmodel.y2kneverended.net/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav><header class="hero">
- <p class="kicker">9M-MRO &middot; Malaysia Airlines MH370 &middot; 7&ndash;8 March 2014</p>
- <h1>The last flight of <span style="white-space:nowrap">9M-MRO</span>, reconstructed from measurement and physics</h1>
- <p class="lead">After the aircraft left radar coverage, its satellite terminal kept exchanging link-maintenance messages with the Inmarsat ground station at Perth, relayed by the Inmarsat-3F1 satellite over the Indian Ocean. Each exchange recorded two numbers. One is the <b>round-trip light-travel time</b> between station, satellite and aircraft (BTO). The other is the <b>frequency offset</b> left by Doppler shift along the same path (BFO). This atlas models what those numbers can and cannot say about where the aircraft went. It does three things:</p>
- <ul class="lead">
-  <li>flies a Boeing 777-200ER through the recorded weather;</li>
-  <li>tests each simulated path against the satellite record;</li>
-  <li>carries floating debris through four and a half years of reanalysed ocean currents.</li>
- </ul>
- <div class="note bad"><b>No part of this work locates the aircraft.</b> Every coordinate on these pages is a conditional model state: it holds only under the assumptions stated with it. Results later shown to be wrong are withdrawn in place, dated, struck through and explained, not silently replaced. The full revision history is public on <a href="https://github.com/floydclaptonblues/MH370-Model-Atlas">GitHub</a>.</div>
-</header>
+<link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav><p class="w98-eyebrow" style="margin:0">9M-MRO &middot; MALAYSIA AIRLINES MH370 &middot; 7&ndash;8 MARCH 2014</p>
+<h1>The flight histories and terminal envelope recovered within our MH370 world model</h1>
+<p class="sub">After the aircraft left radar coverage, its satellite terminal kept exchanging link-maintenance messages with the Inmarsat ground station at Perth. Each exchange recorded a round-trip light-travel time (BTO) and a Doppler frequency offset (BFO). This atlas flies a Boeing 777-200ER through the recorded weather, keeps every flight that reproduces those measurements, and follows each one &mdash; turns, fuel, decreasing mass, clocks &mdash; from the last radar fix at 18:22:12 UTC down to the altitude where the weather record ends, about 190&nbsp;m above the sea.</p>
 
-<div class="stats">
- <div class="stat"><b>5,029</b><span>burst records in the Inmarsat ground-station log, 16:00 to 01:16 UTC</span></div>
- <div class="stat"><b>150&nbsp;m</b><span>of satellite-to-aircraft distance per microsecond of BTO</span></div>
- <div class="stat"><b>0.187&nbsp;m/s</b><span>of line-of-sight velocity per hertz of BFO at L-band</span></div>
- <div class="stat"><b>4.2&nbsp;km &times; 28,043&nbsp;km</b><span>the band one 7th-arc timing value confines the aircraft to</span></div>
- <div class="stat"><b>481</b><span>floating objects carried from 8 Mar 2014 to 31 Aug 2018 in daily ocean currents</span></div>
+<div class="note bad"><b>No part of this work locates the aircraft.</b> Every coordinate on these pages is a conditional model state: it holds only under the assumptions stated with it. The published envelope covers exactly the stated model, incoming histories, response families and tests &mdash; it is not a claim that every mathematically possible BTO/BFO-compatible flight has been enumerated. Results later shown to be wrong are withdrawn in place, dated and explained, not silently replaced; the full revision history is public on <a href="https://github.com/floydclaptonblues/MH370-Model-Atlas">GitHub</a>.</div>
+
+<h2 class="section">What was recovered</h2>
+<div class="grid">
+ <div class="card"><h2>6</h2><p class="sub">connected incoming flight histories, integrated continuously from the 18:22:12 radar handoff: same fuel load, two route families (C190 and C191/C192), each in two oscillator treatments.</p></div>
+ <div class="card"><h2>98</h2><p class="sub">baseline terminal-response identities compatible with the final transmissions at 00:19:29 and 00:19:37 &mdash; 49 left-bank and 49 right-bank responses across the six histories.</p></div>
+ <div class="card"><h2>424</h2><p class="sub">registered continuation candidates carried beyond the final transmissions: 392 nominal response arms, 8 distinct roll-out-duration arms, 24 exploratory command alternatives.</p></div>
+ <div class="card"><h2>68</h2><p class="sub">flights that glide to the terminal reporting endpoint &mdash; the last computed state, 187&ndash;200&nbsp;m above the sea, where the weather record ends. The remaining seconds of flight span 1&ndash;5&nbsp;km along track.</p></div>
+ <div class="card"><h2>2 clusters, 4 lobes</h2><p class="sub">the terminal geography: two incoming clusters about 115&nbsp;km apart, each splitting into a west-southwest lobe (right bank) and an east lobe (left bank) during the final glide.</p></div>
+ <div class="card"><h2>0</h2><p class="sub">located aircraft. A model state is not a wreck site; the lobes are sampled-case extents, not probability regions or physical bounds.</p></div>
 </div>
 
-<h2 class="section">Three physical problems</h2>
-<div class="grid three">
- <div class="card">
-  <h3>1 &middot; Satellite geometry <span class="tag frozen">measurement model frozen</span></h3>
-  <p><b>Measured.</b> Two quantities per exchange.</p>
-  <div class="eq">BTO = 2&middot;(d<sub>sat&rarr;aircraft</sub> + d<sub>sat&rarr;station</sub>)/c + bias</div>
-  <div class="eq">BFO = &Delta;f<sub>uplink</sub> + &Delta;f<sub>downlink</sub> + &delta;f<sub>terminal compensation</sub> + &delta;f<sub>satellite</sub> + &delta;f<sub>station AFC</sub> + bias</div>
-  <p>BTO fixes the aircraft's distance from the satellite, which defines a ring on the Earth's surface. BFO responds to velocity along the line to the satellite. The terminal pre-corrects for its own horizontal motion, so BFO is about 35 times more sensitive to vertical speed than to horizontal speed.</p>
-  <p class="muted"><b>Inputs:</b> the Malaysian release of the SATCOM signalling log (19 handshake rows checked line by line against it, 14 of 14 exact); the published satellite position and velocity table. <b>Calibration:</b> frequency bias measured with the aircraft stationary at the gate, &minus;1.39&nbsp;Hz pooled over 44 samples.</p>
- </div>
- <div class="card">
-  <h3>2 &middot; Aircraft dynamics <span class="tag prov">conditional</span></h3>
-  <p><b>Integrated.</b> A point-mass Boeing 777-200ER with Trent 892 engines flies commanded course, Mach number and pressure level. It flies through ERA5 reanalysis wind and temperature on pressure levels. Mass falls as fuel burns.</p>
-  <div class="eq">C<sub>L</sub> = 2nW / (&rho;V&sup2;S) &le; C<sub>L,buffet</sub>,&nbsp;&nbsp;T<sub>required</sub> &le; T<sub>available</sub>,&nbsp;&nbsp;fuel &ge; 0</div>
-  <p>Every path is checked at each step against lift, buffet and thrust limits, and against the fuel on board. Its predicted BTO and BFO are then compared with the log. The performance deck reproduces certified Trent 892 engine-out level-off altitudes to within 43&nbsp;ft at this aircraft's mass.</p>
-  <p class="muted"><b>Limit, stated plainly:</b> nine scored measurements against six free parameters leave three nominal degrees of freedom. A close fit shows that nine numbers cannot refute the family; it does not show that the aircraft flew one course. No fit has yet been shown to be the minimum of its family.</p>
- </div>
- <div class="card">
-  <h3>3 &middot; Ocean transport <span class="tag ok">executed</span></h3>
-  <p><b>Integrated.</b> Floating objects move with the sea surface plus a fixed fraction of the wind.</p>
-  <div class="eq">dx/dt = u<sub>ocean</sub>(x,&thinsp;t) + 0.012&middot;U<sub>10</sub>(x,&thinsp;t)</div>
-  <p>Currents are daily GLORYS12V1 surface fields on a 1/12&deg; mesh (Copernicus Marine). Wind is NCEP/NCAR 10&nbsp;m. The domain covers 15&ndash;130&deg;E and 60&deg;S&ndash;15&deg;N, from 8 March 2014 to 31 August 2018. The 1.2% wind slip is fixed and is never adjusted to fit a find.</p>
-  <p class="muted"><b>Result:</b> in year one the objects travel east. 233&ndash;256 of 481 cross 80&deg;E westward in year two, and 168 reach 50&deg;E in year three. Halving the timestep moves this by 5 objects. <b>Inverse problem:</b> the source region cannot be determined from the finds, because the answer moves 1,000&ndash;1,900&nbsp;km when an unmeasured assumption changes.</p>
- </div>
-</div>
-
-<div class="card"><h2>Where the evidence stands</h2>
-<p class="sub">Each row is a physical question, its standing and the evidence in physical units. The chapters below give the full record, including what was withdrawn on the way.</p>
-<div class="scroll" style="max-height:none"><table class="evid">
-<tr><th>Question</th><th>Standing</th><th>Evidence</th></tr>
-<tr><td>Did the aircraft fly north to about 24&ndash;26&deg;S on the 7th arc?</td><td><span class="tag blocked">rejected</span></td><td>Commanded flights reaching 23.9&ndash;26.4&deg;S miss every handshake ring by 108&ndash;127&nbsp;km (24.8&ndash;29.2&sigma;). They are still under power at 00:25, so they cannot produce the 00:19 log-on. A margin of this size does not depend on any search having converged.</td></tr>
-<tr><td>Northern basin near 32&deg;S, or southern near 36&deg;S?</td><td><span class="tag prov">unresolved</span></td><td>With the optimiser defect corrected, the two scores are 4.840 and 4.821, a difference of 0.02. A full enumeration of the 19:41 state surface finds two deep basins. Which basin is deeper depends on whether the common frequency offset is held fixed or estimated with the fit.</td></tr>
-<tr><td>A long controlled glide after fuel exhaustion?</td><td><span class="tag blocked">rejected</span></td><td>The glide G0/S14 reaches the water 168&nbsp;km beyond the 7th arc, wings level at 196&nbsp;kt. It misses the final frequency pair by +34.2&nbsp;Hz and &minus;121.4&nbsp;Hz. No setting of the terminal's vertical-compensation fraction between 0 and 1 makes a glide compatible.</td></tr>
-<tr><td>Does the final frequency pair require a supersonic dive?</td><td><span class="tag prov">not established</span></td><td>Across 72 terminal continuations, arrival speed ranges from Mach 0.35 to 1.34. One continuation arriving at 1.1&times; the maximum operating speed fits the pair to +0.82 and &minus;0.42&nbsp;Hz. What separates a survivable arrival from a supersonic one happens after the last transmission.</td></tr>
-<tr><td>Could one engine hold the cruise between the two flameouts?</td><td><span class="tag prov">partly answered</span></td><td>No. The commanded Mach 0.831 cannot be held, and the best single-engine Mach is 0.688&ndash;0.698, about 17% less true airspeed. Whether the aircraft also had to descend depends on which certified thrust rating applies, and remains open.</td></tr>
-<tr><td>Is the cruise a single commanded course?</td><td><span class="tag prov">not testable here</span></td><td>There are three nominal degrees of freedom. For the 22:41 timing value, which is held out of every fit, the observed round-trip time is 43 to 88&nbsp;&micro;s longer than predicted at every admissible start. In every case the aircraft was farther from the satellite than the model places it. That is about 60% wider than a correct model of this size gives. The diagnostic is real, but its significance is not calibrated.</td></tr>
-<tr><td>Where was the aircraft at 19:41?</td><td><span class="tag prov">assumed</span></td><td>The published record contains no connected flight from the primary-radar handoff that reaches 19:41. Two reconstructed paths stopped near 18:27 with a thrust shortfall under 1%. The 19:41 state and fuel load are carried from historical context.</td></tr>
-<tr><td>Where did the debris come from?</td><td><span class="tag prov">not determinable</span></td><td>The method recovers known synthetic sources. On the real finds, its answer moves 1,000&ndash;1,900&nbsp;km when an unmeasured assumption changes, which is further than any single estimate is wide.</td></tr>
-</table></div></div>
-
-<div class="card"><h2>How the work is checked</h2>
-<ul>
- <li><b>Thresholds are fixed before the run.</b> The briefs for every computation are kept in <a href="https://github.com/floydclaptonblues/MH370-Model-Atlas/tree/main/directives"><code>directives/</code></a>, including superseded versions. Several thresholds were set in advance and then not met; those outcomes were reported as they came out, not adjusted afterwards.</li>
- <li><b>No parameter is tuned toward the 7th arc, a flight path or a debris find.</b> The atmosphere, aircraft limits, measurement calibration and wind slip are held fixed across every comparison.</li>
- <li><b>Measurements and model outputs are kept apart.</b> The <a href="canonical.html">canonical map</a> shows only the observation record and third-party fields, with every model output listed as excluded. The satellite and drift branches share no coordinates.</li>
- <li><b>Errors are withdrawn in place.</b> On 22 October the optimiser was found to be receiving constraint derivatives in place of objective derivatives, because of a strided gradient array. The defect was corrected and the campaign re-run. The north&ndash;south margin built on the old fits fell from 8.93 to 0.02, and it was withdrawn on the page where it was published. The dated record is in the <a href="closing.html">closing report</a> and <code>CORRECTION_AUDIT_20261023.md</code>.</li>
- <li><b>Every tolerance is converted to physical units.</b> The <a href="methods.html">methods page</a> gives each tolerance in metres, metres per second or feet per minute.</li>
-</ul></div>
+<div class="card"><h2>The recovered routes</h2>
+ <img src="img/MAP_ROUTES_OVERVIEW.png" alt="Overview map of the 68 continued flights from the final transmissions to their terminal reporting endpoints, with the two clusters and their bank-direction lobes">
+ <p class="sub" style="margin-top:6px">The 68 continued flights from the final satellite transmissions to their terminal reporting endpoints. Conditional calculation: pinned drag surrogate beyond Mach&nbsp;0.89, prescribed roll-out, control law held after APU fuel exhaustion, strict ERA5 weather. Full detail, tables and per-cluster close-ups are on the <a href="flighthistories.html">Flight histories</a> page.</p></div>
 
 <h2 class="section">Chapters</h2>
 <div class="grid">
- <a class="card link" href="methods.html"><h3>Methods <span class="tag ok">start here</span></h3><p>What BTO and BFO physically measure, the flight model's equations and inputs, what a drift particle is, and how much the data can resolve.</p></a>
- <a class="card link" href="satcom.html"><h3>Satcom <span class="tag frozen">frozen</span></h3><p>The 5,029-row burst log as recorded, the 19-row canonical event table and the published satellite states.</p></a>
- <a class="card link" href="flight.html"><h3>Flight models <span class="tag prov">conditional</span></h3><p>Reference flights re-flown, the trajectory solver, terminal descent experiments, compensation-convention sweeps and reachability.</p></a>
- <a class="card link" href="northsouth.html"><h3>North&ndash;south <span class="tag prov">unresolved</span></h3><p>Why the 32&deg;S and 36&deg;S basins cannot presently be ranked, and how the ranking turns on the treatment of the frequency offset.</p></a>
- <a class="card link" href="closing.html"><h3>Closing report <span class="tag frozen">satellite chapter</span></h3><p>What the satellite and flight branch established, what it rests on, and every reading that turned out to be wrong.</p></a>
- <a class="card link" href="canonical.html"><h3>Canonical map <span class="tag ok">observations only</span></h3><p>The measurement record and published fields, with all project modelling left off. Includes the published 7th arc in full, both arms, to 45&deg;N.</p></a>
- <a class="card link" href="reference.html"><h3>Reference map <span class="tag ok">canonical data</span></h3><p>Currents, winds, rings, satellite track, radar, debris finds and search areas, with where to obtain each dataset at source.</p></a>
- <a class="card link" href="map.html"><h3>Combined map</h3><p>Arc, model states, search areas and drift density on one switchable map.</p></a>
- <a class="card link" href="drift.html"><h3>Drift <span class="tag prov">assumption-dependent</span></h3><p>Seventeen months of surface currents, reverse-drift density and a currents-only forward test.</p></a>
- <a class="card link" href="drift2.html"><h3>Drift diagnostics <span class="tag prov">conditional</span></h3><p>Drifter hindcast, forward release grid, permutation null and the provenance audit, and why no source region can be determined.</p></a>
- <a class="card link" href="drift3.html"><h3>Forward transport, year one <span class="tag prov">superseded in part</span></h3><p>481 objects carried through the ocean as it was, March 2014 to March 2015. The one-year window hid the later westward passage.</p></a>
- <a class="card link" href="drift4.html"><h3>Four years of transport <span class="tag ok">executed</span></h3><p>The same objects carried to August 2018, with timestep and wind-resolution tests, a twelve-point stress test along the arc, an ocean-uncertainty ensemble and a four-reanalysis sweep from 24.5 to 43&deg;S.</p></a>
+ <a class="card link" href="flighthistories.html"><h2>Flight histories</h2><p>Follow one aircraft through the recorded sequence: the clock, turns, Mach schedule, fuel and mass, satellite comparisons, terminal branches &mdash; then export the complete numerical record.</p></a>
+ <a class="card link" href="canonical.html"><h2>Canonical data</h2><p>The observations themselves: the Inmarsat burst log, published satellite states, the 7th arc in full, debris finds, seabed-search boxes, and where every dataset comes from.</p></a>
+ <a class="card link" href="archive.html"><h2>Archive of attempts</h2><p>Every model that was tried and retired &mdash; negated, superseded, withdrawn or abandoned &mdash; with the reason on the record and links to the original results.</p></a>
+ <a class="card link" href="methods.html"><h2>Methods</h2><p>What each model computes, from first principles: BTO and BFO, the flight model, what a drift particle is, and how the work checks itself.</p></a>
+ <a class="card link" href="drift.html"><h2>Drift</h2><p>Four and a half years of debris transport in reanalysed ocean currents. Standing conclusion: no determinable source region from the real finds.</p></a>
+ <a class="card link" href="drift2.html"><h2>Drift runs</h2><p>The drift diagnostics, hindcasts and forward-transport runs, with their provenance audits. Further pages: <b>Forward transport</b> and <b>Four years</b>.</p></a>
 </div>
 
-<div class="card"><h2>Data</h2><table>
-<tr><th>Physical content</th><th>Source</th><th>Used for</th></tr>
-<tr><td>BTO (&micro;s), BFO (Hz), channel and message type for every exchange</td><td>&ldquo;MH370 Data Communication Logs&rdquo;, SATCOM signalling records released by the Malaysian authorities; Inmarsat signalling-unit log notes, 16:00&ndash;01:16 UTC</td><td>Every timing and frequency value</td></tr>
-<tr><td>Satellite position and velocity, 16:30&ndash;00:20 UTC</td><td>Published Inmarsat-3F1 state table</td><td>Leg A of every BTO and BFO</td></tr>
-<tr><td>Wind and temperature on pressure levels</td><td>ERA5 reanalysis (ECMWF)</td><td>Aircraft dynamics</td></tr>
-<tr><td>Aircraft and engine performance</td><td>Boeing 777-200ER performance deck; certified Trent 892 data (EASA TCDS E.047; Delta B777-200ER Operational Data Manual)</td><td>Lift, thrust and fuel limits; engine-out check</td></tr>
-<tr><td>Daily sea-surface currents, 1/12&deg;</td><td>GLORYS12V1 via Copernicus Marine</td><td>Debris transport</td></tr>
-<tr><td>10 m wind</td><td>NCEP/NCAR Reanalysis 1</td><td>Wind slip in debris transport</td></tr>
-<tr><td>Last secondary-radar fix, 17:21:13 UTC</td><td>Malaysian Preliminary Report</td><td>Context only</td></tr>
-<tr><td>Debris finds and seabed search areas</td><td>Published find record; search manifests (areas approximate)</td><td>Context and drift comparison</td></tr>
-</table>
-<p class="sub" style="margin-top:8px">Set aside: a satellite ephemeris file giving one fixed position with zero velocity for every row; the western continuation of the reference arc beyond 64.46&deg;E, which is a circle fit and is drawn dotted; and one calibration point at 34.86&deg;S, 93.107&deg;E, which would be circular as a benchmark.</p></div>
+<h2 class="section">Where the evidence stands</h2>
+<div class="card">
+ <ul>
+  <li><b>The terminal envelope is recovered within this world model.</b> Under the frozen model family (Mach 0.75 upstream, 0.67 downstream, &lambda;<sub>ff</sub>&nbsp;=&nbsp;1.005, prescribed lift-and-bank response), 98 response identities reproduce the final transmissions, and the 68 that glide on end in four bank-direction lobes between roughly 32.97&ndash;33.56&deg;S and 94.35&ndash;96.35&deg;E at 00:25&ndash;00:27 UTC. These are possible terminal regions, stated with their assumptions &mdash; not a verdict.</li>
+  <li><b>No aerodynamic path reaches the sea surface in the computation.</b> Every continued flight is reported at the weather floor (&asymp;190&nbsp;m); the last 1&ndash;5&nbsp;km along track are labelled kinematic projection, never computed contact.</li>
+  <li><b>A proposed location at 32.355&deg;S, 97.4&deg;E is on the record awaiting verification.</b> Its originating run has not been located; it is drawn as a point only, attributed to no history, and two frozen-method experiments are planned before any claim is made.</li>
+  <li><b>The earlier satellite-and-flight chapter is archived.</b> Its negations stand (northern commanded flights to 23.9&ndash;26.4&deg;S; the long glide); its point-fit claims were withdrawn after the October corrections. The record is in the <a href="archive.html">Archive of attempts</a> and the <a href="closing.html">closing report</a>.</li>
+  <li><b>No drift source region is determinable</b> from the real finds: the answer moves 1,000&ndash;1,900&nbsp;km when an unmeasured assumption changes. The drift chapter remains open.</li>
+ </ul>
+</div>
+
+<h2 class="section">Reading the population labels</h2>
+<div class="card"><p class="sub" style="max-width:none">Different counts name different things. <b>6 incoming histories</b> are complete flights from the radar handoff. <b>98 baseline response identities</b> are the terminal responses compatible with the final transmissions. <b>128 displayed Mach-0.89 records</b> are the 98 baseline states plus 24 exploratory command alternatives plus 6 reproduction controls. <b>196 final-transmission states</b> are two samples (00:19:29 and 00:19:37) of each baseline response. <b>424 registered candidates</b> are the continuation arms; <b>68</b> of them reach the terminal reporting endpoint, <b>332</b> stop at the model-support boundary (which does not by itself negate the flight hypothesis), and <b>24</b> are exploratory states not continued by design. Definitions and sources are in the <a href="flighthistories.html">flight-histories register</a>.</p></div>
 <script>MH.nav("index.html")</script></div></body></html>
