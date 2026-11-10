@@ -150,7 +150,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     help.addEventListener('click',showAbout);
 
     const toolbar=el('div','w98-tools');
-    [['index.html','Overview','monitor'],['map.html','Map','globe'],['https://github.com/floydclaptonblues/MH370-Model-Atlas','Source files','folder']].forEach(([href,label,image])=>{
+    [['index.html','Overview','monitor'],['flighthistories.html','Flight histories','plane'],['canonical.html','Canonical data','globe'],['https://github.com/floydclaptonblues/MH370-Model-Atlas','Source files','folder']].forEach(([href,label,image])=>{
       const a=el('a');a.href=href;a.innerHTML=icon(image)+'<span>'+label+'</span>';toolbar.append(a);
     });
     const aboutButton=el('button');aboutButton.type='button';aboutButton.innerHTML=icon('help')+'<span>About</span>';aboutButton.addEventListener('click',showAbout);toolbar.append(aboutButton);
