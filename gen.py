@@ -361,6 +361,7 @@ pages["methods.html"]=HEAD%"MH370 Methods"+open("src/methods_body.html").read()+
 pages["reference.html"]=HEAD%"MH370 Reference Map"+open("src/reference_body.html").read()+"<script>"+open("src/reference_script.js").read()+"</script>"+TAIL
 pages["canonical.html"]=HEAD%"MH370 Canonical Map"+open("src/canonical_body.html").read()+"<script>"+open("src/canonical_script.js").read()+"</script>"+TAIL
 pages["northsouth.html"]=HEAD%"MH370 North-South Comparison"+ARCHIVED_BANNER+open("src/northsouth_body.html").read()+'<script>MH.nav("northsouth.html");</script>'+TAIL
+pages["assessment.html"]=HEAD%"Ryan's assessment — MH370 Model Atlas"+open("src/assessment_body.html").read()+'<script>MH.nav("assessment.html");</script>'+TAIL
 pages["flighthistories.html"]=HEAD%"MH370 Flight Histories"+open("src/flighthistories_body.html").read()+'<script>MH.nav("flighthistories.html");</script>'+TAIL
 pages["archive.html"]=HEAD%"MH370 Archive of Attempts"+open("src/archive_body.html").read()+'<script>MH.nav("archive.html");</script>'+TAIL
 pages["closing.html"]=HEAD%"MH370 Closing Report"+ARCHIVED_BANNER+open("src/closing_body.html").read()+'<script>MH.nav("closing.html");</script>'+TAIL

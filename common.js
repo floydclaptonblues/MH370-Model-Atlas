@@ -1,7 +1,7 @@
 const MH={};
 MH.J=async u=>(await fetch(u)).json();
 MH.css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-MH.nav=function(cur){const p=[["index.html","Overview"],["flighthistories.html","Flight histories"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
+MH.nav=function(cur){const p=[["index.html","Overview"],["assessment.html","Ryan’s assessment"],["flighthistories.html","Flight histories"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
  document.getElementById("nav").innerHTML=p.map(([h,l])=>`<a href="${h}"${h===cur?' aria-current="page"':''}>${l}</a>`).join("")};
 MH.fit=function(c,h){const r=c.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);c.width=Math.round(r.width*d);c.height=Math.round(h*d);c.style.height=h+"px";const x=c.getContext("2d");x.setTransform(d,0,0,d,0,0);return {x,w:r.width,h}};
 MH.fmt=(v,d=0)=>v==null?"–":Number(v).toLocaleString("en",{maximumFractionDigits:d,minimumFractionDigits:d});
@@ -115,7 +115,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     const nav = document.getElementById('nav');
     if (!app || !nav || document.querySelector('.w98-taskbar')) return;
     const pages = [
-      ['index.html','Overview','monitor'],['flighthistories.html','Flight histories','plane'],
+      ['index.html','Overview','monitor'],['assessment.html','Ryan’s assessment','report'],['flighthistories.html','Flight histories','plane'],
       ['canonical.html','Canonical data','dish'],['archive.html','Archive of attempts','folder'],
       ['methods.html','Methods','report'],['drift.html','Drift','waves'],
       ['drift2.html','Drift diagnostics','chart'],['drift3.html','Forward transport','waves'],['drift4.html','Four years','chart']
@@ -150,7 +150,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     help.addEventListener('click',showAbout);
 
     const toolbar=el('div','w98-tools');
-    [['index.html','Overview','monitor'],['flighthistories.html','Flight histories','plane'],['canonical.html','Canonical data','globe'],['https://github.com/floydclaptonblues/MH370-Model-Atlas','Source files','folder']].forEach(([href,label,image])=>{
+    [['index.html','Overview','monitor'],['assessment.html','Ryan’s assessment','report'],['flighthistories.html','Flight histories','plane'],['canonical.html','Canonical data','globe'],['https://github.com/floydclaptonblues/MH370-Model-Atlas','Source files','folder']].forEach(([href,label,image])=>{
       const a=el('a');a.href=href;a.innerHTML=icon(image)+'<span>'+label+'</span>';toolbar.append(a);
     });
     const aboutButton=el('button');aboutButton.type='button';aboutButton.innerHTML=icon('help')+'<span>About</span>';aboutButton.addEventListener('click',showAbout);toolbar.append(aboutButton);
@@ -158,7 +158,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     const address=el('div','w98-address');address.innerHTML='<span>Address</span><div class="w98-address-path">'+icon('folder')+'<span>Atlas / '+current[1]+'</span><span class="w98-address-end">Research directory</span></div>';toolbar.after(address);
 
     const desktop=el('aside','w98-desktop');desktop.setAttribute('aria-label','Desktop shortcuts');
-    [pages[0],pages[1],pages[2],pages[3],pages[5],pages[6]].forEach(([href,label,image])=>{
+    [pages[0],pages[1],pages[2],pages[3],pages[4],pages[6]].forEach(([href,label,image])=>{
       const a=el('a');a.href=href;a.innerHTML=icon(image)+'<span>'+label+'</span>';desktop.append(a);
     });document.body.append(desktop);
 
