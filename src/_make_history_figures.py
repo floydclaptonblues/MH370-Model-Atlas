@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Figures for the Flight histories page, drawn from the retained dossier tables only.
 
-Inputs (from MH370_Flight_Histories_Data.zip, SHA-256 3d3e5c3e...eb8fe0ed):
-  upstream/extracted/ACCEPTED_BOUNDARIES.csv   (reduced to the plotted columns)
-  events/SATCOM_COMPARISONS.csv
-  events/FUEL_EVENTS.csv  /  events/SIX_HISTORY_EVENT_SUMMARY.csv
+Inputs, read directly from the extracted dossier root
+(MH370_Flight_Histories_Data.zip, SHA-256 3d3e5c3e...eb8fe0ed):
+  <root>/upstream/extracted/ACCEPTED_BOUNDARIES.csv   (all 24,217 accepted powered-flight rows)
+  <root>/events/SATCOM_COMPARISONS.csv
 and, for the terminal endpoints, TERMINAL_PATH_TO_SURFACE_CATALOGUE/CONTINUATION_OUTCOMES.csv
-(MH370-Ocean-GLORYS-Data, commit 95d1b5a).
+(MH370-Ocean-GLORYS-Data, commit 95d1b5a). Only the plotted columns are used; no intermediate
+dataset is needed.
 
 No model is run here: every plotted value is a stored number.
-Usage: python3 src/_make_history_figures.py <dossier_tables_dir> [<continuation_outcomes.csv>]
+Usage: python3 src/_make_history_figures.py <extracted_dossier_root> [<continuation_outcomes.csv>]
 """
 import csv, math, os, sys
 from datetime import datetime, timezone
@@ -38,9 +39,9 @@ def hm(h):
     t = T0.timestamp() + h * 3600
     return datetime.fromtimestamp(t, timezone.utc).strftime('%H:%M')
 
-rows = list(csv.DictReader(open(os.path.join(SRC, 'routes_reduced.csv'))))
+rows = list(csv.DictReader(open(os.path.join(SRC, 'upstream', 'extracted', 'ACCEPTED_BOUNDARIES.csv'), newline='')))
 by = {h: [r for r in rows if r['history'] == h] for h in HIST}
-sat = list(csv.DictReader(open(os.path.join(SRC, 'SATCOM_COMPARISONS.csv'))))
+sat = list(csv.DictReader(open(os.path.join(SRC, 'events', 'SATCOM_COMPARISONS.csv'), newline='')))
 f = lambda r, k: float(r[k]) if r.get(k) not in (None, '', 'NA') else float('nan')
 
 # ---------------------------------------------------------------- 1. routes
@@ -91,7 +92,7 @@ if CONT and os.path.exists(CONT):
              'x', ms=5, color='0.25', mew=1.0, zorder=7, label='terminal reporting endpoints (68)')
     axz.legend(fontsize=8, loc='upper right', framealpha=.95)
 axz.set_xlabel('Longitude (°E)'); axz.set_ylabel('Latitude (°N)')
-axz.set_title('Terminal area: the last powered hour, the fuel event (stars)\nand the 68 terminal reporting endpoints (×)', loc='left', fontsize=9.5)
+axz.set_title('Terminal area: the final powered segment, the fuel event (stars)\nand the 68 terminal reporting endpoints (×)', loc='left', fontsize=9.5)
 axz.set_xlim(94.2, 96.5); axz.set_ylim(-33.75, -31.6)
 axz.set_aspect(1 / math.cos(math.radians(-33))); axz.grid(lw=.3, alpha=.5)
 fig.text(.005, .006, 'Stored values from the retained dossier records; no model was run to draw this figure. '
@@ -119,8 +120,12 @@ a1.annotate('satellite comparison epochs', (hrs('2014-03-07T20:41:05Z'), 30), (6
 a1.annotate('engine-usable fuel exhausted ≈00:17:29–00:17:34\n(6.804 kg APU reserve retained)',
             (hrs('2014-03-08T00:17:30Z'), 12), (-224, 6), textcoords='offset points', fontsize=8.5,
             color='#8c4f72', arrowprops=dict(arrowstyle='->', color='#CC79A7', lw=.9))
-a2.annotate('APU fuel exhausted 00:24:21–00:24:26 in all 68 continued flights\n(after the powered record ends)',
-            (hrs('2014-03-08T00:17:30Z'), 180), (-250, 10), textcoords='offset points', fontsize=8.5,
+APU0, APU1 = hrs('2014-03-08T00:24:21Z'), hrs('2014-03-08T00:24:26Z')
+for ax_ in (a1, a2):
+    ax_.axvline((APU0 + APU1) / 2, color='0.3', lw=1.3, ls=(0, (4, 2)))   # 5 s wide: drawn as a line at this scale
+    ax_.set_xlim(-0.12, hrs('2014-03-08T00:30:00Z'))
+a2.annotate('APU fuel exhausted 00:24:21–00:24:26 in all 68 continued flights\n(dashed line; after the powered record ends at the fuel event)',
+            ((APU0 + APU1) / 2, 181), (-330, 14), textcoords='offset points', fontsize=8.5,
             color='0.3', arrowprops=dict(arrowstyle='->', color='0.5', lw=.9))
 a2.set_xlabel('UTC, 7–8 March 2014')
 tk = [0, 1, 2, 3, 4, 5, 6]
@@ -128,7 +133,7 @@ a2.set_xticks(tk); a2.set_xticklabels([hm(v) for v in tk])
 a1.set_title('Fuel and decreasing mass against the clock, from the 18:22:12 handoff', loc='left')
 a1.legend(fontsize=8, ncol=3, loc='lower left', framealpha=.95)
 fig.text(.005, .006, 'Retained per-step resource records (λ_ff = 1.005). The six histories differ by under 3 kg at 19:41 '
-         'and under 6 kg at 00:11; the curves overlie at this scale.', fontsize=7, color='0.35')
+         'and by about 6 kg at 00:11; the curves overlie at this scale.', fontsize=7, color='0.35')
 fig.tight_layout(rect=(0, .022, 1, 1)); fig.savefig(os.path.join(OUT, 'HISTORIES_FUEL_MASS.png'))
 
 # ------------------------------------------------- 3. satellite comparisons
@@ -142,26 +147,31 @@ for comp, ax_ in (('BTO', b1), ('BFO', b2)):
         pts = [(xs[x['epoch']] + (HIST.index(h) - 2.5) * 0.08, f(x, 'residual_observed_minus_predicted')) for x in hr if x['epoch'] in xs]
         ax_.plot([p[0] for p in pts], [p[1] for p in pts], 'o', ms=5, color=COL[h],
                  mec='k', mew=.4, label=h.replace('_', ' ') if comp == 'BTO' else None)
+    # The recorded bound applies to the CENTRED residual (raw minus the recorded centre mu).
+    # On this raw-residual axis the band is therefore [-b + mu, +b + mu]: for BFO, mu = -0.18 Hz
+    # gives -7.18 .. +6.82 Hz. BTO rows carry no centre, so their band is symmetric.
     bnd = {}
     for x in rowsc:
         if x['epoch'] in xs and x['descriptive_bound'] not in ('', 'NA'):
-            bnd[xs[x['epoch']]] = f(x, 'descriptive_bound')
-    for i, b in bnd.items():
-        ax_.plot([i - .42, i + .42], [b, b], color='0.45', lw=1.0)
-        ax_.plot([i - .42, i + .42], [-b, -b], color='0.45', lw=1.0)
+            mu = f(x, 'bfo_center_mu_hz') if comp == 'BFO' and x.get('bfo_center_mu_hz') not in (None, '', 'NA') else 0.0
+            bnd[xs[x['epoch']]] = (f(x, 'descriptive_bound'), mu)
+    for i, (b, mu) in bnd.items():
+        ax_.plot([i - .42, i + .42], [b + mu, b + mu], color='0.45', lw=1.0)
+        ax_.plot([i - .42, i + .42], [-b + mu, -b + mu], color='0.45', lw=1.0)
     wh = {xs[x['epoch']] for x in rowsc if 'WITHHELD' in x['policy_role'] and x['epoch'] in xs}
     for i in wh:
         ax_.axvspan(i - .45, i + .45, color='#F0E442', alpha=.35, zorder=0)
     ax_.axhline(0, color='k', lw=.7); ax_.grid(lw=.3, alpha=.45, axis='y')
-    ax_.set_ylabel('BTO residual (µs)' if comp == 'BTO' else 'BFO residual (Hz)')
+    ax_.set_ylabel('BTO residual (µs)' if comp == 'BTO' else 'Raw BFO residual (Hz)')
 b2.set_xticks(range(len(order)))
-b2.set_xticklabels(['18:25', '18:28a', '18:28b', '18:39', '19:41', '20:41', '21:41', '22:41\nwithheld', '00:11'])
+b2.set_xticklabels(['18:25', '18:28a', '18:28b', '18:39', '19:41', '20:41', '21:41', '22:41', '00:11'])
 b2.set_xlabel('Satellite comparison epoch, 7–8 March 2014 UTC')
 b1.set_title('Observed minus predicted satellite measurements, by history\n'
-             'grey bars: the recorded descriptive bound · shaded: the withheld 22:41 check, not used in fitting', loc='left')
+             'grey bars: the recorded descriptive bound · shaded: the withheld 22:41 BTO check, not used in fitting', loc='left')
 b1.legend(fontsize=8, ncol=3, loc='upper right', framealpha=.95)
-fig.text(.005, .006, 'Stored comparison records. The 18:25–18:39 epochs are inherited-prefix components and are the only ones carrying a recorded bound in this table '
-         '(±43 µs BTO, ±7 Hz BFO). Two withheld 22:41 BTO residuals fall just outside that same inherited descriptive band, at −43.546 and −43.164 µs, and are reported as they stand.',
-         fontsize=7, color='0.35')
-fig.tight_layout(rect=(0, .024, 1, 1)); fig.savefig(os.path.join(OUT, 'HISTORIES_SATCOM.png'))
+fig.text(.005, .006, 'Stored comparison records. Bounds are recorded only for the inherited 18:25–18:39 epochs: ±43 µs BTO, and ±7 Hz on the centred BFO residual '
+         '(raw + 0.18 Hz), drawn here on the raw axis at −7.18 and +6.82 Hz.\nOnly the 22:41 BTO comparison was withheld; the 22:41 BFO is a supplementary, previously exposed value. '
+         'Two withheld BTO residuals, −43.546 and −43.164 µs, fall just outside the inherited ±43 µs band and are reported as they stand.',
+         fontsize=6.6, color='0.35')
+fig.tight_layout(rect=(0, .04, 1, 1)); fig.savefig(os.path.join(OUT, 'HISTORIES_SATCOM.png'))
 print('wrote HISTORIES_ROUTES.png, HISTORIES_FUEL_MASS.png, HISTORIES_SATCOM.png')
