@@ -1,7 +1,7 @@
 const MH={};
 MH.J=async u=>(await fetch(u)).json();
 MH.css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-MH.nav=function(cur){const p=[["index.html","Overview"],["methods.html","Methods"],["satcom.html","Satcom"],["flight.html","Flight models"],["map.html","Combined map"],["reference.html","Reference map"],["canonical.html","Canonical map"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"],["northsouth.html","North\u2013south"],["closing.html","Closing report"]];
+MH.nav=function(cur){const p=[["index.html","Overview"],["assessment.html","Ryan’s assessment"],["flighthistories.html","Flight histories"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
  document.getElementById("nav").innerHTML=p.map(([h,l])=>`<a href="${h}"${h===cur?' aria-current="page"':''}>${l}</a>`).join("")};
 MH.fit=function(c,h){const r=c.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);c.width=Math.round(r.width*d);c.height=Math.round(h*d);c.style.height=h+"px";const x=c.getContext("2d");x.setTransform(d,0,0,d,0,0);return {x,w:r.width,h}};
 MH.fmt=(v,d=0)=>v==null?"–":Number(v).toLocaleString("en",{maximumFractionDigits:d,minimumFractionDigits:d});
@@ -80,3 +80,58 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
   script.dataset.mhResearchRecord = '2026-10-16';
   document.head.append(script);
 })();
+
+/* Atlas console: presentation-only shell. One application window with a readout strip, a side
+   rack and a status bar. It moves existing nodes; it does not change data, IDs or handlers. */
+(() => {
+  'use strict';
+  const SECTIONS = [
+    ['index.html','Overview'],['assessment.html','Ryan’s assessment'],['flighthistories.html','Flight histories'],
+    ['canonical.html','Canonical data'],['archive.html','Archive of attempts'],['methods.html','Methods'],null,
+    ['drift.html','Drift'],['drift2.html','Drift diagnostics'],['drift3.html','Forward transport'],['drift4.html','Four years']
+  ];
+  const el = (tag, cls, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; };
+  function init() {
+    const app = document.querySelector('body > .wrap'), nav = document.getElementById('nav');
+    if (!app || !nav || app.querySelector('.ix-title')) return;
+    const here = (nav.querySelector('[aria-current="page"]') || {}).textContent || document.title || 'Atlas';
+    const file = location.pathname.split('/').pop() || 'index.html';
+    nav.setAttribute('aria-label', 'Atlas sections');
+    const rest = [...app.children].filter(n => n !== nav);
+    const title = el('header', 'ix-title', '<i aria-hidden="true"></i><span>MH370 Model Atlas — ' + here + '</span>');
+    app.insertBefore(title, nav);
+    const strip = el('section', 'ix-strip',
+      '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +
+      '<div><div class="ix-cap">Record status</div><div class="ix-lamps">' +
+      '<span><i class="lamp green"></i>Flight histories: current</span><span><i class="lamp amber"></i>Satellite chapter: archived</span>' +
+      '<span><i class="lamp amber"></i>Drift chapter: open</span><span><i class="lamp"></i>Aircraft located: no</span></div></div>' +
+      '<div><div class="ix-cap">Retained populations</div><div class="ix-ro">' +
+      '<div><span>HISTORIES</span><output>6</output></div><div><span>RESPONSES</span><output>98</output></div>' +
+      '<div><span>CANDIDATES</span><output>424</output></div><div><span>ENDPOINTS</span><output>68</output></div></div></div>');
+    strip.setAttribute('aria-label', 'Project summary');
+    nav.after(strip);
+    const main = el('div', 'ix-main'), rack = el('aside', 'ix-rack'), work = el('main', 'ix-work');
+    rack.setAttribute('aria-label', 'Reference rack');
+    const tree = el('ul', 'ix-tree');
+    SECTIONS.forEach(s => { if (!s) { tree.append(el('li', 'sep')); return; }
+      const li = el('li'), a = el('a'); a.href = s[0]; a.textContent = s[1]; if (s[0] === file) a.setAttribute('aria-current', 'page'); li.append(a); tree.append(li); });
+    const b1 = el('div', 'ix-box', '<b>Sections</b>'); b1.append(tree);
+    const b2 = el('div', 'ix-box', '<b>Flight clock, UTC</b><div class="ix-ro">' +
+      '<div><span>RADAR HANDOFF</span><output>18:22:12</output></div><div><span>FUEL EXHAUSTED</span><output>00:17:29</output></div>' +
+      '<div><span>LAST TRANSMISSION</span><output>00:19:37</output></div><div><span>FIRST FLOOR EXIT</span><output>00:25:41</output></div></div>');
+    const b3 = el('div', 'ix-box', '<b>How to read a label</b><div class="ix-key">' +
+      '<span><i class="tag ok">OBS</i>measured or published</span><span><i class="tag frozen">FRZ</i>frozen model or method</span>' +
+      '<span><i class="tag prov">PROV</i>provisional or under review</span><span><i class="tag blocked">NEG</i>negated or unavailable</span></div>');
+    rack.append(b1, b2, b3);
+    rest.forEach(n => work.append(n));
+    main.append(rack, work); app.append(main);
+    work.querySelectorAll('table').forEach(t => { if (!t.closest('.scroll,.ix-well')) { const w = el('div', 'ix-well'); t.before(w); w.append(t); } });
+    const status = el('footer', 'ix-status', '<div>Document: ' + here + '</div><div class="flex">Every coordinate is a conditional model state. No part of this work locates the aircraft.</div><div class="mono" id="ix-clock"></div>');
+    app.append(status);
+    const tick = () => { const d = new Date(); status.querySelector('#ix-clock').textContent = 'now ' + d.toISOString().slice(11, 16) + ' UTC'; };
+    tick(); setInterval(tick, 30000);
+    window.dispatchEvent(new Event('resize'));
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true }); else init();
+})();
+

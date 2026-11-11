@@ -3,9 +3,11 @@ HEAD='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="v
 <link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav>'''
 TAIL='</div></body></html>'
 pages={}
+ARCHIVED_BANNER='''<div class="note"><b>Archived chapter page.</b> This page belongs to the satellite-and-flight chapter, closed 6 October 2026 and corrected 23 October 2026. It is kept as the record; findings later withdrawn are struck through in place. The current work is on the <a href="flighthistories.html">Flight histories</a> page, and the retirement reasons are listed in the <a href="archive.html">Archive of attempts</a>.</div>'''
+
 pages["satcom.html"]=HEAD%"MH370 Satcom"+'''
 <h1>Satcom: the Inmarsat burst log <span class="tag frozen">satellite model frozen</span></h1>
-<p class="sub">Every point below is a row of <code>satcom_observations.csv</code> (WS-004 canon). Nothing is simulated. Time is UTC, 7–8 March 2014.</p>
+'''+ARCHIVED_BANNER+'''<p class="sub">Every point below is a row of <code>satcom_observations.csv</code> (WS-004 canon). Nothing is simulated. Time is UTC, 7–8 March 2014.</p>
 <div class="card">
  <div class="ctl" id="rng"></div>
  <div class="read" id="ro1">Hover a plot for values.</div>
@@ -67,7 +69,7 @@ document.getElementById("gaps").innerHTML=E.filter(e=>e.exclusion_reason).map(e=
 VIEWS='''const VIEWS={"Average Day tracks":[84,100,-40,2],"Terminal area":[86,93,-39,-35],"Whole basin":[15,130,-60,15],"Search area":[80,112,-42,-20],"Western drift focus":[35,80,-52,-20],"Southern Africa to Réunion":[25,70,-40,-5]};'''
 pages["flight.html"]=HEAD%"MH370 Flight Models"+'''
 <h1>Flight models <span class="tag frozen">Average Day frozen</span> <span class="tag prov">Phase 5A provisional</span></h1>
-<p class="sub">What exists in your archive for the path and endpoint side, with its status. I did not run or rank anything here.</p>
+'''+ARCHIVED_BANNER+'''<p class="sub">What exists in your archive for the path and endpoint side, with its status. I did not run or rank anything here.</p>
 <div class="note bad"><b>Not a located aircraft.</b> No source below produces a final coordinate. The candidate points are not all on the reference 7th arc: measured here, they sit 65 to 1,306 km from it (median about 610 km). I have not investigated why. The reference arc is drawn at 40,000 ft.</div>
 
 <div class="card"><h2>Average Day model <span class="tag frozen">frozen, packaged 3 Oct 2026</span></h2>
@@ -256,7 +258,7 @@ document.getElementById("sv").innerHTML="<tr><th>#</th><th>Family</th><th>Varian
 
 pages["map.html"]=HEAD%"MH370 Combined Map"+'''
 <h1>Combined map</h1>
-<p class="sub">Every layer is real data from your files, drawn on one map. Switch layers on and off. Nothing here is fitted to the arc.</p>
+'''+ARCHIVED_BANNER+'''<p class="sub">Every layer is real data from your files, drawn on one map. Switch layers on and off. Nothing here is fitted to the arc.</p>
 <div class="card"><div class="ctl" id="tg"></div><div class="ctl" id="views" style="margin-top:6px"></div><div class="read" id="ro">Hover the map for coordinates.</div>
  <canvas id="mp"></canvas><p class="sub" id="lg" style="margin-top:6px"></p></div>
 <div class="grid">
@@ -358,8 +360,12 @@ pages["drift4.html"]=HEAD%"MH370 Four Years of Transport"+open("src/drift4_body.
 pages["methods.html"]=HEAD%"MH370 Methods"+open("src/methods_body.html").read()+'<script>MH.nav("methods.html");</script>'+TAIL
 pages["reference.html"]=HEAD%"MH370 Reference Map"+open("src/reference_body.html").read()+"<script>"+open("src/reference_script.js").read()+"</script>"+TAIL
 pages["canonical.html"]=HEAD%"MH370 Canonical Map"+open("src/canonical_body.html").read()+"<script>"+open("src/canonical_script.js").read()+"</script>"+TAIL
-pages["northsouth.html"]=HEAD%"MH370 North-South Comparison"+open("src/northsouth_body.html").read()+'<script>MH.nav("northsouth.html");</script>'+TAIL
-pages["closing.html"]=HEAD%"MH370 Closing Report"+open("src/closing_body.html").read()+'<script>MH.nav("closing.html");</script>'+TAIL
+pages["northsouth.html"]=HEAD%"MH370 North-South Comparison"+ARCHIVED_BANNER+open("src/northsouth_body.html").read()+'<script>MH.nav("northsouth.html");</script>'+TAIL
+pages["assessment.html"]=HEAD%"Ryan's assessment — MH370 Model Atlas"+open("src/assessment_body.html").read()+'<script>MH.nav("assessment.html");</script>'+TAIL
+pages["claude_assessment.html"]=HEAD%"Claude's assessment — MH370 Model Atlas"+open("src/claude_assessment_body.html").read()+'<script>MH.nav("claude_assessment.html");</script>'+TAIL
+pages["flighthistories.html"]=HEAD%"MH370 Flight Histories"+open("src/flighthistories_body.html").read()+'<script>MH.nav("flighthistories.html");</script>'+TAIL
+pages["archive.html"]=HEAD%"MH370 Archive of Attempts"+open("src/archive_body.html").read()+'<script>MH.nav("archive.html");</script>'+TAIL
+pages["closing.html"]=HEAD%"MH370 Closing Report"+ARCHIVED_BANNER+open("src/closing_body.html").read()+'<script>MH.nav("closing.html");</script>'+TAIL
 INDEX_HEAD='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<title>MH370 Model Atlas: satellite timing, flight dynamics and ocean transport</title>\n<meta name="description" content="An independent, physics-based reconstruction of the final flight of Malaysia Airlines 9M-MRO (MH370): Inmarsat timing (BTO) and Doppler frequency (BFO) measurements, point-mass Boeing 777 flight dynamics through ERA5 weather, terminal descent, and four and a half years of debris transport in GLORYS12V1 ocean currents. No location is claimed; withdrawn results stay on the record.">\n<meta property="og:title" content="MH370 Model Atlas: satellite timing, flight dynamics and ocean transport">\n<meta property="og:description" content="An independent, physics-based reconstruction of the final flight of Malaysia Airlines 9M-MRO (MH370): Inmarsat timing (BTO) and Doppler frequency (BFO) measurements, point-mass Boeing 777 flight dynamics through ERA5 weather, terminal descent, and four and a half years of debris transport in GLORYS12V1 ocean currents. No location is claimed; withdrawn results stay on the record.">\n<meta property="og:type" content="website"><meta property="og:url" content="https://mh370atlasmodel.y2kneverended.net/">\n<link rel="canonical" href="https://mh370atlasmodel.y2kneverended.net/">\n<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">\n<link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav>'
 pages["index.html"]=INDEX_HEAD+open("src/index_body.html").read()+'<script>MH.nav("index.html")</script>'+TAIL
 for k,v in pages.items(): open(k,"w").write(v)

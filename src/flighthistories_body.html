@@ -1,0 +1,99 @@
+<h1>The flight histories <span class="tag ok">connected 18:22:12 &rarr; terminal</span> <span class="tag frozen">dossier verified</span></h1>
+<p class="sub">Six complete flight histories, integrated continuously from the last primary-radar fix to the altitude where the weather record ends. Every number and figure on this page comes from the retained records; nothing is recomputed here. The six histories are those retained under the project's declared selection and checking rules, not every flight that could satisfy the measurements. The complete dataset, with an exporter that reproduces any registered flight as one chronological table, is identified at the foot of the page.</p>
+
+<div class="note"><b>Conditional calculation.</b> Intact airframe assumed; zero thrust after fuel exhaustion; pinned drag surrogate beyond its declared Mach&nbsp;0.89 criterion (no aerodynamic validation above it); prescribed roll-out hypothesis; saved lift coefficient held; control law held unchanged after APU fuel exhaustion (flagged on every affected path); strict ERA5 weather with no near-surface extrapolation; no structural criterion. A model-support stop is not stall or breakup; APU exhaustion is not impact.</div>
+
+<div class="card"><h2>The common chronology, against the clock</h2>
+<p>All six histories begin at the retained <b>18:22:12 UTC</b> radar handoff with 34,962.864&nbsp;kg of fuel aboard a 209,331.864&nbsp;kg aircraft (fuel-flow multiplier &lambda;<sub>ff</sub>&nbsp;=&nbsp;1.005). The early sequence is shared:</p>
+<div class="scroll"><table>
+<tr><th>UTC, 7 March</th><th>What the aircraft does</th></tr>
+<tr><td>18:22:12&ndash;18:23:12</td><td>Course establishment from &asymp;270&deg; to 311&deg;</td></tr>
+<tr><td>18:32:12&ndash;18:35:07 / 18:34:12&ndash;18:37:07</td><td>South turn from 311&deg; to 180&deg; (C191/C192 timing / C190 timing)</td></tr>
+<tr><td>18:42:12&ndash;18:42:42</td><td>Course refinement to 190&deg;, 191&deg; or 192&deg;</td></tr>
+<tr><td>18:42:12&ndash;18:44:52</td><td>Mach command ramp 0.67 &rarr; 0.75</td></tr>
+<tr><td>18:44:12</td><td>Pressure hold begins at &asymp;331.66&nbsp;hPa</td></tr>
+<tr><td>19:46:03&ndash;19:51:03</td><td>First downstream turn (five minutes, all histories)</td></tr>
+</table></div>
+<p class="sub" style="margin-top:6px">Clock conventions: upstream elapsed time starts at 18:22:12; downstream and terminal elapsed time starts at 19:41:03 (downstream&nbsp;=&nbsp;upstream&nbsp;&minus;&nbsp;4,731&nbsp;s). The final transmissions sit at 00:19:29 and 00:19:37 UTC on 8 March.</p></div>
+
+<div class="card"><h2>The six histories</h2>
+<div class="scroll"><table>
+<tr><th>History</th><th>Second turn starts (7 Mar UTC)</th><th class=n>Fuel at 19:41, kg</th><th class=n>Fuel at 00:11, kg</th><th>Engine-fuel event (8 Mar UTC)</th><th class=n>Terminal-endpoint branches</th></tr>
+<tr><td>C190&nbsp;J1</td><td>21:13:24.7</td><td class=n>26,265.02</td><td class=n>580.31</td><td>00:17:28.79</td><td class=n>16</td></tr>
+<tr><td>C190&nbsp;J2</td><td>21:13:14.4</td><td class=n>26,265.02</td><td class=n>580.31</td><td>00:17:28.80</td><td class=n>16</td></tr>
+<tr><td>C191&nbsp;J1</td><td>21:12:40.5</td><td class=n>26,263.56</td><td class=n>586.17</td><td>00:17:33.71</td><td class=n>8</td></tr>
+<tr><td>C191&nbsp;J2</td><td>21:11:38.9</td><td class=n>26,263.56</td><td class=n>586.33</td><td>00:17:33.83</td><td class=n>12</td></tr>
+<tr><td>C192&nbsp;J1</td><td>21:16:00.9</td><td class=n>26,262.65</td><td class=n>585.06</td><td>00:17:32.95</td><td class=n>8</td></tr>
+<tr><td>C192&nbsp;J2</td><td>21:15:40.5</td><td class=n>26,262.65</td><td class=n>585.13</td><td>00:17:33.00</td><td class=n>8</td></tr>
+</table></div>
+<p class="sub" style="margin-top:6px">At the engine-usable-fuel event each history retains the 6.804&nbsp;kg modelled APU reserve (total mass 174,375.804&nbsp;kg); the saved aggregate fuel flow there is 1.466&ndash;1.468&nbsp;kg/s. Values rounded for reading; the dataset retains full precision. The table of all 424 registered continuation candidates &mdash; history, bank, response delay, control law, drag formulation, first event &mdash; is <code>REGISTER.csv</code> in the terminal catalogue.</p></div>
+
+<div class="card"><h2>An independent check: when the fuel runs out</h2>
+<p>The time at which the engines exhaust their usable fuel is an <b>output</b> of these histories, not a target they were steered toward. Nothing in the fuel model was fitted to any published flameout estimate: the fuel-flow multiplier &lambda;<sub>ff</sub>&nbsp;=&nbsp;1.005 was a prospectively chosen &plusmn;0.5&nbsp;% diagnostic perturbation, and its own report states that nothing in it selects, fits or prefers a multiplier value.</p>
+<p>What the six histories produce is an engine-usable-fuel event at <b>00:17:28.8 to 00:17:33.8 UTC</b> &mdash; a five-second spread across six independently refined routes. That leaves <b>1&nbsp;min&nbsp;55&nbsp;s to 2&nbsp;min&nbsp;00&nbsp;s</b> before the satellite terminal's log-on request at 00:19:29, the interval in which an APU auto-start and a terminal re-logon would have to occur.</p>
+<div class="scroll"><table>
+<tr><th>History</th><th>Engine-usable fuel exhausted</th><th class=n>Interval to the 00:19:29 log-on request</th></tr>
+<tr><td>C190&nbsp;J1</td><td>00:17:28.791</td><td class=n>2 min 00 s</td></tr>
+<tr><td>C190&nbsp;J2</td><td>00:17:28.798</td><td class=n>2 min 00 s</td></tr>
+<tr><td>C191&nbsp;J1</td><td>00:17:33.710</td><td class=n>1 min 55 s</td></tr>
+<tr><td>C191&nbsp;J2</td><td>00:17:33.833</td><td class=n>1 min 55 s</td></tr>
+<tr><td>C192&nbsp;J1</td><td>00:17:32.951</td><td class=n>1 min 56 s</td></tr>
+<tr><td>C192&nbsp;J2</td><td>00:17:33.003</td><td class=n>1 min 56 s</td></tr>
+</table></div>
+<p style="margin-top:8px"><b>What this does and does not establish.</b> The <b>observation</b> is the log-on request at 00:19:29; the flameout time itself was never observed and is inferred backwards from it, using an assumed APU start-up and terminal boot interval. Published inferences therefore differ &mdash; one widely cited reconstruction puts the second flameout at 00:15:49&nbsp;&plusmn;&nbsp;10&nbsp;s by assuming a 3&nbsp;min&nbsp;40&nbsp;s interval, while others place it closer to 00:17:30. Our histories land in that range without being aimed at it, and the agreement between them is tight. That is a <b>consistency check the model passes</b>, and it is worth something.</p>
+<p>It is not independent corroboration, for two reasons we state rather than bury. First, the fuel load carried at the 18:22:12 handoff (34,962.864&nbsp;kg) is <b>inherited from an earlier modelled trajectory</b>, not from an independent measurement; the <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/95d1b5a3766d2d7afdb20c22d63015cbfb7415d5/reports/diagnostic/RADAR_HANDOFF_PROVENANCE/FINDINGS.md">handoff provenance audit</a> records that no radar observation is cited in the handoff file, so we cannot show the starting fuel is free of any earlier timing assumption. Second, the event is <b>sensitive at the two-minute level</b>: the <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/95d1b5a3766d2d7afdb20c22d63015cbfb7415d5/reports/diagnostic/TWO_TURN_FUEL_FLOW_SENSITIVITY/FINDINGS.md">fuel-flow sensitivity study</a> shows that a &plusmn;0.5&nbsp;% change in aggregate fuel flow moves the event by &plusmn;108&ndash;114&nbsp;s. The five-second spread between histories measures agreement <i>between routes</i>, not the accuracy of the absolute time.</p>
+<p class="sub">Read correctly: the model reaches fuel exhaustion at a time compatible with the one hard observation at the end of the flight, having been given no information about it. That supports the fuel and mass bookkeeping over six hours of flight. It does not independently confirm the flameout time, and it does not narrow the terminal geography.</p></div>
+
+<div class="card"><h2>The whole flights, against the clock</h2>
+<img src="img/HISTORIES_ROUTES.png" alt="The six connected histories from the 18:22:12 radar handoff to fuel exhaustion, with satellite comparison epochs marked, and a terminal-area panel showing the 68 reporting endpoints">
+<p class="sub" style="margin-top:6px">Left: the six histories from the radar handoff at 6.578&deg;N, 96.341&deg;E, through the turns and the satellite comparison epochs, to the engine-fuel event near 32.6&ndash;33.0&deg;S. Right: the final powered segment (roughly the last 9&ndash;12 minutes) and the 68 terminal reporting endpoints. Every plotted value is a stored record; no model was run to draw it.</p>
+<img src="img/HISTORIES_FUEL_MASS.png" alt="Fuel on board and total aircraft mass against UTC for the six histories, with the engine-fuel event and APU exhaustion marked" style="margin-top:10px">
+<p class="sub" style="margin-top:6px">Fuel and decreasing mass from 34,962.864&nbsp;kg and 209,331.864&nbsp;kg at the handoff to the engine-usable-fuel event at 00:17:29&ndash;00:17:34, where 6.804&nbsp;kg of modelled APU reserve remains. The six curves differ by under 3&nbsp;kg at 19:41 and by about 6&nbsp;kg at 00:11, so they overlie at this scale &mdash; the histories differ in geometry, not in fuel state.</p>
+<img src="img/HISTORIES_SATCOM.png" alt="Observed minus predicted BTO and BFO residuals by epoch for each history, with the withheld 22:41 check shaded" style="margin-top:10px">
+<p class="sub" style="margin-top:6px">Observed minus predicted, epoch by epoch, with each epoch's role as recorded: 18:25&ndash;18:39 and 19:41 are inherited components carried from upstream; the 20:41 BTO belongs to the first-turn adjustment; the 21:41 and 00:11 BTO belong to the second-turn adjustments, which is why those residuals sit near zero. The <b>22:41 BTO comparison was withheld</b> &mdash; never used in fitting &mdash; and is shaded: two of its six residuals, C191&nbsp;J2 at &minus;43.546&nbsp;&micro;s and C192&nbsp;J2 at &minus;43.164&nbsp;&micro;s, fall just outside the inherited descriptive &plusmn;43&nbsp;&micro;s band and are reported as they stand, not adjusted. The 22:41 BFO is a supplementary, previously exposed value, not a withheld one. The &plusmn;7&nbsp;Hz BFO band applies to the centred residual (raw + 0.18&nbsp;Hz), so on the raw axis shown it runs from &minus;7.18 to +6.82&nbsp;Hz.</p></div>
+
+<div class="card"><h2>What happens after the final transmissions</h2>
+<p>From the saved states at <b>Mach&nbsp;0.89</b> &mdash; the declared aerodynamic-validation boundary of the performance surrogate, and the handoff point at which each continuation is saved &mdash; every registered arm is carried forward under its unchanged control law. Three outcomes follow, and they are different events:</p>
+<div class="scroll"><table>
+<tr><th class=n>Arms</th><th>Outcome</th><th>Where it happens</th></tr>
+<tr><td class=n>332</td><td>Stop at the <b>lift-support boundary</b> (<code>CL_MODEL_SUPPORT</code>): the surrogate's lift-limit fit meets the commanded lift coefficient</td><td>Mach <b>0.9718</b>, at 00:19:55&ndash;00:20:06 UTC, at approximately 3.37&ndash;3.92&nbsp;km WGS-84 height. A model-domain marker, not an aircraft limit and not stall or breakup.</td></tr>
+<tr><td class=n>68</td><td><b>Glide on</b> past the high-speed descent and reach the terminal reporting endpoint</td><td>They approach the same boundary (peak Mach 0.9671&ndash;0.9717 before 00:21:37) without crossing it.</td></tr>
+<tr><td class=n>24</td><td><b>Exploratory command alternatives</b>, held at their saved Mach&nbsp;0.89 endpoints by design</td><td>Registered exploratory alternatives, not continued beyond their saved Mach&nbsp;0.89 endpoints.</td></tr>
+</table></div>
+<p style="margin-top:8px">In the 68 that glide on, the pitch oscillation damps over about four cycles into a quasi-steady glide, and the sampled maximum after 00:21:37 is only <b>Mach 0.814&ndash;0.828</b> &mdash; the lift-support boundary is never again approached. APU fuel is exhausted at 00:24:21&ndash;00:24:26 in all 68. Every gliding flight then leaves the lowest level of the weather record between <b>00:25:41 and 00:26:46 UTC</b>, descending at 8.9&ndash;44&nbsp;m/s at ground speed 179&ndash;209&nbsp;m/s.</p>
+<img src="img/PROFILES_HEIGHT_MACH.png" alt="Height and Mach against time for the 68 continued flights, showing the damping pitch oscillation, the APU exhaustion band and the weather floor">
+<p class="sub" style="margin-top:6px">That last computed state is the <b>terminal reporting endpoint</b>: 187&ndash;200&nbsp;m WGS-84 ellipsoidal height, which is 218&ndash;226&nbsp;m above the native model surface. A separately labelled constant-velocity projection carries each flight the remaining 0.96&ndash;5.1&nbsp;km to that surface (00:25:47&ndash;00:26:53 UTC); it is a kinematic suffix, never a computed contact, and two alternative projections land within 0.3&ndash;3.9&nbsp;km of it.</p></div>
+
+<div class="card"><h2>Where the flights end</h2>
+<p class="sub">Terminal reporting endpoints &mdash; the last computed states &mdash; with the separately labelled analytic surface projection alongside. The two sets of coordinates are different quantities and are kept in different columns.</p>
+<div class="scroll"><table>
+<tr><th>Group</th><th class=n>n</th><th>Reporting-endpoint latitude</th><th>Reporting-endpoint longitude</th><th>Track</th><th>Projected surface position (A1)</th></tr>
+<tr><td>C190, right bank, 10&nbsp;s</td><td class=n>16</td><td>33.099&ndash;33.106&deg;S</td><td>94.7768&ndash;94.7834&deg;E</td><td>245&deg;</td><td>33.103&ndash;33.110&deg;S, 94.766&ndash;94.773&deg;E</td></tr>
+<tr><td>C190, left bank, 10&nbsp;s <span class="tag prov">marginal</span></td><td class=n>16</td><td>32.962&ndash;32.968&deg;S</td><td>96.2847&ndash;96.2920&deg;E</td><td>100&deg;</td><td>32.970&ndash;32.973&deg;S, 96.319&ndash;96.346&deg;E</td></tr>
+<tr><td>C191/C192, right bank, 10&nbsp;s</td><td class=n>33</td><td>33.436&ndash;33.451&deg;S</td><td>94.3620&ndash;94.3976&deg;E</td><td>245&deg;</td><td>33.440&ndash;33.456&deg;S, 94.351&ndash;94.387&deg;E</td></tr>
+<tr><td>C191&nbsp;J2, right bank, <b>15&nbsp;s</b> roll-out</td><td class=n>1</td><td>33.339&deg;S</td><td>94.3603&deg;E</td><td>256&deg;</td><td>33.341&deg;S, 94.350&deg;E</td></tr>
+<tr><td>C191&nbsp;J2, right bank, <b>5&nbsp;s</b> roll-out</td><td class=n>1</td><td>33.546&deg;S</td><td>94.4378&deg;E</td><td>235&deg;</td><td>33.554&deg;S, 94.424&deg;E</td></tr>
+<tr><td>C191&nbsp;J2, <b>left</b> bank, <b>5&nbsp;s</b> roll-out</td><td class=n>1</td><td>33.453&deg;S</td><td>95.9842&deg;E</td><td><b>109&deg; (eastward)</b></td><td>33.456&deg;S, 95.997&deg;E</td></tr>
+</table></div>
+<p class="sub">The 16 left-bank C190 flights are flagged <b>marginal</b>: they clear the lift-support boundary by 0.0001&ndash;0.0008 in Mach &mdash; less than the measured roll-out-duration effect &mdash; so the eastern lobes are not robust. The three roll-out&ndash;duration arms are listed separately because they do not share a direction: two run west-southwest and one runs east. Extents are the spread of the sampled cases, not bounds.</p>
+<img src="img/MAP_ROUTES_C190.png" alt="Close-up of the C190 cluster routes and endpoints">
+<img src="img/MAP_ROUTES_C191_C192.png" alt="Close-up of the C191 and C192 cluster routes and endpoints" style="margin-top:8px">
+<img src="img/MAP_FLOOR_EXIT_POINTS.png" alt="The terminal reporting endpoints of the 68 continued flights, with the labelled projection points shown for reference" style="margin-top:8px">
+</div>
+
+<div class="card"><h2>Proposed location on the record <span class="tag prov">provenance pending</span></h2>
+<p><b>32.355&deg;S, 97.4&deg;E</b> &mdash; proposed location; originating run and evaluation status awaiting verification. No verified run, source artifact or residual table has been located for this point; it is recorded as a point only, with no footprint, attributed to none of the six histories. Two frozen-method experiments (a target-conditioned feasibility test and a location-unconstrained reconstruction) are planned; this page does not change until their results are reviewed.</p></div>
+
+<div class="card"><h2>Export a saved flight</h2>
+<p>The complete dataset is a 249&nbsp;MB archive, kept outside this repository and identified by checksum:</p>
+<p><code>MH370_Flight_Histories_Data.zip</code> &middot; 249,256,676 bytes &middot; SHA-256 <code>3d3e5c3e0a4768c29abbed5baa3720cdf58fd0317a2420c068558a69eb8fe0ed</code></p>
+<p class="sub">Independently audited 10 Nov 2026: all 274 manifest entries and 101 table inventories verify; both prescribed sample exports reproduce exactly; 1,624/1,624 internal joins have identical times and positions (98 powered-to-onset comparisons bitwise on the compared fields; 112 joins differ only at the last floating-point bit in velocity or lift-vector components). <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/30184f347d884bc43a78cf49445f78fabcf61135/reports/diagnostic/FLIGHT_HISTORIES_ARCHIVE_AUDIT/AUDIT.md">Read the independent audit record</a>. A public download link will be added when the hosting location is established.</p>
+<p>The included reader joins a parent history to its terminal branch and writes one chronological record &mdash; position, height, Mach, speeds, track, fuel, mass, atmosphere, satellite comparisons &mdash; with every original column and its source labelled:</p>
+<pre><code>python tools/export_flight.py --root . list
+python tools/export_flight.py --root . export \
+  --branch "TB|PRODUCTION|U_T0720_M0.75_C190_TM0.67_J1|+60|108|ROLLOUT_10S|PINNED_RISE|NOMINAL" \
+  --out exports/C190_J1_right_108_roll10_pinned.csv.gz</code></pre>
+<p class="sub">That example reproduces 5,605 rows and 117 columns from 18:22:12.000000 to 00:25:43.160210 UTC. <b>The exporter reproduces the retained records; it does not rerun the aircraft, atmosphere or satellite calculations.</b> Where a calculation can also be rerun from pinned code and inputs, the repository's run directories say so, with expected results.</p></div>
+
+<div class="card"><h2>Sources</h2>
+<p class="sub" style="max-width:none">Terminal catalogue &mdash; <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/95d1b5a3766d2d7afdb20c22d63015cbfb7415d5/reports/diagnostic/TERMINAL_PATH_TO_SURFACE_CATALOGUE/FINDINGS.md">findings</a>, <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/95d1b5a3766d2d7afdb20c22d63015cbfb7415d5/reports/diagnostic/TERMINAL_PATH_TO_SURFACE_CATALOGUE/METHOD.md">frozen method</a> and <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/95d1b5a3766d2d7afdb20c22d63015cbfb7415d5/reports/diagnostic/TERMINAL_PATH_TO_SURFACE_CATALOGUE/CONTINUATION_OUTCOMES.csv">continuation outcomes</a> (commit <code>95d1b5a</code>); <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/95d1b5a3766d2d7afdb20c22d63015cbfb7415d5/reports/diagnostic/TERMINAL_TIER_B_POPULATION/FINDINGS.md">Tier B population</a>; <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/95d1b5a3766d2d7afdb20c22d63015cbfb7415d5/reports/diagnostic/POST_2041_SECOND_TURN_0011/METHOD.md">second-turn joint refinement (J1/J2)</a> &mdash; each with its frozen method, control gates, half-step checks and findings. Search-coverage statements use only the verified overlay fields; no location is called searched or cleared from an outline, review circle or unavailable raster.</p></div>
