@@ -1,11 +1,11 @@
-<p class="w98-eyebrow" style="margin:0">9M-MRO &middot; MALAYSIA AIRLINES MH370 &middot; 7&ndash;8 MARCH 2014</p>
+<p class="ix-eyebrow">9M-MRO &middot; MALAYSIA AIRLINES MH370 &middot; 7&ndash;8 MARCH 2014</p>
 <h1>The flight histories and terminal envelope recovered within our MH370 world model</h1>
 <p class="sub">After the aircraft left radar coverage, its satellite terminal kept exchanging link-maintenance messages with the Inmarsat ground station at Perth. Each exchange recorded a round-trip light-travel time (BTO) and a Doppler frequency offset (BFO). This atlas flies a Boeing 777-200ER through the recorded weather, keeps the flights that satisfy those measurements under its declared selection and checking rules, and follows each one &mdash; turns, fuel, decreasing mass, clocks &mdash; from the last radar fix at 18:22:12 UTC down to the altitude where the weather record ends, about 190&nbsp;m WGS-84 ellipsoidal height.</p>
 
 <div class="note bad"><b>No part of this work locates the aircraft.</b> Every coordinate on these pages is a conditional model state: it holds only under the assumptions stated with it. The published envelope covers exactly the stated model, incoming histories, response families and tests &mdash; it is not a claim that every mathematically possible BTO/BFO-compatible flight has been enumerated. Results later shown to be wrong are withdrawn in place, dated and explained, not silently replaced; the full revision history is public on <a href="https://github.com/floydclaptonblues/MH370-Model-Atlas">GitHub</a>.</div>
 
 <h2 class="section">What was recovered</h2>
-<div class="grid">
+<div class="grid readouts">
  <div class="card"><h2>6</h2><p class="sub">connected incoming flight histories, integrated continuously from the 18:22:12 radar handoff. Three incoming histories &mdash; C190, C191 and C192 &mdash; each retain two second-turn joint refinements (J1 and J2), giving six connected histories in two geographic families.</p></div>
  <div class="card"><h2>98</h2><p class="sub">baseline terminal-response identities compatible with the final transmissions at 00:19:29 and 00:19:37 &mdash; 49 left-bank and 49 right-bank responses across the six histories.</p></div>
  <div class="card"><h2>424</h2><p class="sub">registered continuation candidates carried beyond the final transmissions: 392 nominal response arms, 8 distinct roll-out-duration arms, 24 exploratory command alternatives.</p></div>
@@ -19,7 +19,7 @@
  <p class="sub" style="margin-top:6px">The 68 continued flights from the final satellite transmissions to their terminal reporting endpoints. Conditional calculation: pinned drag surrogate beyond Mach&nbsp;0.89, prescribed roll-out, control law held after APU fuel exhaustion, strict ERA5 weather. Full detail, tables and per-cluster close-ups are on the <a href="flighthistories.html">Flight histories</a> page.</p></div>
 
 <h2 class="section">Chapters</h2>
-<div class="grid">
+<div class="grid modules">
  <a class="card link" href="assessment.html"><h2>Ryan&rsquo;s assessment</h2><p>My own judgment, signed and kept separate from the model results: which regions I think deserve examination, what I can defend, and what remains a working hypothesis.</p></a>
  <a class="card link" href="claude_assessment.html"><h2>Claude&rsquo;s assessment</h2><p>An AI model capability test: the conclusion of the model that directed and audited the work, labelled as such and kept apart from the results.</p></a>
  <a class="card link" href="flighthistories.html"><h2>Flight histories</h2><p>Follow one aircraft through the recorded sequence: the clock, turns, Mach schedule, fuel and mass, satellite comparisons, terminal branches &mdash; then export the complete numerical record.</p></a>
