@@ -1,0 +1,337 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arc 7 demonstration</title><meta name="description" content="An interactive teaching tool in the MH370 Model Atlas: illustrative seventh-arc positions, satellite geometry and a simplified fuel–mass calculation. Demonstration only.">
+<link rel="stylesheet" href="common.css"><link rel="stylesheet" href="arc7-demo.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav><div class="arc7-tool">
+<header class="demo-hero">
+ <p class="eyebrow">ATLAS SCIENTIFIC TOOLS / DEMONSTRATION 01</p>
+ <div class="demo-heading"><h1>Arc 7 Hotspot Demonstration</h1><span class="demo-badge">DEMONSTRATION</span></div>
+ <p class="lede">Explore the satellite geometry and watch mass, drag and fuel flow evolve in a simple cruise calculation.</p>
+ <p class="demo-scope">Supplied reference positions and a historical campaign snapshot accompany a simplified fuel–mass model. This page does not run the Atlas flight kernel or identify a crash site. For the retained investigation results, open <a href="flighthistories.html">Flight histories</a>.</p>
+</header>
+<div class="demo-toolbar" aria-label="Demonstration sections">
+ <a href="#arc-map">Arc map</a><a href="#fuel-simulator">Fuel simulator</a><a href="#physics">How it works</a><a href="#snapshot">Historical snapshot</a><a href="#demo-source">Source notes</a>
+</div>
+<noscript><p class="warnbox">Enable JavaScript to draw the diagrams and operate the fuel simulator. The explanatory notes remain available below.</p></noscript>
+<section id="arc-map" class="band"><div class="demo-inner">
+  <div class="head">
+    <h2>Five supplied reference positions</h2>
+    <p>The seventh arc represents positions consistent with the final satellite timing measurement under a specified geometry. The schematic below joins the arc coordinates supplied with this demonstration and retains its five reference markers. These markers demonstrate how to read the display; they are not the current Atlas terminal catalogue or a ranking of crash locations.</p>
+  </div>
+  <div class="plate"><div class="mapgrid">
+    <div><svg id="map" viewBox="0 0 520 440" role="img" aria-label="Schematic seventh-arc reference polyline across the southern Indian Ocean with five supplied demonstration positions"></svg></div>
+    <div class="keylist" id="keylist"></div>
+  </div></div>
+</div></section>
+<section id="fuel-simulator"><div class="demo-inner">
+  <div class="head">
+    <h2>One worked example, stepped minute by minute</h2>
+    <p>This runs a simplified coupled loop in your browser, starting from the fuel inventory supplied for the historical C120 example. Watch the mass fall and the calculated fuel flow fall with it.</p>
+  </div>
+  <div class="warnbox">
+    <p><strong>Demonstration integrator.</strong> The supplied cruise constants, fixed atmosphere and simple drag polar show the mass&ndash;drag&ndash;fuel feedback. The Atlas performance kernel, weather fields and satellite measurements are not loaded here. The historical comparison below is quoted from the supplied demonstration, not reproduced by this panel.</p>
+  </div>
+
+  <div class="plate" style="margin-top:18px">
+    <div class="runbar">
+      <button id="play" type="button" class="btn primary">Play</button>
+      <button id="step" type="button" class="btn">Step 1 min</button>
+      <button id="finish" type="button" class="btn">Finish run</button>
+      <button id="reset" type="button" class="btn">Reset</button>
+      <span id="run-state" class="run-state" role="status" aria-live="polite">Ready</span>
+      <span class="clock mono" id="clock">&mdash;</span>
+      <span class="elapsed mono" id="elapsed"></span>
+    </div>
+    <p class="mnote">60 s steps; final step shortened at depletion. Times describe this demonstration only.</p>
+
+    <div class="statewrap">
+      <div class="statecol">
+        <p class="eyebrow">State</p>
+        <div class="srow"><span>Total mass</span><b class="mono" id="v_m"></b></div>
+        <div class="srow"><span>Fuel remaining</span><b class="mono" id="v_f"></b></div>
+        <div class="srow"><span>Airframe + payload</span><b class="mono">174,369 kg</b></div>
+      </div>
+      <div class="statecol">
+        <p class="eyebrow">Commanded</p>
+        <div class="srow"><span>Mach</span><b class="mono" id="v_M"></b></div>
+        <div class="srow"><span>Pressure altitude</span><b class="mono" id="v_h"></b></div>
+        <div class="srow"><span>True airspeed</span><b class="mono" id="v_V"></b></div>
+      </div>
+      <div class="statecol">
+        <p class="eyebrow">Solved this minute</p>
+        <div class="srow"><span>Lift coefficient</span><b class="mono" id="v_cl"></b></div>
+        <div class="srow"><span>Drag</span><b class="mono" id="v_D"></b></div>
+        <div class="srow"><span>Fuel flow</span><b class="mono" id="v_ff"></b></div>
+        <div class="srow"><span>Buffet margin</span><b class="mono" id="v_bm"></b></div>
+      </div>
+    </div>
+
+    <div class="eqbox">
+      <p class="eyebrow">The four lines it solves, in order, every minute</p>
+      <div class="eq" id="eq1"><code>q = &frac12; &rho; V&sup2;</code><span class="out mono" id="o1"></span></div>
+      <div class="eq" id="eq2"><code>C<sub>L</sub> = m g / (q S)</code><span class="out mono" id="o2"></span></div>
+      <div class="eq" id="eq3"><code>D = (C<sub>D0</sub> + k C<sub>L</sub>&sup2;) q S</code><span class="out mono" id="o3"></span></div>
+      <div class="eq" id="eq4"><code>&#7745; = c&middot;D &middot; k<sub>flow</sub> &nbsp;&rarr;&nbsp; m &minus;= &#7745;&middot;&Delta;t</code><span class="out mono" id="o4"></span></div>
+    </div>
+
+    <div class="chartwrap">
+      <svg id="trace" viewBox="0 0 760 260" role="img" aria-label="Fuel remaining and fuel flow against time for the worked example"></svg>
+    </div>
+
+    <div class="scalesplit">
+      <div><p class="eyebrow">Flow scale k = 1.000000</p><p class="big mono" id="k1out">&mdash;</p><p class="sub">baseline multiplier from the supplied example</p></div>
+      <div><p class="eyebrow">Flow scale k = 1.024738</p><p class="big mono" id="k2out">&mdash;</p><p class="sub">comparison multiplier, 2.47&nbsp;% higher flow</p></div>
+      <div><p class="eyebrow">Difference</p><p class="big mono" id="kdiff">&mdash;</p><p class="sub">exhaustion arrives earlier on the higher scale</p></div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:22px">
+    <p><strong>Historical comparison, as reported in the supplied demonstration:</strong> <span class="mono">15,123.0 s</span> to fuel exhaustion on the lower flow scale and <span class="mono">14,757.5 s</span> on the higher one, a shift of <span class="mono">365.5 s</span>. The source attributes this pair to its full model. These are retained reference values, not a result generated or independently verified by this browser tool.</p>
+    <p>The simplified example is not expected to reproduce that pair. It makes the feedback visible: fuel flow is recomputed from the current mass at each step, so the burn rate changes as the aircraft lightens.</p>
+  </div>
+</div></section>
+<details id="physics" class="demo-notes"><summary>How it works <span>Satellite measurements, the fuel loop and the feasible-set formulation</span></summary><section><div class="demo-inner">
+  <div class="head">
+    <h2>A feasible-set formulation</h2>
+    <p>This formulation describes how an evaluated family of flight states can be screened against declared physical and observational constraints. The resulting set depends on the starting population, command family, model and thresholds. The browser tool illustrates part of the fuel calculation; it does not evaluate the complete set below.</p>
+  </div>
+
+  <div class="plate mathplate">
+    <div class="mathrow">
+      <div class="mnum">1</div>
+      <div class="mbody">
+        <p class="mcap">The admissible set &mdash; which flights survive</p>
+        <div class="mdisp scroll"><div class="mline"><i>A</i> <o>=</o> <br3>{</br3> <o>(</o><i>x</i><sub>0</sub><o>,</o> <i>u</i><o>)</o> <o>&isin;</o> <i>X</i><sub>0</sub> <o>&times;</o> <i>U</i> <o>&nbsp;:&nbsp;</o> <span class="mgrp"><span>d<i>x</i>/d<i>t</i> <o>=</o> <i>f</i><o>(</o><i>x</i><o>,</o> <i>u</i><o>,</o> <i>w</i><o>,</o> <i>&theta;</i><o>)</o><o>,</o></span> <span><o>|</o><i>r<sub>i</sub></i><o>|</o> <o>/</o> <i>&sigma;<sub>i</sub></i> <o>&le;</o> <i>&kappa;</i> <o>&nbsp;&forall;</o> <i>i</i> <o>&isin;</o> <i>I</i><o>,</o></span> <span><i>&beta;</i><o>(</o><i>x</i><o>,</o><i>t</i><o>)</o> <o>&ge;</o> 0<o>,</o></span> <span><i>m<sub>f</sub></i><o>(</o><i>t</i><o>)</o> <o>&ge;</o> 0</span></span> <br3>}</br3></div></div>
+      </div>
+    </div>
+    <div class="mathrow">
+      <div class="mnum">2</div>
+      <div class="mbody">
+        <p class="mcap">The reachable set &mdash; where powered flight ends</p>
+        <div class="mdisp scroll"><div class="mline"><i>R</i> <o>=</o> <br3>{</br3> <i>&pi;</i><o>(</o><i>x</i><o>(</o><i>&tau;</i><o>))</o> <o>&nbsp;:&nbsp;</o> <o>(</o><i>x</i><sub>0</sub><o>,</o> <i>u</i><o>)</o> <o>&isin;</o> <i>A</i> <br3>}</br3><o>,</o> <span class="msep"><i>&tau;</i> <o>=</o> inf<o>{</o> <i>t</i> <o>:</o> <i>m<sub>f</sub></i><o>(</o><i>t</i><o>)</o> <o>=</o> 0 <o>}</o></span></div></div>
+      </div>
+    </div>
+    <div class="mathrow">
+      <div class="mnum">3</div>
+      <div class="mbody">
+        <p class="mcap">The determination map &mdash; three outcomes, not two</p>
+        <div class="mdisp scroll"><div class="mline"><i>D</i><o>(</o><i>x</i><sub>0</sub><o>,</o> <i>u</i><o>)</o> <o>=</o> <span class="mcases"><span><b>&perp;</b> <o>if</o> <i>t</i><sub>dom</sub> <o>&lt;</o> min<o>(</o><i>&tau;</i><o>,</o> <i>t<sub>c</sub></i><o>)</o></span><span><b>0</b> <o>if</o> <i>&tau;</i> <o>&le;</o> <i>t<sub>c</sub></i> <o>and</o> <i>&tau;</i> <o>&le;</o> <i>t</i><sub>dom</sub></span><span><b>1</b> <o>if</o> <i>t<sub>c</sub></i> <o>&lt;</o> <i>&tau;</i> <o>and</o> <i>t<sub>c</sub></i> <o>&le;</o> <i>t</i><sub>dom</sub></span></span></div></div>
+        <p class="mnote">The data boundary is checked first. Fuel exhaustion exactly at the checkpoint is classified as power lost by that checkpoint.</p>
+      </div>
+    </div>
+    <div class="mathrow">
+      <div class="mnum">4</div>
+      <div class="mbody">
+        <p class="mcap">The held-out test &mdash; computed, never used above</p>
+        <div class="mdisp scroll"><div class="mline"><i>&rho;<sub>j</sub></i> <o>=</o> <o>|</o><i>z<sub>j</sub></i> <o>&minus;</o> <i>g</i><o>(</o><i>x</i><o>(</o><i>t<sub>j</sub></i><o>)</o><o>,</o> <i>s</i><o>(</o><i>t<sub>j</sub></i><o>))</o><o>|</o> <o>/</o> <i>&sigma;<sub>j</sub></i><o>,</o> <span class="msep"><i>j</i> <o>&notin;</o> <i>I</i></span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll" style="margin-top:22px"><table>
+    <thead><tr><th>Symbol</th><th>Reads as</th><th>What it is physically</th></tr></thead>
+    <tbody>
+      <tr><td class="num"><i>x</i></td><td>the state</td><td>State variables such as latitude, longitude, altitude, airspeed, heading and current mass at one instant.</td></tr>
+      <tr><td class="num"><i>x</i><sub>0</sub>, <i>X</i><sub>0</sub></td><td>a start state, and the set of them</td><td>The evaluated starting population. The supplied historical snapshot reports 1,565 incoming histories; it does not enumerate every physically possible state.</td></tr>
+      <tr><td class="num"><i>u</i>, <i>U</i></td><td>a command, and the command family</td><td>How the aircraft is commanded. The supplied snapshot describes a six-schedule family.</td></tr>
+      <tr><td class="num"><i>f</i></td><td>the flight dynamics</td><td>The selected equations governing how the model state changes. The fuel-loop table below illustrates one part.</td></tr>
+      <tr><td class="num"><i>w</i></td><td>the forcing</td><td>Wind and atmospheric fields used by a full flight model. The browser example holds its atmosphere fixed.</td></tr>
+      <tr><td class="num"><i>&theta;</i></td><td>the performance parameters</td><td>The aircraft and engine coefficients declared for a calculation. This demonstration keeps its supplied coefficients fixed.</td></tr>
+      <tr><td class="num"><i>r<sub>i</sub></i>, <i>&sigma;<sub>i</sub></i></td><td>residual and its uncertainty scale</td><td>Predicted minus observed satellite measurement, and the assumed uncertainty scale. The source example quotes 21.94 &micro;s for timing; the applicable scale depends on the measurement contract.</td></tr>
+      <tr><td class="num"><i>&kappa;</i></td><td>the acceptance threshold</td><td>The declared multiple of the uncertainty scale used for a screen. This page sets no new acceptance threshold.</td></tr>
+      <tr><td class="num"><i>&beta;</i></td><td>the buffet margin</td><td>Whether the wing retains manoeuvre margin. A negative value means this frozen performance model does not support that flight condition. That is a statement about the model's declared envelope, not a proof about the airframe.</td></tr>
+      <tr><td class="num"><i>m<sub>f</sub></i></td><td>fuel remaining</td><td>Must never go negative. The instant it reaches zero is <i>&tau;</i>, and that instant is an output.</td></tr>
+      <tr><td class="num"><i>&pi;</i></td><td>projection to the surface</td><td>Maps the state at fuel exhaustion to a surface position directly beneath it. That is the point where powered flight ends, which is <em>not</em> the point of water contact &mdash; see the note below.</td></tr>
+      <tr><td class="num"><i>t<sub>c</sub></i></td><td>the checkpoint</td><td>The time of the handshake being tested, 00:11 UTC for the determination above.</td></tr>
+      <tr><td class="num"><i>t</i><sub>dom</sub></td><td>the data boundary</td><td>When the flight leaves the extent of the available weather fields. This is a limit of the analysis, not of the aircraft.</td></tr>
+      <tr><td class="num"><b>&perp;</b></td><td>undetermined</td><td>The question was not resolved before the supported calculation ended. It must remain separate from a demonstrated exclusion.</td></tr>
+      <tr><td class="num"><i>&rho;<sub>j</sub></i></td><td>the held-out residual</td><td>A diagnostic against an observation excluded from fitting and selection. Here that refers to the 22:41 BTO, not every measurement at that epoch.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout" style="margin-top:24px">
+    <p>The formulation keeps three things explicit: the declared constraint set, an observation excluded from fitting and selection, and an undetermined outcome when support ends early. Writing a feasibility condition does not establish how earlier histories were fitted; those details belong to each experiment's method record.</p>
+    <p>Here <i>R</i> is the set of supported fuel-exhaustion positions. Its extent reflects the evaluated family and assumptions.</p>
+    <p><strong style="color:var(--hot)">Fuel exhaustion and water contact are different events.</strong> This formulation ends powered flight. A subsequent descent requires a continuation model with its own assumptions. The current Atlas <a href="flighthistories.html">Flight histories</a> page records those continuations separately.</p>
+  </div>
+</div></section><section class="band"><div class="demo-inner">
+  <div class="head">
+    <h2>What the satellite actually measured</h2>
+    <p>Satellite timing and frequency measurements constrain a flight in different ways. Timing supplies range information; frequency supplies information about relative motion and the radio system. Neither measurement by itself gives the aircraft's position.</p>
+  </div>
+
+  <div class="btogrid">
+    <div class="btocard">
+      <p class="eyebrow">BTO &middot; burst timing offset</p>
+      <h3>How long the signal took</h3>
+      <p>The timing offset relates to the signal's round trip. After accounting for fixed delays and the ground-station leg, the timing model constrains aircraft&ndash;satellite slant range. A change in round-trip time corresponds to a range change of c&Delta;t/2. Intersecting a range constraint with the assumed aircraft altitude produces an arc of possible positions.</p>
+      <div class="measure">
+        <div><span class="mlab">Scale quoted in source example</span><span class="mval mono">21.94 &micro;s</span></div>
+        <div><span class="mlab">Equivalent range scale, c&Delta;t/2</span><span class="mval mono">&plusmn;3.3 km</span></div>
+      </div>
+      <p class="mnote">This illustrates the timing-to-range conversion, not a universal error band for every message type. See <a href="methods.html">Methods</a> for the Atlas measurement conventions.</p>
+    </div>
+    <div class="btocard">
+      <p class="eyebrow">BFO &middot; burst frequency offset</p>
+      <h3>How the signal was shifted</h3>
+      <p>Motion stretches or compresses a radio frequency, the same effect that drops the pitch of a passing siren. The measured shift combines the aircraft's own velocity, its rate of climb or descent, the satellite's drift in its orbit, and the correction the aircraft's own terminal was applying at the time. Unwind the known parts and what remains constrains the aircraft's direction and speed along the arc.</p>
+      <div class="measure">
+        <div><span class="mlab">What it constrains</span><span class="mval">relative motion</span></div>
+        <div><span class="mlab">What it does not give alone</span><span class="mval">a unique position</span></div>
+      </div>
+      <p class="mnote">Different combinations of speed and heading can produce the same frequency shift. The ambiguity is real and is not wished away.</p>
+    </div>
+  </div>
+
+  <div class="plate" style="margin-top:20px">
+    <p class="eyebrow" style="margin-bottom:12px">How a flight state becomes a predicted measurement</p>
+    <div class="geowrap"><svg id="geo" viewBox="0 0 760 300" role="img" aria-label="Geometry diagram showing the satellite, the slant range to the aircraft, the resulting ring of equal range on the ocean surface, and the Doppler sensitivity to heading"></svg></div>
+    <ol class="steps" style="margin-top:20px">
+      <li><b>A flight model produces a state at each epoch</b><span>Position, altitude, velocity and vertical rate follow from the model's starting state, commands, forcing and dynamics.</span></li>
+      <li><b>From that state the model predicts what the satellite would have measured</b><span>Range gives a predicted timing offset. The velocity vector, the satellite's own motion and the terminal's compensation give a predicted frequency offset.</span></li>
+      <li><b>Prediction minus observation is the residual</b><span>Dividing by the assumed uncertainty scale makes the mismatch easier to compare. Acceptance or exclusion requires the experiment's declared measurement model and screen.</span></li>
+      <li><b>Keep fitting and independent checks distinguishable</b><span>An observation reserved for checking must stay out of fitting and selection. This browser example performs neither a satellite fit nor a candidate selection.</span></li>
+    </ol>
+  </div>
+
+  <div class="two" style="margin-top:26px">
+    <div class="callout" style="border-color:var(--cold)">
+      <h3 style="margin-bottom:8px">One measurement is deliberately withheld</h3>
+      <p>The example describes reserving the 22:41 <strong>BTO</strong> from fitting and selection, then comparing the completed flight's prediction against it. This does not mean the BFO at the same epoch is also withheld.</p>
+      <p>The residual provides an out-of-sample diagnostic. Interpreting a miss requires the declared uncertainty model and acceptance rule; a mismatch alone is not a calibrated rejection of the whole method. The current treatment is documented in <a href="methods.html">Methods</a>.</p>
+    </div>
+    <div class="callout" style="border-color:var(--undet)">
+      <h3 style="margin-bottom:8px">An open question, stated rather than buried</h3>
+      <p>The supplied demonstration reports two timing-bias conventions forty microseconds apart. That difference corresponds to about six kilometres of slant range through c&Delta;t/2.</p>
+      <p>A bias convention and any correction for a final log-on message must follow the applicable source and message model. This demonstration does not resolve either question; use the current <a href="canonical.html">Canonical data</a> and <a href="methods.html">Methods</a> records.</p>
+    </div>
+  </div>
+
+  <p class="lede" style="margin-top:26px;font-size:.92rem">This is why fuel and aerodynamics matter so much. The satellite data alone leaves a long arc and a family of headings that fit it. What narrows that down is the question of which of those flights the aircraft could physically have flown on the fuel it was carrying.</p>
+</div></section><section class="band"><div class="demo-inner">
+  <div class="head">
+    <h2>The aircraft is an object, not a dot</h2>
+    <p>In this example, fuel burn depends on drag, drag depends on the lift needed to support the current mass, and mass decreases as fuel is burned. The browser recomputes that loop each minute while holding the atmosphere and commanded speed fixed.</p>
+  </div>
+  <div class="two">
+    <div><svg id="loop" viewBox="0 0 400 320" role="img" aria-label="Diagram of the coupled loop between aircraft mass, lift, drag and fuel flow"></svg></div>
+    <ol class="steps">
+      <li><b>Mass falls as fuel is burned</b><span>Each step subtracts the burned fuel from both the inventory and total mass.</span></li>
+      <li><b>Less weight needs less lift in steady level flight</b><span>At fixed airspeed and density, the required lift coefficient falls as the aircraft lightens.</span></li>
+      <li><b>The induced part of drag falls</b><span>The simple drag polar responds to the lower lift coefficient while its parasite term stays fixed.</span></li>
+      <li><b>Lower drag means lower flow</b><span>Which feeds back into the mass, and the loop closes. Altitude and speed set the gain.</span></li>
+    </ol>
+  </div>
+  <div class="plate" style="margin-top:24px">
+    <p class="eyebrow" style="margin-bottom:12px">The fuel calculation, written out</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Quantity</th><th>Relation</th><th>Why it is not a constant</th></tr></thead>
+      <tbody>
+        <tr><td>Total mass</td><td class="num">m = m<sub>airframe</sub> + m<sub>fuel</sub>(t)</td><td>Fuel burned is mass gone. Only the first term is fixed.</td></tr>
+        <tr><td>Dynamic pressure</td><td class="num">q = &frac12; &rho; V&sup2;</td><td>Depends on air density and air-relative speed. Both are held fixed in this browser example.</td></tr>
+        <tr><td>Lift coefficient</td><td class="num">C<sub>L</sub> = m g / (q S)</td><td>Falls as the aircraft lightens. This is the link from fuel burned to aerodynamics.</td></tr>
+        <tr><td>Drag</td><td class="num">D = (C<sub>D0</sub> + k C<sub>L</sub>&sup2;) q S</td><td>At fixed q, the induced term falls with the square of mass; the parasite term remains fixed.</td></tr>
+        <tr><td>Fuel flow</td><td class="num">&#7745; = c &middot; D &middot; k<sub>flow</sub></td><td>In steady cruise thrust balances drag, so the burn is set by the drag just computed.</td></tr>
+        <tr><td>Mass update</td><td class="num">m<sub>fuel</sub> &larr; m<sub>fuel</sub> &minus; &#7745; &Delta;t</td><td>Feeds into the next step. The final interval is shortened so the fuel inventory ends at zero.</td></tr>
+        <tr><td>Illustrative buffet margin</td><td class="num">0.77 &minus; C<sub>L</sub> / C<sub>L,max</sub></td><td>A supplied surrogate diagnostic. A negative value is outside its declared margin, not proof that the real airframe cannot fly there.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="mnote" style="margin-top:12px">S is wing area, &rho; air density, g gravity, c the specific fuel consumption, and k<sub>flow</sub> a flow multiplier. The demonstration retains the supplied pair 1.000000 and 1.024738, a 2.47&nbsp;% difference.</p>
+  </div>
+
+  <div class="figs" style="margin-top:26px">
+    <div class="fig"><p class="k">Altitude</p><p class="v">Air density</p><p class="d">At a given airspeed, lower density changes both dynamic pressure and the lift coefficient required to support the aircraft.</p></div>
+    <div class="fig"><p class="k">Speed</p><p class="v">Fixed Mach</p><p class="d">The browser example holds Mach and sound speed fixed. Its simple drag polar does not model transonic drag rise.</p></div>
+    <div class="fig"><p class="k">Declared limit</p><p class="v">Buffet margin</p><p class="d">A heavy aircraft high up has little margin left. Flights that cross the frozen performance model's declared envelope are recorded as unsupported rather than carried forward.</p></div>
+  </div>
+
+  <div class="head" style="margin-top:40px">
+    <h3 style="font-size:clamp(1.05rem,2.1vw,1.25rem)">The wind is not a detail</h3>
+    <p>The wing responds to air-relative motion. The path over the ground follows the vector sum of air-relative velocity and wind. Keeping those two velocities distinct is essential when comparing a flight with satellite observations.</p>
+  </div>
+
+  <div class="btogrid">
+    <div class="btocard">
+      <p class="eyebrow">Where wind enters the physics</p>
+      <h3>Airspeed and groundspeed</h3>
+      <p>At unchanged air-relative speed and density, a headwind or tailwind does not by itself change dynamic pressure or drag. It changes ground velocity and therefore the distance covered in a given time. Changes in the commanded flight, route or atmospheric state can also change the fuel calculation.</p>
+      <div class="measure">
+        <div><span class="mlab">Air-relative velocity</span><span class="mval">aerodynamic forces</span></div>
+        <div><span class="mlab">Ground velocity</span><span class="mval">distance covered</span></div>
+      </div>
+      <p class="mnote">This browser example has no route or wind field. It isolates the mass and fuel feedback.</p>
+    </div>
+    <div class="btocard">
+      <p class="eyebrow">Where the wind comes from</p>
+      <h3>ERA5 reanalysis</h3>
+      <p>The supplied method description uses <strong>ERA5</strong> atmospheric reanalysis for 7&ndash;8 March 2014, sampled on a regular 0.25&deg; latitude&ndash;longitude grid of 721 &times; 1440 points and pressure levels spanning cruise altitudes.</p>
+      <p>A reanalysis combines observations with an atmospheric model to reconstruct past conditions. Its fields are model estimates, not direct measurements at the aircraft. The browser demonstration does not load them.</p>
+      <div class="measure">
+        <div><span class="mlab">Grid</span><span class="mval mono">0.25&deg;</span></div>
+        <div><span class="mlab">Points</span><span class="mval mono">721 &times; 1440</span></div>
+        <div><span class="mlab">Date</span><span class="mval mono">7&ndash;8 Mar 2014</span></div>
+      </div>
+      <p class="mnote">The stated date belongs to the supplied method description; the interactive example uses fixed atmospheric constants.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:22px;border-color:var(--undet)">
+    <p>A full flight model must interpolate atmospheric fields along the trajectory and respect their available extent. The supplied historical description records weather-domain exits as undetermined when they occur before the question is settled.</p>
+    <p>A weather-data boundary limits the supported calculation; it is not a physical boundary for the aircraft.</p>
+  </div>
+</div></section></details>
+<details id="snapshot" class="demo-notes"><summary>Historical campaign snapshot <span>Figures supplied with the demonstration · 1 November 2026, 10:00 UTC</span></summary>
+<p class="demo-snapshot-note">These counts and comparison values are retained from the supplied demonstration. They are a static historical snapshot, separate from the current six-history terminal catalogue.</p><section><div class="demo-inner">
+  <div class="head">
+    <h2>How the supplied population is counted</h2>
+    <p>The historical snapshot reports 1,565 incoming histories. Of these, 1,523 admit all six schedules: 1,523 &times; 6 = 9,138 simulations. The remaining 42 histories are retained as out-of-bounds records, bringing the reported register to 9,180 entries.</p>
+  </div>
+  <div class="funnel" id="funnel"></div>
+  <p class="lede" style="margin-top:20px;font-size:.92rem">The source describes six schedules: a slow and fast edge, three intermediate settings and one holding the arrival condition steady. Their spread measures sensitivity within that selected family, not the full uncertainty over every possible flight.</p>
+</div></section><section><div class="demo-inner">
+  <div class="head">
+    <h2>Source-reported fuel sensitivity</h2>
+    <p>The supplied demonstration attributes these figures to an earlier campaign phase covering 1,565 histories under one command family. They are preserved here as historical reference values. In the illustrated calculation, fuel-exhaustion time follows from integrating the declared burn model and starting inventory.</p>
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th>Measurement</th><th>Value</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td>Fuel-flow sensitivity, paired median</td><td class="num">&minus;384.2 s</td><td>Reported shift for the 2.47&nbsp;% flow increase, over 1,159 histories where both branches finish.</td></tr>
+      <tr><td>Range across those histories</td><td class="num">&minus;415.4 &hellip; &minus;292.9 s</td><td>Reported range for that evaluated population. It is not a bound on the real aircraft.</td></tr>
+      <tr><td>Demonstrated power loss before 22:41</td><td class="num">none</td><td>The source reports no demonstrated fuel-exhaustion event before this epoch. Histories censored before the epoch remain unresolved.</td></tr>
+    </tbody>
+  </table></div>
+</div></section><section class="band"><div class="demo-inner">
+  <div class="head">
+    <h2>The model is allowed to say it does not know</h2>
+    <p>For a question about power at a checkpoint, a supported calculation can show power available, show fuel exhaustion, or end before either is established. The unresolved category must remain distinguishable from a demonstrated exclusion.</p>
+  </div>
+  <div class="det">
+    <div class="detrow"><i style="background:var(--cold)"></i><div><b>CONFIRMED POWERED IN MODEL</b><p>The aircraft was still under power at the checkpoint, demonstrated by the integration rather than assumed.</p></div></div>
+    <div class="detrow"><i style="background:var(--hot)"></i><div><b>CONFIRMED POWER LOSS BEFORE CHECKPOINT</b><p>Fuel exhaustion occurred earlier, at a time the simulation produced.</p></div></div>
+    <div class="detrow"><i style="background:var(--undet)"></i><div><b>UNDETERMINED &mdash; CENSORED</b><p>The flight left the extent of the available wind and temperature data before the question could be settled. The record is kept with that label on it. It reflects the reach of this analysis, not the behaviour of the aircraft.</p></div></div>
+  </div>
+  <div class="callout" style="margin-top:24px">
+    <p>The source reports censoring counts of 146, 315 and 325 histories across its first three handshake checkpoints, then no further increase. Its reported stopping times span 2,727 to 10,257 seconds after the reference epoch, before the 00:11 checkpoint.</p>
+    <p>The source attributes these stops to its available weather domain. A flat count alone would not identify the cause; the recorded stopping event is what distinguishes it.</p>
+  </div>
+</div></section><section class="band"><div class="demo-inner">
+  <div class="head">
+    <h2>Reported campaign progress</h2>
+    <p>The source describes batches of 25 simulations, committed and checked against a remote copy before proceeding. This page displays the supplied counts; it does not connect to that campaign or verify its present status.</p>
+    <p class="mnote" style="margin-top:8px"><strong>Static snapshot, not a live feed.</strong> The supplied snapshot is dated 1 November 2026 at 10:00 UTC. The progress bar does not update itself.</p>
+  </div>
+  <div class="frow">
+    <div class="flabel"><span class="n" id="pct"></span><span class="t" id="ptext"></span></div>
+    <div class="bar"><i id="pbar"></i></div>
+  </div>
+  <div class="figs" style="margin-top:22px">
+    <div class="fig"><p class="k">Reported durable records</p><p class="v mono">2,775</p><p class="d">Count reported as verified on the remote copy in the supplied snapshot.</p></div>
+    <div class="fig"><p class="k">Declared population</p><p class="v mono">9,180</p><p class="d">9,138 simulations plus 42 histories recorded as outside the command family's declared speed bounds.</p></div>
+    <div class="fig"><p class="k">Reported cost per simulation</p><p class="v mono">10.6 s</p><p class="d">Timing quoted for the source campaign, not a browser benchmark.</p></div>
+  </div>
+</div></section></details>
+<section id="demo-source"><div class="demo-inner"><div class="head"><h2>Source and scope</h2></div>
+<p>Adapted from Ryan’s supplied <cite>Arc 7 Hotspot Demonstration.html</cite>. The original point coordinates, campaign totals and cruise constants are retained. The display uses the Atlas console theme; explanatory wording and end-of-fuel handling have been clarified.</p>
+<p>The browser example uses fixed air density, sound speed, Mach and a simple drag polar. It loads no weather fields, satellite measurements or retained flight records. Its output is an illustration of the mass–drag–fuel feedback, not a reconstruction of MH370.</p>
+<p><a href="flighthistories.html">Retained flight histories</a> · <a href="canonical.html">Canonical observations</a> · <a href="methods.html">Model methods and checks</a> · <a href="src/arc7_demo.js">Read the demonstration code</a></p>
+</div></section></div>
+<script>MH.nav("arc7-demo.html");</script><script src="src/arc7_demo.js"></script></div></body></html>

@@ -1,0 +1,151 @@
+/* Local skin for the supplied teaching tool. Shared Atlas pages are unchanged. */
+.arc7-tool {
+  --bg:#c0c0c0; --plate:#fff; --ink:#121212; --ink-2:#323232; --ink-3:#505050;
+  --rule:#b4b4b4; --arc:#005a9c; --hot:#ae5700; --cold:#005a9c; --undet:#68458e;
+  --band:#d5d5d5; --f-display:Tahoma,"MS Sans Serif",Arial,sans-serif;
+  --f-body:Tahoma,"MS Sans Serif",Arial,sans-serif; --f-mono:"Courier New",monospace;
+  display:grid; gap:12px; color:var(--ink); font:13px/1.5 var(--f-body); min-width:0;
+}
+.arc7-tool * {box-sizing:border-box}
+.arc7-tool > *, .arc7-tool .demo-inner, .arc7-tool .mbody {min-width:0}
+.arc7-tool p {max-width:none; margin:0 0 9px}
+.arc7-tool h1,.arc7-tool h2,.arc7-tool h3 {font-family:var(--f-display);letter-spacing:0}
+.arc7-tool h1 {font-size:22px;line-height:1.2}
+.arc7-tool h2 {font-size:14px;margin:0 0 7px}
+.arc7-tool h3 {font-size:13px;margin:0 0 6px}
+.arc7-tool .mono,.arc7-tool .num {font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.arc7-tool .eyebrow {font:700 10px/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:#424242}
+.arc7-tool .demo-hero {padding:13px 12px;background:#e1e1e1;box-shadow:var(--sunken)}
+.arc7-tool .demo-heading {display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:5px 0 9px}
+.arc7-tool .demo-badge {font:700 10px var(--f-mono);background:#fff0bd;border:1px solid #8b6500;padding:4px 6px;white-space:nowrap}
+.arc7-tool .lede {font-size:14px;color:#252525}
+.arc7-tool .demo-scope {font-size:12px;color:#393939;margin-bottom:0}
+.arc7-tool .demo-toolbar {display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.arc7-tool .demo-toolbar a {display:block;padding:6px 11px;background:#c0c0c0;box-shadow:var(--raised);color:#000;text-decoration:none;font-size:12px}
+.arc7-tool .demo-toolbar a:hover {background:#d6d6d6;color:#000080}
+.arc7-tool .demo-toolbar a:active {box-shadow:var(--sunken)}
+.arc7-tool > section,.arc7-tool .demo-notes {border:2px groove #eee;scroll-margin-top:10px}
+.arc7-tool .demo-inner {padding:13px 11px}
+.arc7-tool .head {margin-bottom:11px}
+.arc7-tool .head > h2 {padding:5px 8px;background:linear-gradient(90deg,#000080,#257aaf);color:white;font-weight:700}
+.arc7-tool .head > p {font-size:12.5px;color:#292929}
+.arc7-tool .plate {padding:12px;background:#e2e2e2;box-shadow:var(--sunken);min-width:0}
+.arc7-tool .mapgrid {display:grid;grid-template-columns:minmax(0,1.25fr) minmax(240px,1fr);gap:14px;align-items:start}
+.arc7-tool .mapgrid > div:first-child {background:white;box-shadow:var(--sunken);padding:6px;overflow:auto}
+.arc7-tool svg {display:block;width:100%;max-width:100%;height:auto}
+.arc7-tool svg text {font-family:var(--f-mono)}
+.arc7-tool #map {min-width:390px;max-height:410px}
+.arc7-tool .keylist {display:grid;gap:0;min-width:0}
+.arc7-tool .key {display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;padding:9px 0;border-bottom:1px solid #aaa}
+.arc7-tool .key:last-child {border:0}
+.arc7-tool .key .dot {display:flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid #333;color:#fff;font:700 12px var(--f-mono)}
+.arc7-tool .key h3 {font-size:12px;margin-bottom:3px}
+.arc7-tool .key .co {font:700 12px var(--f-mono);color:#222}
+.arc7-tool .key .note {border:0;box-shadow:none;background:none;padding:0;border-radius:0;font-size:11.5px;color:#444;margin:0}
+.arc7-tool .warnbox,.arc7-tool .demo-snapshot-note {border:2px inset #eee;background:#fff6d8;padding:9px 11px;font-size:12px}
+.arc7-tool .warnbox p:last-child {margin:0}
+.arc7-tool .runbar {display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding-bottom:11px;border-bottom:1px solid #aaa}
+.arc7-tool .btn {min-height:32px;padding:6px 12px;font-size:12px;white-space:nowrap}
+.arc7-tool .btn.primary {font-weight:700;outline:1px solid #000080;outline-offset:1px}
+.arc7-tool .btn:disabled {color:#686868;cursor:default;text-shadow:1px 1px white}
+.arc7-tool .clock {background:#071d2a;color:#b9e9ff;border:2px inset #aaa;padding:5px 10px;font:700 17px/1.3 var(--f-mono);margin-left:auto;white-space:nowrap}
+.arc7-tool .elapsed {flex-basis:100%;font-size:12px;color:#303030}
+.arc7-tool #run-state {font:700 11px var(--f-mono);padding:5px 8px;background:#e8eff8;border:1px solid #647b95;display:inline-block;margin-top:7px}
+.arc7-tool .statewrap {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:15px 0}
+.arc7-tool .statecol {background:#b8b8b8;border:2px groove #f0f0f0;padding:8px;min-width:0}
+.arc7-tool .statecol .eyebrow {color:#252525;margin-bottom:7px}
+.arc7-tool .srow {display:flex;flex-direction:column;gap:3px;margin-bottom:8px;font-size:11px}
+.arc7-tool .srow:last-child {margin-bottom:0}
+.arc7-tool .srow b {display:block;background:#071d2a;color:#b9e9ff;border:2px inset #aaa;text-align:right;padding:4px 7px;font-size:14px;overflow-wrap:anywhere}
+.arc7-tool .eqbox {padding:11px;background:#071d2a;border:2px inset #aaa;color:#d1e7f2;margin-bottom:12px}
+.arc7-tool .eqbox .eyebrow {color:#a7cadb}
+.arc7-tool .eq {display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px;padding:6px;border:0;border-top:1px solid #2b4856;border-radius:0;background:transparent;box-shadow:none;margin:0;min-height:33px}
+.arc7-tool .eq code {color:inherit;font:12px var(--f-mono);overflow-wrap:anywhere}
+.arc7-tool .eq .out {font-size:12px;color:#ffd292;text-align:right}
+.arc7-tool .eq.lit {background:#274c61}
+.arc7-tool .chartwrap,.arc7-tool .geowrap {overflow:auto;background:#fff;box-shadow:var(--sunken);padding:8px}
+.arc7-tool #trace,.arc7-tool #geo {min-width:650px}
+.arc7-tool .scalesplit {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:14px}
+.arc7-tool .scalesplit > div {padding:8px;background:#d1d1d1;border:2px groove #eee;min-width:0}
+.arc7-tool .big {font-size:18px;font-weight:700;color:#00345a;margin-bottom:4px}
+.arc7-tool .scalesplit .sub {font-size:11px;line-height:1.35;margin:0}
+.arc7-tool .demo-notes {padding:3px;background:#c0c0c0}
+.arc7-tool .demo-notes > summary {cursor:pointer;padding:9px 10px;background:#d4d4d4;box-shadow:var(--raised);font-weight:700;font-size:13px;color:#000080}
+.arc7-tool .demo-notes > summary > span {display:block;padding-left:15px;font-size:11px;font-weight:400;color:#383838;margin-top:3px}
+.arc7-tool .demo-notes[open] > summary {box-shadow:var(--sunken);background:#dedede}
+.arc7-tool .demo-notes > section {margin-top:10px;border-top:1px solid #8c8c8c}
+.arc7-tool .demo-snapshot-note {margin:12px 10px}
+.arc7-tool .two,.arc7-tool .btogrid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start}
+.arc7-tool .btocard,.arc7-tool .callout {border:2px groove #eee;background:#d6d6d6;padding:11px;min-width:0;font-size:12px}
+.arc7-tool .callout p:last-child {margin-bottom:0}
+.arc7-tool .btocard > p {font-size:12px}
+.arc7-tool .measure {border:2px inset #eee;background:white;margin:12px 0;padding:6px}
+.arc7-tool .measure > div {display:flex;justify-content:space-between;gap:10px;padding:5px;font-size:11px;border-bottom:1px solid #ccc}
+.arc7-tool .measure > div:last-child {border:0}
+.arc7-tool .mval {text-align:right;font-weight:700}
+.arc7-tool .mnote {font-size:11.5px;color:#444}
+.arc7-tool ol.steps {padding:0;list-style:none;counter-reset:step;display:grid;gap:10px}
+.arc7-tool ol.steps li {counter-increment:step;display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:9px;font-size:12px}
+.arc7-tool ol.steps li::before {content:counter(step,decimal-leading-zero);grid-row:span 2;font:700 12px var(--f-mono);color:#005a9c}
+.arc7-tool ol.steps b {display:block;margin-bottom:3px}
+.arc7-tool ol.steps span {display:block;grid-column:2;color:#333}
+.arc7-tool .scroll {max-height:none;overflow:auto;padding:2px;background:white}
+.arc7-tool table {min-width:580px}
+.arc7-tool th,.arc7-tool td {font-size:12px;padding:7px 8px}
+.arc7-tool td.num {white-space:nowrap}
+.arc7-tool .mathrow {display:grid;grid-template-columns:24px minmax(0,1fr);gap:9px;padding:13px 0;border-bottom:1px solid #aaa}
+.arc7-tool .mathrow:last-child {border:0}
+.arc7-tool .mnum {font:700 13px var(--f-mono);color:#005a9c}
+.arc7-tool .mcap {font-size:12px;font-weight:700;margin:0 0 6px}
+.arc7-tool .mdisp {padding:7px}
+.arc7-tool .mline {font:16px/2 Georgia,"Times New Roman",serif;white-space:nowrap}
+.arc7-tool .mline i {font-style:italic}
+.arc7-tool .mline o {font-style:normal;padding:0 .1em}
+.arc7-tool .mline b {color:#8e4300}
+.arc7-tool .mline br3 {font-size:1.4em;vertical-align:-.08em}
+.arc7-tool .mgrp > span {padding-right:.5em}
+.arc7-tool .msep {padding-left:1em}
+.arc7-tool .mcases {display:inline-flex;flex-direction:column;vertical-align:middle;border-left:1px solid #555;padding-left:.5em;margin-left:.3em;line-height:1.6}
+.arc7-tool .funnel {display:grid;gap:12px}
+.arc7-tool .flabel {display:flex;justify-content:space-between;gap:5px 14px;flex-wrap:wrap;align-items:baseline;margin-bottom:4px}
+.arc7-tool .flabel .n {font:700 17px var(--f-mono);color:#00345a}
+.arc7-tool .flabel .t {font-size:12px;color:#333}
+.arc7-tool .bar {height:17px;background:#e6e6e6;box-shadow:var(--sunken);padding:2px;border-radius:0}
+.arc7-tool .bar i {height:100%;display:block;background:repeating-linear-gradient(90deg,#000080 0,#000080 9px,transparent 9px,transparent 11px)}
+.arc7-tool .figs {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.arc7-tool .fig {padding:9px;border:2px groove #eee;background:#cecece;min-width:0}
+.arc7-tool .fig .k {font:700 10px var(--f-mono);text-transform:uppercase}
+.arc7-tool .fig .v {font:700 21px var(--f-mono);background:#071d2a;color:#b9e9ff;border:2px inset #aaa;padding:5px 7px;overflow-wrap:anywhere}
+.arc7-tool .fig .d {font-size:11.5px;color:#333;margin:0}
+.arc7-tool .det {display:grid;gap:10px}
+.arc7-tool .detrow {display:grid;grid-template-columns:14px minmax(0,1fr);gap:10px}
+.arc7-tool .detrow i {width:12px;height:12px;margin-top:4px;border:1px solid #333}
+.arc7-tool .detrow b {font:700 12px var(--f-mono)}
+.arc7-tool .detrow p {font-size:12px;color:#333}
+.arc7-tool #demo-source p {font-size:12px}
+@media(max-width:1150px) {
+ .arc7-tool .statewrap {grid-template-columns:repeat(2,minmax(0,1fr))}
+ .arc7-tool .statecol:last-child {grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+ .arc7-tool .statecol:last-child .eyebrow {grid-column:1/-1;margin:0}
+}
+@media(max-width:750px) {
+ .arc7-tool .mapgrid,.arc7-tool .two,.arc7-tool .btogrid {grid-template-columns:minmax(0,1fr)}
+ .arc7-tool .statewrap {grid-template-columns:minmax(0,1fr)}
+ .arc7-tool .statecol:last-child {display:block}
+ .arc7-tool .statecol:last-child .eyebrow {margin-bottom:7px}
+ .arc7-tool .srow {flex-direction:row;align-items:center;justify-content:space-between;gap:8px}
+ .arc7-tool .srow b {font-size:13px;min-width:110px}
+ .arc7-tool .scalesplit,.arc7-tool .figs {grid-template-columns:minmax(0,1fr)}
+ .arc7-tool .eq {grid-template-columns:minmax(0,1fr)}
+ .arc7-tool .eq .out {text-align:left}
+ .arc7-tool .clock {margin-left:0;font-size:16px}
+ .arc7-tool .demo-inner {padding:10px 7px}
+ .arc7-tool .plate {padding:8px}
+ .arc7-tool .demo-heading h1 {font-size:20px}
+}
+@media(prefers-reduced-motion:reduce) {.arc7-tool .eq.lit {background:transparent}}
+@media print {
+ .arc7-tool .demo-toolbar,.arc7-tool .btn {display:none}
+ .arc7-tool .demo-inner,.arc7-tool .plate {padding:6px}
+ .arc7-tool .demo-notes {break-inside:avoid}
+}
