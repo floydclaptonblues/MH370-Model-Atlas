@@ -25,3 +25,5 @@ No new model runs, scoring, catalogue imports, or updates from later lower-speed
 The signed assessment source and generated page, and the Flight Lab dataset, are byte-identical to the baseline.
 
 Local Chromium rendering could not start because the execution environment blocked its process socket. The attempted Playwright pass therefore produced no visual or interaction validation. Browser validation, the Lab regression suite, final integrated checks and deployment status are separate from this editorial record.
+
+**Note added at publication:** the drift-page changes listed above (the 13-versus-11 comparison, the two-step sensitivity wording, the east–west offsets, and the G0 scope on the drift pages) were not published. See `DRIFT_EDITS_HELD_20261112.md`.

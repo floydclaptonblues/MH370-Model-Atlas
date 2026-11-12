@@ -32,3 +32,5 @@ Manual checkpoint selection stops the slideshow. Slider input preserves its DOM 
 `playback_repair_validation.json` records fresh DOM/controller checks, including source-value and force-vector checks. These are not flight simulations or scientific revalidation. Chromium launch was blocked in the recovery environment and the separate browser could not reach the local preview, so this record does not claim renewed desktop/mobile pixel QA.
 
 Reproduce controller checks with `npm install --prefix tests` then `node tests/flight_lab_dom.cjs` from the repository root. For actual browser checks, serve the repository locally on port 8765 and run `node tests/flight_lab_regression.cjs` with Playwright and Chromium installed.
+
+Browser checks were subsequently run in Chromium on desktop and phone-size viewports before publication; see `reports/CLAUDE_VERIFICATION_20261112.md`. The mass label distinguishes recorded from algebraically derived values.

@@ -43,8 +43,9 @@ def check():
     canonical = Path('src/canonical_body.html').read_text()
     assert '>observations only<' not in canonical
     assert 'ten derived BTO rings' in canonical
-    assert 'they are not a full-year timestep convergence test' in Path('src/drift3_body.html').read_text()
-    assert 'These offsets are not distances along the arc' in Path('src/drift4_body.html').read_text()
+    # The drift pages are held at the published baseline until Ryan Hall has reviewed the proposed wording (see reports/DRIFT_EDITS_HELD_20261112.md).
+    for path in ('src/drift2_body.html', 'src/drift3_body.html', 'src/drift4_body.html', 'drift.html', 'drift2.html', 'drift3.html', 'drift4.html', 'currents.html'):
+        assert baseline(path) == Path(path).read_bytes(), f'Drift page changed: {path}'
     print(f'PASS: {count} numeric table tokens and protected artifacts preserved; editorial scope assertions pass.')
 if __name__ == '__main__':
     check()
