@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "description": "Atlas display-only regression checks",
+  "devDependencies": {
+    "jsdom": "31.0.0"
+  }
+}

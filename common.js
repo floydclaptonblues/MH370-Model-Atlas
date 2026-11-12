@@ -111,11 +111,11 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
       '<div><span>FLIGHT RECORDS</span><output>278</output></div><div><span>FINAL STATES</span><output>3,171</output></div></div></div>' :
       '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +
       '<div><div class="ix-cap">Record status</div><div class="ix-lamps">' +
-      '<span><i class="lamp green"></i>Flight histories: current</span><span><i class="lamp amber"></i>Satellite chapter: archived</span>' +
+      '<span><i class="lamp green"></i>Histories: sampled branch</span><span><i class="lamp amber"></i>Satellite chapter: archived</span>' +
       '<span><i class="lamp amber"></i>Drift chapter: open</span><span><i class="lamp"></i>Aircraft located: no</span></div></div>' +
-      '<div><div class="ix-cap">Retained populations</div><div class="ix-ro">' +
+      '<div><div class="ix-cap">Published six-history branch</div><div class="ix-ro">' +
       '<div><span>HISTORIES</span><output>6</output></div><div><span>RESPONSES</span><output>98</output></div>' +
-      '<div><span>CANDIDATES</span><output>424</output></div><div><span>ENDPOINTS</span><output>68</output></div></div></div>');
+      '<div><span>CANDIDATES</span><output>424</output></div><div><span>FLOOR STATES</span><output>68</output></div></div></div>');
     strip.setAttribute('aria-label', 'Project summary');
     nav.after(strip);
     const main = el('div', 'ix-main'), rack = el('aside', 'ix-rack'), work = el('main', 'ix-work');
@@ -127,17 +127,17 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     const b2 = el('div', 'ix-box', isFlightLab ? '<b>Saved epochs, UTC</b><div class="ix-ro">' +
       '<div><span>FIRST SAVED</span><output>19:41:03</output></div><div><span>POWERED SAVE</span><output>00:11:00</output></div>' +
       '<div><span>FINAL TRANSMISSION</span><output>00:19:37</output></div><div><span>HOLDOUT</span><output>22:41 · sealed</output></div></div>' :
-      '<b>Flight clock, UTC</b><div class="ix-ro">' +
-      '<div><span>RADAR HANDOFF</span><output>18:22:12</output></div><div><span>FUEL EXHAUSTED</span><output>00:17:29</output></div>' +
-      '<div><span>LAST TRANSMISSION</span><output>00:19:37</output></div><div><span>FIRST FLOOR EXIT</span><output>00:25:41</output></div></div>');
+      '<b>Reference epochs, UTC</b><div class="ix-ro">' +
+      '<div><span>RADAR HANDOFF</span><output>18:22:12</output></div><div><span>FINAL LOG-ON</span><output>00:19:29</output></div>' +
+      '<div><span>LAST TRANSMISSION</span><output>00:19:37</output></div><div><span>FUEL / FLOOR EVENTS</span><output>case-dependent</output></div></div>');
     const b3 = el('div', 'ix-box', '<b>How to read a label</b><div class="ix-key">' +
       '<span><i class="tag ok">OBS</i>measured or published</span><span><i class="tag frozen">FRZ</i>frozen model or method</span>' +
-      '<span><i class="tag prov">PROV</i>provisional or under review</span><span><i class="tag blocked">NEG</i>negated or unavailable</span></div>');
+      '<span><i class="tag prov">PROV</i>provisional or under review</span><span><i class="tag blocked">NEG</i>tested scenario rejected</span><span><i class="tag prov">N/A</i>not available or uncomputed</span></div>');
     rack.append(b1, b2, b3);
     rest.forEach(n => work.append(n));
     main.append(rack, work); app.append(main);
     work.querySelectorAll('table').forEach(t => { if (!t.closest('.scroll,.ix-well')) { const w = el('div', 'ix-well'); t.before(w); w.append(t); } });
-    const status = el('footer', 'ix-status', '<div>Document: ' + here + '</div><div class="flex">Every coordinate is a conditional model state. No part of this work locates the aircraft.</div><div class="mono" id="ix-clock"></div>');
+    const status = el('footer', 'ix-status', '<div>Document: ' + here + '</div><div class="flex">Model coordinates are conditional; observation and source layers are labelled separately. No aircraft location is established.</div><div class="mono" id="ix-clock"></div>');
     app.append(status);
     const tick = () => { const d = new Date(); status.querySelector('#ix-clock').textContent = 'now ' + d.toISOString().slice(11, 16) + ' UTC'; };
     tick(); setInterval(tick, 30000);

@@ -1,0 +1,37 @@
+{
+  "scope": "DOM/controller checks with stubbed canvas renderer and controlled timers; not pixel/browser QA",
+  "passed": 25,
+  "tests": [
+    "Seven checkpoint worked example",
+    "Source-state synchronization at checkpoint 0",
+    "Source-state synchronization at checkpoint 1",
+    "Source-state synchronization at checkpoint 2",
+    "Source-state synchronization at checkpoint 3",
+    "Source-state synchronization at checkpoint 4",
+    "Source-state synchronization at checkpoint 5",
+    "Source-state synchronization at checkpoint 6",
+    "Slider node preserved during drag",
+    "Slideshow advances one saved checkpoint",
+    "Slider interrupts timer",
+    "Next button interrupts timer",
+    "Jump interrupts timer",
+    "Restart from final checkpoint starts at first then advances",
+    "View switch stops playback",
+    "Different response on witness parent gets no witness terminal state",
+    "Missing ground speed remains missing",
+    "Derived summary mass is labelled",
+    "Response without parent cannot show stale previous flight",
+    "Uncomputed cell clears selected flight",
+    "Force view follows selected UTC",
+    "Force diagram lift length matches source magnitude",
+    "Force diagram drag length matches source magnitude",
+    "Force return preserves exact witness response",
+    "Actual elapsed interval explicitly displayed"
+  ],
+  "browserQa": {
+    "status": "blocked",
+    "reason": "Chromium process could not create required socket; CUA browser could not reach localhost preview. Desktop/mobile pixel rendering not reverified."
+  },
+  "datasetSha256": "652729047a556b5bee46363f5aa6bc296466c5eaffcd20d5f7c1f1fb3ef28b7e",
+  "datasetUnchanged": true
+}

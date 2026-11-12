@@ -7,17 +7,17 @@
  <div class="ctl" id="rng"></div>
  <div class="read" id="ro1">Hover a plot for values.</div>
  <canvas id="c1"></canvas><canvas id="c2" style="margin-top:8px"></canvas>
- <p class="sub" style="margin-top:8px">Dashed lines mark the 10 usable BTO events from the validated sequence (table below). Raw BTO is shown, not corrected for bias. Within the same minute the log carries more than one BTO level (for example about 9,9xx and 14,9xx µs near 16:41–16:42). I show them as recorded and do not assign a cause.</p>
+ <p class="sub" style="margin-top:8px">Dashed lines mark the 10 usable BTO events from the validated sequence (table below). Raw BTO is shown, not corrected for bias. Within the same minute the log carries more than one BTO level (for example about 9,9xx and 14,9xx µs near 16:41–16:42). They are shown as recorded; no cause is assigned here.</p>
 </div>
 <div class="grid">
  <div class="card"><h2>What the log contains</h2><div id="stats"></div></div>
- <div class="card"><h2>Frozen-model facts (from your June restart manifests)</h2>
+ <div class="card"><h2>Frozen-model facts (from the June restart manifests)</h2>
   <p>BTO status <span class="tag ok">VALIDATED</span> absolute-calibrated, default bias −495,679 µs. Calibration max benchmark residual 59 µs against a 60 µs tolerance. 10 usable BTO events, 12 Table 6 rows, 2 BFO-only rows, 2 excluded log-on rows.</p>
-  <p class="muted">Those manifests describe the <b>June 2026 restart</b>, where BFO residuals were blocked. Your later frozen BTO/BFO scorer output (engine v06) is not in the folders I could read, so no scorer residuals or scorer-derived position appear here.</p></div>
+  <p class="muted">Those manifests describe the <b>June 2026 restart</b>, where BFO residuals were blocked. The later frozen BTO/BFO scorer output (engine v06) was unavailable to this historical compilation, so no scorer residuals or scorer-derived position appear here.</p></div>
 </div>
 <div class="card"><h2>Canonical event table v1.0 <span class="tag frozen">Average Day package</span></h2><p class="sub">From <code>mh370_satcom_canonical_events_v1_0.csv</code>. 12 canonical observations, 6 restart transients excluded, 1 terminal BFO-only row. Corrections of −4,600 µs are applied to the two log-on requests.</p><div class="scroll" style="max-height:420px"><table id="ce"></table></div></div>
 <div class="card"><h2>Published satellite state (Inmarsat Table 4)</h2><p class="sub">11 validated states, 16:30 to 00:20 UTC. Latitude and longitude of the sub-satellite point are computed here from the ECEF position. Perth ground station (ECEF km): −2368.8, 4881.1, −3342.0.</p><div class="scroll"><table id="ss"></table></div>
-<p class="sub" style="margin-top:6px">The 00:20 sub-satellite point (0.53°N, 64.46°E) matches the centre of the circle I fitted to your reference arc (0.53°N, 64.33°E), which supports treating the arc as a circle about the satellite.</p></div>
+<p class="sub" style="margin-top:6px">The 00:20 sub-satellite point (0.53°N, 64.46°E) matches the centre of the circle fitted to the supplied reference arc (0.53°N, 64.33°E), which supports treating the arc as a circle about the satellite.</p></div>
 <div class="card"><h2>June diagnostic table</h2><p class="sub">From <code>satcom_events.csv</code> (WS-002 chat export). Residual is observed minus predicted BTO for the diagnostic path family used in June, not a located aircraft. Blank means the file has no value.</p>
  <div class="scroll"><table id="ev"></table></div></div>
 <div class="card"><h2>Excluded or unavailable</h2><ul id="gaps"></ul></div>
@@ -57,6 +57,6 @@ document.getElementById("ss").innerHTML="<tr><th>UTC</th><th class=n>x km</th><t
 const rows=E;let h="<tr><th>Event</th><th>Time (UTC)</th><th>Kind</th><th class=n>BTO µs</th><th class=n>BFO Hz</th><th class=n>BTO residual µs</th><th>Gate</th></tr>";
 rows.forEach(e=>{h+=`<tr><td>${e.event_id||"–"}</td><td>${(e.event_utc||"").slice(5,19).replace("T"," ")||e.event_time_utc_unqualified||"–"}</td><td>${e.row_kind.replace(/_/g," ")}</td><td class=n>${e.bto_us||"–"}</td><td class=n>${e.bfo_hz||"–"}</td><td class=n>${e.bto_residual_us?MH.fmt(+e.bto_residual_us,1):"–"}</td><td>${e.bto_gate_passed==="true"?"pass ≤600":e.bto_gate_passed||"–"}</td></tr>`});
 document.getElementById("ev").innerHTML=h;
-document.getElementById("gaps").innerHTML=E.filter(e=>e.exclusion_reason).map(e=>`<li><b>${e.event_id||e.event_time_utc_unqualified||"row"}</b> (${e.row_kind.replace(/_/g," ")}): ${e.exclusion_reason}</li>`).join("")+"<li>Full UTC dates for the two excluded log-on rows are not stored in the manifest, only time of day.</li><li>The satellite ephemeris file in the WS-004 canon has zero satellite velocity and a fixed position for all rows, so I did not use it. The validated Table 4 states above come from the Average Day package.</li>";
+document.getElementById("gaps").innerHTML=E.filter(e=>e.exclusion_reason).map(e=>`<li><b>${e.event_id||e.event_time_utc_unqualified||"row"}</b> (${e.row_kind.replace(/_/g," ")}): ${e.exclusion_reason}</li>`).join("")+"<li>Full UTC dates for the two excluded log-on rows are not stored in the manifest, only time of day.</li><li>The satellite ephemeris file in the WS-004 canon has zero satellite velocity and a fixed position for all rows, so this display does not use it. The validated Table 4 states above come from the Average Day package.</li>";
 })();
 </script></div></body></html>
