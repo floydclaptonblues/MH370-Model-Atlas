@@ -1,0 +1,368 @@
+/* Flight Dynamics Lab — Atlas scientific console.
+   Deliberately scoped: the Atlas shell and other research pages keep common.css. */
+#flight-lab-app {
+  --fl-face: #d4d0c8;
+  --fl-face-light: #e5e2da;
+  --fl-paper: #f5f2e7;
+  --fl-ink: #172b36;
+  --fl-muted: #505e62;
+  --fl-line: #a6a39b;
+  --fl-blue: #245e8b;
+  --fl-orange: #8b5c22;
+  --fl-purple: #76518f;
+  --fl-title: #000080;
+  --fl-raised: inset 1px 1px #fff, inset -1px -1px #404040, inset 2px 2px #dfdfdf, inset -2px -2px #808080;
+  --fl-sunken: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #404040, inset -2px -2px #dfdfdf;
+  color: var(--fl-ink);
+  background: var(--fl-face);
+  box-shadow: var(--fl-raised);
+  padding: 3px;
+  min-width: 0;
+  font: 12px/1.5 Tahoma, "MS Sans Serif", Arial, sans-serif;
+  container-type: inline-size;
+  container-name: flightlab;
+}
+#flight-lab-app *, #flight-lab-app *::before, #flight-lab-app *::after { box-sizing: border-box; }
+#flight-lab-app [hidden] { display: none !important; }
+#flight-lab-app main { max-width: none; margin: 0; padding: 0; }
+#flight-lab-app p { max-width: none; line-height: 1.6; }
+#flight-lab-app h1, #flight-lab-app h2, #flight-lab-app h3 {
+  color: var(--fl-ink); font-family: Tahoma, "MS Sans Serif", Arial, sans-serif;
+  font-weight: 700; letter-spacing: 0; line-height: 1.35;
+}
+#flight-lab-app h1 { font-size: 22px; margin: 0 0 8px; }
+#flight-lab-app h2 { font-size: 18px; margin: 0 0 7px; border: 0; padding: 0; }
+#flight-lab-app h3 { font-size: 13px; margin: 0 0 8px; }
+#flight-lab-app a { color: #124d83; text-underline-offset: 2px; }
+#flight-lab-app code, #flight-lab-app pre { font-family: "Courier New", Consolas, monospace; font-size: 11px; overflow-wrap: anywhere; }
+#flight-lab-app button, #flight-lab-app select, #flight-lab-app input { font-family: inherit; color: var(--fl-ink); }
+#flight-lab-app button, #flight-lab-app select { border: 0; border-radius: 0; font-size: 11px; min-height: 28px; }
+#flight-lab-app button {
+  cursor: pointer; background: var(--fl-face); box-shadow: var(--fl-raised);
+  padding: 5px 10px; line-height: 1.4; text-transform: none; letter-spacing: 0;
+}
+#flight-lab-app button:hover { background: #e1ded7; }
+#flight-lab-app button:active { box-shadow: var(--fl-sunken); background: #c6c4bd; }
+#flight-lab-app button:disabled { cursor: not-allowed; color: #777; text-shadow: 1px 1px #fff; }
+#flight-lab-app button:focus-visible, #flight-lab-app a:focus-visible,
+#flight-lab-app select:focus-visible, #flight-lab-app input:focus-visible,
+#flight-lab-app canvas:focus-visible, #flight-lab-app summary:focus-visible {
+  outline: 2px solid #1c67ac; outline-offset: 3px;
+}
+#flight-lab-app .fl-window-title {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 27px; padding: 4px 7px;
+  color: #fff; background: linear-gradient(90deg, #000080, #326b9b);
+  font-size: 12px; font-weight: 700; line-height: 1.5;
+}
+#flight-lab-app .fl-window-title small { font: 10px "Courier New", monospace; font-weight: normal; color: #e1ebf4; }
+#flight-lab-app .fl-window-title a { color: #fff; }
+#flight-lab-app .fl-menu {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 4px 12px;
+  padding: 5px 6px; border-bottom: 1px solid #8b8984; box-shadow: 0 1px #fff;
+  font-size: 11px;
+}
+#flight-lab-app .fl-menu > span { color: #414b50; }
+#flight-lab-app .fl-menu code { color: #414b50; font-size: 10px; }
+#flight-lab-app .fl-menu .text-button { padding: 3px 7px; }
+#flight-lab-app .text-button {
+  background: transparent; box-shadow: none; min-height: 26px; padding: 3px 0;
+  font-size: 11px; color: #164e7b; text-decoration: underline; text-underline-offset: 3px;
+}
+#flight-lab-app .text-button:hover { background: transparent; color: #000080; }
+#flight-lab-app .text-button span { margin-left: 6px; }
+#flight-lab-app .outline-button, #flight-lab-app .solid-button {
+  display: inline-block; padding: 7px 11px; min-height: 30px; background: var(--fl-face);
+  box-shadow: var(--fl-raised); border: 0; border-radius: 0;
+  font: 11px/1.45 Tahoma, "MS Sans Serif", Arial, sans-serif; color: #172b36;
+  text-align: center; text-decoration: none;
+}
+#flight-lab-app .solid-button { font-weight: 700; color: #000080; outline: 1px solid #454545; outline-offset: -4px; }
+#flight-lab-app .outline-button:hover, #flight-lab-app .solid-button:hover { background: #e5e2da; }
+#flight-lab-app .outline-button span { margin-left: 9px; }
+#flight-lab-app .eyebrow {
+  margin: 0 0 7px; color: #4b5c66; font-size: 10px; font-weight: 700;
+  letter-spacing: .055em; text-transform: uppercase;
+}
+#flight-lab-app .intro {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 14px 11px 15px;
+}
+#flight-lab-app .intro > div:first-child { min-width: 0; }
+#flight-lab-app .intro .eyebrow { display: flex; align-items: center; gap: 7px; }
+#flight-lab-app .tiny-orbit { display: inline-block; height: 8px; width: 8px; background: #000080; flex: 0 0 auto; }
+#flight-lab-app .intro-copy { margin: 0; color: var(--fl-muted); font-size: 12px; max-width: 66ch; }
+#flight-lab-app .intro-facts { display: flex; align-items: stretch; gap: 4px; flex-shrink: 0; }
+#flight-lab-app .intro-facts > div { background: #e6e4dc; padding: 7px 9px; box-shadow: var(--fl-sunken); }
+#flight-lab-app .intro-facts strong { display: block; color: #172f47; font: bold 23px/1.2 "Courier New", monospace; font-variant-numeric: tabular-nums; }
+#flight-lab-app .intro-facts span { display: block; font-size: 9px; color: #4a565b; margin-top: 3px; }
+#flight-lab-app .lab { background: var(--fl-face); border: 0; border-radius: 0; margin: 0 5px; min-width: 0; padding: 0 3px 3px; box-shadow: var(--fl-raised); }
+#flight-lab-app .view-tabs {
+  display: flex; align-items: stretch; flex-wrap: nowrap; gap: 3px;
+  padding: 8px 7px 0; margin: 0; border: 0; border-bottom: 1px solid #fff;
+  min-height: 0; overflow: visible; background: var(--fl-face);
+}
+#flight-lab-app .view-tabs button {
+  position: relative; padding: 9px 13px 8px; color: #46545a; font-size: 12px;
+  background: #c5c4bf; box-shadow: var(--fl-raised); border: 0;
+  display: flex; align-items: center; gap: 7px;
+}
+#flight-lab-app .view-tabs button span { font: 11px "Courier New", monospace; color: #64747c; }
+#flight-lab-app .view-tabs button.active {
+  color: #000080; font-weight: 700; background: var(--fl-face);
+  margin-top: -3px; margin-bottom: -1px; padding-top: 12px; z-index: 1;
+  box-shadow: inset 1px 1px #fff, inset -1px 0 #404040, inset 2px 2px #dfdfdf, inset -2px 0 #808080;
+}
+#flight-lab-app .view-tabs button.active span { color: #000080; }
+#flight-lab-app .view-heading { display: flex; align-items: center; justify-content: space-between; gap: 17px; padding: 17px 11px 12px; }
+#flight-lab-app .view-heading > div { min-width: 0; }
+#flight-lab-app .view-heading .eyebrow { font-size: 9px; margin-bottom: 5px; }
+#flight-lab-app .view-heading h2 { font-size: 19px; margin-bottom: 6px; }
+#flight-lab-app .view-heading p:last-child { font-size: 11px; color: var(--fl-muted); margin: 0; max-width: 76ch; }
+#flight-lab-app .view-heading .outline-button { flex-shrink: 0; }
+#flight-lab-app .toolbar {
+  display: flex; flex-wrap: wrap; align-items: end; gap: 10px 12px;
+  margin: 0 10px; padding: 10px; min-height: 70px;
+  background: #e0ded6; box-shadow: var(--fl-sunken);
+}
+#flight-lab-app .field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+#flight-lab-app .field label { font-size: 10px; font-weight: 700; color: #46545b; }
+#flight-lab-app select {
+  background: #fffef8; box-shadow: var(--fl-sunken); padding: 6px 24px 6px 7px;
+  min-height: 30px; max-width: 250px; min-width: 0;
+}
+#flight-lab-app .toolbar .field.wide { flex: 1; min-width: 210px; }
+#flight-lab-app .toolbar .field.wide select { max-width: 100%; width: 100%; }
+#flight-lab-app .inline-toggle { display: flex; align-items: center; gap: 5px; font-size: 11px; margin-bottom: 6px; }
+#flight-lab-app input[type=checkbox] { accent-color: #245e8b; width: 14px; height: 14px; flex-shrink: 0; }
+#flight-lab-app input[type=range] { accent-color: #376d94; width: 100%; min-width: 0; cursor: pointer; box-shadow: none; padding: 0; }
+#flight-lab-app .segmented { display: flex; align-self: center; padding: 3px; gap: 3px; background: #bbbcb7; box-shadow: var(--fl-sunken); }
+#flight-lab-app .segmented button { padding: 6px 9px; font-size: 11px; }
+#flight-lab-app .segmented button.active { background: #eeece5; color: #000080; font-weight: 700; box-shadow: var(--fl-sunken); }
+#flight-lab-app .toolbar-note { font-size: 10px; color: #505e62; margin-left: auto; padding-bottom: 6px; }
+#flight-lab-app .workbench { display: grid; grid-template-columns: minmax(0,1fr) 260px; gap: 10px; margin: 11px 10px 0; align-items: start; }
+#flight-lab-app .scene-column { min-width: 0; }
+#flight-lab-app .scene-shell {
+  position: relative; min-width: 0; isolation: isolate; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 42%, #273e4a 0, #172c38 55%, #10212c 100%);
+  border: 2px solid; border-color: #4c4d48 #f9f9f5 #f9f9f5 #4c4d48;
+  border-radius: 0; box-shadow: inset 0 0 0 1px #07141b;
+}
+#flight-lab-app .scene-shell::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+  background-image: linear-gradient(#ffffff03 1px,transparent 1px),linear-gradient(90deg,#ffffff03 1px,transparent 1px);
+  background-size: 32px 32px;
+}
+#flight-lab-app .scene-top { position: absolute; top: 9px; left: 11px; right: 9px; display: flex; justify-content: space-between; align-items: center; gap: 10px; z-index: 2; pointer-events: none; }
+#flight-lab-app .scene-tag { color: #d6e4e4; font: 10px/1.5 "Courier New", monospace; letter-spacing: .025em; border-left: 3px solid #ecc17b; padding-left: 7px; }
+#flight-lab-app .camera-actions { display: flex; gap: 4px; pointer-events: auto; flex-shrink: 0; }
+#flight-lab-app .camera-actions button { height: 27px; min-height: 27px; min-width: 28px; padding: 3px 6px; font: 11px Tahoma, sans-serif; }
+#flight-lab-app #scene { display: block; height: 480px; width: 100%; max-width: 100%; background: transparent; box-shadow: none; border: 0; border-radius: 0; cursor: grab; touch-action: none; }
+#flight-lab-app #scene:active { cursor: grabbing; }
+#flight-lab-app .scene-caption { position: absolute; left: 11px; right: 11px; bottom: 10px; display: flex; justify-content: space-between; gap: 10px; pointer-events: none; color: #d0dbd8; font: 10px/1.5 "Courier New", monospace; }
+#flight-lab-app .orbit-help { color: #b3c3c4; text-align: right; }
+#flight-lab-app .scene-tooltip { position: absolute; z-index: 4; left: 11px; bottom: 35px; max-width: calc(100% - 22px); background: #ffffe7; color: #172b36; padding: 7px 9px; border: 1px solid #000; box-shadow: 2px 2px #0005; font: 10px/1.6 "Courier New", monospace; overflow-wrap: anywhere; pointer-events: none; }
+#flight-lab-app .under-scene { padding: 10px 3px 6px; min-height: 58px; }
+#flight-lab-app .legend { display: flex; flex-wrap: wrap; gap: 7px 14px; font-size: 10px; color: #43545b; line-height: 1.5; }
+#flight-lab-app .legend span { display: flex; align-items: center; gap: 5px; }
+#flight-lab-app .legend i { font-style: normal; font-size: 14px; font-weight: 700; }
+#flight-lab-app .legend .count { font-size: 10px; color: #253d49; }
+#flight-lab-app .inspector { background: var(--fl-paper); box-shadow: var(--fl-sunken); padding: 13px 12px; min-width: 0; min-height: 480px; font-size: 11px; }
+#flight-lab-app .inspector .eyebrow { color: #3f5870; font-size: 9px; padding-bottom: 7px; margin-bottom: 9px; border-bottom: 1px solid #b7b5ab; }
+#flight-lab-app .inspector h3 { font-size: 12px; }
+#flight-lab-app .inspector h3.inspector-title { font: bold 21px/1.3 "Courier New", Consolas, monospace; margin: 8px 0; color: #153b56; overflow-wrap: anywhere; }
+#flight-lab-app .inspector p { font-size: 11px; color: #4d5c62; margin: 10px 0; }
+#flight-lab-app .status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 6px; border: 1px solid #9fb1bd; border-radius: 0; background: #dfebef; color: #234d6a; font-size: 10px; font-weight: 700; line-height: 1.5; }
+#flight-lab-app .status-badge.muted { color: #57616a; background: #e9e7df; border-color: #b5b5ac; }
+#flight-lab-app .status-badge.amber { color: #79531f; background: #f1e6ce; border-color: #c2a87b; }
+#flight-lab-app .record-id { font: 10px/1.55 "Courier New", Consolas, monospace; overflow-wrap: anywhere; color: #4d5d65; padding-bottom: 10px; margin: 10px 0 12px; border-bottom: 1px solid #c0beb2; }
+#flight-lab-app .metrics { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 11px 10px; margin: 15px 0; }
+#flight-lab-app .metric { min-width: 0; }
+#flight-lab-app .metric small { display: block; font-size: 9px; line-height: 1.4; color: #55656b; margin-bottom: 3px; }
+#flight-lab-app .metric strong { font: bold 18px/1.35 "Courier New", Consolas, monospace; color: #203e50; font-variant-numeric: tabular-nums; }
+#flight-lab-app .metric em { font: normal 10px Tahoma, sans-serif; color: #5a6669; }
+#flight-lab-app .metric.wide { grid-column: 1/-1; }
+#flight-lab-app .key-value { display: flex; justify-content: space-between; align-items: start; gap: 9px; font-size: 10px; margin: 8px 0; line-height: 1.5; }
+#flight-lab-app .key-value > span { color: #526168; }
+#flight-lab-app .key-value b { font-weight: 400; text-align: right; font-variant-numeric: tabular-nums; color: #1d3645; }
+#flight-lab-app .mini-rule { height: 2px; border-top: 1px solid #b3b1a6; background: #fffdf7; margin: 15px 0; }
+#flight-lab-app .inspector .outline-button, #flight-lab-app .inspector .solid-button { width: 100%; margin-top: 10px; }
+#flight-lab-app .inspector .field select { width: 100%; max-width: 100%; }
+#flight-lab-app .quiet-link { display: inline-block; margin-top: 10px; font-size: 10px; overflow-wrap: anywhere; }
+#flight-lab-app .disclosure { margin: 12px 0 0; border: 0; border-top: 1px solid #b7b5aa; padding: 8px 0 0; background: none; box-shadow: none; }
+#flight-lab-app .disclosure summary { cursor: pointer; font-size: 10px; font-weight: 700; padding: 4px 0; color: #314d60; }
+#flight-lab-app .dimensions { margin: 10px 0; }
+#flight-lab-app .dimension { font-size: 10px; margin: 10px 0; line-height: 1.5; overflow-wrap: anywhere; }
+#flight-lab-app .dimension b { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: .025em; margin-bottom: 2px; color: #526775; }
+#flight-lab-app .view-footnote { border-top: 1px solid #aaa79e; box-shadow: inset 0 1px #fff; margin-top: 8px; padding: 9px 12px; font-size: 10px; line-height: 1.6; color: #4c5b62; background: #dedbd2; }
+#flight-lab-app .time-controls { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+#flight-lab-app .time-controls button { font-size: 10px; white-space: nowrap; padding: 5px 8px; }
+#flight-lab-app .time-controls input { flex: 1; }
+#flight-lab-app .time-labels { display: flex; justify-content: space-between; gap: 8px; font: 9px "Courier New", monospace; color: #4e616b; }
+#flight-lab-app .time-labels span:last-child { text-align: right; }
+#flight-lab-app .snapshot-status, #flight-lab-app .scene-controls-note { font-size: 10px; line-height: 1.6; color: #4f6067; margin: 9px 0 0; }
+#flight-lab-app .mini-chart { display: block; width: 100%; height: 88px; margin: 7px 0 2px; background: transparent; }
+#flight-lab-app .mini-chart text { font-family: "Courier New", monospace; font-size: 9px; fill: #56676c; }
+#flight-lab-app .signal-table { width: 100%; min-width: 0; border-collapse: collapse; border: 0; box-shadow: none; background: transparent; margin: 8px 0; font-size: 10px; }
+#flight-lab-app .signal-table th { position: static; color: #425968; background: #e6e5db; font-weight: 400; text-align: left; padding: 5px 4px; border: 0; border-bottom: 1px solid #b4b5ac; }
+#flight-lab-app .signal-table td { padding: 5px 4px; background: transparent; border: 0; border-bottom: 1px solid #dddbd0; font-variant-numeric: tabular-nums; }
+#flight-lab-app .signal-table th:last-child, #flight-lab-app .signal-table td:last-child { text-align: right; }
+#flight-lab-app .signal-table td:last-child { font-family: "Courier New", monospace; }
+#flight-lab-app .treatment-row { display: flex; justify-content: space-between; gap: 8px; padding: 7px 0; border-bottom: 1px solid #d8d5c9; font-size: 10px; }
+#flight-lab-app .treatment-row b { flex-shrink: 0; font-size: 9px; font-weight: 700; }
+#flight-lab-app .pass { color: #245e8b; }
+#flight-lab-app .no-pass { color: #8b5c22; }
+#flight-lab-app .force-key { display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: 10px; }
+#flight-lab-app .force-key span { display: flex; align-items: center; gap: 6px; }
+#flight-lab-app .force-key i { display: inline-block; width: 21px; height: 3px; }
+#flight-lab-app .wind-controls { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px 20px; }
+#flight-lab-app .wind-controls label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px; font-size: 10px; }
+#flight-lab-app .wind-controls output { font: bold 11px "Courier New", monospace; color: #245e8b; }
+#flight-lab-app .wind-controls input { margin-top: 3px; }
+#flight-lab-app .equation-small { font: 14px/1.8 "Courier New", Consolas, monospace; color: #245572; margin: 12px 0 7px; overflow-wrap: anywhere; }
+#flight-lab-app .coverage-bar { display: flex; height: 9px; margin: 14px 0 8px; background: #c9cfc9; border: 1px solid #a4aaa6; overflow: hidden; }
+#flight-lab-app .coverage-bar span { min-width: 2px; }
+#flight-lab-app .coverage-caption { font-size: 10px !important; }
+#flight-lab-app .inspector-scroll { max-height: 475px; overflow: auto; padding-right: 5px; }
+#flight-lab-app .filter-summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 10px; color: #4f6067; margin-top: 8px; }
+#flight-lab-app .empty-record { background: #ebe8db; border: 1px dashed #a5aca8; padding: 11px; font-size: 11px; color: #536267; line-height: 1.65; }
+#flight-lab-app .model-story { margin: 18px 5px 0; padding: 13px 12px 12px; background: #dedbd3; box-shadow: var(--fl-raised); }
+#flight-lab-app .section-heading { display: flex; justify-content: space-between; align-items: start; gap: 24px; margin-bottom: 15px; }
+#flight-lab-app .section-heading h2 { font-size: 18px; margin: 0; }
+#flight-lab-app .section-heading > p { max-width: 49ch; font-size: 11px; color: #4a5d67; margin: 0; }
+#flight-lab-app .process-tabs { display: flex; align-items: stretch; gap: 0; }
+#flight-lab-app .process-tabs button { flex: 1; min-width: 0; padding: 10px 9px; text-align: left; background: #cecdc6; }
+#flight-lab-app .process-tabs button > span { display: block; font: bold 11px "Courier New", monospace; color: #5f6d73; margin-bottom: 8px; }
+#flight-lab-app .process-tabs button b { display: block; font-size: 11px; margin-bottom: 4px; }
+#flight-lab-app .process-tabs button small { display: block; font-size: 9px; color: #53656b; }
+#flight-lab-app .process-tabs button.active { background: #f5f2e7; box-shadow: var(--fl-sunken); color: #000080; }
+#flight-lab-app .process-tabs button.active > span { color: #000080; }
+#flight-lab-app .process-arrow { align-self: center; padding: 0 5px; color: #587080; font: 15px "Courier New", monospace; }
+#flight-lab-app .process-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-height: 150px; padding: 19px 17px; margin-top: 10px; background: var(--fl-paper); box-shadow: var(--fl-sunken); }
+#flight-lab-app .process-detail h3 { font-size: 15px; color: #1b435d; margin-bottom: 8px; }
+#flight-lab-app .process-detail p { margin: 0; font-size: 11px; color: #4e6068; }
+#flight-lab-app .process-equation { align-self: center; font: 20px/1.65 "Courier New", Consolas, monospace; color: #245572; overflow-wrap: anywhere; }
+#flight-lab-app .process-equation small { display: block; margin-top: 10px; font: 10px/1.6 Tahoma, sans-serif; color: #53656c; }
+#flight-lab-app .feedback-line { margin: 10px 0 0; color: #4d626e; font-size: 10px; }
+#flight-lab-app .feedback-line > span { color: #8b5c22; font-size: 18px; margin-right: 7px; }
+#flight-lab-app .evidence-strip { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; padding: 12px; margin: 12px 5px 0; background: #e0ddd5; box-shadow: var(--fl-sunken); }
+#flight-lab-app .evidence-strip h3 { font-size: 11px; margin: 5px 0; }
+#flight-lab-app .evidence-strip p { margin: 0; color: #4b5e68; font-size: 10px; }
+#flight-lab-app .outline-icon { font: 19px "Courier New", monospace; color: #4b6d89; }
+#flight-lab-app footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 7px 16px; margin: 7px 5px 2px; padding: 6px 9px; font-size: 10px; color: #4b5e68; background: #d9d7d0; box-shadow: var(--fl-sunken); max-width: none; }
+#flight-lab-app footer span:first-child { font-weight: 700; }
+#flight-lab-app footer .text-button { font-size: 10px; }
+#flight-lab-app #sources-dialog { width: min(760px,calc(100vw - 28px)); max-width: none; max-height: calc(100dvh - 40px); padding: 4px 15px 17px; border: 0; border-radius: 0; color: var(--fl-ink); background: var(--fl-face); box-shadow: var(--fl-raised),4px 4px 0 #0005; font: 12px/1.6 Tahoma, sans-serif; }
+#flight-lab-app #sources-dialog::backdrop { background: #12242e99; }
+#flight-lab-app .dialog-top { display: flex; align-items: center; justify-content: space-between; gap: 15px; background: #000080; color: white; padding: 6px 7px 7px 10px; margin: 0 -11px 15px; }
+#flight-lab-app .dialog-top h2 { color: white; font-size: 15px; margin: 0; }
+#flight-lab-app .dialog-top .eyebrow { color: #d6e3f2; font-size: 9px; margin-bottom: 2px; }
+#flight-lab-app .icon-button { width: 25px; height: 25px; min-height: 25px; padding: 0; flex-shrink: 0; font: bold 17px Arial, sans-serif; }
+#flight-lab-app #sources-content p, #flight-lab-app #sources-content li { font-size: 11px; color: #435861; line-height: 1.7; }
+#flight-lab-app #sources-content h3 { margin: 20px 0 8px; color: #194b70; font-size: 12px; }
+#flight-lab-app #sources-content ul { margin: 8px 0; padding-left: 20px; }
+#flight-lab-app #sources-content .source-item { padding: 9px 10px; background: #f0eee6; border-bottom: 1px solid #b9b8ae; font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+#flight-lab-app #sources-content .source-item small { display: block; font: 10px/1.6 "Courier New", Consolas, monospace; color: #53656b; margin-top: 5px; }
+#flight-lab-app .download-row { display: flex; flex-wrap: wrap; gap: 7px; }
+#flight-lab-app .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100; max-width: calc(100vw - 30px); background: #ffffe7; color: #172b36; border: 1px solid #000; box-shadow: 3px 3px #0005; font-size: 11px; padding: 11px 15px; }
+#flight-lab-app .skip { position: absolute; top: -100px; left: 15px; padding: 9px; background: #fff; z-index: 100; }
+#flight-lab-app .skip:focus { top: 10px; }
+#flight-lab-app .mobile-only { display: none; }
+
+/* The Atlas desktop rack occupies 214px. Switch to stacked instruments
+   before that frame can squeeze either the canvas or the property sheet. */
+@media (max-width:1100px) {
+  #flight-lab-app .workbench { grid-template-columns: minmax(0,1fr); }
+  #flight-lab-app .inspector { min-height: 0; padding: 14px; }
+  #flight-lab-app .inspector > .metrics { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  #flight-lab-app .inspector-scroll { max-height: none; }
+  #flight-lab-app .inspector .solid-button, #flight-lab-app .inspector .outline-button { width: auto; min-width: 180px; margin-right: 6px; }
+  #flight-lab-app .intro { flex-wrap: wrap; gap: 13px; }
+  #flight-lab-app .intro-facts { width: 100%; }
+  #flight-lab-app .intro-facts > div { flex: 1; }
+  #flight-lab-app .process-tabs { flex-wrap: wrap; gap: 5px; }
+  #flight-lab-app .process-tabs button { flex: 1 1 16%; min-width: 95px; }
+  #flight-lab-app .process-arrow { display: none; }
+}
+@container flightlab (max-width:850px) {
+  #flight-lab-app .workbench { grid-template-columns: minmax(0,1fr); }
+  #flight-lab-app .inspector { min-height: 0; }
+  #flight-lab-app .intro { flex-wrap: wrap; gap: 13px; }
+  #flight-lab-app .intro-facts { width: 100%; }
+  #flight-lab-app .intro-facts > div { flex: 1; }
+  #flight-lab-app .inspector-scroll { max-height: none; }
+  #flight-lab-app .scene-caption .orbit-help { display: none; }
+}
+@media (max-width:640px) {
+  #flight-lab-app { font-size: 12px; }
+  #flight-lab-app .fl-window-title { align-items: start; font-size: 11px; }
+  #flight-lab-app .fl-window-title small { display: none; }
+  #flight-lab-app .fl-menu { gap: 5px 9px; padding: 5px; }
+  #flight-lab-app .intro { padding: 13px 9px; }
+  #flight-lab-app h1 { font-size: 20px; }
+  #flight-lab-app .intro-copy { font-size: 11px; }
+  #flight-lab-app .intro-facts { gap: 3px; }
+  #flight-lab-app .intro-facts > div { padding: 7px; }
+  #flight-lab-app .intro-facts strong { font-size: 21px; }
+  #flight-lab-app .intro-facts span { font-size: 9px; }
+  #flight-lab-app .lab { margin: 0 2px; padding: 0 2px 2px; }
+  #flight-lab-app .view-tabs { padding: 7px 3px 0; gap: 2px; }
+  #flight-lab-app .view-tabs button { flex: 1; padding: 8px 5px; display: block; font-size: 10px; text-align: left; }
+  #flight-lab-app .view-tabs button span { display: block; font-size: 10px; margin-bottom: 4px; }
+  #flight-lab-app .view-tabs button.active { padding-top: 11px; }
+  #flight-lab-app .view-heading { align-items: start; flex-wrap: wrap; gap: 9px; padding: 14px 8px 11px; }
+  #flight-lab-app .view-heading h2 { font-size: 18px; }
+  #flight-lab-app .view-heading .outline-button { min-height: 27px; font-size: 10px; padding: 5px 8px; }
+  #flight-lab-app .toolbar { margin: 0 6px; padding: 9px; gap: 10px 8px; }
+  #flight-lab-app .toolbar .field { flex: 1; min-width: calc(50% - 8px); }
+  #flight-lab-app .toolbar .field.wide { flex-basis: 100%; min-width: 0; }
+  #flight-lab-app .toolbar select { width: 100%; max-width: 100%; font-size: 10px; }
+  #flight-lab-app .toolbar .inline-toggle { margin-bottom: 0; font-size: 10px; }
+  #flight-lab-app .toolbar-note { margin-left: 0; padding: 0; }
+  #flight-lab-app .toolbar .segmented { width: 100%; }
+  #flight-lab-app .segmented button { flex: 1; font-size: 10px; padding: 6px; }
+  #flight-lab-app .workbench { margin: 9px 6px 0; gap: 7px; }
+  #flight-lab-app #scene { height: 350px; }
+  #flight-lab-app .scene-top { left: 8px; right: 7px; top: 8px; gap: 5px; }
+  #flight-lab-app .scene-tag { font-size: 9px; max-width: 61%; padding-left: 5px; }
+  #flight-lab-app .camera-actions { gap: 3px; }
+  #flight-lab-app .camera-actions button { min-width: 25px; height: 25px; min-height: 25px; font-size: 10px; padding: 3px 5px; }
+  #flight-lab-app .scene-caption { font-size: 9px; left: 8px; right: 8px; bottom: 8px; }
+  #flight-lab-app .scene-caption .orbit-help { display: none; }
+  #flight-lab-app .legend { font-size: 10px; gap: 6px 10px; }
+  #flight-lab-app .legend i { font-size: 13px; }
+  #flight-lab-app .inspector { padding: 13px 11px; }
+  #flight-lab-app .inspector > .metrics { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  #flight-lab-app .inspector .solid-button, #flight-lab-app .inspector .outline-button { width: 100%; min-width: 0; margin-right: 0; }
+  #flight-lab-app .view-footnote { padding: 9px 8px; }
+  #flight-lab-app .wind-controls { gap: 11px 13px; }
+  #flight-lab-app .wind-controls label { font-size: 10px; }
+  #flight-lab-app .time-controls { gap: 6px; }
+  #flight-lab-app .time-controls button { padding: 5px 6px; }
+  #flight-lab-app .time-labels { font-size: 8px; }
+  #flight-lab-app .force-key { gap: 8px 12px; }
+  #flight-lab-app .filter-summary { flex-wrap: wrap; gap: 3px; }
+  #flight-lab-app .model-story { margin: 12px 2px 0; padding: 12px 10px; }
+  #flight-lab-app .section-heading { display: block; margin-bottom: 12px; }
+  #flight-lab-app .section-heading h2 { font-size: 17px; }
+  #flight-lab-app .section-heading > p { max-width: none; margin-top: 9px; }
+  #flight-lab-app .process-tabs button { flex: 1 1 29%; min-width: 80px; padding: 9px 7px; }
+  #flight-lab-app .process-tabs button b { font-size: 10px; }
+  #flight-lab-app .process-tabs button small { font-size: 9px; }
+  #flight-lab-app .process-detail { display: block; padding: 16px 12px; }
+  #flight-lab-app .process-equation { font-size: 18px; margin-top: 15px; }
+  #flight-lab-app .evidence-strip { grid-template-columns: minmax(0,1fr); gap: 14px; margin: 10px 2px 0; padding: 12px; }
+  #flight-lab-app .evidence-strip > div { display: grid; grid-template-columns: 22px 1fr; gap: 0 9px; }
+  #flight-lab-app .evidence-strip h3 { margin: 0 0 4px; }
+  #flight-lab-app .evidence-strip p { grid-column: 2; }
+  #flight-lab-app .outline-icon { grid-row: 1 / 3; }
+  #flight-lab-app footer { margin: 7px 2px 2px; padding: 7px; }
+  #flight-lab-app #sources-dialog { padding: 4px 12px 14px; }
+  #flight-lab-app .dialog-top { margin-left: -8px; margin-right: -8px; }
+  #flight-lab-app .download-row > * { width: 100%; }
+  #flight-lab-app .desktop-only { display: none; }
+  #flight-lab-app .mobile-only { display: initial; }
+}
+@media (prefers-reduced-motion:reduce) {
+  #flight-lab-app *, #flight-lab-app *::before, #flight-lab-app *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}

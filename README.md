@@ -9,6 +9,7 @@ A static site collecting the satellite, flight-model and debris-drift work on MH
 | Page | Contents |
 |---|---|
 | `index.html` | What is measured and modelled (with the governing equations), where the evidence stands, how the work is checked, chapters, data sources |
+| `flight-lab.html` | Windows 98 scientific viewer of the frozen 5,750-configuration catalogue: saved flight states, satellite tests and explanatory forces/wind instruments. No new flight fits; 22:41 stays sealed. Body: `src/flight_lab_body.html`; assets: `flight-lab/assets/`. |
 | `arc7-demo.html` | Win98 scientific teaching tool: supplied illustrative arc positions, satellite geometry, a simplified interactive fuel–mass loop, and a clearly dated historical snapshot. Source and adaptation notes: `src/arc7_demo_NOTES.md`. |
 | `methods.html` | **What each model computes.** BTO and BFO explained from first principles, the flight model's inputs and integration, what a drift particle is, every tolerance converted to physical units, and a worked example of why an error in the known signal leg transfers into the unknown one |
 | `satcom.html` | 5,029 BTO/BFO rows from the Inmarsat log, the 19-row canonical event table, published satellite states |
@@ -55,3 +56,4 @@ python3 gen.py
 - Uncertainty and assumptions are labelled rather than smoothed over.
 - Failed and superseded hypotheses are kept, including the author's own — see the appendix in `closing.html`.
 - The satellite and drift branches are kept separate: no contact coordinate crosses into the drift analysis.
+

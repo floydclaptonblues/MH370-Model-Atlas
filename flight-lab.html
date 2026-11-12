@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flight Dynamics Lab — MH370 Model Atlas</title><meta name="description" content="Explore the MH370 Model Atlas frozen flight-state catalogue in a Windows 98 scientific console: the declared configuration grid, saved states, forces, wind and satellite tests. No new flight fits are computed.">
+<link rel="canonical" href="https://mh370atlasmodel.y2kneverended.net/flight-lab.html">
+<link rel="stylesheet" href="common.css"><link rel="stylesheet" href="flight-lab/assets/win98.css"><script src="common.js"></script>
+<script defer src="flight-lab/assets/data.js"></script><script defer src="flight-lab/assets/scene3d.js"></script><script defer src="flight-lab/assets/app.js"></script></head><body class="atlas-flight-lab"><div class="wrap"><nav id="nav"></nav><div id="flight-lab-app" class="fl-app">
+  <a class="skip" href="#lab">Skip to the laboratory</a>
+  <header class="fl-window-title"><span>FLIGHT DYNAMICS LAB · MH370 MODEL ATLAS</span><small>Frozen catalogue · de50a52</small></header>
+  <div class="fl-menu"><button class="text-button" id="sources-open">Sources &amp; method</button><span>Saved evidence + explanatory instruments</span></div>
+
+    <section class="intro">
+      <div><p class="eyebrow"><span class="tiny-orbit" aria-hidden="true"></span> SCIENTIFIC TOOLS / INTERACTIVE 3D VIEWER</p><h1>Flight Dynamics Lab</h1><p class="intro-copy">Explore the declared grid, inspect saved flight states, and see how atmosphere, forces, fuel and satellite tests shape the model.</p></div>
+    </section>
+
+    <section class="lab" id="lab" aria-label="Interactive flight laboratory">
+      <nav class="view-tabs" aria-label="Laboratory views">
+        <button data-view="grid" class="active" aria-pressed="true"><span>01</span> Explore the grid</button>
+        <button data-view="flight" aria-pressed="false"><span>02</span> Follow a flight</button>
+        <button data-view="forces" aria-pressed="false"><span>03</span> Forces &amp; wind</button>
+      </nav>
+      <div class="view-heading"><div><p class="eyebrow" id="view-eyebrow">THE DECLARED SEARCH</p><h2 id="view-title">One point. One configuration.</h2><p id="view-description">Speed, climb start and arrival history define a cell. Its symbol shows the evidence available.</p></div><button class="outline-button" id="guided-example">Follow the worked example <span aria-hidden="true">→</span></button></div>
+      <div class="toolbar" id="toolbar"></div>
+      <div class="workbench">
+        <div class="scene-column">
+          <div class="scene-shell">
+            <div class="scene-top"><span class="scene-tag" id="scene-tag">3D PARAMETER SPACE</span><div class="camera-actions"><button id="camera-reset" title="Reset 3D camera" aria-label="Reset 3D camera">↺</button><button id="camera-top" title="View from above" aria-label="View from above">Top</button><button id="scene-download" title="Download this view as PNG" aria-label="Download this view as PNG">↓</button></div></div>
+            <canvas id="scene" tabindex="0" role="img" aria-label="Interactive 3D parameter grid. Drag to orbit, use arrow keys to rotate and plus or minus to zoom. Use filters and the inspector for accessible data."></canvas>
+            <div class="scene-tooltip" id="scene-tooltip" hidden></div>
+            <div class="scene-caption"><span id="scene-count">Loading saved evidence…</span><span class="orbit-help">Drag to orbit · Click to inspect · + / − to zoom</span></div>
+          </div>
+          <div class="under-scene" id="under-scene"></div>
+        </div>
+        <aside class="inspector" id="inspector" aria-label="Selected data"></aside>
+      </div>
+      <div class="view-footnote" id="view-footnote"></div>
+    </section>
+
+    <section class="model-story" aria-labelledby="model-title">
+      <div class="section-heading"><div><p class="eyebrow">HOW THE RESULT IS GARNERED</p><h2 id="model-title">A calculation that feeds back on itself.</h2></div><p>A schedule becomes a flight through repeated evaluations. Satellite measurements test the resulting motion; they exert no force on the aircraft.</p></div>
+      <div class="process-tabs" aria-label="Steps in the model">
+        <button class="active" data-step="0" aria-pressed="true"><span>1</span><b>Choose a history</b><small>State + schedule</small></button><span class="process-arrow" aria-hidden="true">→</span>
+        <button data-step="1" aria-pressed="false"><span>2</span><b>Meet the atmosphere</b><small>Wind + density</small></button><span class="process-arrow" aria-hidden="true">→</span>
+        <button data-step="2" aria-pressed="false"><span>3</span><b>Evaluate the forces</b><small>Lift + drag + thrust</small></button><span class="process-arrow" aria-hidden="true">→</span>
+        <button data-step="3" aria-pressed="false"><span>4</span><b>Move &amp; burn fuel</b><small>Velocity + mass</small></button><span class="process-arrow" aria-hidden="true">→</span>
+        <button data-step="4" aria-pressed="false"><span>5</span><b>Test the signals</b><small>BTO + BFO</small></button>
+      </div>
+      <div class="process-detail" id="process-detail"></div>
+      <p class="feedback-line"><span aria-hidden="true">↶</span> The updated position, velocity and mass become the next step’s starting state.</p>
+    </section>
+
+    <section class="evidence-strip" aria-label="What this viewer establishes"><div><span class="outline-icon">◇</span><h3>Inspect the evidence</h3><p>Exact IDs, units, treatment flags and source links stay attached to the displayed states.</p></div><div><span class="outline-icon">···</span><h3>See the gaps</h3><p>Missing fields remain missing. A saved checkpoint does not imply a saved continuous trajectory.</p></div><div><span class="outline-icon">⌁</span><h3>Keep the question open</h3><p>The cloud shows computed airborne states at the final transmission. Its density does not measure likelihood.</p></div></section>
+
+  <footer><span>MH370 · Flight Dynamics Lab</span><span>Frozen catalogue · 12 November 2026</span><button class="text-button" id="footer-sources">Data, methods &amp; downloads ↗</button></footer>
+  <dialog id="sources-dialog" aria-labelledby="sources-title"><div class="dialog-top"><div><p class="eyebrow">TRACEABLE BY DESIGN</p><h2 id="sources-title">Sources &amp; method</h2></div><button class="icon-button" id="sources-close" aria-label="Close sources">×</button></div><div id="sources-content"></div></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <noscript>This interactive viewer needs JavaScript. The underlying records are available in the MH370-Ocean-GLORYS-Data repository, reports/diagnostic/FLIGHT_STATE_CATALOGUE, at commit de50a52.</noscript>
+
+</div>
+<script>MH.nav("flight-lab.html");</script></div></body></html>

@@ -1,7 +1,7 @@
 const MH={};
 MH.J=async u=>(await fetch(u)).json();
 MH.css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-MH.nav=function(cur){const p=[["index.html","Overview"],["assessment.html","Ryan’s assessment"],["flighthistories.html","Flight histories"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
+MH.nav=function(cur){const p=[["index.html","Overview"],["assessment.html","Ryan’s assessment"],["flighthistories.html","Flight histories"],["flight-lab.html","Flight Dynamics Lab"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
  document.getElementById("nav").innerHTML=p.map(([h,l])=>`<a href="${h}"${h===cur?' aria-current="page"':''}>${l}</a>`).join("")};
 MH.fit=function(c,h){const r=c.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);c.width=Math.round(r.width*d);c.height=Math.round(h*d);c.style.height=h+"px";const x=c.getContext("2d");x.setTransform(d,0,0,d,0,0);return {x,w:r.width,h}};
 MH.fmt=(v,d=0)=>v==null?"–":Number(v).toLocaleString("en",{maximumFractionDigits:d,minimumFractionDigits:d});
@@ -86,7 +86,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
 (() => {
   'use strict';
   const SECTIONS = [
-    ['index.html','Overview'],['assessment.html','Ryan’s assessment'],['flighthistories.html','Flight histories'],
+    ['index.html','Overview'],['assessment.html','Ryan’s assessment'],['flighthistories.html','Flight histories'],['flight-lab.html','Flight Dynamics Lab'],
     ['canonical.html','Canonical data'],['archive.html','Archive of attempts'],['methods.html','Methods'],null,
     ['drift.html','Drift'],['drift2.html','Drift diagnostics'],['drift3.html','Forward transport'],['drift4.html','Four years']
   ];
@@ -96,11 +96,19 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     if (!app || !nav || app.querySelector('.ix-title')) return;
     const here = (nav.querySelector('[aria-current="page"]') || {}).textContent || document.title || 'Atlas';
     const file = location.pathname.split('/').pop() || 'index.html';
+    const isFlightLab = file === 'flight-lab.html';
     nav.setAttribute('aria-label', 'Atlas sections');
     const rest = [...app.children].filter(n => n !== nav);
     const title = el('header', 'ix-title', '<i aria-hidden="true"></i><span>MH370 Model Atlas — ' + here + '</span>');
     app.insertBefore(title, nav);
-    const strip = el('section', 'ix-strip',
+    const strip = el('section', 'ix-strip', isFlightLab ?
+      '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +
+      '<div><div class="ix-cap">Record status</div><div class="ix-lamps">' +
+      '<span><i class="lamp green"></i>Catalogue: frozen</span><span><i class="lamp"></i>Viewer: display-only</span>' +
+      '<span><i class="lamp amber"></i>22:41: sealed</span><span><i class="lamp"></i>States: airborne</span></div></div>' +
+      '<div><div class="ix-cap">Catalogue snapshot · de50a52</div><div class="ix-ro">' +
+      '<div><span>ARRIVALS</span><output>22</output></div><div><span>CONFIGS</span><output>5,750</output></div>' +
+      '<div><span>FLIGHT RECORDS</span><output>278</output></div><div><span>FINAL STATES</span><output>3,171</output></div></div></div>' :
       '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +
       '<div><div class="ix-cap">Record status</div><div class="ix-lamps">' +
       '<span><i class="lamp green"></i>Flight histories: current</span><span><i class="lamp amber"></i>Satellite chapter: archived</span>' +
@@ -116,7 +124,10 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     SECTIONS.forEach(s => { if (!s) { tree.append(el('li', 'sep')); return; }
       const li = el('li'), a = el('a'); a.href = s[0]; a.textContent = s[1]; if (s[0] === file) a.setAttribute('aria-current', 'page'); li.append(a); tree.append(li); });
     const b1 = el('div', 'ix-box', '<b>Sections</b>'); b1.append(tree);
-    const b2 = el('div', 'ix-box', '<b>Flight clock, UTC</b><div class="ix-ro">' +
+    const b2 = el('div', 'ix-box', isFlightLab ? '<b>Saved epochs, UTC</b><div class="ix-ro">' +
+      '<div><span>FIRST SAVED</span><output>19:41:03</output></div><div><span>POWERED SAVE</span><output>00:11:00</output></div>' +
+      '<div><span>FINAL TRANSMISSION</span><output>00:19:37</output></div><div><span>HOLDOUT</span><output>22:41 · sealed</output></div></div>' :
+      '<b>Flight clock, UTC</b><div class="ix-ro">' +
       '<div><span>RADAR HANDOFF</span><output>18:22:12</output></div><div><span>FUEL EXHAUSTED</span><output>00:17:29</output></div>' +
       '<div><span>LAST TRANSMISSION</span><output>00:19:37</output></div><div><span>FIRST FLOOR EXIT</span><output>00:25:41</output></div></div>');
     const b3 = el('div', 'ix-box', '<b>How to read a label</b><div class="ix-key">' +
@@ -134,4 +145,5 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true }); else init();
 })();
+
 

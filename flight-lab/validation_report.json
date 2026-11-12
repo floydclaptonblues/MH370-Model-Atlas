@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "1.0",
+  "scope": "Scientific data compilation and source validation; UI validation is separate.",
+  "catalogueCommit": "de50a5206e940fcb34acf587f98e849f9f4e98b5",
+  "scientificBaselineCommit": "31b6b16ef4ddcc8cad153b56ae2e380f838046dd",
+  "dataAsset": {
+    "path": "dist/assets/data.js",
+    "bytes": 5432300,
+    "gzipBytes": 286522,
+    "sha256": "652729047a556b5bee46363f5aa6bc296466c5eaffcd20d5f7c1f1fb3ef28b7e"
+  },
+  "checks": {
+    "source_hashes_match": true,
+    "configuration_count_and_identity": true,
+    "arrivals_and_mach_levels": true,
+    "grid_evidence_partition": true,
+    "returned_flight_count_and_identity": true,
+    "final_point_count_and_identity": true,
+    "compatible_count": true,
+    "treatments_match_union_where_exported": true,
+    "worked_witness_checkpoint_count": true,
+    "returned_flight_only_exported_powered_position": true,
+    "final_epoch_consistent": true,
+    "final_positions_finite_in_range": true
+  },
+  "allChecksPassed": true,
+  "sources": [
+    {
+      "file": "GLOBAL_CONFIGURATIONS.csv",
+      "sha256": "278cef60ef840498f07c6e7ab236f56acab3df3ba157d2a488e8805033da30e0",
+      "gitBlob": "cfc88705889e277e37ee40ef0d4aebd2fe045627",
+      "bytes": 2861271,
+      "passed": true
+    },
+    {
+      "file": "GLOBAL_FLIGHTS.csv",
+      "sha256": "e19f9757b2a2efda8624696ae73791ab1362b32c7c842dfb85859417345e38be",
+      "gitBlob": "5a1ef3630d1731d5b5bee916abab32ccb279bd89",
+      "bytes": 155507,
+      "passed": true
+    },
+    {
+      "file": "GLOBAL_COMPATIBLE_GEOGRAPHY_BY_TREATMENT.csv",
+      "sha256": "decc96102d845525c16d348fcad3e6294a3596739cc00328070d879060e72b24",
+      "gitBlob": "e0ee47d8813605e4336b634e6ba4fadeaae99931",
+      "bytes": 13064,
+      "passed": true
+    },
+    {
+      "file": "GLOBAL_COVERAGE_BY_ARRIVAL_AND_MACH.csv",
+      "sha256": "03a20bfe2eb702657629cd592078db9db4e02e6a8350a29e9efe1adf9677ca1e",
+      "gitBlob": "bbf973a21c7eb7fcdf80340c929ecc59f5061bb4",
+      "bytes": 33011,
+      "passed": true
+    },
+    {
+      "file": "EXAMPLE_FLIGHT_A03_M0.6550_CS14397_R0.txt",
+      "sha256": "85ddcba56b44908c496f68ea12955732cff42a4d982d25c2af00f09e5df3dd4d",
+      "gitBlob": "603efc70a602ee74bd546433a5a483773b2f7846",
+      "bytes": 9797,
+      "passed": true
+    },
+    {
+      "file": "FPC_NEW_COMPATIBLE_POSITIONS.csv",
+      "sha256": "9d07f621f0aa256939fa2957bbd7ea545b9656e5ae7844acae2f00430452c1a9",
+      "gitBlob": "f9fa647e904bb60ccdf1121841e018f575d0160b",
+      "bytes": 317645,
+      "passed": true
+    },
+    {
+      "file": "SCE_ONSET_RESULTS.csv",
+      "sha256": "c35c3398f09bc4ee7435c5b0940eb4604992b433cbfedaf7badf138fd36f9fa7",
+      "gitBlob": "ec0dc9bef6d0d8c93692119c55856084b5a6b2f6",
+      "bytes": 450155,
+      "passed": true
+    },
+    {
+      "file": "NBT_ONSET_RESULTS.csv",
+      "sha256": "223c7d17ceb0fad9ee50407620b7546fb008fb50756934164659509357bf77e9",
+      "gitBlob": "d1a6c48305a462ab0030cf44d4beea530adaa9d7",
+      "bytes": 546651,
+      "passed": true
+    },
+    {
+      "file": "TACO_GRID_RESULTS.csv",
+      "sha256": "f638dbaacd277e88e84f80edc3f562466e97eae1c9cb19c49d4c189da748838a",
+      "gitBlob": "c10f0aa1724bc574ff932ca6ba36519024977a99",
+      "bytes": 960283,
+      "passed": true
+    }
+  ],
+  "counts": {
+    "gridConfigurations": 5750,
+    "arrivals": 22,
+    "machLevels": 23,
+    "evidence": {
+      "computed": 292,
+      "none": 5394,
+      "historicalExact": 60,
+      "historicalNear": 4
+    },
+    "status": {
+      "policyStop": 234,
+      "stillPowered": 19,
+      "uncomputed": 5458,
+      "terminalIncomplete": 3,
+      "compatible": 18,
+      "earlyFuel": 2,
+      "policyAndEarlyFuel": 14,
+      "timingMiss": 2
+    },
+    "flightSummaries": 278,
+    "finalPoints": 3171,
+    "finalPointsByExperiment": {
+      "FPC": 376,
+      "SCE": 830,
+      "NBT": 597,
+      "TACO": 1368
+    },
+    "compatibleFinalPoints": 1183,
+    "compatibleFinalPointsByExperiment": {
+      "FPC": 376,
+      "SCE": 244,
+      "NBT": 185,
+      "TACO": 378
+    },
+    "campaignAllTerminalResponses": 3016,
+    "campaignCompatibleResponses": 376,
+    "campaignFinalPointExportScope": "Only compatible FPC final states are supplied by NEW_COMPATIBLE_POSITIONS.csv. Historical final-state exports include compatible and incompatible states.",
+    "witnessCheckpoints": 7,
+    "sourcesVerified": 9
+  },
+  "verificationLabels": {
+    "NO_RESPONSE_CHECK_IMPORTED": 371,
+    "VERIFIED_AT_HALF_STEP": 5,
+    "NO_NUMERICAL_CHECK_IMPORTED": 2795
+  },
+  "reproducibility": {
+    "twoBuildsIdentical": true,
+    "verifiedSha256": "652729047a556b5bee46363f5aa6bc296466c5eaffcd20d5f7c1f1fb3ef28b7e"
+  },
+  "accessAndExecution": {
+    "sourceClass": "Nine frozen published safe exports",
+    "rawRecordsOpened": false,
+    "holdoutValuesRead": false,
+    "campaignCodeRun": false,
+    "propagationPerformed": false,
+    "catalogueChanged": false
+  },
+  "limitations": [
+    "Campaign scatter includes only the 376 compatible positions exported by NEW_COMPATIBLE_POSITIONS.csv.",
+    "Other campaign final coordinates are outside this imported position scope.",
+    "No continuous powered path or force trace is reconstructed.",
+    "No-check-imported labels do not imply that no check exists elsewhere.",
+    "No drift, breakup, impact or probability model."
+  ]
+}
