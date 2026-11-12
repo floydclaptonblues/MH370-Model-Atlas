@@ -1,0 +1,10 @@
+# Boeing 777 Flight Crew Operations Manual D632W001-SIA (Singapore Airlines edition, rev. 21 Jan 2010), Performance Inflight, 777-200ER / Trent 892, page PI.23.5 (15 Dec 2008); 100 ft/min residual rate of climb; includes APU fuel burn. Another operator's manual for the same airframe and engine type; not 9M-MRO's own document.
+weight_start_1000kg,weight_level_off_1000kg,optimum_driftdown_KIAS,level_off_ft_ISA+10C_and_below,level_off_ft_ISA+15C,level_off_ft_ISA+20C
+300,290,282,17500,16100,14600
+280,271,273,19400,18000,16600
+260,252,264,21300,20000,18600
+240,232,253,23300,22100,20700
+220,213,243,25400,24200,22900
+200,194,231,27400,26200,25100
+180,174,219,29500,28300,27200
+160,154,206,32200,30600,29500

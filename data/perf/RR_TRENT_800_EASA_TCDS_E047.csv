@@ -1,0 +1,9 @@
+# EASA Type-Certificate Data Sheet E.047 issue 04 (21 February 2019), Rolls-Royce RB211 Trent 800 series. ISA sea-level static ratings.
+model,takeoff_net_kN,takeoff_net_lbf,equivalent_bare_engine_takeoff_kN,max_continuous_net_kN,max_continuous_net_lbf,nominal_overall_pressure_ratio_SL_ISA
+895-17,413.4,92940,419.6,343.3,77170,40.7
+892-17,406.8,91450,412.8,343.3,77170,39.6
+892B-17,406.8,91450,412.8,343.3,77170,39.6
+884-17,380.0,85430,385.6,312.3,70210,37.5
+884B-17,380.0,85430,385.6,312.3,70210,37.5
+877-17,351.0,78910,356.3,312.3,70210,34.7
+875-17,340.6,76580,345.9,276.5,62160,33.9
