@@ -38,3 +38,5 @@ Preservation checks compare with the exact pre-recovery commit. The two table ch
 Historical note, 12 November: adding the lower-speed results row to `index.html` changed that earlier preservation comparison by four added cells, with none removed or altered; the other pages were then reported unchanged. Those counts describe that earlier update, not a fresh check of the present tree.
 
 Those historical baselines are not a claim that later authorized Atlas edits are unchanged. For a new display repair, compare the scientific data, source manifest, signed assessment, and held drift files directly against that repair's actual base commit as well.
+
+Historical note, 13 November: the northern closing-run row and the two new list items in `index.html` were rewritten for the completed run, so `check_preservation.py` and `check_editorial_preservation.py` report `index.html` as changed against the pre-recovery baseline. No other file is reported changed. The signed assessment, the drift pages and the Flight Lab data are byte-identical to the previous commit.
