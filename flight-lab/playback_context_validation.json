@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-12",
+  "date_timezone": "America/Chicago",
+  "base_commit": "8f22c4912d2367acec37bc2b3ac28cfe125e69dd",
+  "scope": "Display, selection, navigation and offline packaging only; no aircraft integration or scientific revalidation",
+  "data_sha256": "652729047a556b5bee46363f5aa6bc296466c5eaffcd20d5f7c1f1fb3ef28b7e",
+  "automated": {
+    "controller_and_production_renderer_geometry": {
+      "command": "node tests/flight_lab_dom.cjs",
+      "passed": 46
+    },
+    "renderer_pointer_handlers": {
+      "command": "node tests/flight_lab_renderer.cjs",
+      "passed": 8
+    },
+    "canvas_rasterization": "omitted in Node; actual browser layout inspected separately",
+    "terminal_canvas_css_pixels": [
+      768,
+      480
+    ],
+    "final_transmission_separation_css_pixels": 41.099060765497406
+  },
+  "direct_browser": {
+    "engine": "Chromium",
+    "surface": "Managed preview, generated flight-lab.html",
+    "desktop": "Seven-state example; main Forces at 00:19:29; recorded versus commanded bank; faithful return; terminal close-up and height plot; A00 unavailable forces and return",
+    "responsive": "390 px iframe,375 px document client width after scrollbar; no horizontal document overflow in terminal and force views; checkpoint and return controls work",
+    "limits": "Responsive desktop-browser check, not physical-device, touch or cross-browser verification; optional shell Playwright not run",
+    "standalone_archive": "Extracted bundled index loads supplemental styles, terminal three-record cards, height plot and 00:19:29 main Forces selection in Chromium via the preview server."
+  },
+  "preservation": {
+    "scientific_data_unchanged": true,
+    "unrelated_tracked_paths_unchanged_from_base": true,
+    "no_raw_mixed_records_or_2241_values_read": true,
+    "offline_protected_members_byte_identical": 14,
+    "offline_controller_and_renderer_match": true
+  },
+  "code_sha256": {
+    "flight-lab/assets/app.js": "dd64ec6ee1a8731df407da56a21f66c29ef207838dfb2136c207421fb6e317f4",
+    "flight-lab/assets/scene3d.js": "ac02f8d2c20153c230c8891dc1a20ee161c1541ab30a959c1a1a456aefa2ea37",
+    "flight-lab/assets/win98.css": "a9376c8d4b66782116f7d8d2d176637cc579fd72f5a4b1a97eba773e5a5e361e"
+  },
+  "local_links": {
+    "checked": 189,
+    "missing": 0
+  }
+}

@@ -34,3 +34,17 @@ Manual checkpoint selection stops the slideshow. Slider input preserves its DOM 
 Reproduce controller checks with `npm install --prefix tests` then `node tests/flight_lab_dom.cjs` from the repository root. For actual browser checks, serve the repository locally on port 8765 and run `node tests/flight_lab_regression.cjs` with Playwright and Chromium installed.
 
 Browser checks were subsequently run in Chromium on desktop and phone-size viewports before publication; see `reports/CLAUDE_VERIFICATION_20261112.md`. The mass label distinguishes recorded from algebraically derived values.
+
+## Playback selection and terminal scale update, 12 November 2026
+
+The route and recorded Forces views now share the selected flight, exact response and checkpoint. The main Forces tab preserves 00:19:29 when that record is selected. If force fields were not exported for the current record, the viewer keeps its identity visible and offers explicitly labelled buttons to load either available worked-example force record. Returning to the saved flight preserves the original selection and route scale.
+
+The worked example is the same seven-checkpoint supplement whether opened from the grid, dropdown or guided example. A different response on its parent stays a parent-only summary. The bank command and instantaneous recorded bank have separate labels.
+
+Full route displays numbered saved positions without joining unknown intervals. Terminal close-up displays the fuel event and both final transmissions at a fixed local scale, with 1× height and a labelled 8,000 m ellipsoid-height reference plane. A separate height plot uses the actual elapsed times, fixed axes and unjoined saved points. Its 459.049 m decrease over eight seconds is derived only from the two retained transmission endpoints.
+
+Numbered cards expose the unequal time gaps. The control is explicitly a checkpoint slideshow at 1.7 presentation seconds per record; it does not synthesize continuous motion. Overlapping canvas markers offer a timestamp chooser. Manual selection stops the timer.
+
+`playback_context_validation.json` and `../reports/FLIGHT_LAB_PLAYBACK_REPAIR_20261112.md` record this update's checks separately from the earlier reports: 46 controller/production-renderer geometry checks, eight pointer checks, and direct Chromium checks of desktop and phone-width layouts. The optional shell Playwright suite was not executed for this update.
+
+Run the focused checks using the commands in `../tests/README.md`. To rebuild the existing standalone download after editing the viewer, run `python3 flight-lab/build_offline.py`; it copies the controller and renderer, adds styles for the new controls, and verifies that the packaged data, safe exports, compiler and scientific provenance remain byte-identical.

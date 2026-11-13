@@ -24,6 +24,7 @@
       this.initialView = { ...this.view, center: this.view.center.slice() };
       this.scene = emptyScene();
       this.onPick = options.onPick || null;
+      this.onPickCandidates = options.onPickCandidates || null;
       this.onHover = options.onHover || null;
       this.onViewChange = options.onViewChange || null;
       this.width = 1;
@@ -93,8 +94,13 @@
         const didClick = this._pointers.size === 1 && this._drag && !this._drag.moved && !this._drag.multi && e.type === 'pointerup';
         this._pointers.delete(e.pointerId);
         if (didClick) {
-          const hit = this._hitAtEvent(e);
-          this.onPick?.(hit?.item.id ?? null, hit?.item ?? null, e);
+          const hits = this._hitCandidatesAtEvent(e);
+          if (hits.length > 1 && this.onPickCandidates) {
+            this.onPickCandidates(hits.map(hit => hit.item.id), hits, e);
+          } else {
+            const hit = hits[0];
+            this.onPick?.(hit?.item.id ?? null, hit?.item ?? null, e);
+          }
         }
         if (!this._pointers.size) {
           this._drag = null;
@@ -301,12 +307,34 @@
       }
     }
 
+    // Pure lookup: one result per record, ordered by screen distance. A selected
+    // overlay can repeat an ID, so it must not create a false ambiguity.
+    static hitCandidates(hitRegions, x, y) {
+      const byId = new Map();
+      for (const hit of hitRegions) {
+        if (hit.item?.id == null) continue;
+        const distance = Math.hypot(x - hit.x, y - hit.y);
+        if (!(distance <= hit.radius)) continue;
+        const previous = byId.get(hit.item.id);
+        if (!previous || distance < previous.distance ||
+            (distance === previous.distance && hit.depth < previous.depth)) {
+          byId.set(hit.item.id, { ...hit, distance });
+        }
+      }
+      return [...byId.values()].sort((a, b) => a.distance - b.distance || a.depth - b.depth);
+    }
+
+    _hitCandidatesAtEvent(e) {
+      const r = this.canvas.getBoundingClientRect();
+      return Scene3D.hitCandidates(this.hitRegions, e.clientX - r.left, e.clientY - r.top);
+    }
+
     _hitAtEvent(e) {
       const r = this.canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
       let best = null, score = Infinity;
       for (const hit of this.hitRegions) {
         const distance = Math.hypot(x - hit.x, y - hit.y);
-        if (distance <= hit.radius && (distance < score - 0.5 || (Math.abs(distance - score) < 0.5 && hit.depth < (best?.depth ?? Infinity)))) { best = hit; score = distance; }
+        if (distance <= hit.radius && (distance < score || (distance === score && hit.depth < (best?.depth ?? Infinity)))) { best = hit; score = distance; }
       }
       return best;
     }

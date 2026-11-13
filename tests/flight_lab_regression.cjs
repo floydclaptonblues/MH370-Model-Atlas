@@ -1,3 +1,5 @@
+// Optional real-browser regression script. This file is not run by the Node-only
+// controller/renderer suites; browser execution requires its own supported environment.
 const {chromium}=require('playwright');
 const assert=require('node:assert/strict');
 (async()=>{
@@ -12,6 +14,21 @@ const assert=require('node:assert/strict');
   const data=await page.evaluate(()=>{const app=FLIGHT_LAB.getState(),s=MH370_DATA.witness.states[app.checkpoint];return {i:app.checkpoint,epoch:s.epoch,text:document.querySelector('#inspector').innerText,utc:document.querySelector('[data-checkpoint-utc]').dataset.checkpointUtc,cursor:document.querySelector('[data-fuel-cursor]').dataset.fuelCursor,mass:(s.massKg/1000).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),fuel:s.fuelKg.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1}),lat:Math.abs(s.lat).toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4}),lon:Math.abs(s.lon).toLocaleString('en-US',{minimumFractionDigits:4,maximumFractionDigits:4})}});
   check('checkpoint '+i+' UTC, fuel cursor, mass, fuel and coordinates match source',data.i===i&&data.utc===data.epoch&&+data.cursor===i&&[data.mass,data.fuel,data.lat,data.lon].every(x=>data.text.includes(x)));
  }
+ await page.locator('#time-slider').evaluate(el=>{el.value=5;el.dispatchEvent(new Event('input',{bubbles:true}));});
+ await page.click('[data-view="forces"]');
+ check('main Forces tab preserves first transmission and exact response',await page.evaluate(()=>{const s=FLIGHT_LAB.getState();return s.checkpoint===5&&s.terminalIndex===5&&s.flight===MH370_DATA.witness.flightId&&s.routeResponseId===MH370_DATA.witness.responseId&&document.querySelector('#scene-count').textContent.startsWith('00:19:29');}));
+ await page.click('#force-back');
+ check('first-transmission force return keeps selected UTC',await page.locator('[data-checkpoint-utc]').getAttribute('data-checkpoint-utc')===await page.evaluate(()=>MH370_DATA.witness.states[5].epoch));
+ await page.selectOption('#flight-select','A00_M0.6550_CS00000.000#R0');
+ const alternateSelection=await page.evaluate(()=>{const s=FLIGHT_LAB.getState();return [s.flight,s.routeResponseId,s.checkpoint];});
+ await page.click('[data-view="forces"]');
+ check('alternative flight shows unavailable forces without substitution',await page.evaluate(before=>{const s=FLIGHT_LAB.getState();return JSON.stringify([s.flight,s.routeResponseId,s.checkpoint])===JSON.stringify(before)&&/not (?:available|retained|exported)|unavailable|no (?:recorded )?force/i.test(document.querySelector('#inspector').textContent);},alternateSelection));
+ await page.click('#force-back');
+ check('return preserves alternative flight',await page.evaluate(before=>{const s=FLIGHT_LAB.getState();return JSON.stringify([s.flight,s.routeResponseId,s.checkpoint])===JSON.stringify(before);},alternateSelection));
+ await page.click('[data-view="grid"]');
+ await page.selectOption('#cell-select',await page.evaluate(()=>MH370_DATA.witness.configId));
+ await page.click('#open-config-flight');
+ check('grid entry opens same exact worked-example response and seven checkpoints',await page.evaluate(()=>FLIGHT_LAB.getState().routeResponseId===MH370_DATA.witness.responseId&&document.querySelector('#time-slider').max==='6'));
  await page.evaluate(()=>window.sliderBefore=document.querySelector('#time-slider'));
  await page.locator('#time-slider').evaluate(el=>{el.value=2;el.dispatchEvent(new Event('input',{bubbles:true}));});
  check('slider retains DOM identity during input',await page.evaluate(()=>sliderBefore===document.querySelector('#time-slider')));
@@ -34,6 +51,10 @@ const assert=require('node:assert/strict');
  check('force view terminal index follows selected checkpoint',await page.evaluate(()=>FLIGHT_LAB.getState().terminalIndex===6));
  check('force view recorded lift/drag agree with source',await page.evaluate(()=>{const s=MH370_DATA.witness.states[6],t=document.querySelector('#inspector').innerText;return t.includes(s.loadFactor.toLocaleString('en-US',{minimumFractionDigits:3,maximumFractionDigits:3}))&&t.includes(s.trueAirspeedMps.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1}));}));
  await page.click('#force-back');check('force return retains exact witness response',await page.evaluate(()=>FLIGHT_LAB.getState().routeResponseId===MH370_DATA.witness.responseId&&FLIGHT_LAB.getState().checkpoint===6));
+ await page.click('#route-terminal');
+ check('terminal close-up lists three saved states and exact recorded descent',await page.evaluate(()=>{const indices=[...document.querySelectorAll('#checkpoint-sequence [data-checkpoint-index]')].map(el=>el.dataset.checkpointIndex);return JSON.stringify(indices)===JSON.stringify(['4','5','6'])&&document.querySelector('.terminal-detail').textContent.includes('459.049')&&document.querySelector('#terminal-height-plot');}));
+ await page.click('#checkpoint-sequence [data-checkpoint-index="5"]');
+ check('terminal list selects first transmission unambiguously',await page.evaluate(()=>FLIGHT_LAB.getState().checkpoint===5&&document.querySelector('[data-checkpoint-utc]').dataset.checkpointUtc===MH370_DATA.witness.states[5].epoch));
  await page.screenshot({path:'/tmp/atlas-lab-desktop.png',fullPage:true});await page.setViewportSize({width:390,height:844});await page.screenshot({path:'/tmp/atlas-lab-mobile.png',fullPage:true});
  check('no script errors',errors.length===0);await browser.close();console.log(JSON.stringify({passed:tests.length,tests,errors},null,2));
 })().catch(e=>{console.error(e);process.exit(1)});
