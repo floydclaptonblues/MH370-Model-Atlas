@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "title": "CelesTrak historical GP/TLE data for INMARSAT 3-F1",
+  "provider": "CelesTrak",
+  "provider_url": "https://celestrak.org/",
+  "supplied_by": "Ryan Hall",
+  "source_statement": "Historical GP/TLE file supplied by Ryan Hall as obtained from CelesTrak.",
+  "provider_retrieval_time_utc": null,
+  "provider_retrieval_time_note": "Not recorded in the supplied source file.",
+  "original_filename": "sat000023839 Historical GP Element Data.txt",
+  "raw_asset": "data/satellite/inmarsat_3f1_celestrak_20140307.tle",
+  "raw_bytes": 504,
+  "raw_sha256": "0223860d5a37631b25234350e0d603d55912a36811b816312a5b8ee771210826",
+  "raw_encoding": "ASCII",
+  "raw_line_endings": "CRLF",
+  "source_bytes_preserved": true,
+  "satellite_name": "INMARSAT 3-F1",
+  "norad_catalog_number": 23839,
+  "international_designator": "1996-020A",
+  "epoch_tle": "14066.96754476",
+  "epoch_utc": "2014-03-07T23:13:15.867264Z",
+  "record_count": 3,
+  "unique_epochs": 1,
+  "unique_orbital_element_sets_excluding_element_number_and_checksum": 1,
+  "record_difference": "Only line 1 element-set number and its checksum differ; line 2 is identical.",
+  "records": [
+    {
+      "element_set_number": 262,
+      "epoch_tle": "14066.96754476",
+      "line1_checksum_valid": true,
+      "line2_checksum_valid": true
+    },
+    {
+      "element_set_number": 263,
+      "epoch_tle": "14066.96754476",
+      "line1_checksum_valid": true,
+      "line2_checksum_valid": true
+    },
+    {
+      "element_set_number": 264,
+      "epoch_tle": "14066.96754476",
+      "line1_checksum_valid": true,
+      "line2_checksum_valid": true
+    }
+  ],
+  "format_checks": {
+    "element_line_length": 69,
+    "element_lines_checked": 6,
+    "checksums_passed": 6
+  },
+  "format_reference": "https://celestrak.org/NORAD/documentation/tle-fmt.php",
+  "propagation_reference": "https://celestrak.org/NORAD/documentation/gp-data-formats.php",
+  "publication_role": "supplied_orbital_element_source",
+  "propagation_performed_for_this_addition": false,
+  "canonical_map_satellite_source": {
+    "dataset": "INMARSAT_TABLE4_SATELLITE_STATE",
+    "asset": "data/satstate.json"
+  }
+}

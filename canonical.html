@@ -5,6 +5,32 @@
 <p class="sub" style="max-width:none">This section is the data front door of the atlas: a source-linked collection of the case’s observations, published datasets and derived reference layers. <b>Original observations and supplied datasets</b> live on this page and on <a href="satcom.html">Satcom</a> (the 5,029-row Inmarsat burst log and the canonical event table) and <a href="reference.html">Reference map</a> (every dataset's source, format and where to obtain it). <b>Normalised tables, conventions and calculated outputs</b> are kept separate and labelled as such on their own pages. The <b>baseline</b> ocean forcing for the drift chapter is the Copernicus Marine <b>GLORYS12V1</b> global reanalysis, 2014&ndash;2018 &mdash; the same product named on the drift pages &mdash; with NCEP/NCAR 10&nbsp;m winds. Individual experiments state their own forcing and temporal resolution and those statements govern: the <a href="drift3.html">forward-transport</a> runs use monthly-mean winds, and the <a href="drift4.html">four-year chapter</a> includes comparisons against other named ocean products. Monthly current and wind fields as used by the site are in <code>fields/</code>.</p></div>
 <p class="sub">The page distinguishes observations and published tables from reanalysis products and project-derived display geometry. The map includes ten derived BTO rings, place-name geocodes for debris and approximate search boxes; these are not raw measurements. Candidate flight states, reverse-drift density and fitted flight paths are excluded. Each layer’s provenance and limitations govern its interpretation.</p>
 
+<div class="card" id="inmarsat-tle"><h2>Inmarsat 3-F1: CelesTrak orbital elements <span class="tag ok">supplied source</span></h2>
+<p>Historical general perturbations (GP) data obtained from <a href="https://celestrak.org/">CelesTrak</a> by Ryan Hall for this project. The supplied file is embedded below, with its original bytes preserved in the Atlas source collection.</p>
+<div class="scroll"><table>
+<tr><th>Source field</th><th>Value</th></tr>
+<tr><td>Satellite</td><td><b>INMARSAT 3-F1</b> &middot; NORAD catalogue <b>23839</b> &middot; international designator <b>1996-020A</b></td></tr>
+<tr><td>Element epoch, UTC</td><td><b>7 March 2014, 23:13:15.867264</b> &middot; TLE field <code>14066.96754476</code></td></tr>
+<tr><td>Records supplied</td><td><b>Three records, one unique epoch and orbital-element set.</b> Element-set numbers 262, 263 and 264; only those numbers and the corresponding line-1 checksums differ.</td></tr>
+<tr><td>Original file</td><td><code style="overflow-wrap:anywhere">sat000023839 Historical GP Element Data.txt</code> &middot; 504 bytes &middot; all six element-line checksums pass.</td></tr>
+</table></div>
+<p class="sub" style="margin-top:10px">These are orbital elements for propagation with <b>SGP4</b>. Satellite positions and velocities calculated from them are derived data; each calculation needs its UTC time and reference-frame convention. The satellite track on this page uses the separately published <code>INMARSAT_TABLE4_SATELLITE_STATE</code> table. <a href="https://celestrak.org/NORAD/documentation/gp-data-formats.php">CelesTrak GP-data documentation</a> &middot; <a href="https://celestrak.org/NORAD/documentation/tle-fmt.php">TLE field definitions</a>.</p>
+<details open><summary><b>Original supplied TLE records</b></summary>
+<pre style="max-width:100%;overflow-x:auto;white-space:pre;font-size:12px" aria-label="Three supplied Inmarsat 3-F1 TLE records"><code>INMARSAT 3-F1           
+1 23839U 96020A   14066.96754476 -.00000012  00000+0  10000-3 0  2627
+2 23839   1.6371  73.1994 0005326 270.3614 234.8362  1.00274124 65669
+INMARSAT 3-F1           
+1 23839U 96020A   14066.96754476 -.00000012  00000+0  10000-3 0  2638
+2 23839   1.6371  73.1994 0005326 270.3614 234.8362  1.00274124 65669
+INMARSAT 3-F1           
+1 23839U 96020A   14066.96754476 -.00000012  00000+0  10000-3 0  2649
+2 23839   1.6371  73.1994 0005326 270.3614 234.8362  1.00274124 65669
+</code></pre>
+</details>
+<p class="sub"><a href="data/satellite/inmarsat_3f1_celestrak_20140307.tle">Preserved source text</a> &middot; <a href="data/satellite/inmarsat_3f1_celestrak_20140307.provenance.json">Source and integrity record</a></p>
+<details><summary>File identity</summary><p>SHA-256 of the original 504-byte file, including its CRLF line endings:</p><p><code style="overflow-wrap:anywhere">0223860d5a37631b25234350e0d603d55912a36811b816312a5b8ee771210826</code></p></details>
+</div>
+
 <div class="note"><b>Map extent and satellite motion.</b> The published 7th arc is drawn <b>in full, both arms</b>, from 43.9&deg;S to 45.0&deg;N &mdash; the canonical observation never excluded the northern arm. And the satellite is drawn where the published state table puts it, which is not a fixed point: it drifts between 0.53&deg;N and 1.64&deg;N over the eight hours that matter.</p></div>
 
 <div class="card"><h2>The map</h2>
@@ -21,6 +47,7 @@
 <tr><th>Layer</th><th>Status</th><th>Source as recorded</th></tr>
 <tr><td>7th arc</td><td><span class="tag ok">published</span></td><td>Reference arc supplied with the project, positioned 40,000&nbsp;ft above sea level. 200 points, 64.46&ndash;108.80&deg;E.</td></tr>
 <tr><td>Satellite states</td><td><span class="tag ok">published</span></td><td><code>INMARSAT_TABLE4_SATELLITE_STATE</code> &mdash; 11 states, 16:30 to 00:20 UTC, position and velocity.</td></tr>
+<tr><td>CelesTrak orbital-element source</td><td><span class="tag ok">supplied source</span></td><td>INMARSAT 3-F1, NORAD 23839. Three supplied TLE records at one epoch, 7 March 2014 23:13:15.867264 UTC. <a href="#inmarsat-tle">Raw records and source details</a>.</td></tr>
 <tr><td>Handshake observations</td><td><span class="tag ok">verified at source</span></td><td>19 rows, each tagged <code>canonical_observation</code> in the project&rsquo;s own event table, with raw and corrected BTO. <b>Checked line by line against the Inmarsat ground-station signalling log</b> on 27 Oct 2026: 14 of 14 BFO and raw-BTO values match exactly. See the section below.</td></tr>
 <tr><td><b>Source of record for every BTO and BFO</b></td><td><span class="tag ok">primary document</span></td><td><b>&ldquo;MH370 Data Communication Logs&rdquo; (226403237)</b>, the SATCOM signalling records released by the Malaysian authorities. This is the document every raw value, channel identifier and message type on this site ultimately traces to &mdash; the 19 handshake rows above, the &minus;4,600&nbsp;&micro;s log-on offset, and the channel labels used in the scoring audit below. Where this site says a value was &ldquo;verified at source&rdquo;, this is the source.</td></tr>
 <tr><td>IGARI radar fix</td><td><span class="tag ok">measured</span></td><td>Malaysian Preliminary Report on MH370. 17:21:13Z, 6.9478&deg;N 103.5772&deg;E, 10,668&nbsp;m, secondary radar.</td></tr>
