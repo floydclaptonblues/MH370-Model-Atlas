@@ -18,7 +18,7 @@
  <div class="card"><h2>Currents-only forward drift test, 8–23 Mar 2014</h2>
  <p class="sub">From <code>reverse_drift_forward_summary.csv</code>: 15 days of currents-only forward drift (no wind or Stokes) from arc points 26–41°S. Lines join each arc point to its endpoint.</p>
  <canvas id="mp3"></canvas>
- <div class="grid" style="margin-top:8px"><div><img src="img/currents_only.png" alt="Currents-only drift test: seeds, reverse drift and forward endpoints from the 7th arc" style="width:100%;height:auto;border-radius:6px"><p class="sub" style="margin-top:4px">Your figure, with the French-area seeds and the reverse drift.</p></div>
+ <div class="grid" style="margin-top:8px"><div><img src="img/currents_only.png" alt="Currents-only drift test: seeds, reverse drift and forward endpoints from the 7th arc" style="width:100%;height:auto;border-radius:6px"><p class="sub" style="margin-top:4px">Project figure showing the French-area seeds and the reverse drift.</p></div>
  <div class="scroll"><table id="fw"></table></div></div>
  <div class="note" style="margin-top:8px">Currents-only test. Endpoints move 32–204 nm from the arc point in 15 days; the minimum gap to the seed field is 40–970 nm (the table). No wind slip is included, which the leeway audit says is the main missing term.</div></div>
 <div class="card"><h2>Task 7: recovery-delay ceiling</h2><p class="sub">Share of arrivals already later than the find window at zero delay. A delay can only push arrivals later, so this is a hard ceiling. Range spans the saved leeway grid.</p>
@@ -26,7 +26,7 @@
  <div class="card"><h2>Task 8: leeway class support</h2><p class="sub">Literature audit only. Classes unchanged.</p><div class="scroll"><table id="t8"></table></div></div>
 </div>
 <div class="card"><h2>Task 9: independent-seed null tests <span class="tag ok">complete, 90 of 90</span></h2>
- <p>30 runs each of shuffled regions, random coast and observed, 32 items × 500 particles, all physics and seeds as registered. Closure passed 256/256 and the saved N2 baseline reproduced exactly (Codex qualification).</p>
+ <p>30 runs each of shuffled regions, random coast and observed, 32 items × 500 particles, all physics and seeds as registered. Closure passed 256/256 and the saved N2 baseline reproduced exactly in the qualification check.</p>
  <div class="scroll"><table id="t9h"></table></div>
  <div class="ctl" style="margin-top:10px"><span class="muted">Peak of the combined density, every run:</span></div>
  <canvas id="mp4"></canvas>
@@ -36,9 +36,9 @@
   <div><h3>Fixed original run among each null</h3><div class="scroll"><table id="t9p"></table></div><p class="sub" style="margin-top:6px">Empirical midranks of the single original N2 run, not averages over the new observed seeds.</p></div>
  </div>
  <div class="note ok" style="margin-top:8px"><b>Reading.</b> Scrambling find locations leaves the peak where it was: every null peak is within 500 km of the original, and 96.7% of shuffled-region peaks are within 250 km. The observed replicates are more spread than the shuffled nulls and drift east (mean 58.05°E). The western focus comes from the frozen dynamics, launch and density method and survivor conditioning, not from the find locations. The exact 55.75°E is not stable.</div>
- <div class="note" style="margin-top:8px"><b>Arc distance.</b> Codex's peak-to-arc distance (1,003–1,433 km) uses the arc file, which stops at 64.46°E. Measured to the full ring (my circle fit), peaks are 726–1,059 km inside it, mean about 920 km, with a handful under 1,000 km. Either way no peak is near the ring.</div>
+ <div class="note" style="margin-top:8px"><b>Arc distance.</b> The reported peak-to-arc distance (1,003–1,433 km) uses the arc file, which stops at 64.46°E. Measured to the full fitted ring, peaks are 726–1,059 km inside it, mean about 920 km, with a handful under 1,000 km. Neither distance calculation places a peak near the ring.</div>
  <div class="note" style="margin-top:8px"><b>Not isolated.</b> The test does not say which component causes the focus, and it does not show the finds are uninformative in general. Results depend on assumed coordinates, assigned classes and divergence, daily NCEP winds, N2 launches, absorbing coasts, diffusion and region-balanced smoothing. Explicit Stokes stays null.</div></div>
-<div class="card"><h2>Open caveats</h2><ul><li>Find coordinates and date intervals are assumed.</li><li>Class slip and divergence are my assumptions. The audit finds C3 unsupported as a measured class and C2 untestable.</li><li>Daily NCEP winds and no Stokes (WAVERYS not acquired). ERA5 not yet used.</li><li>Beach residence, refloat and detection delay are not modeled; Task 7 delays are post-hoc shifts only.</li></ul></div>
+<div class="card"><h2>Open caveats</h2><ul><li>Find coordinates and date intervals are assumed.</li><li>Class slip and divergence are assumed parameters. The audit finds C3 unsupported as a measured class and C2 untestable.</li><li>Daily NCEP winds and no Stokes (WAVERYS not acquired). ERA5 not yet used.</li><li>Beach residence, refloat and detection delay are not modeled; Task 7 delays are post-hoc shifts only.</li></ul></div>
 <script>
 MH.nav("drift.html");const VIEWS={"Average Day tracks":[84,100,-40,2],"Terminal area":[86,93,-39,-35],"Whole basin":[15,130,-60,15],"Search area":[80,112,-42,-20],"Western drift focus":[35,80,-52,-20],"Southern Africa to Réunion":[25,70,-40,-5]};
 (async()=>{

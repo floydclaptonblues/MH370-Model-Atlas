@@ -16,7 +16,7 @@ const [mask,arc,cand,radar,den,fnd,adf]=await Promise.all(["mask","arc7","phase5
 const map=new MH.Map(document.getElementById("mp"),mask,VIEWS["Whole basin"]);
 map.layers.density=MH.L.density(den,false);map.layers.ring=MH.L.ring();map.layers.arc=MH.L.arc(arc);map.layers.bto=MH.L.box(MH.BTOBOX,'June BTO-only endpoint box');map.layers.search=MH.L.search(MH.SEARCH);map.layers.finds=MH.L.finds(fnd);map.layers.cand=MH.L.cand(cand);map.layers.flights=MH.L.flights(adf);
 map.layers.radar=MH.L.radar(radar.filter(r=>r.lat_deg).map(r=>({lat:+r.lat_deg,lon:+r.lon_deg})));
-const names={density:"Reverse-drift density",hpd:"Density 90% HPD cells",arc:"7th arc",ring:"Ring extension (my fit)",bto:"June BTO-only endpoint box",cand:"Phase 5A candidates",finds:"Debris find sites",flights:"Average Day flights (star = 00:11)",search:"Search areas (approx)",radar:"IGARI radar point"};
+const names={density:"Reverse-drift density",hpd:"Density 90% HPD cells",arc:"7th arc",ring:"Fitted ring extension",bto:"June BTO-only endpoint box",cand:"Phase 5A candidates",finds:"Debris find sites",flights:"Average Day flights (star = 00:11)",search:"Search areas (approx)",radar:"IGARI radar point"};
 const tg=document.getElementById("tg");
 tg.innerHTML=Object.entries(names).map(([k,l])=>`<label><input type="checkbox" data-k="${k}" ${k==="hpd"?"":"checked"}>${l}</label>`).join("");
 tg.querySelectorAll("input").forEach(i=>i.onchange=()=>{const k=i.dataset.k;if(k==="hpd")map.layers.density.hpd=i.checked;else map.layers[k].on=i.checked;map.draw()});
