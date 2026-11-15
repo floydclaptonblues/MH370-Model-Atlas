@@ -330,6 +330,40 @@
   #flight-lab-app .route-scope-controls button { flex: 1; }
 }
 
+/* Plain-language readouts describe the selected record before its diagram. */
+#flight-lab-app .snapshot-context {
+  border-left: 3px solid #245e8b; padding: 8px 11px; margin: 12px 0 0;
+  background: #f5f2e7; color: #354c58; font-size: 12px;
+}
+#flight-lab-app .plain-readout {
+  margin: 12px 10px 0; padding: 16px; background: #f5f2e7;
+  box-shadow: var(--fl-sunken); overflow-wrap: anywhere;
+}
+#flight-lab-app .readout-heading { margin-bottom: 15px; }
+#flight-lab-app .readout-heading .eyebrow { margin: 0 0 6px; font-size: 10px; }
+#flight-lab-app .readout-heading h3 { font-size: 18px; margin: 0 0 7px; }
+#flight-lab-app #readout-summary { font-size: 14px; color: #213b4b; margin: 0; }
+#flight-lab-app .readout-cards { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; }
+#flight-lab-app .readout-card { min-width: 0; border-top: 2px solid #9cabb1; padding-top: 9px; }
+#flight-lab-app .readout-card h4 { font: bold 12px/1.5 Tahoma,Arial,sans-serif; color: #435964; margin: 0 0 5px; }
+#flight-lab-app .readout-card p { font-size: 12px; line-height: 1.6; color: #40545e; margin: 6px 0 0; }
+#flight-lab-app .readout-card p.readout-value { font-size: 15px; font-weight: 700; color: #172f40; line-height: 1.5; margin: 0; }
+#flight-lab-app .readout-change { padding-top: 12px; margin: 14px 0 0; border-top: 1px solid #c7c5ba; font-size: 12px; color: #344d59; }
+#flight-lab-app .readout-note { font-size: 11px; color: #52636a; margin: 10px 0 0; }
+#flight-lab-app .force-explanations { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; background: #f5f2e7; padding: 13px; margin: 12px 0 0; box-shadow: var(--fl-sunken); }
+#flight-lab-app .model-story > summary { cursor: pointer; font-size: 14px; font-weight: 700; color: #23475d; padding: 5px 0; }
+#flight-lab-app .model-story[open] > summary { margin-bottom: 16px; }
+#flight-lab-app #readout-terminal { align-self: end; min-height: 32px; }
+@container flightlab (max-width:1000px) {
+  #flight-lab-app .readout-cards { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@container flightlab (max-width:560px) {
+  #flight-lab-app .plain-readout { margin: 10px 6px 0; padding: 13px; }
+  #flight-lab-app .readout-cards, #flight-lab-app .force-explanations { grid-template-columns: minmax(0,1fr); gap: 13px; }
+  #flight-lab-app .readout-heading h3 { font-size: 17px; }
+  #flight-lab-app .readout-card p { font-size: 12px; }
+}
+
 /* The Atlas desktop rack occupies 214px. Switch to stacked instruments
    before that frame can squeeze either the canvas or the property sheet. */
 @media (max-width:1100px) {

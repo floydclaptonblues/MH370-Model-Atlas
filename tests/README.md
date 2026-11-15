@@ -8,9 +8,12 @@ Run these from the repository root (Node 24 was used during development):
 npm ci --prefix tests --ignore-scripts --no-audit --no-fund
 node tests/flight_lab_dom.cjs
 node tests/flight_lab_renderer.cjs
+node tests/flight_lab_readouts.cjs
 ```
 
 Both suites use jsdom from `tests/package.json`. The shared `flight_lab_harness.cjs` loads the published data asset, the production `scene3d.js`, and the production application. It controls interval timers and animation-frame delivery. Canvas2D rasterization is replaced with no-op drawing calls, while the renderer's projection, draw traversal, hit regions, candidate lookup, and pointer handlers run unchanged.
+
+The readout suite also uses that harness. It checks source-grounded speed/direction and height conversions, auxiliary reserve versus engine fuel, endpoint changes, selection synchronization, unavailable values, and the isolation of the wind illustration. On 15 November 2026, the three suites passed 46 controller checks, eight renderer checks and 21 readout checks. These remain display checks, not scientific revalidation.
 
 The controller suite checks the reviewed user flows: the main Forces tab and the dedicated inspector button preserve the first transmission's flight, response, and epoch; records without force data stay selected and report the absence; returning preserves the original selection; grid, dropdown, and guided entry identify the same worked-example supplement; another response on that parent cannot inherit the witness states. It retains the prior missing-value, recorded/derived-mass, slider-identity, timer-cancellation, and stale-selection regressions.
 

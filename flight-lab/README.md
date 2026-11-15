@@ -23,6 +23,16 @@ The download is explicitly labelled **Standalone offline viewer**. It contains t
 
 The viewer's internal state controls operate only on the retained data or the separate vector-addition teaching example. They do not create accepted flights.
 
+## Plain-language readouts, 15 November 2026
+
+The opening view now follows the existing seven-checkpoint example. A readout above the diagram explains the selected position, compass direction, ground speed, vertical motion, fuel and engine phase. A saved-time selector changes the same record as the slider, map and detailed inspector. Height uses the exported height above the model surface when available, otherwise the labelled ellipsoid reference. Familiar units are display conversions; “height nearly steady” means the saved vertical speed has magnitude below 0.1 m/s, without changing any model classification.
+
+Changes since the previous checkpoint compare saved endpoints only. The readout does not interpolate motion or estimate remaining flight time. Ordinary one-position summaries and final-position cloud records retain their missing-motion labels; another response cannot inherit the example's fields.
+
+Force descriptions explain lift, drag, approximate weight and the separate velocity arrow. Recorded bank remains distinct from commanded bank; no unverified left/right convention or nose attitude is inferred. The wind illustration has its own dynamic readout and changes no saved flight. Technical values and source records remain available, while the general model tutorial is collapsed initially. The frozen catalogue is explicitly separate from the 108-arrival cruise-level study and current working-area assessment.
+
+The focused display regression is `node tests/flight_lab_readouts.cjs`, in addition to the controller and renderer checks below. None of these checks performs a flight calculation. `build_offline.py` also copies the shared page sections into the standalone download and verifies preservation of its scientific data and provenance.
+
 ## Playback repair, 12 November 2026
 
 The controller keeps configuration, parent flight and terminal response identities separate. Opening a different response on the worked example's parent shows only the exported parent summary; it does not substitute the example's seven-checkpoint terminal trajectory. A selection without a returned flight displays an explicit unavailable state.

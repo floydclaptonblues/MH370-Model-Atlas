@@ -22,6 +22,15 @@ def build():
     html = original['dist/index.html'].decode()
     if 'assets/playback.css' not in html:
         html = html.replace('</head>', '  <link rel="stylesheet" href="assets/playback.css">\n</head>')
+    # Keep the working controls and plain-language content in step with the
+    # Atlas, while preserving the standalone header, stylesheet and scripts.
+    body = (ROOT.parent / 'src/flight_lab_body.html').read_text()
+    start = '    <section class="intro">'
+    shared = body[body.index(start):body.index('  <footer>')]
+    for target in ('assessment.html#current-working-area', 'index.html#closure'):
+        shared = shared.replace('href="' + target + '"',
+                                'href="https://mh370atlasmodel.y2kneverended.net/' + target + '"')
+    html = html[:html.index(start)] + shared + html[html.index('  </main>'):]
     replacements = {
         'dist/assets/app.js': (ROOT / 'assets/app.js').read_bytes(),
         'dist/assets/scene3d.js': (ROOT / 'assets/scene3d.js').read_bytes(),
@@ -37,6 +46,12 @@ def build():
         _, b = rest.split(NOTE_END, 1)
         readme = a + b.lstrip('\n')
     note = '''<!-- PLAYBACK_CONTEXT_REPAIR -->
+# Plain-language readouts — 15 November 2026
+
+The viewer opens on the saved seven-checkpoint example. Readouts describe the selected time's position, direction, ground speed, height change and fuel/engine phase. The force view explains each arrow; the wind illustration reports its own selected inputs and results. Missing motion remains unavailable, and the older catalogue is explicitly separate from the current geographical assessment.
+
+Readouts convert saved values into familiar units and compare adjacent saved endpoints. They do not integrate a flight, interpolate a trajectory, estimate endurance or fill missing states. The standalone controls and explanatory sections match the Atlas edition.
+
 # Playback selection update — 12 November 2026
 
 The route and recorded-force views now preserve the selected flight, response and checkpoint. Missing force data is shown explicitly. A terminal close-up and height/time plot display the three retained final states; numbered checkpoint cards expose unequal time gaps. Overlapping marker clicks offer a timestamp choice. The bank command and recorded bank are labelled separately. Full-route markers have no invented connecting trajectory.
