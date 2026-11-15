@@ -372,7 +372,7 @@ pages["arc7-demo.html"]=DEMO_HEAD+open("src/arc7_demo_body.html").read()+'<scrip
 FLIGHT_LAB_HEAD='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Flight Dynamics Lab — MH370 Model Atlas</title><meta name="description" content="Explore the MH370 Model Atlas frozen flight-state catalogue in a Windows 98 scientific console: the declared configuration grid, saved states, forces, wind and satellite tests. No new flight fits are computed.">
 <link rel="canonical" href="https://mh370atlasmodel.y2kneverended.net/flight-lab.html">
-<link rel="stylesheet" href="common.css"><link rel="stylesheet" href="flight-lab/assets/win98.css?v=readouts-2"><script src="common.js"></script>
+<link rel="stylesheet" href="common.css"><link rel="stylesheet" href="flight-lab/assets/win98.css?v=readouts-2"><script src="common.js?v=flight-readouts-2"></script>
 <script defer src="flight-lab/assets/data.js"></script><script defer src="flight-lab/assets/scene3d.js?v=playback-2"></script><script defer src="flight-lab/assets/app.js?v=readouts-1"></script></head><body class="atlas-flight-lab"><div class="wrap"><nav id="nav"></nav>'''
 pages["flight-lab.html"]=FLIGHT_LAB_HEAD+open("src/flight_lab_body.html").read()+'<script>MH.nav("flight-lab.html");</script>'+TAIL
 pages["closing.html"]=HEAD%"MH370 Closing Report"+ARCHIVED_BANNER+'''<details class="card"><summary>Open the archived chapter closeout and correction record</summary>'''+open("src/closing_body.html").read()+"</details>"+'<script>MH.nav("closing.html");</script>'+TAIL
