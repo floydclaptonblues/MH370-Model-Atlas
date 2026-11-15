@@ -105,7 +105,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
       '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +
       '<div><div class="ix-cap">Record status</div><div class="ix-lamps">' +
       '<span><i class="lamp green"></i>Catalogue: frozen</span><span><i class="lamp"></i>Viewer: display-only</span>' +
-      '<span><i class="lamp amber"></i>22:41: sealed</span><span><i class="lamp"></i>States: airborne</span></div></div>' +
+      '<span><i class="lamp amber"></i>22:41: excluded</span><span><i class="lamp"></i>States: airborne</span></div></div>' +
       '<div><div class="ix-cap">Catalogue snapshot · de50a52</div><div class="ix-ro">' +
       '<div><span>ARRIVALS</span><output>22</output></div><div><span>CONFIGS</span><output>5,750</output></div>' +
       '<div><span>FLIGHT RECORDS</span><output>278</output></div><div><span>FINAL STATES</span><output>3,171</output></div></div></div>' :
@@ -126,7 +126,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     const b1 = el('div', 'ix-box', '<b>Sections</b>'); b1.append(tree);
     const b2 = el('div', 'ix-box', isFlightLab ? '<b>Saved epochs, UTC</b><div class="ix-ro">' +
       '<div><span>FIRST SAVED</span><output>19:41:03</output></div><div><span>POWERED SAVE</span><output>00:11:00</output></div>' +
-      '<div><span>FINAL TRANSMISSION</span><output>00:19:37</output></div><div><span>HOLDOUT</span><output>22:41 · sealed</output></div></div>' :
+      '<div><span>FINAL TRANSMISSION</span><output>00:19:37</output></div><div><span>EXCLUDED</span><output>22:41</output></div></div>' :
       '<b>Reference epochs, UTC</b><div class="ix-ro">' +
       '<div><span>RADAR HANDOFF</span><output>18:22:12</output></div><div><span>FINAL LOG-ON</span><output>00:19:29</output></div>' +
       '<div><span>LAST TRANSMISSION</span><output>00:19:37</output></div><div><span>FUEL / FLOOR EVENTS</span><output>case-dependent</output></div></div>');

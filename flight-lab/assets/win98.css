@@ -91,7 +91,7 @@
 #flight-lab-app .intro > div:first-child { min-width: 0; }
 #flight-lab-app .intro .eyebrow { display: flex; align-items: center; gap: 7px; }
 #flight-lab-app .tiny-orbit { display: inline-block; height: 8px; width: 8px; background: #000080; flex: 0 0 auto; }
-#flight-lab-app .intro-copy { margin: 0; color: var(--fl-muted); font-size: 12px; max-width: 66ch; }
+#flight-lab-app .intro-copy { margin: 0; color: var(--fl-muted); font-size: 13px; max-width: 100ch; }
 #flight-lab-app .intro-facts { display: flex; align-items: stretch; gap: 4px; flex-shrink: 0; }
 #flight-lab-app .intro-facts > div { background: #e6e4dc; padding: 7px 9px; box-shadow: var(--fl-sunken); }
 #flight-lab-app .intro-facts strong { display: block; color: #172f47; font: bold 23px/1.2 "Courier New", monospace; font-variant-numeric: tabular-nums; }
@@ -395,7 +395,7 @@
   #flight-lab-app .fl-menu { gap: 5px 9px; padding: 5px; }
   #flight-lab-app .intro { padding: 13px 9px; }
   #flight-lab-app h1 { font-size: 20px; }
-  #flight-lab-app .intro-copy { font-size: 11px; }
+  #flight-lab-app .intro-copy { font-size: 12px; }
   #flight-lab-app .intro-facts { gap: 3px; }
   #flight-lab-app .intro-facts > div { padding: 7px; }
   #flight-lab-app .intro-facts strong { font-size: 21px; }
