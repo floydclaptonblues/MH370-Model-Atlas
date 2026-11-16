@@ -2,9 +2,27 @@
 
 Public route: `flight-lab.html`. Navigation and the homepage's Scientific tools section link to it.
 
-This is the Atlas presentation of the standalone Flight Dynamics Lab, originally frozen at `33a90b300657bf0a11005bab885fec055ed56df6`. The Atlas edition uses the shared scientific-console shell and a scoped Windows 98 stylesheet. It carries the same safe compiled dataset without changing a scientific value.
+The opening view is the completed **108-arrival cruise-level run**, published 16 November 2026. A catalogue switch retains the earlier terminal viewer as a separate dated snapshot. The Atlas edition uses the shared scientific-console shell and scoped Windows 98 stylesheets. Neither view computes a flight.
 
-## Sources and scope
+## Completed cruise catalogue, 16 November 2026
+
+The current explorer reads `../data/cruise-production-108/catalogue.js`, compiled from the committed source tables at `24655869cf3fe2452615157cf59c1ed3f28c3677`, runner revision `2a016b1294fa`. The source files, exact hashes, JSON export and display-validation record are kept beside that asset.
+
+The explorer covers all 108 arrivals, 424 configurations and 848 completed one-sided searches. It exposes 266 distinct accepted flights, their 267 directional solution records, the separate endings of both searches, the three recorded measurement-time checkpoints, total fuel and engine fuel above the model's 6.80388555 kg APU reserve, and the recorded fuel-exhaustion event or powered-at-00:40 status. Exact-command duplicates are linked; nearby flights remain separate. Numerical-check labels refer to the particular flight repeated, and range-end flags remain attached.
+
+Filters select the starting group, incoming-level control or climbed level, search outcome and individual arrival. The configuration list and returned-flight selector provide access to every record. The latitude/longitude plot shows saved 00:11 airborne positions only, with different shapes as well as colours for the three Mach values. Overlapping markers offer a record chooser. No trajectory joins or probability contours are drawn.
+
+Acceptance in this run concerns the three later timing bands, performance support and engine fuel at 00:11. Its terminal package has not yet run; earlier terminal results are not transferred to these flights. The page states the bounded-search scope, diagnostic role of later frequency residuals, numerical-check limits and satellite-input sensitivity.
+
+`assets/cruise-production.js` and `assets/cruise-production.css` provide the new display. `src/flight_lab_body.html` holds its markup. The historical `assets/data.js`, `assets/app.js` and `assets/scene3d.js` remain unchanged. The shared shell receives `atlas:catalogue` when the user switches between current and earlier catalogues, so its displayed counts have the same scope.
+
+Source CSVs and the compiled JSON can be downloaded from the current view. The existing standalone ZIP remains the **earlier 12 November viewer**; it does not include this new cruise catalogue. Future offline rebuilds extract only the body between `LEGACY_CATALOGUE_START` and `LEGACY_CATALOGUE_END`.
+
+Focused new display checks: `node tests/cruise_production_lab.cjs`. They exercise real filtering and selection against the imported catalogue, fuel/reserve and check identity, range-end labels, the overlap chooser, the catalogue switch and source preservation. These are interface checks, not scientific revalidation.
+
+## Earlier terminal catalogue: sources and scope
+
+The retained historical view is the Atlas presentation of the standalone Flight Dynamics Lab, originally frozen at `33a90b300657bf0a11005bab885fec055ed56df6`.
 
 - Catalogue commit: `de50a5206e940fcb34acf587f98e849f9f4e98b5`.
 - Scientific export baseline: `31b6b16ef4ddcc8cad153b56ae2e380f838046dd`.

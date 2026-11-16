@@ -22,11 +22,14 @@ def build():
     html = original['dist/index.html'].decode()
     if 'assets/playback.css' not in html:
         html = html.replace('</head>', '  <link rel="stylesheet" href="assets/playback.css">\n</head>')
-    # Keep the working controls and plain-language content in step with the
-    # Atlas, while preserving the standalone header, stylesheet and scripts.
+    # This archive remains the earlier terminal catalogue. Extract only that
+    # viewer, not the completed cruise explorer or its catalogue switch.
     body = (ROOT.parent / 'src/flight_lab_body.html').read_text()
     start = '    <section class="intro">'
-    shared = body[body.index(start):body.index('  <footer>')]
+    marker_start = '<!-- LEGACY_CATALOGUE_START -->'
+    marker_end = '<!-- LEGACY_CATALOGUE_END -->'
+    shared = body.split(marker_start, 1)[1].split(marker_end, 1)[0].lstrip('\n')
+    assert shared.startswith(start)
     for target in ('assessment.html#current-working-area', 'index.html#closure'):
         shared = shared.replace('href="' + target + '"',
                                 'href="https://mh370atlasmodel.y2kneverended.net/' + target + '"')

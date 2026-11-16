@@ -1,0 +1,57 @@
+{
+ "revision": "2a016b1294fa",
+ "configurations": 424,
+ "summaries": {
+  "ACCEPTED_FLIGHT_FOUND": 208,
+  "NO_ACCEPTED_FLIGHT_IN_THE_COMPLETED_SEARCH": 216
+ },
+ "directions_by_coverage": {
+  "FINISHED": 848
+ },
+ "direction_endings": {
+  "ACCEPTED_FLIGHT_FOUND": 218,
+  "NO_STARTING_POINT": 309,
+  "STOPPED_AT_AN_AIRCRAFT_LIMIT_OF_THE_PERFORMANCE_MODEL": 200,
+  "FUEL_EXHAUSTED_BEFORE_THE_FIT_TIME_ON_EVERY_TRIAL_FLIGHT": 117,
+  "ACCEPTED_FLIGHT_ONLY_ON_AN_END_OF_THE_SEARCHED_RANGE": 1,
+  "STARTING_POINT_FOUND_BUT_NO_ACCEPTED_FLIGHT": 3
+ },
+ "accepted_flight_rows_in_the_direction_tables": 1129,
+ "distinct_accepted_flights_counted_once_per_configuration": 266,
+ "numerical_checks": {
+  "status": "EVERY_EXPECTED_CHECK_HAS_AN_ENTRY",
+  "owed": 218,
+  "by_status": {
+   "PERFORMED": 218
+  },
+  "resolved": 218
+ },
+ "local_account": {
+  "total_s": 282475.0855558743,
+  "flights": 24450,
+  "gate": {
+   "numerical_s": 1523.3586136760016,
+   "powered_completed": 438,
+   "terminal": 0,
+   "interrupted_powered": 0,
+   "interrupted_reservation_s": 0.0
+  }
+ },
+ "durable_account": {
+  "settled_s": 282475.08555587096,
+  "lost_s": 0,
+  "outstanding_reservations_s": 0,
+  "by_stage": {
+   "gate": 1523.3586136760016,
+   "searches": 270803.26593924797,
+   "checks": 10148.461002947035
+  },
+  "fatal_stop": null
+ },
+ "ceilings": {
+  "gate": 3000.0,
+  "searches": 372000.0,
+  "checks": 25000.0,
+  "total": 400000.0
+ }
+}

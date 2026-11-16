@@ -101,21 +101,23 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     const rest = [...app.children].filter(n => n !== nav);
     const title = el('header', 'ix-title', '<i aria-hidden="true"></i><span>MH370 Model Atlas — ' + here + '</span>');
     app.insertBefore(title, nav);
-    const strip = el('section', 'ix-strip', isFlightLab ?
-      '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +
-      '<div><div class="ix-cap">Record status</div><div class="ix-lamps">' +
-      '<span><i class="lamp green"></i>Catalogue: frozen</span><span><i class="lamp"></i>Viewer: display-only</span>' +
-      '<span><i class="lamp amber"></i>22:41: excluded</span><span><i class="lamp"></i>States: airborne</span></div></div>' +
-      '<div><div class="ix-cap">Catalogue snapshot · de50a52</div><div class="ix-ro">' +
+    const catalogueSummary = legacy => legacy ?
+      '<div class="ix-cap">Earlier terminal snapshot · de50a52</div><div class="ix-ro">' +
       '<div><span>ARRIVALS</span><output>22</output></div><div><span>CONFIGS</span><output>5,750</output></div>' +
-      '<div><span>FLIGHT RECORDS</span><output>278</output></div><div><span>FINAL STATES</span><output>3,171</output></div></div></div>' :
+      '<div><span>FLIGHT RECORDS</span><output>278</output></div><div><span>FINAL STATES</span><output>3,171</output></div></div>' :
+      '<div class="ix-cap">Completed cruise study · 16 November</div><div class="ix-ro">' +
+      '<div><span>ARRIVALS</span><output>108</output></div><div><span>CONFIGS</span><output>424</output></div>' +
+      '<div><span>ACCEPTED FLIGHTS</span><output>266</output></div><div><span>CHECKS RESOLVED</span><output>218</output></div></div>';
+    const catalogueStatus = legacy => legacy ?
+      '<span><i class="lamp green"></i>Earlier catalogue: frozen</span><span><i class="lamp"></i>Viewer: display-only</span>' +
+      '<span><i class="lamp amber"></i>22:41: excluded</span><span><i class="lamp"></i>States: airborne</span>' :
+      '<span><i class="lamp green"></i>Cruise run: complete</span><span><i class="lamp"></i>Checks: resolved</span>' +
+      '<span><i class="lamp amber"></i>Terminal follow-up: not run</span><span><i class="lamp"></i>Aircraft located: no</span>';
+    let legacyCatalogue = isFlightLab && document.body.dataset.flightCatalogue === 'legacy';
+    const strip = el('section', 'ix-strip',
       '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +
-      '<div><div class="ix-cap">Record status</div><div class="ix-lamps">' +
-      '<span><i class="lamp green"></i>Histories: sampled branch</span><span><i class="lamp amber"></i>Satellite chapter: archived</span>' +
-      '<span><i class="lamp amber"></i>Drift chapter: open</span><span><i class="lamp"></i>Aircraft located: no</span></div></div>' +
-      '<div><div class="ix-cap">Published six-history branch</div><div class="ix-ro">' +
-      '<div><span>HISTORIES</span><output>6</output></div><div><span>RESPONSES</span><output>98</output></div>' +
-      '<div><span>CANDIDATES</span><output>424</output></div><div><span>FLOOR STATES</span><output>68</output></div></div></div>');
+      '<div><div class="ix-cap">Record status</div><div class="ix-lamps" id="ix-catalogue-status">' + catalogueStatus(legacyCatalogue) + '</div></div>' +
+      '<div id="ix-catalogue-summary">' + catalogueSummary(legacyCatalogue) + '</div>');
     strip.setAttribute('aria-label', 'Project summary');
     nav.after(strip);
     const main = el('div', 'ix-main'), rack = el('aside', 'ix-rack'), work = el('main', 'ix-work');
@@ -124,12 +126,22 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     SECTIONS.forEach(s => { if (!s) { tree.append(el('li', 'sep')); return; }
       const li = el('li'), a = el('a'); a.href = s[0]; a.textContent = s[1]; if (s[0] === file) a.setAttribute('aria-current', 'page'); li.append(a); tree.append(li); });
     const b1 = el('div', 'ix-box', '<b>Sections</b>'); b1.append(tree);
-    const b2 = el('div', 'ix-box', isFlightLab ? '<b>Saved epochs, UTC</b><div class="ix-ro">' +
+    const catalogueEpochs = legacy => legacy ? '<b>Earlier saved epochs, UTC</b><div class="ix-ro">' +
       '<div><span>FIRST SAVED</span><output>19:41:03</output></div><div><span>POWERED SAVE</span><output>00:11:00</output></div>' +
       '<div><span>FINAL TRANSMISSION</span><output>00:19:37</output></div><div><span>EXCLUDED</span><output>22:41</output></div></div>' :
+      '<b>Cruise study epochs, UTC</b><div class="ix-ro">' +
+      '<div><span>STARTING STATE</span><output>19:41:03</output></div><div><span>LAST FITTED TIME</span><output>00:11:00</output></div>' +
+      '<div><span>FUEL HORIZON</span><output>00:40:00</output></div><div><span>NOT EVALUATED</span><output>22:41</output></div></div>';
+    const b2 = el('div', 'ix-box', isFlightLab ? catalogueEpochs(legacyCatalogue) :
       '<b>Reference epochs, UTC</b><div class="ix-ro">' +
       '<div><span>RADAR HANDOFF</span><output>18:22:12</output></div><div><span>FINAL LOG-ON</span><output>00:19:29</output></div>' +
       '<div><span>LAST TRANSMISSION</span><output>00:19:37</output></div><div><span>FUEL / FLOOR EVENTS</span><output>case-dependent</output></div></div>');
+    if (isFlightLab) window.addEventListener('atlas:catalogue', event => {
+      legacyCatalogue = event.detail && event.detail.catalogue === 'legacy';
+      strip.querySelector('#ix-catalogue-summary').innerHTML = catalogueSummary(legacyCatalogue);
+      strip.querySelector('#ix-catalogue-status').innerHTML = catalogueStatus(legacyCatalogue);
+      b2.innerHTML = catalogueEpochs(legacyCatalogue);
+    });
     const b3 = el('div', 'ix-box', '<b>How to read a label</b><div class="ix-key">' +
       '<span><i class="tag ok">OBS</i>measured or published</span><span><i class="tag frozen">FRZ</i>frozen model or method</span>' +
       '<span><i class="tag prov">PROV</i>provisional or under review</span><span><i class="tag blocked">NEG</i>tested scenario rejected</span><span><i class="tag prov">N/A</i>not available or uncomputed</span></div>');

@@ -1,0 +1,108 @@
+/* Completed cruise catalogue. Scoped to the existing Atlas Flight Lab. */
+#flight-lab-app .cp-catalogue-tabs { display:flex; gap:5px; padding:0 11px 10px; flex-wrap:wrap; }
+#flight-lab-app .cp-catalogue-tabs button { padding:9px 15px; font-size:13px; text-align:left; }
+#flight-lab-app .cp-catalogue-tabs button small { display:block; font-size:10px; margin-top:2px; font-weight:normal; }
+#flight-lab-app .cp-catalogue-tabs button.active { background:#f5f2e7; color:#000080; font-weight:bold; box-shadow:var(--fl-sunken); }
+#flight-lab-app .cp-panel { padding:15px; margin:0 7px 8px; background:#eeebe2; box-shadow:var(--fl-sunken); }
+#flight-lab-app .cp-panel p { font-size:12px; margin:9px 0; }
+#flight-lab-app .cp-heading h2 { font-size:22px; }
+#flight-lab-app .cp-heading p:last-child { max-width:104ch; }
+#flight-lab-app .cp-stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; margin:15px 0; }
+#flight-lab-app .cp-stats > div { background:#dfddd4; box-shadow:var(--fl-sunken); padding:11px 13px; }
+#flight-lab-app .cp-stats strong { display:block; font:bold 27px/1.2 "Courier New",monospace; color:#153b56; }
+#flight-lab-app .cp-stats span { font-size:11px; }
+#flight-lab-app .cp-definition { border-left:3px solid #245e8b; padding:5px 11px; background:#e4eaf0; }
+#flight-lab-app .cp-outcomes, #flight-lab-app .cp-sources { padding:11px; margin:12px 0; background:#f8f5eb; border:1px solid #aaa79e; }
+#flight-lab-app .cp-panel summary { cursor:pointer; font-weight:bold; font-size:12px; }
+#flight-lab-app .cp-table-scroll { max-width:100%; overflow-x:auto; }
+#flight-lab-app .cp-panel table { border-collapse:collapse; width:100%; font-size:11px; }
+#flight-lab-app .cp-panel th { text-align:left; padding:8px; background:#deddd5; color:#233a48; border-bottom:1px solid #8d9699; white-space:normal; }
+#flight-lab-app .cp-panel td { padding:7px 8px; border-bottom:1px solid #d2d0c6; color:#243d49; white-space:normal; vertical-align:top; }
+#flight-lab-app .cp-outcomes table { margin-top:11px; min-width:630px; }
+#flight-lab-app .cp-outcomes td:first-child { min-width:170px; }
+#flight-lab-app .cp-cell-found { color:#124d83; font-weight:bold; }
+#flight-lab-app .cp-cell-none { color:#80581e; }
+#flight-lab-app .cp-filters { display:flex; flex-wrap:wrap; gap:10px; padding:13px 10px; margin-top:16px; background:#d7d6cf; box-shadow:var(--fl-sunken); align-items:end; }
+#flight-lab-app .cp-filters label { display:flex; flex-direction:column; gap:5px; font-size:11px; font-weight:bold; flex:1; min-width:145px; }
+#flight-lab-app .cp-filters select { max-width:none; width:100%; font-size:11px; }
+#flight-lab-app .cp-filters button { margin-bottom:1px; }
+#flight-lab-app .cp-filter-count { min-height:20px; font-weight:bold; }
+#flight-lab-app .cp-workbench { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:12px; align-items:start; }
+#flight-lab-app .cp-results { min-width:0; }
+#flight-lab-app .cp-config-table { background:#fffdf5; }
+#flight-lab-app .cp-config-table th:nth-child(1) { width:30%; }
+#flight-lab-app .cp-config-table th:nth-child(2) { width:22%; }
+#flight-lab-app .cp-config-table th:nth-child(4) { width:12%; }
+#flight-lab-app .cp-config-table tr.cp-selected { background:#dceaf3; outline:2px solid #245e8b; outline-offset:-2px; }
+#flight-lab-app .cp-config-table button { text-align:left; background:transparent; box-shadow:none; color:#124d83; padding:1px 0; min-height:28px; font:bold 12px "Courier New",monospace; text-decoration:underline; }
+#flight-lab-app .cp-config-table small { display:block; margin-top:3px; font-size:10px; color:#516169; }
+#flight-lab-app .cp-result-tag { display:inline-block; color:#174e74; border:1px solid #92aebf; background:#e3eef3; padding:2px 4px; font-size:10px; }
+#flight-lab-app .cp-result-tag.cp-none { color:#7d511e; background:#f6ecd7; border-color:#c5ad7c; }
+#flight-lab-app .cp-pager { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:9px 0; }
+#flight-lab-app .cp-pager span { font-size:10px; text-align:center; }
+#flight-lab-app .cp-detail { background:#fffdf5; border:1px solid #969d9b; padding:15px; min-width:0; }
+#flight-lab-app .cp-detail h3 { font-size:15px; overflow-wrap:anywhere; }
+#flight-lab-app .cp-detail h4 { margin:15px 0 7px; font-size:12px; color:#233f50; }
+#flight-lab-app .cp-detail p { font-size:11px; }
+#flight-lab-app .cp-detail .cp-description { font-size:12px; line-height:1.65; }
+#flight-lab-app .cp-direction-list { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin:12px 0; }
+#flight-lab-app .cp-direction { padding:8px; background:#eeece4; border:1px solid #c9c6bb; min-width:0; }
+#flight-lab-app .cp-direction strong { display:block; font-size:11px; }
+#flight-lab-app .cp-direction span { display:block; font-size:11px; margin-top:5px; }
+#flight-lab-app .cp-direction small { display:block; color:#5a6568; margin-top:6px; font-size:10px; }
+#flight-lab-app .cp-flight-select { display:flex; flex-direction:column; gap:5px; margin:13px 0; font-size:11px; font-weight:bold; }
+#flight-lab-app .cp-flight-select select { max-width:none; width:100%; }
+#flight-lab-app .cp-flight-metrics { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:13px 0; }
+#flight-lab-app .cp-flight-metrics > div { background:#edf2f3; border:1px solid #d3dcdf; padding:9px; min-width:0; }
+#flight-lab-app .cp-flight-metrics span { display:block; font-size:10px; margin-bottom:4px; }
+#flight-lab-app .cp-flight-metrics strong { display:block; color:#174566; font:bold 18px/1.35 "Courier New",monospace; overflow-wrap:anywhere; }
+#flight-lab-app .cp-flight-metrics small { display:block; font-size:10px; margin-top:3px; }
+#flight-lab-app .cp-flight-metrics .cp-wide { grid-column:1/-1; }
+#flight-lab-app .cp-check { padding:8px; border-left:3px solid #245e8b; background:#edf2f5; }
+#flight-lab-app .cp-check.cp-unchecked { border-color:#aa7a33; background:#f5ecdc; }
+#flight-lab-app .cp-range { color:#79501d; font-weight:bold; }
+#flight-lab-app .cp-checkpoints { margin-top:12px; min-width:330px; }
+#flight-lab-app .cp-geography { margin-top:18px; padding:13px; background:#f8f5eb; border:1px solid #aaa79e; }
+#flight-lab-app .cp-map-heading { display:flex; justify-content:space-between; align-items:start; gap:15px; }
+#flight-lab-app .cp-map-heading h3 { font-size:15px; }
+#flight-lab-app .cp-map-heading p { font-size:11px; }
+#flight-lab-app .cp-map-heading > span { white-space:nowrap; font:11px "Courier New",monospace; }
+#flight-lab-app .cp-map { max-width:660px; margin:12px auto 0; position:relative; }
+#flight-lab-app .cp-map svg { display:block; width:100%; height:auto; background:#edf2f3; border:1px solid #b8c9cd; }
+#flight-lab-app .cp-map circle, #flight-lab-app .cp-map rect.cp-marker, #flight-lab-app .cp-map path.cp-marker { cursor:pointer; }
+#flight-lab-app .cp-map text { font:12px Tahoma,Arial,sans-serif; fill:#3a5460; }
+#flight-lab-app .cp-map .cp-plot-grid { stroke:#d3dfe2; stroke-width:1; }
+#flight-lab-app .cp-map .cp-highlight { stroke:#111; stroke-width:2; fill:none; pointer-events:none; }
+#flight-lab-app .cp-map-legend { display:flex; flex-wrap:wrap; gap:8px 18px; font-size:11px!important; }
+#flight-lab-app .cp-map-legend span { display:inline-flex; align-items:center; gap:5px; }
+#flight-lab-app .cp-map-legend span:last-child { flex-basis:100%; font-size:10px; color:#53676e; }
+#flight-lab-app .cp-key-067 { color:#165d91; }
+#flight-lab-app .cp-key-075 { color:#a36516; }
+#flight-lab-app .cp-key-078 { color:#735696; }
+#flight-lab-app .cp-overlap { padding:10px; background:#e4eaf0; margin-top:10px; }
+#flight-lab-app .cp-overlap label { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:11px; }
+#flight-lab-app .cp-overlap select { width:min(100%,440px); max-width:none; }
+#flight-lab-app .cp-limit { margin-top:15px; padding:12px; border-left:3px solid #a4712b; background:#f0e8d8; }
+#flight-lab-app .cp-limit h3 { font-size:13px; }
+#flight-lab-app .cp-limit p { font-size:11px; }
+#flight-lab-app .cp-downloads { display:flex; gap:7px; flex-wrap:wrap; margin:12px 0; }
+#flight-lab-app .cp-downloads a { display:inline-block; padding:7px 9px; border:1px solid #9aa9af; background:#e7edef; font-size:11px; }
+#flight-lab-app .cp-source-id { font-size:10px!important; overflow-wrap:anywhere; }
+#flight-lab-app .cp-empty { padding:18px; color:#596569; }
+@container flightlab (max-width:800px) {
+  #flight-lab-app .cp-workbench { grid-template-columns:1fr; }
+  #flight-lab-app .cp-config-table { min-width:400px; }
+}
+@container flightlab (max-width:480px) {
+  #flight-lab-app .cp-panel { padding:10px; margin:0 3px 5px; }
+  #flight-lab-app .cp-stats { grid-template-columns:1fr 1fr; }
+  #flight-lab-app .cp-stats strong { font-size:23px; }
+  #flight-lab-app .cp-catalogue-tabs { padding:0 6px 10px; }
+  #flight-lab-app .cp-catalogue-tabs button { width:100%; }
+  #flight-lab-app .cp-heading h2 { font-size:18px; }
+  #flight-lab-app .cp-filters { padding:10px 8px; gap:9px; }
+  #flight-lab-app .cp-filters label { min-width:120px; }
+  #flight-lab-app .cp-map-heading { display:block; }
+  #flight-lab-app .cp-direction-list { grid-template-columns:1fr; }
+  #flight-lab-app .cp-detail { padding:11px; }
+}

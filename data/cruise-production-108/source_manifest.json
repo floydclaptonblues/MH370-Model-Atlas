@@ -1,0 +1,63 @@
+{
+  "repository": "floydclaptonblues/MH370-Ocean-GLORYS-Data",
+  "commit": "24655869cf3fe2452615157cf59c1ed3f28c3677",
+  "path": "reports/diagnostic/CRUISE_LEVEL_PRODUCTION_108",
+  "runner_revision": "2a016b1294fa",
+  "imported_on": "2026-11-16",
+  "files": [
+    {
+      "name": "ARRIVALS_108.csv",
+      "bytes": 23682,
+      "git_blob_sha": "615a24137112a8a199754b456656d6f915bd0c38",
+      "sha256": "72a9865564a0ef31d33692200906cbf3e95ef8bbbde9d84532ec625517a41073"
+    },
+    {
+      "name": "PROD_CONFIGURATIONS.csv",
+      "bytes": 191764,
+      "git_blob_sha": "c4c6cc7a1337cea75d9f5efc48ab345e17ee68a2",
+      "sha256": "5ef2bc47ec9a14cc99d685a71be197992eae48d0b2f7439cd92747486403a90c"
+    },
+    {
+      "name": "PROD_DIRECTIONS.csv",
+      "bytes": 364314,
+      "git_blob_sha": "8c3b6fee6de9e7301528a9450cd1e1a55da4ff1b",
+      "sha256": "15ddffd6f7aa1270f7514575ee9180d6c2f0090a4b4ff9d3a5b04d3e5fd4cbe6"
+    },
+    {
+      "name": "PROD_SOLUTIONS.csv",
+      "bytes": 674345,
+      "git_blob_sha": "cef6067ccbceeae862594e7d8836bc0c9a6957f2",
+      "sha256": "cffccded91c02c4e7b9277c338ab074b85c787fefae824f8d540012bcd2e38e5"
+    },
+    {
+      "name": "PROD_NUMERICAL_CHECKS.csv",
+      "bytes": 74662,
+      "git_blob_sha": "c13891d88e5994838725fd64645df9bb4bc35987",
+      "sha256": "07020874161b262c63a117854e91fa6c3a2bd2b2c85e74bdad40ae4682b550d0"
+    },
+    {
+      "name": "PROD_GROUPS_WITH_MIXED_OUTCOMES.csv",
+      "bytes": 13477,
+      "git_blob_sha": "81dd8d12b878d842f505b6fdb5b6dd9b507210e7",
+      "sha256": "8310fa93e292234a0fe616eb27f1a44a135d8018922908250b5fae15bd3f8e8e"
+    },
+    {
+      "name": "PROD_SUMMARY.json",
+      "bytes": 1408,
+      "git_blob_sha": "b0b084ac7ab2168a596f115debef9e01c475e98c",
+      "sha256": "bae35935fbc91ac5d75b448aef9a989e7f1959ac75c34c969dd930dfef50ec30"
+    },
+    {
+      "name": "PROD_SUMMARY_BY_GROUP_AND_LEVEL.csv",
+      "bytes": 1419,
+      "git_blob_sha": "82a556ccf501e509abc96cefca348a96646eeb42",
+      "sha256": "1ffc12c31d6306896f1159e1ff0b5e687524e31ab91edf2986ab40e56f510d4b"
+    },
+    {
+      "name": "FINDINGS.md",
+      "bytes": 23643,
+      "git_blob_sha": "9d4c9da47713e5f575efeb83dfb59568a3d15377",
+      "sha256": "bde8deeb4156ce876db718f824999fb4737c014e279f58b1a9eb772be5c85e81"
+    }
+  ]
+}

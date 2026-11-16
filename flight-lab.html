@@ -1,15 +1,49 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Flight Dynamics Lab — MH370 Model Atlas</title><meta name="description" content="Explore the MH370 Model Atlas frozen flight-state catalogue in a Windows 98 scientific console: the declared configuration grid, saved states, forces, wind and satellite tests. No new flight fits are computed.">
+<title>Flight Dynamics Lab — MH370 Model Atlas</title><meta name="description" content="Explore the completed 108-arrival cruise study: 424 tested configurations, 266 accepted flights, saved positions, fuel and numerical checks. The earlier terminal catalogue remains separately available.">
 <link rel="canonical" href="https://mh370atlasmodel.y2kneverended.net/flight-lab.html">
-<link rel="stylesheet" href="common.css"><link rel="stylesheet" href="flight-lab/assets/win98.css?v=readouts-2"><script src="common.js?v=flight-readouts-2"></script>
-<script defer src="flight-lab/assets/data.js"></script><script defer src="flight-lab/assets/scene3d.js?v=playback-2"></script><script defer src="flight-lab/assets/app.js?v=readouts-1"></script></head><body class="atlas-flight-lab"><div class="wrap"><nav id="nav"></nav><div id="flight-lab-app" class="fl-app">
-  <a class="skip" href="#lab">Skip to the laboratory</a>
-  <header class="fl-window-title"><span>FLIGHT DYNAMICS LAB · MH370 MODEL ATLAS</span><small>Frozen catalogue · de50a52</small></header>
-  <div class="fl-menu"><button class="text-button" id="sources-open">Sources &amp; method</button><span>Saved aircraft states, explained in plain language</span></div>
+<link rel="stylesheet" href="common.css"><link rel="stylesheet" href="flight-lab/assets/win98.css?v=readouts-2"><link rel="stylesheet" href="flight-lab/assets/cruise-production.css?v=20261116"><script src="common.js?v=cruise-20261116"></script>
+<script defer src="flight-lab/assets/data.js"></script><script defer src="flight-lab/assets/scene3d.js?v=playback-2"></script><script defer src="flight-lab/assets/app.js?v=readouts-1"></script><script defer src="data/cruise-production-108/catalogue.js?v=2465586"></script><script defer src="flight-lab/assets/cruise-production.js?v=20261116"></script></head><body class="atlas-flight-lab"><div class="wrap"><nav id="nav"></nav><div id="flight-lab-app" class="fl-app">
+  <a class="skip" href="#cruise-production-108">Skip to the current results</a>
+  <header class="fl-window-title"><span>FLIGHT DYNAMICS LAB · MH370 MODEL ATLAS</span><small>Completed cruise run · 16 November 2026</small></header>
+  <div class="intro"><div><p class="eyebrow"><span class="tiny-orbit" aria-hidden="true"></span> THE AIRCRAFT BEHIND THE CALCULATIONS</p><h1>Flight Dynamics Lab</h1><p class="intro-copy">Compare saved flights to see how cruise speed, height and fuel change what the aircraft can do. The completed cruise run and the earlier terminal experiments have their own results and assumptions.</p></div></div>
+  <nav class="cp-catalogue-tabs" aria-label="Choose a catalogue">
+    <button type="button" id="cp-current-tab" class="active" aria-pressed="true" aria-controls="cruise-production-108">Completed cruise run <small>108 arrivals · 16 November</small></button>
+    <button type="button" id="cp-earlier-tab" aria-pressed="false" aria-controls="earlier-terminal-catalogue">Earlier terminal catalogue <small>Saved snapshot · 12 November</small></button>
+  </nav>
+
+  <section id="cruise-production-108" class="cp-panel" aria-labelledby="cp-title">
+    <div class="cp-heading"><p class="eyebrow">CRUISE RESULTS · ALL SEARCHES FINISHED</p><h2 id="cp-title">Which flights matched the timing and kept fuel to 00:11?</h2><p>Each arrival starts at 19:41:03 with its own position, course, mass and fuel. The run tests its incoming level and eligible climbs, holds its own Mach speed, and searches the first turn in both directions.</p></div>
+    <div class="cp-stats" aria-label="Completed run counts"><div><strong>108</strong><span>starting states</span></div><div><strong>424</strong><span>level settings tested</span></div><div><strong>266</strong><span>distinct accepted flights</span></div><div><strong>218 / 218</strong><span>numerical checks resolved</span></div></div>
+    <p class="cp-definition"><b>Accepted</b> means that a computed flight matches all three timing measurements, at 20:41:05, 21:41:27 and 00:11:00, within 43 microseconds while retaining engine fuel and staying inside the performance model. An unsuccessful bounded search does not show that every possible flight is excluded.</p>
+    <details class="cp-outcomes"><summary>See the result by starting group and cruise level</summary><div id="cp-group-table" class="cp-table-scroll"></div><p>These are individual tested levels, not continuous altitude bands. Counts describe closely related saved states, not probabilities or independent confirmations.</p></details>
+    <div class="cp-filters" aria-label="Filter the completed run">
+      <label>Starting group<select id="cp-group"><option value="">All six groups</option></select></label>
+      <label>Level held<select id="cp-level"><option value="">All tested levels</option><option value="CONTROL">Incoming level</option><option value="30053">30,053 ft · 300 hPa</option><option value="31946">31,946 ft · 275 hPa</option><option value="33985">33,985 ft · 250 hPa</option></select></label>
+      <label>Search result<select id="cp-result"><option value="">All outcomes</option><option value="accepted">Accepted flight found</option><option value="not-found">No accepted flight found</option></select></label>
+      <label>Arrival<select id="cp-arrival"><option value="">All 108 arrivals</option></select></label>
+      <button type="button" id="cp-reset">Clear filters</button>
+    </div>
+    <p id="cp-filter-count" class="cp-filter-count" role="status">Loading the source-pinned catalogue…</p>
+    <div class="cp-workbench">
+      <section class="cp-results" aria-label="Tested configurations">
+        <div class="cp-table-scroll"><table class="cp-config-table"><thead><tr><th scope="col">Arrival / Mach</th><th scope="col">Level held</th><th scope="col">Search result</th><th scope="col">Flights</th></tr></thead><tbody id="cp-config-rows"></tbody></table></div>
+        <div class="cp-pager"><button type="button" id="cp-prev">Previous</button><span id="cp-page"></span><button type="button" id="cp-next">Next</button></div>
+      </section>
+      <section id="cp-detail" class="cp-detail" aria-label="Selected configuration and flight" aria-live="polite"><h3>Select a tested configuration</h3><p>The recorded outcomes and the returned flights will appear here.</p></section>
+    </div>
+    <section class="cp-geography" aria-labelledby="cp-map-title"><div class="cp-map-heading"><div><h3 id="cp-map-title">Where the accepted flights are at 00:11</h3><p>Saved airborne positions. These are not impact locations or a probability map. No paths are drawn between the points.</p></div><span id="cp-map-count"></span></div><div id="cp-map" class="cp-map"></div><div id="cp-overlap" class="cp-overlap" hidden></div><p class="cp-map-legend"><span><b class="cp-key cp-key-067">●</b> Mach 0.67</span><span><b class="cp-key cp-key-075">■</b> Mach 0.75</span><span><b class="cp-key cp-key-078">◆</b> Mach 0.78</span><span>Click a marker to inspect its saved flights. The table and flight selector provide the same records without using the plot.</span></p></section>
+    <div class="cp-limit"><h3>What this run leaves open</h3><p>The final transmissions, descent, impact and electrical restart have not been tested for this catalogue. Its terminal package is awaiting its gate. Intermediate levels, later climbs and changes of cruise speed were not part of this run. The frequency residuals at the three fitted times show no conflict with the adopted band under the frozen calibration; that is a diagnostic, partly inherited from the earlier frequency selection, rather than an independent confirmation.</p><p>The 22:41 measurement was not evaluated in this run. Prior access to that measurement is described in the <a href="methods.html#cruise-production-method">method and disclosure record</a>. The separate satellite audit found that admission of the earlier histories is sensitive to orbit and calibration choices.</p></div>
+    <details class="cp-sources"><summary>Source records, downloads and numerical-check scope</summary><p>The browser reads saved results only. It performs no flight integration, refitting, interpolation or fuel prediction. The source tables preserve all returned records; the explorer counts identical commands once per configuration and links their direction records.</p><div id="cp-downloads"></div><p>One returned flight was repeated per eligible direction, for 218 checks. Those checks apply to the repeated flights; they do not validate every trial or repeat the searches that returned no accepted flight. Range-end records remain explicitly marked. Numerical repeatability is not physical positional accuracy.</p><p><a href="index.html#cruise-production-108">Read the full run summary</a> · <a href="assessment.html#current-working-area">Ryan’s geographical assessment</a></p></details>
+    <noscript>The completed run contains 108 arrivals, 424 configurations and 266 distinct accepted flights. JavaScript enables filtering. <a href="data/cruise-production-108/sources/PROD_CONFIGURATIONS.csv">Download every configuration</a> or <a href="data/cruise-production-108/sources/PROD_SOLUTIONS.csv">the returned-flight records</a>.</noscript>
+  </section>
+
+  <section id="earlier-terminal-catalogue" hidden aria-label="Earlier terminal catalogue, 12 November snapshot">
+  <div class="fl-menu"><button class="text-button" id="sources-open">Earlier viewer: sources &amp; method</button><span>Saved aircraft states, explained in plain language</span></div>
+<!-- LEGACY_CATALOGUE_START -->
 
     <section class="intro">
-      <div><p class="eyebrow"><span class="tiny-orbit" aria-hidden="true"></span> THE AIRCRAFT BEHIND THE CALCULATIONS</p><h1>Flight Dynamics Lab</h1><p class="intro-copy">This reconstruction tests which proposed flights can match the satellite measurements while respecting the chosen fuel and flight rules. Follow a saved aircraft state to see where it is, how it is moving, and whether the engines still have fuel.</p>
-<p class="snapshot-context"><b>Viewing the 12 November catalogue.</b> The opening flight is one saved example from that snapshot. The 108-arrival cruise-level study and later descent results are separate. For the present geographical assessment, see <a href="assessment.html#current-working-area">Ryan’s current working area</a>.</p>
+      <div><p class="eyebrow"><span class="tiny-orbit" aria-hidden="true"></span> EARLIER SAVED RESULTS</p><h2>The 12 November terminal catalogue</h2><p class="intro-copy">Follow a saved aircraft state to see where it is, how it is moving, and whether the engines still have fuel.</p>
+<p class="snapshot-context"><b>Viewing the earlier snapshot, de50a52.</b> The opening flight is one saved example from that snapshot. Its terminal states are separate from the completed 108-arrival cruise run above. For the present geographical assessment, see <a href="assessment.html#current-working-area">Ryan’s current working area</a>.</p>
 <details class="disclosure"><summary>Which later results are outside this viewer?</summary><p>The snapshot predates the lower-speed run of 12 November. That run (target Mach 0.650 to 0.630, its own speed rule) extended the compatible computed states north to 29.88&deg;S, 98.35&deg;E; its results are in the <a href="index.html#closure">experiment record</a> and are not shown here.</p></details></div>
     </section>
 
@@ -53,10 +87,11 @@
 
     <section class="evidence-strip" aria-label="What this viewer establishes"><div><span class="outline-icon">◇</span><h3>Inspect the evidence</h3><p>Exact IDs, units, treatment flags and source links stay attached to the displayed states.</p></div><div><span class="outline-icon">···</span><h3>See the gaps</h3><p>Missing fields remain missing. A saved checkpoint does not imply a saved continuous trajectory.</p></div><div><span class="outline-icon">⌁</span><h3>Keep the question open</h3><p>The cloud shows computed airborne states at the final transmission. Its density does not measure likelihood.</p></div></section>
 
+<!-- LEGACY_CATALOGUE_END -->
   <footer><span>MH370 · Flight Dynamics Lab</span><span>Frozen catalogue · 12 November 2026</span><button class="text-button" id="footer-sources">Data, methods &amp; downloads ↗</button></footer>
   <dialog id="sources-dialog" aria-labelledby="sources-title"><div class="dialog-top"><div><p class="eyebrow">TRACEABLE BY DESIGN</p><h2 id="sources-title">Sources &amp; method</h2></div><button class="icon-button" id="sources-close" aria-label="Close sources">×</button></div><div id="sources-content"></div></dialog>
   <div class="toast" id="toast" role="status" hidden></div>
   <noscript>This interactive viewer needs JavaScript. The underlying records are available in the MH370-Ocean-GLORYS-Data repository, reports/diagnostic/FLIGHT_STATE_CATALOGUE, at commit de50a52.</noscript>
-
+  </section>
 </div>
 <script>MH.nav("flight-lab.html");</script></div></body></html>
