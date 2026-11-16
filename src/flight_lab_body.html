@@ -13,6 +13,7 @@
     <p class="cp-definition"><b>Accepted</b> means that a computed flight matches all three timing measurements, at 20:41:05, 21:41:27 and 00:11:00, within 43 microseconds while retaining engine fuel and staying inside the performance model. An unsuccessful bounded search does not show that every possible flight is excluded.</p>
     <details class="cp-outcomes"><summary>See the result by starting group and cruise level</summary><div id="cp-group-table" class="cp-table-scroll"></div><p>These are individual tested levels, not continuous altitude bands. Counts describe closely related saved states, not probabilities or independent confirmations.</p></details>
     <div class="cp-filters" aria-label="Filter the completed run">
+      <label>Cruise Mach<select id="cp-mach"><option value="">All tested speeds</option><option value="0.67">Mach 0.67</option><option value="0.75">Mach 0.75</option><option value="0.78">Mach 0.78</option></select></label>
       <label>Starting group<select id="cp-group"><option value="">All six groups</option></select></label>
       <label>Level held<select id="cp-level"><option value="">All tested levels</option><option value="CONTROL">Incoming level</option><option value="30053">30,053 ft · 300 hPa</option><option value="31946">31,946 ft · 275 hPa</option><option value="33985">33,985 ft · 250 hPa</option></select></label>
       <label>Search result<select id="cp-result"><option value="">All outcomes</option><option value="accepted">Accepted flight found</option><option value="not-found">No accepted flight found</option></select></label>
@@ -20,10 +21,32 @@
       <button type="button" id="cp-reset">Clear filters</button>
     </div>
     <p id="cp-filter-count" class="cp-filter-count" role="status">Loading the source-pinned catalogue…</p>
+    <nav id="cruise-scenarios" class="cp-view-tabs" aria-label="Completed cruise views">
+      <button type="button" id="cp-grid-view" class="active" aria-pressed="true" aria-controls="cp-grid-panel">Compare tested scenarios <small>3D speed · level · arrival grid</small></button>
+      <button type="button" id="cp-table-view" aria-pressed="false" aria-controls="cp-table-panel">Browse results table <small>Every configuration and its outcome</small></button>
+    </nav>
     <div class="cp-workbench">
       <section class="cp-results" aria-label="Tested configurations">
+        <section id="cp-grid-panel" aria-labelledby="cp-grid-title">
+          <h3 id="cp-grid-title">The completed speed-and-level experiment</h3>
+          <p>Each marker is one tested arrival and level setting. Select it to read what happened and open its returned flights. The colours and shapes distinguish the recorded outcomes.</p>
+          <div class="cp-grid-tools" aria-label="Grid camera controls">
+            <button type="button" id="cp-grid-reset">Reset view</button><button type="button" id="cp-grid-top">From above</button><button type="button" id="cp-grid-front">Speed / level</button><button type="button" id="cp-grid-zoom-in" aria-label="Zoom in on the scenario grid">+</button><button type="button" id="cp-grid-zoom-out" aria-label="Zoom out of the scenario grid">−</button>
+          </div>
+          <div class="cp-grid-shell">
+            <canvas id="cp-grid-canvas" tabindex="0" role="img" aria-label="3D comparison of tested cruise scenarios: Mach, incoming or target pressure level, and starting arrival. Drag to rotate; arrow keys rotate, plus and minus zoom. The results table provides the same records."></canvas>
+            <div id="cp-grid-tooltip" class="cp-grid-tooltip" hidden></div>
+          </div>
+          <p id="cp-grid-count" class="cp-grid-count" role="status"></p>
+          <div id="cp-grid-legend" class="cp-grid-legend" aria-label="Grid outcome key"></div>
+          <div id="cp-grid-overlap" class="cp-grid-overlap" hidden></div>
+          <p id="cp-grid-caption" class="cp-grid-caption">Rotate the grid or use the camera buttons. The table offers the same configuration selection without using a 3D view.</p>
+          <p class="cp-experiment-link">Compare a different experiment: <button type="button" id="cp-open-earlier-grid">Earlier speed-and-climb-time grid</button></p>
+        </section>
+        <div id="cp-table-panel" hidden>
         <div class="cp-table-scroll"><table class="cp-config-table"><thead><tr><th scope="col">Arrival / Mach</th><th scope="col">Level held</th><th scope="col">Search result</th><th scope="col">Flights</th></tr></thead><tbody id="cp-config-rows"></tbody></table></div>
         <div class="cp-pager"><button type="button" id="cp-prev">Previous</button><span id="cp-page"></span><button type="button" id="cp-next">Next</button></div>
+        </div>
       </section>
       <section id="cp-detail" class="cp-detail" aria-label="Selected configuration and flight" aria-live="polite"><h3>Select a tested configuration</h3><p>The recorded outcomes and the returned flights will appear here.</p></section>
     </div>
@@ -35,6 +58,7 @@
 
   <section id="earlier-terminal-catalogue" hidden aria-label="Earlier terminal catalogue, 12 November snapshot">
   <div class="fl-menu"><button class="text-button" id="sources-open">Earlier viewer: sources &amp; method</button><span>Saved aircraft states, explained in plain language</span></div>
+  <p class="cp-experiment-bridge"><b>Looking for the new speed-and-level results?</b> This earlier grid varies speed and climb-start time. <button type="button" id="cp-open-current-grid">Open the completed 108-arrival 3D grid</button></p>
 <!-- LEGACY_CATALOGUE_START -->
 
     <section class="intro">

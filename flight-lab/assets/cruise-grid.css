@@ -1,0 +1,34 @@
+/* 3D comparison of the completed cruise catalogue; display geometry only. */
+#flight-lab-app .cp-view-tabs { display:flex; flex-wrap:wrap; gap:5px; margin:13px 0 10px; padding:0; }
+#flight-lab-app .cp-view-tabs button { min-height:49px; padding:8px 12px; text-align:left; font-size:12px; }
+#flight-lab-app .cp-view-tabs button.active { background:#f8f5eb; color:#000080; font-weight:bold; box-shadow:var(--fl-sunken); }
+#flight-lab-app .cp-view-tabs button small { display:block; margin-top:3px; font-size:10px; font-weight:normal; color:#4c626a; }
+#flight-lab-app #cp-grid-panel[hidden], #flight-lab-app #cp-table-panel[hidden] { display:none; }
+#flight-lab-app .cp-experiment-bridge { margin:9px 11px 14px; padding:10px 12px; border-left:3px solid #245e8b; background:#e8eef0; font-size:12px; line-height:1.6; }
+#flight-lab-app .cp-experiment-link { border-top:1px solid #c6cbc6; padding-top:9px; font-size:11px; line-height:1.6; }
+#flight-lab-app .cp-experiment-bridge button, #flight-lab-app .cp-experiment-link button { padding:5px 8px; margin-left:4px; font-size:11px; color:#123f68; }
+#flight-lab-app .cp-grid-shell { position:relative; background:#f7f4e9; border:1px solid #9ba9ac; box-shadow:var(--fl-sunken); overflow:hidden; }
+#flight-lab-app #cp-grid-canvas { display:block; width:100%; height:clamp(390px,48vw,570px); background:linear-gradient(#edf1ee,#f7f4e9); cursor:grab; outline-offset:-3px; }
+#flight-lab-app #cp-grid-canvas:focus-visible { outline:3px solid #175d91; }
+#flight-lab-app .cp-grid-tools { display:flex; flex-wrap:wrap; align-items:center; gap:5px; padding:7px; background:#dddcd3; border:1px solid #969d9b; border-bottom:0; }
+#flight-lab-app .cp-grid-tools button { min-height:30px; font-size:11px; }
+#flight-lab-app #cp-grid-count { font-size:11px; font-weight:bold; margin:9px 0; }
+#flight-lab-app #cp-grid-legend { display:grid; grid-template-columns:1fr; gap:5px; padding:10px; background:#fffdf5; border:1px solid #c5ccc8; font-size:11px; }
+#flight-lab-app #cp-grid-legend > span { display:flex; align-items:center; gap:7px; }
+#flight-lab-app #cp-grid-legend strong { margin-left:auto; white-space:nowrap; }
+#flight-lab-app .cp-grid-key { display:inline-block; width:15px; text-align:center; font:bold 17px/1.1 Arial,sans-serif; flex:0 0 15px; }
+#flight-lab-app .cp-grid-key-accepted { color:#175d91; }
+#flight-lab-app .cp-grid-key-lift-stop { color:#755391; }
+#flight-lab-app .cp-grid-key-fuel-exhausted { color:#aa6a18; }
+#flight-lab-app .cp-grid-key-no-joint-match { color:#4e6974; }
+#flight-lab-app #cp-grid-caption { font-size:11px; line-height:1.6; color:#425964; }
+#flight-lab-app #cp-grid-tooltip { position:absolute; z-index:4; max-width:235px; padding:8px 10px; background:#fffce9; color:#223c4a; border:1px solid #536a74; box-shadow:2px 2px 0 #8886; pointer-events:none; white-space:pre-line; font:11px/1.5 Tahoma,Arial,sans-serif; }
+#flight-lab-app #cp-grid-overlap { background:#e5edf0; border-left:3px solid #175d91; padding:10px; margin:9px 0; font-size:11px; }
+#flight-lab-app #cp-grid-overlap label { display:block; font-weight:bold; margin-bottom:7px; }
+#flight-lab-app #cp-grid-overlap select { width:100%; max-width:none; font-size:11px; }
+#flight-lab-app #cp-grid-overlap p { font-size:10px; margin-bottom:0; }
+@media (max-width:620px) {
+  #flight-lab-app #cp-grid-canvas { height:390px; }
+  #flight-lab-app .cp-grid-tools button { flex:1 0 auto; }
+  #flight-lab-app #cp-grid-legend { font-size:10px; }
+}

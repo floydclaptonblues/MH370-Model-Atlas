@@ -5,6 +5,9 @@
   var $ = function (s) { return document.querySelector(s); };
   if (!$('#cruise-production-108')) return;
   var catalogue = 'cruise';
+  function notifyState() {
+    if (window.CRUISE_LAB) window.dispatchEvent(new CustomEvent('atlas:cruise-state', {detail: window.CRUISE_LAB.getState()}));
+  }
   function switchCatalogue(next) {
     catalogue = next === 'legacy' ? 'legacy' : 'cruise';
     $('#cruise-production-108').hidden = catalogue !== 'cruise';
@@ -16,6 +19,7 @@
     document.body.dataset.flightCatalogue = catalogue;
     window.dispatchEvent(new CustomEvent('atlas:catalogue', {detail: {catalogue: catalogue}}));
     if (catalogue === 'legacy') window.dispatchEvent(new Event('resize'));
+    notifyState();
   }
   $('#cp-current-tab').addEventListener('click', function () { switchCatalogue('cruise'); });
   $('#cp-earlier-tab').addEventListener('click', function () { switchCatalogue('legacy'); });
@@ -24,6 +28,7 @@
   window.addEventListener('hashchange', function () {
     if (legacyHashes.indexOf(location.hash) >= 0) switchCatalogue('legacy');
     if (location.hash === '#cruise-production-108') switchCatalogue('cruise');
+    if (location.hash === '#cruise-scenarios' && window.CRUISE_LAB) { switchCatalogue('cruise'); setView('grid'); }
   });
   if (!D || !Array.isArray(D.configurations) || !Array.isArray(D.flights)) {
     $('#cp-filter-count').textContent = 'The catalogue could not load. The source CSV downloads below remain available.';
@@ -46,7 +51,8 @@
   var byConfig = new Map(D.configurations.map(function (c) { return [c.id, c]; }));
   var byFlight = new Map(D.flights.map(function (f) { return [f.id, f]; }));
   var byArrival = new Map((D.arrivals || []).map(function (a) { return [a.id, a]; }));
-  var state = {group: '', level: '', result: '', arrival: '', page: 0, configId: D.configurations[0].id, flightId: null};
+  var state = {mach: '', group: '', level: '', result: '', arrival: '', view: 'grid', page: 0, configId: D.configurations[0].id, flightId: null};
+  var filterKeys = ['mach', 'group', 'level', 'result', 'arrival'];
   var pageSize = 12;
   var endings = {
     ACCEPTED_FLIGHT_FOUND: 'Accepted flight found',
@@ -58,7 +64,8 @@
   };
   function filtered() {
     return D.configurations.filter(function (c) {
-      return (!state.group || c.group === state.group) &&
+      return (!state.mach || c.mach === +state.mach) &&
+        (!state.group || c.group === state.group) &&
         (!state.level || (state.level === 'CONTROL' ? c.kind === 'UNCHANGED_LEVEL_CONTROL' : c.kind !== 'UNCHANGED_LEVEL_CONTROL' && c.levelFt === +state.level)) &&
         (!state.result || c.accepted === (state.result === 'accepted')) &&
         (!state.arrival || c.arrival === state.arrival);
@@ -135,6 +142,7 @@
       state.flightId = this.value;
       $('#cp-flight-details').innerHTML = flightDetails(byFlight.get(state.flightId));
       drawMap();
+      notifyState();
     });
   }
   function renderRows() {
@@ -149,12 +157,14 @@
     $('#cp-page').textContent = 'Page ' + (state.page + 1) + ' of ' + pages + (list.length ? ' · ' + (state.page * pageSize + 1) + '–' + Math.min((state.page + 1) * pageSize, list.length) + ' of ' + list.length : '');
     $('#cp-prev').disabled = state.page === 0;
     $('#cp-next').disabled = state.page >= pages - 1;
+    notifyState();
   }
   function selectConfig(id, flightId, scroll) {
     var list = filtered(), index = list.findIndex(function (c) { return c.id === id; });
     if (index < 0) return;
     state.configId = id; state.flightId = flightId || null; state.page = Math.floor(index / pageSize);
     renderRows(); renderDetail(); drawMap();
+    notifyState();
     if (scroll) $('#cp-detail').scrollIntoView({block:'nearest', behavior:'smooth'});
   }
   $('#cp-config-rows').addEventListener('click', function (event) {
@@ -163,16 +173,40 @@
   });
   function filterChange() {
     state.page = 0;
-    ['group', 'level', 'result', 'arrival'].forEach(function (key) { state[key] = $('#cp-' + key).value; });
+    filterKeys.forEach(function (key) { state[key] = $('#cp-' + key).value; });
     var list = filtered();
     if (!list.some(function (c) { return c.id === state.configId; })) { state.configId = list.length ? list[0].id : null; state.flightId = null; }
+    var selectedIndex = list.findIndex(function (c) { return c.id === state.configId; });
+    if (selectedIndex >= 0) state.page = Math.floor(selectedIndex / pageSize);
     $('#cp-overlap').hidden = true;
     renderRows(); renderDetail(); drawMap();
+    notifyState();
   }
-  ['group', 'level', 'result', 'arrival'].forEach(function (key) { $('#cp-' + key).addEventListener('change', filterChange); });
-  $('#cp-reset').addEventListener('click', function () { ['group', 'level', 'result', 'arrival'].forEach(function (key) { $('#cp-' + key).value = ''; }); filterChange(); });
+  filterKeys.forEach(function (key) { $('#cp-' + key).addEventListener('change', filterChange); });
+  $('#cp-reset').addEventListener('click', function () { filterKeys.forEach(function (key) { $('#cp-' + key).value = ''; }); filterChange(); });
   $('#cp-prev').addEventListener('click', function () { state.page--; renderRows(); });
   $('#cp-next').addEventListener('click', function () { state.page++; renderRows(); });
+  function setView(next) {
+    state.view = next === 'table' ? 'table' : 'grid';
+    $('#cp-grid-panel').hidden = state.view !== 'grid';
+    $('#cp-table-panel').hidden = state.view !== 'table';
+    [['#cp-grid-view', 'grid'], ['#cp-table-view', 'table']].forEach(function (pair) {
+      $(pair[0]).classList.toggle('active', pair[1] === state.view);
+      $(pair[0]).setAttribute('aria-pressed', String(pair[1] === state.view));
+    });
+    notifyState();
+  }
+  $('#cp-grid-view').addEventListener('click', function () { setView('grid'); });
+  $('#cp-table-view').addEventListener('click', function () { setView('table'); });
+  $('#cp-open-current-grid').addEventListener('click', function () {
+    switchCatalogue('cruise'); setView('grid');
+    $('#cruise-scenarios').scrollIntoView({block:'start', behavior:'smooth'});
+  });
+  $('#cp-open-earlier-grid').addEventListener('click', function () {
+    switchCatalogue('legacy');
+    $('#earlier-terminal-catalogue [data-view="grid"]').click();
+    $('#lab').scrollIntoView({block:'start', behavior:'smooth'});
+  });
   var mapFlights = [];
   var mapX = function (lon) { return 78 + (lon - 90) * 68.75; };
   var mapY = function (lat) { return 35 + (-30 - lat) * 82; };
@@ -217,6 +251,13 @@
   $('#cp-downloads').innerHTML = '<div class="cp-downloads"><a href="data/cruise-production-108/catalogue.json" download>266-flight viewer catalogue · JSON ↓</a>' +
     sourceNames.map(function (p) { return '<a href="data/cruise-production-108/sources/' + p[0] + '" download>' + esc(p[1]) + ' ↓</a>'; }).join('') +
     '<a href="data/cruise-production-108/source_manifest.json" download>Source hashes · JSON ↓</a></div><p class="cp-source-id">Source commit <code>' + esc(D.provenance.commit) + '</code> · Runner revision <code>' + esc(D.provenance.runnerRevision) + '</code>. <a href="' + esc(D.provenance.sourceBaseUrl.replace(/\/$/, '') + '/FINDINGS.md') + '" target="_blank" rel="noopener">Pinned findings ↗</a>. One flight returned by both directions is counted once here: 266 distinct flights, 267 directional solution records. The source CSV also retains duplicate return entries.</p>';
-  groupTable(); filterChange();
-  window.CRUISE_LAB = {version:'1.0', getState:function () { return Object.assign({}, state, {catalogue:catalogue, filteredConfigurations:filtered().length, plottedFlights:mapFlights.length}); }, counts:D.summary};
+  window.CRUISE_LAB = {
+    version:'1.1',
+    getState:function () { return Object.assign({}, state, {catalogue:catalogue, filteredConfigurations:filtered().length, plottedFlights:mapFlights.length}); },
+    getFilteredConfigurations:function () { return filtered(); },
+    selectConfiguration:function (id) { selectConfig(id, null, false); },
+    setView:setView,
+    counts:D.summary
+  };
+  groupTable(); filterChange(); setView('grid');
 })();
