@@ -42,3 +42,13 @@ Ryan Hall asked for the Atlas to be updated with the accepted terminal-response 
 ## Correction, 18 November: the first publication did not deploy
 
 Commit `5ee1624` was pushed and its site build failed. This report, as first written, contained an unterminated pair of opening braces in its text, and GitHub Pages passes Markdown files through a template engine, which stopped at it. The deployment step was skipped, so the public site kept showing the previous version; nothing incomplete was served. The braces were removed from four Markdown files and `tests/check_markdown_template_safe.py` was added. The statement above that rendering on the published site was not verified stands for `5ee1624`; the build result of the corrected commit is reported separately.
+
+## Corrections after review, 18 November
+
+Codex reviewed the publication at `d83ff22` (17 source-file identities, the imported counts and eight served files verified; no visual browser test). Three editorial corrections followed, requested by Ryan Hall. None changes a count or needs a calculation.
+
+- **Signed assessment.** A dated factual update of 18 November now states that the terminal study is complete (90 propagated cruise flights, 12,420 sampled responses, 1,375 continued through 5,500 prescribed endings), points to `terminal.html`, says that these are model states and model-limited continuations that do not establish impact locations, and identifies the 68-path figure as the earlier calculation set. The 16 November update is kept as dated history, reworded in the past tense so that it no longer reads as if the terminal stage were awaiting computation. The signed judgment, the figure and its caption are unchanged. The four counts are inserted from the compiled values, so `gen.py` now passes the assessment body through the same placeholder step as the other pages.
+- **Terminal page, opening paragraph.** "Ends at 00:11 UTC" is replaced: the accepted flights meet the fitted measurements through 00:11 UTC, and the catalogue's continuation records extend to fuel exhaustion or 00:40.
+- **Terminal page, opening paragraph.** The comparison is identified as the timing at 00:19:29 and the frequencies at both final transmissions. The 00:19:37 timing was not evaluated.
+
+Checks after these edits: the generator rewrote only `assessment.html` and `terminal.html`; the terminal-data check, the local-link check (261 links) and the Markdown template-safety check passed; both pages were loaded in Chromium at 1280 px and 400 px with no overflow, script error or leftover placeholder.
