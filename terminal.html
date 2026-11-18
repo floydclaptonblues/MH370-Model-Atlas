@@ -1,0 +1,235 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MH370 Terminal Responses</title><meta name="description" content="Part of the MH370 Model Atlas: an independent, physics-based reconstruction of the final flight of 9M-MRO from Inmarsat satellite measurements, aircraft performance and ocean transport."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav><h1>Terminal responses of the accepted cruise flights</h1>
+<p class="sub">The <a href="index.html#cruise-production-108">16 November cruise catalogue</a> ends at 00:11 UTC with every accepted flight still airborne. This experiment carries those flights to the two final satellite transmissions. After the modelled engine fuel runs out, a declared response is applied: the lift is reduced and the aircraft banks to 60&deg;. The result is compared with the timing and frequency recorded at 00:19:29 and 00:19:37 UTC, and each compatible response is followed until the model can no longer support it. Computed 16&ndash;17 November 2026; reviewed and accepted with one recorded provenance exception.</p>
+
+<div class="note bad"><b>These are conditional model states, not crash locations.</b> Every position on this page holds only under the cruise flight, response shape and performance model stated with it. Together the positions form a conditional terminal envelope of the sampled responses. It is not a probability map and not an outer bound. Counts are counts of sampled responses, not probabilities. The 90 flights share their fitted cruise measurements, so repeated outcomes are not independent confirmations. No path in this experiment reaches the sea surface.</div>
+
+<section class="card" id="population" aria-labelledby="population-title">
+<h2 id="population-title">Which flights were carried on <span class="tag ok">16&ndash;17 November 2026</span></h2>
+<p>Each of the 266 accepted cruise flights has one status, set by its saved fuel-exhaustion time alone.</p>
+<div class="scroll"><table>
+<thead><tr><th>Status</th><th>Flights</th><th>What was done</th></tr></thead><tbody>
+<tr><td>Engine fuel runs out before 00:19:29</td><td><b>90</b></td><td>Terminal responses computed</td></tr>
+<tr><td>Engine fuel runs out after both final transmissions (73 to 1,142 s after 00:19:29)</td><td>139</td><td>Kept in the catalogue; not propagated</td></tr>
+<tr><td>Engines still running at 00:40</td><td>37</td><td>Kept in the catalogue; no fuel-exhaustion state exists</td></tr>
+</tbody></table></div>
+<p>A fuel event later than a transmission cannot have caused a response before it. That is all the second and third statuses say. Those 176 flights are not rejected under another electrical or control sequence, which this experiment does not examine.</p>
+<h3>The 90 propagated flights</h3>
+<div class="scroll"><table>
+<thead><tr><th>Speed and cruise level</th><th>Arrival at 19:41</th><th>Label on the figures</th><th>Flights</th><th>Engine fuel runs out before 00:19:29</th></tr></thead><tbody>
+<tr><td>Mach 0.78 at 33,985 ft</td><td>29,987 ft</td><td>300.9 hPa, Mach 0.78</td><td>13</td><td>136 to 158 s</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft</td><td>27,830 ft</td><td>331.655 hPa, Mach 0.75</td><td>21</td><td>176 to 198 s</td></tr>
+<tr><td>Mach 0.67 at 25,661 ft (level held)</td><td>25,661 ft</td><td>365.113 hPa, Mach 0.67</td><td>30</td><td>377 to 400 s</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft</td><td>25,661 ft</td><td>365.113 hPa, Mach 0.75</td><td>26</td><td>489 to 509 s</td></tr>
+</tbody></table></div>
+<p class="sub">No window was placed on the interval between the fuel event and 00:19:29. It is a reported outcome of the cruise catalogue, and all 90 flights were computed whatever its value. The figures label each group by the pressure level and Mach of its arrival at 19:41; two groups cruise at the same level after different climbs, so this page names them by their arrival height where needed.</p>
+<details><summary>The 176 flights not propagated, by configuration</summary>
+<div class="scroll"><table>
+<thead><tr><th>Arrival at 19:41</th><th>Cruise level</th><th>Flights</th><th>Status</th></tr></thead><tbody>
+<tr><td>Mach 0.67, arriving at 25,661 ft</td><td>30,053 ft</td><td>37</td><td>Engine fuel runs out after both final transmissions</td></tr><tr><td>Mach 0.75, arriving at 25,661 ft</td><td>33,985 ft</td><td>34</td><td>Engine fuel runs out after both final transmissions</td></tr><tr><td>Mach 0.75, arriving at 27,830 ft</td><td>33,985 ft</td><td>28</td><td>Engine fuel runs out after both final transmissions</td></tr><tr><td>Mach 0.67, arriving at 27,830 ft</td><td>27,830 ft</td><td>20</td><td>Engine fuel runs out after both final transmissions</td></tr><tr><td>Mach 0.75, arriving at 29,987 ft</td><td>33,985 ft</td><td>12</td><td>Engine fuel runs out after both final transmissions</td></tr><tr><td>Mach 0.75, arriving at 29,987 ft</td><td>31,946 ft</td><td>8</td><td>Engine fuel runs out after both final transmissions</td></tr><tr><td>Mach 0.67, arriving at 27,830 ft</td><td>30,053 ft</td><td>37</td><td>Engines still running at 00:40</td></tr>
+</tbody></table></div>
+</details>
+</section>
+
+<section class="card" id="response" aria-labelledby="response-title">
+<h2 id="response-title">The response that was tested</h2>
+<p><b>Before the response.</b> From the fuel event the model has no thrust and holds the lift coefficient and bank angle it had at that moment.</p>
+<p><b>The response.</b> At a chosen onset time the lift coefficient falls to half its value and the bank goes to 60&deg;, both over 10&nbsp;s. Onset times were sampled every second from 60&nbsp;s before to 8&nbsp;s after 00:19:29 (69 values), with the bank to the left and to the right. That is 138 responses for each flight and <b>12,420 responses</b> in all. Each was propagated to 00:19:37 or to the first point where the performance model stops.</p>
+<p>The fuel-flow multiplier (1.000), the fuel on board, the fuel-event time and every command before the event are those of the cruise catalogue, unchanged. No cruise flight was recomputed.</p>
+<h3>Role of each measurement</h3>
+<div class="scroll"><table>
+<thead><tr><th>Measurement</th><th>Role in this experiment</th></tr></thead><tbody>
+<tr><td>Timing (BTO) at 00:19:29</td><td>Compared, not fitted. The residual is formed against 18,400&nbsp;&micro;s and reported against bands of 62, 124 and 186&nbsp;&micro;s: one, two and three standard deviations for this message type (Davey et al., 2016). The bands select nothing.</td></tr>
+<tr><td>Frequency (BFO) at 00:19:29 and 00:19:37</td><td>Compared under four treatments: two calibration conventions (the frozen equations; the same with the earlier common offset of 0.554&nbsp;Hz), each with and without an oscillator warm-up allowance of 17 to 136&nbsp;Hz at the log-on, falling by 0 to 6&nbsp;Hz by the acknowledgement (Holland, 2017). Which treatment applies depends on how long the satellite unit had been without power, which this model does not determine.</td></tr>
+<tr><td>Timing at 00:19:37</td><td>Not evaluated. The predicted value is stored; forming a residual would need a declared, sourced correction.</td></tr>
+<tr><td>Measurement at 22:41</td><td>Excluded: no prediction, residual or comparison was made. Earlier exposure of that measurement is <a href="methods.html#cruise-production-method">disclosed</a>; it is not described as unread.</td></tr>
+</tbody></table></div>
+<p class="sub">A response is <b>continued</b> beyond 00:19:37 if the model supports it to 00:19:37 and it meets the frequency requirement under at least one of the four treatments. Timing does not enter that rule, so every response that could satisfy both measurements together is among those continued.</p>
+</section>
+
+<section class="card" id="outcomes" aria-labelledby="outcomes-title">
+<h2 id="outcomes-title">What happened to each response</h2>
+<div class="scroll"><table>
+<thead><tr><th>Outcome</th><th>Kind</th><th>Responses</th></tr></thead><tbody>
+<tr><td>Operating-speed limit reached before 00:19:29</td><td>Model limit; not compared with either transmission</td><td>6,536</td></tr>
+<tr><td>Operating-speed limit reached between the two transmissions</td><td>Model limit</td><td>1,423</td></tr>
+<tr><td>Supported to 00:19:37; no frequency treatment met</td><td>Measurement mismatch</td><td>3,086</td></tr>
+<tr><td>Supported to 00:19:37 and a frequency treatment met (continued)</td><td></td><td><b>1,375</b></td></tr>
+<tr><td>Calculation did not finish in a defined way</td><td></td><td>0</td></tr>
+<tr><td>Total</td><td></td><td>12,420</td></tr>
+</tbody></table></div>
+<p>All 7,959 model-limit stops are at the operating Mach or airspeed limit, reached 22.6 to 27.3&nbsp;s after the onset of the response. A model-limit stop says where this stage of the model can no longer follow the aircraft. It is kept apart from a mismatch with a measurement.</p>
+<h3>By onset time</h3>
+<p class="sub">Both bank directions and all 90 flights together: 180 responses at each onset time. Onset is in seconds relative to 00:19:29; negative is earlier.</p>
+<div class="scroll"><table>
+<thead><tr><th>Onset (s)</th><th>Outcome of the 180 responses</th></tr></thead><tbody>
+<tr><td>−60 to −19</td><td>All 180 reach the operating-speed limit before 00:19:37</td></tr><tr><td>−18</td><td>144 reach the operating-speed limit before 00:19:37; 36 meet no frequency treatment</td></tr><tr><td>−17</td><td>112 reach the operating-speed limit before 00:19:37; 68 meet no frequency treatment</td></tr><tr><td>−16</td><td>88 reach the operating-speed limit before 00:19:37; 92 meet no frequency treatment</td></tr><tr><td>−15</td><td>55 reach the operating-speed limit before 00:19:37; 125 meet no frequency treatment</td></tr><tr><td>−14</td><td>75 continued; 105 meet no frequency treatment</td></tr><tr><td>−13</td><td>162 continued; 18 meet no frequency treatment</td></tr><tr><td>−12 to −7</td><td>All 180 continued</td></tr><tr><td>−6</td><td>58 continued; 122 meet no frequency treatment</td></tr><tr><td>−5 to +8</td><td>All 180 meet no frequency treatment</td></tr>
+</tbody></table></div>
+<p><b>The continued responses begin 6 to 14&nbsp;s before 00:19:29</b>, in both bank directions. That set touches neither end of the sampled onset times. Every one of the 90 flights has 14, 15 or 16 continued responses (30, 5 and 55 flights), and the two bank directions give almost the same counts (687 left, 688 right).</p>
+<img src="data/terminal-responses-266/sources/OUTCOME_BY_ONSET_TIME.png" alt="Four stacked bar charts, one for each group of flights, showing for every sampled onset time how many responses reached the operating-speed limit, met no frequency treatment, or were continued. The continued responses form a narrow block between 14 and 6 seconds before 00:19:29 in every group.">
+<p class="sub" style="margin-top:6px">Outcome of every sampled response by onset time, one panel for each group. Light grey and dark grey: operating-speed limit reached before 00:19:29, or between the transmissions. Orange: supported to 00:19:37 with no frequency treatment met. Blue: continued. Counts of sampled responses, not probabilities.</p>
+</section>
+
+<section class="card" id="comparison" aria-labelledby="comparison-title">
+<h2 id="comparison-title">Comparison with the two final transmissions</h2>
+<p><b>Timing at 00:19:29.</b> For the 5,884 responses that reach 00:19:29, the residual lies between −18.0 and +24.8&nbsp;&micro;s. Every one is inside the 62&nbsp;&micro;s band. Within one flight the residual varies by at most 2.3&nbsp;&micro;s across its continued responses, so it is set by the cruise flight and hardly at all by the response. The cruise flights were fitted to the timing at 20:41:05, 21:41:27 and 00:11:00; the 00:19:29 timing was not fitted.</p>
+<p class="sub">Against an unverified alternative value of 18,440&nbsp;&micro;s every residual is 40&nbsp;&micro;s larger. Then 363 of the 403 continued responses of the Mach 0.75 group arriving at 25,661 ft have residuals above 62&nbsp;&micro;s, the largest 64.8&nbsp;&micro;s: outside the 62&nbsp;&micro;s band and inside the 124&nbsp;&micro;s band; all other continued responses stay inside 62&nbsp;&micro;s.</p>
+<p><b>Frequency.</b> Where no response has begun by 00:19:29, the model predicts 214 to 245&nbsp;Hz at that time (recorded: 182&nbsp;Hz), with the aircraft descending at 4 to 13&nbsp;m/s. For the continued responses the predicted change over the 8&nbsp;s between the transmissions is −194 to −172&nbsp;Hz (recorded: &minus;184&nbsp;Hz).</p>
+<div class="scroll"><table>
+<thead><tr><th>Frequency treatment</th><th>Responses meeting it</th><th>Flights</th><th>Onset before 00:19:29</th><th>Vertical speed at 00:19:29</th><th>Vertical speed at 00:19:37</th></tr></thead><tbody>
+<tr><td>Frozen equations, no warm-up</td><td>358</td><td>90</td><td>6 to 8 s</td><td>−28.5 to −16.9 m/s</td><td>−83.8 to −70.0 m/s</td></tr>
+<tr><td>Earlier offset, no warm-up</td><td>357</td><td>90</td><td>6 to 8 s</td><td>−29.0 to −17.0 m/s</td><td>−84.2 to −70.0 m/s</td></tr>
+<tr><td>Frozen equations, warm-up</td><td>1,196</td><td>90</td><td>6 to 14 s</td><td>−70.0 to −20.9 m/s</td><td>−120.6 to −75.2 m/s</td></tr>
+<tr><td>Earlier offset, warm-up</td><td>1,197</td><td>90</td><td>6 to 14 s</td><td>−70.1 to −22.0 m/s</td><td>−120.8 to −75.6 m/s</td></tr>
+<tr><td>Any of the four</td><td><b>1,375</b></td><td>90</td><td>6 to 14 s</td><td>−70.1 to −16.9 m/s</td><td>−120.8 to −70.0 m/s</td></tr>
+</tbody></table></div>
+<p class="sub">Negative vertical speed is a descent. In feet per minute the last row is a descent of 3,300 to 13,800 at 00:19:29 and 13,800 to 23,800 at 00:19:37.</p>
+<p><b>Both measurements together.</b> Because every timing residual is inside 62&nbsp;&micro;s, the counts of responses meeting the 00:19:29 timing and both frequencies together equal the frequency counts above, for all three timing bands. A joint satellite match does not establish an electrical explanation of the log-on.</p>
+</section>
+
+<section class="card" id="electrical" aria-labelledby="electrical-title">
+<h2 id="electrical-title">Fuel and the electrical status</h2>
+<p>The model has one aggregate fuel event and no electrical system. It starts each flight&rsquo;s APU account at the 6.80388555&nbsp;kg (15&nbsp;lb) reserve imposed by the cruise model and draws it down at the model&rsquo;s burn rate, at which the reserve lasts 412.5&nbsp;s from the fuel event.</p>
+<div class="scroll"><table>
+<thead><tr><th>Group</th><th>Flights</th><th>Fuel event before 00:19:29</th><th>Model APU fuel left at 00:19:29</th><th>At 00:19:37</th><th>Status of the continued responses</th></tr></thead><tbody>
+<tr><td>Mach 0.78 at 33,985 ft</td><td>13</td><td>136 to 158 s</td><td>4.20 to 4.55 kg</td><td>4.07 to 4.42 kg</td><td>182 conditional</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft, arriving at 27,830 ft</td><td>21</td><td>176 to 198 s</td><td>3.53 to 3.90 kg</td><td>3.40 to 3.77 kg</td><td>336 conditional</td></tr>
+<tr><td>Mach 0.67 at 25,661 ft</td><td>30</td><td>377 to 400 s</td><td>0.21 to 0.58 kg</td><td>0.08 to 0.45 kg</td><td>454 conditional</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft, arriving at 25,661 ft</td><td>26</td><td>489 to 509 s</td><td>0</td><td>0</td><td>403: model APU fuel exhausted before a final transmission</td></tr>
+</tbody></table></div>
+<p><b>&ldquo;Conditional&rdquo; means only that the model&rsquo;s reserve lasts past both transmissions.</b> It depends on every assumption of the fuel and power account and makes no claim that an APU started. For the Mach 0.75 group arriving at 25,661 ft the reserve is gone about 76 to 96&nbsp;s before 00:19:29, so its 403 continued responses carry no conditional electrical account in this model. For the Mach 0.67 group the reserve ends about 5 to 27&nbsp;s after 00:19:37.</p>
+<p class="sub">Every interval from the fuel event to 00:19:29 here is longer than 120&nbsp;s. That is a reported difference, not an exclusion. The grouping is an observed association between cruise level, fuel-event time and reserve; the reserve itself is an assumption of the cruise model.</p>
+</section>
+
+<section class="card" id="positions" aria-labelledby="positions-title">
+<h2 id="positions-title">Where the model puts the aircraft at the transmissions</h2>
+<p class="sub">Positions of the continued responses. Heights are WGS-84 ellipsoidal heights, rounded to 100&nbsp;ft.</p>
+<div class="scroll"><table>
+<thead><tr><th>Group</th><th>Continued responses</th><th>Latitude at 00:19:29</th><th>Longitude</th><th>Height at 00:19:29</th><th>Height at 00:19:37</th></tr></thead><tbody>
+<tr><td>Mach 0.78 at 33,985 ft</td><td>182</td><td>36.69 to 36.71°S</td><td>90.42 to 90.53°E</td><td>30,000 to 31,500 ft</td><td>27,600 to 30,200 ft</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft, arriving at 27,830 ft</td><td>336</td><td>35.50 to 35.76°S</td><td>91.85 to 92.22°E</td><td>27,000 to 28,100 ft</td><td>24,700 to 26,900 ft</td></tr>
+<tr><td>Mach 0.67 at 25,661 ft</td><td>454</td><td>32.27 to 32.58°S</td><td>95.66 to 95.99°E</td><td>15,100 to 16,500 ft</td><td>12,600 to 15,400 ft</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft, arriving at 25,661 ft</td><td>403</td><td>35.50 to 35.79°S</td><td>91.70 to 92.09°E</td><td>18,500 to 19,800 ft</td><td>16,000 to 18,500 ft</td></tr>
+</tbody></table></div>
+<p>The largest separation between two model positions at 00:19:29 within a group is 12, 45, 47 and 48&nbsp;km in the order of the table. That spread comes from the different cruise flights of the group; one flight&rsquo;s responses lie within a few kilometres of each other. The two Mach 0.75 groups overlap, with centres about 11&nbsp;km apart. The Mach 0.78 group is about 175&nbsp;km to their south-west, and the Mach 0.67 group about 505&nbsp;km to their north-east.</p>
+<img src="data/terminal-responses-266/sources/MAP_OVERVIEW.png" alt="Map of the four groups of model positions between 32 and 37 degrees south and 90 and 96 degrees east. Three clusters lie in the south-west near 35.5 to 36.7 degrees south; one lies in the north-east near 32.4 degrees south, 95.8 degrees east, inside a dashed query rectangle.">
+<p class="sub" style="margin-top:6px">All four groups: model positions at 00:19:29 (grey) and last propagated positions of the continued paths (blue). Nothing is implied between the clusters: cruise levels and speeds between the tested ones have not been computed. The dashed rectangle is the query described below; it was used in no calculation.</p>
+<details><summary>Positions at 00:19:29 for each group</summary>
+<img src="data/terminal-responses-266/sources/MAP_POSITIONS_AT_0019_29.png" alt="Four panels, one for each group, showing the model position at 00:19:29 of every sampled response that reaches that time. Continued responses are blue; the others are grey.">
+<p class="sub" style="margin-top:6px">Model position at 00:19:29 of every sampled response that reaches it. Blue: continued. Grey: stopped at a model limit before 00:19:37, or no frequency treatment met.</p>
+</details>
+</section>
+
+<section class="card" id="endings" aria-labelledby="endings-title">
+<h2 id="endings-title">How the continued paths end</h2>
+<p>All 1,375 continued responses went through the published four-stage continuation: to the operating-speed limit, to the onset of drag rise, to Mach 0.89, and then onward under two bank laws (60&deg; held; roll to wings level over 10&nbsp;s) and two drag-rise formulations. That gives four endings for each response, <b>5,500 endings</b> in all. None ended before the last stage.</p>
+<div class="scroll"><table>
+<thead><tr><th>Group</th><th>Lift-support limit of the model, airborne</th><th>Lowest level of the weather record</th></tr></thead><tbody>
+<tr><td>Mach 0.78 at 33,985 ft</td><td>728</td><td>0</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft, arriving at 27,830 ft</td><td>1,334</td><td>10</td></tr>
+<tr><td>Mach 0.67 at 25,661 ft</td><td>0</td><td>1,816</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft, arriving at 25,661 ft</td><td>707</td><td>905</td></tr>
+<tr><td>All</td><td><b>2,769</b></td><td><b>2,731</b></td></tr>
+</tbody></table></div>
+<p><b>No path reached the model surface inside the weather record, so there is no propagated surface contact.</b> No path was still airborne at the 00:29:37 horizon. The 2,769 endings at the lift-support limit are 0.8 to 6.6 km above the model surface, at Mach 0.97 and descending at 122 to 195&nbsp;m/s; the model does not say where these reach the surface. The other 2,731 end at the lowest level of the weather record, 219 to 232 m above the model surface. That is not water contact.</p>
+<div class="scroll"><table>
+<thead><tr><th>Ending</th><th>Endings</th><th>Height above the model surface</th><th>Time after 00:19:37</th><th>Distance from the position at 00:19:37</th><th>Mach</th><th>Vertical speed</th></tr></thead><tbody>
+<tr><td>Lift-support limit, Mach 0.78 at 33,985 ft</td><td>728</td><td>6.0 to 6.6 km</td><td>13 to 22 s</td><td>2.9 to 4.8 km</td><td>0.97</td><td>−188 to −162 m/s</td></tr><tr><td>Lift-support limit, Mach 0.75 arriving at 27,830 ft</td><td>1,334</td><td>4.2 to 5.2 km</td><td>15 to 27 s</td><td>3.3 to 5.5 km</td><td>0.97</td><td>−195 to −151 m/s</td></tr><tr><td>Lift-support limit, Mach 0.75 arriving at 25,661 ft</td><td>707</td><td>0.8 to 1.7 km</td><td>21 to 31 s</td><td>4.6 to 6.0 km</td><td>0.97</td><td>−177 to −122 m/s</td></tr><tr><td>Lowest weather level, Mach 0.67 at 25,661 ft</td><td>1,816</td><td>219 to 220 m</td><td>23 to 34 s</td><td>4.6 to 7.0 km</td><td>0.94 to 0.97</td><td>−172 to −45 m/s</td></tr><tr><td>Lowest weather level, Mach 0.75 arriving at 25,661 ft, bank held</td><td>299</td><td>229 to 231 m</td><td>28 to 36 s</td><td>5.4 to 7.0 km</td><td>0.96</td><td>−155 to −133 m/s</td></tr><tr><td>Lowest weather level, Mach 0.75 arriving at 25,661 ft, roll to wings level</td><td>606</td><td>228 to 232 m</td><td>115 to 199 s</td><td>21 to 39 km</td><td>0.68 to 0.81</td><td>−80 to −3 m/s</td></tr><tr><td>Lowest weather level, Mach 0.75 arriving at 27,830 ft, roll to wings level</td><td>10</td><td>232 m</td><td>380 to 383 s</td><td>76 km</td><td>0.60</td><td>−35 m/s</td></tr>
+</tbody></table></div>
+<p>Last propagated times run from 00:19:50 to 00:26:00. With the bank held, the last propagated position is 3 to 7&nbsp;km from the position at 00:19:37. Only the roll-to-wings-level variants move further: up to 39&nbsp;km in one group, and 76&nbsp;km for 10 endings of 4 flights in another.</p>
+<h3>Effect of the two choices after Mach 0.89</h3>
+<p class="sub">Change in the last propagated position of one response when the bank law or the drag formulation is changed.</p>
+<div class="scroll"><table>
+<thead><tr><th>Group</th><th>Last propagated positions</th><th>Between the two bank laws</th><th>Between the two drag formulations</th></tr></thead><tbody>
+<tr><td>Mach 0.78 at 33,985 ft</td><td>36.72 to 36.76°S, 90.39 to 90.56°E</td><td>0.14 to 0.20 km</td><td>0.19 to 0.23 km</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft, arriving at 27,830 ft</td><td>35.54 to 35.90°S, 91.35 to 92.25°E</td><td>0.13 to 71 km</td><td>0.20 to 72 km</td></tr>
+<tr><td>Mach 0.67 at 25,661 ft</td><td>32.29 to 32.62°S, 95.61 to 96.05°E</td><td>0.11 to 1.0 km</td><td>under 0.03 km</td></tr>
+<tr><td>Mach 0.75 at 31,946 ft, arriving at 25,661 ft</td><td>35.48 to 35.83°S, 91.32 to 92.52°E</td><td>16 to 34 km</td><td>0.99 to 34 km</td></tr>
+</tbody></table></div>
+<p class="sub">Where the model ends at the lift-support limit the four variants agree within a few hundred metres, because the path ends before they can diverge. Where a roll to wings level lets the model recover from the dive, the last position moves by tens of kilometres and depends on the drag formulation. Everything beyond the operating-speed limit rests on an aerodynamic extension outside the performance data, and beyond Mach 0.89 the aerodynamics are unvalidated.</p>
+<details><summary>Last propagated positions for each group</summary>
+<img src="data/terminal-responses-266/sources/MAP_LAST_PROPAGATED_POSITIONS.png" alt="Four panels, one for each group, showing the last propagated position of every continued path and its position at 00:19:37. Circles mark endings at the lift-support limit; triangles mark endings at the lowest level of the weather record.">
+<p class="sub" style="margin-top:6px">Last propagated position of every continued path, with its position at 00:19:37 (grey). Blue circles: lift-support limit of the model, still airborne. Orange triangles: lowest level of the weather record; not water contact.</p>
+</details>
+</section>
+
+<section class="card" id="query" aria-labelledby="query-title">
+<h2 id="query-title">A query on the finished results</h2>
+<p>The rectangle 32 to 33&deg;S, 94 to 96&deg;E, an area of interest to the investigator, was applied to the finished tables as a query. It entered no calculation, selection or rule.</p>
+<div class="scroll"><table>
+<thead><tr><th>Sampled model states</th><th>Inside the rectangle</th><th>Of</th></tr></thead><tbody>
+<tr><td>Responses supported to 00:19:29, position at 00:19:29</td><td>1,860</td><td>5,884</td></tr>
+<tr><td>Continued responses, position at 00:19:37</td><td>454</td><td>1,375</td></tr>
+<tr><td>Last propagated positions</td><td>1,672</td><td>5,500</td></tr>
+</tbody></table></div>
+<p>All of these belong to the Mach 0.67 group at 25,661 ft. Its 30 flights lie inside the rectangle at both transmissions, and 1,672 of its 1,816 last propagated positions are inside; the other 144 are east of 96&deg;E, the furthest at 96.05&deg;E. No position of the other three groups is inside. This is a count of sampled model states. It is not a probability, and it does not rank the groups.</p>
+</section>
+
+<section class="card" id="readings" aria-labelledby="readings-title">
+<h2 id="readings-title">What can be read from the outcomes</h2>
+<p class="sub">These are interpretations of the computed outcomes above. They hold for this response family and these 90 flights.</p>
+<ol>
+<li><b>In this response family, the two frequency measurements pick out a narrow range of onset times, and nearly the same one for every flight.</b> A response of this shape meets a frequency treatment only when it begins 6 to 14&nbsp;s before 00:19:29; without the warm-up allowance, 6 to 8&nbsp;s before. The frequency depends mainly on vertical speed, the response shape fixes how quickly the descent steepens, and so the measurements fix when it began. A different response shape would give a different range. The result does not say that a response began then.</li>
+<li><b>The 00:19:29 timing does not separate anything here.</b> All residuals are within 25&nbsp;&micro;s, so each joint match is decided by frequency alone. That all 90 flights meet an unfitted measurement this closely is a consistency of the cruise catalogue with the seventh arc. It is one shared outcome, not 90 confirmations.</li>
+<li><b>More than half of the sampled responses were not compared with the measurements at all.</b> A response beginning early enough reaches the operating-speed limit first, where this stage of the model stops. Those 6,536 responses are neither supported nor contradicted by the transmissions. Earlier onsets are a limit of the model, not a mathematical exclusion.</li>
+<li><b>The geographic spread is set by the cruise flights, not by the terminal response.</b> Each group forms one cluster 12 to 48&nbsp;km long at 00:19:29, and with the bank held the path ends 3 to 7&nbsp;km further on. Nothing is implied between the clusters.</li>
+<li><b>About half of the continued paths end in the air, where the model stops.</b> The model gives no surface position for any path. An ending at the lowest weather level is still 219 to 232 m above the model surface.</li>
+<li><b>The electrical status differs by group.</b> For one group the model&rsquo;s APU reserve is gone before the log-on; for another it outlasts both transmissions by seconds to tens of seconds. Neither statement establishes what powered the satellite unit.</li>
+</ol>
+</section>
+
+<section class="card" id="limits" aria-labelledby="limits-title">
+<h2 id="limits-title">Limits</h2>
+<ul>
+<li>One law before the response, one response shape, one bank magnitude, two directions, onset times from &minus;60 to +8&nbsp;s at 1&nbsp;s spacing. &ldquo;No sampled response&rdquo; is a statement about this family only.</li>
+<li>The onset stage stops at the operating-speed limit, so the earliest onsets are not compared with the measurements.</li>
+<li>The frequency test and its warm-up ranges are those of Holland (2017). Which treatment applies is not determined by this model.</li>
+<li>The 00:19:37 timing is not used.</li>
+<li>No surface position is computed. Last positions are last model states.</li>
+<li>Cruise levels and speeds between the tested ones, later climbs and speed changes remain outside the cruise catalogue and therefore outside this result.</li>
+<li>The 176 flights whose engines outlast the transmissions were not propagated. Another electrical or control sequence could apply to them; none was examined.</li>
+<li>The satellite-input sensitivity identified in the separate satellite audit remains open.</li>
+<li>The 22:41 measurement was excluded: no prediction, residual or comparison. It is not described as unread; the flight model loads the recorded event table, including that epoch, when it starts.</li>
+</ul>
+</section>
+
+<section class="card" id="record" aria-labelledby="record-title">
+<h2 id="record-title">Record of the run <span class="tag prov">one provenance exception</span></h2>
+<p><b>Numerical checks.</b> 24 onset responses and 8 continuations were repeated at half the integration step, and all met their criteria. The largest position differences were 3.6&nbsp;mm and 6.5&nbsp;mm; the largest differences in predicted frequency and timing were 0.00006&nbsp;Hz and 0.00001&nbsp;&micro;s. These measure the stability of the calculation, not the accuracy of the model for the real aircraft.</p>
+<p><b>Cost.</b> 6.8 hours of computation were charged against declared allowances of 40.9 hours. No ceiling was reached and no calculation ended in an undefined way.</p>
+<div class="note"><b>Permanent provenance exception.</b> Flight <code>A052_TO275.F1</code>, left bank, onset 2&nbsp;s after 00:19:29. Computed twice because publication erased its first stored result and settlement. The second computation is retained. Equality with the lost first computation cannot be established. The cause was a defect in the step that published the two workers&rsquo; files: lines appended by one worker during the other&rsquo;s publication were overwritten. The journal of attempts is short by three lines as a result. This response met no frequency treatment, like all 180 responses at that onset time; it is not a continued response and takes part in no numerical check. Every count on this page is a count of the surviving records.</div>
+<p><b>Review.</b> An independent review of the published journal, account, manifest and check records found each of the 13,925 planned identities settled once, with the single irregularity above. The reviewer did not reread every stored response and trajectory; that each of the 12,420 responses and 1,375 continuations is present exactly once rests on the project&rsquo;s own verification of the records. The frozen calculation and its raw records were left unchanged, and nothing was recomputed. A replacement for the publishing step has since been qualified separately; it has not yet been used for a production run.</p>
+</section>
+
+<section class="card" id="not-supported" aria-labelledby="not-supported-title">
+<h2 id="not-supported-title">Hypotheses not supported in this run</h2>
+<div class="scroll"><table>
+<thead><tr><th>Hypothesis</th><th>Status</th><th>Reason</th></tr></thead><tbody>
+<tr><td>A response of this shape beginning 5&nbsp;s before 00:19:29 or later meets the final frequencies</td><td>Not supported for any of 90 flights (2,520 responses)</td><td>The descent has not steepened enough by 00:19:37: predicted 23 to 243&nbsp;Hz there against &minus;2&nbsp;Hz recorded. Measurement mismatch under all four treatments.</td></tr>
+<tr><td>A response of this shape beginning 15 to 18&nbsp;s before 00:19:29 meets the final frequencies</td><td>Not supported</td><td>Where the response is supported to 00:19:37, the predicted frequency at 00:19:29 is −96 to +3&nbsp;Hz against 182&nbsp;Hz recorded, too low for every treatment.</td></tr>
+<tr><td>A response beginning 19&nbsp;s or more before 00:19:29</td><td>Not examined against the measurements</td><td>The operating-speed limit is reached before 00:19:37, where this stage of the model stops. Model limit, not a mismatch.</td></tr>
+<tr><td>The 00:19:29 timing narrows the set of responses</td><td>Not supported</td><td>Every residual is within 25&nbsp;&micro;s of 18,400&nbsp;&micro;s.</td></tr>
+<tr><td>A response whose 10&nbsp;s transition is still under way at 00:19:37 can meet the frequencies</td><td>Not supported in this family</td><td>None of the 1,800 responses with onsets from 1&nbsp;s before to 8&nbsp;s after 00:19:29 met a treatment.</td></tr>
+<tr><td>The continued paths give surface positions</td><td>Not supported</td><td>No path reaches the model surface; about half end at the lift-support limit in the air.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="card" id="sources" aria-labelledby="sources-title">
+<h2 id="sources-title">Sources and tables</h2>
+<p>Every result on this page is compiled from the published tables below by <code>scripts/build_terminal_responses.py</code> and inserted when the page is built. Constants of the method, the recorded measurements and the reviewed count of planned identities are quoted from the method and findings. The copies held by the Atlas are byte-identical to the pinned source files, with their hashes in the <a href="data/terminal-responses-266/source_manifest.json">source manifest</a>.</p>
+<div class="scroll"><table>
+<thead><tr><th>Table</th><th>Rows</th><th>Atlas copy</th><th>Pinned source</th></tr></thead><tbody>
+<tr><td>Every response, one row each</td><td>12,420</td><td><a href="data/terminal-responses-266/sources/RESPONSES.csv">RESPONSES.csv</a></td><td><a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/RESPONSES.csv">source</a></td></tr>
+<tr><td>Every ending of every continued path</td><td>5,500</td><td><a href="data/terminal-responses-266/sources/CONTINUATION_ENDINGS.csv">CONTINUATION_ENDINGS.csv</a></td><td><a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/CONTINUATION_ENDINGS.csv">source</a></td></tr>
+<tr><td>By group, bank direction and onset time</td><td>552</td><td><a href="data/terminal-responses-266/sources/BY_GROUP_BANK_ONSET.csv">BY_GROUP_BANK_ONSET.csv</a></td><td><a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/BY_GROUP_BANK_ONSET.csv">source</a></td></tr>
+<tr><td>By flight</td><td>90</td><td><a href="data/terminal-responses-266/sources/SUMMARY_BY_FLIGHT.csv">SUMMARY_BY_FLIGHT.csv</a></td><td><a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/SUMMARY_BY_FLIGHT.csv">source</a></td></tr>
+<tr><td>By group, with a row for all four</td><td>5</td><td><a href="data/terminal-responses-266/sources/SUMMARY_BY_GROUP.csv">SUMMARY_BY_GROUP.csv</a></td><td><a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/SUMMARY_BY_GROUP.csv">source</a></td></tr>
+<tr><td>Flights not propagated</td><td>176</td><td><a href="data/terminal-responses-266/sources/FLIGHTS_NOT_PROPAGATED.csv">FLIGHTS_NOT_PROPAGATED.csv</a></td><td><a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/FLIGHTS_NOT_PROPAGATED.csv">source</a></td></tr>
+<tr><td>Numerical checks</td><td>32</td><td><a href="data/terminal-responses-266/sources/NUMERICAL_CHECKS.csv">NUMERICAL_CHECKS.csv</a></td><td><a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/NUMERICAL_CHECKS.csv">source</a></td></tr>
+<tr><td>Provenance exceptions</td><td>1</td><td><a href="data/terminal-responses-266/sources/PROVENANCE_EXCEPTIONS.csv">PROVENANCE_EXCEPTIONS.csv</a></td><td><a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/PROVENANCE_EXCEPTIONS.csv">source</a></td></tr>
+</tbody></table></div>
+<p class="sub">Documents: <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/FINDINGS.md">findings, deviations and audit trail</a>; <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/METHOD.md">method</a>; <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/FUEL_POWER_ACCOUNT.md">fuel and power account</a>; <a href="https://github.com/floydclaptonblues/MH370-Ocean-GLORYS-Data/blob/429c11c4d41d7f26de46aaa71e74cba0cc3b401e/reports/diagnostic/CATALOGUE_TERMINAL/HANDOFF.md">handoff from the cruise catalogue</a>. Calculation revision <code>c370b2cf70b9</code> on cruise flights of revision <code>2a016b1294fa</code>; results pinned at <code>429c11c</code>. References: Holland, I. D. (2017), <a href="https://arxiv.org/abs/1702.02432"><i>MH370 Burst Frequency Offset Analysis and Implications on Descent Rate at End-of-Flight</i></a>; Davey, S., Gordon, N., Holland, I., Rutten, M. and Williams, J. (2016), <a href="https://library.oapen.org/handle/20.500.12657/27976"><i>Bayesian Methods in the Search for MH370</i></a>, &sect;5.2.</p>
+<p class="sub"><a href="index.html#terminal-responses-266">Summary on the overview</a> &middot; <a href="flighthistories.html#cruise-production-108">The cruise catalogue these flights come from</a> &middot; <a href="flight-lab.html#cruise-production-108">Inspect the cruise flights in the Flight Lab</a></p>
+</section>
+<script>MH.nav("flighthistories.html");</script></div></body></html>

@@ -112,7 +112,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
       '<span><i class="lamp green"></i>Earlier catalogue: frozen</span><span><i class="lamp"></i>Viewer: display-only</span>' +
       '<span><i class="lamp amber"></i>22:41: excluded</span><span><i class="lamp"></i>States: airborne</span>' :
       '<span><i class="lamp green"></i>Cruise run: complete</span><span><i class="lamp"></i>Checks: resolved</span>' +
-      '<span><i class="lamp amber"></i>Terminal follow-up: not run</span><span><i class="lamp"></i>Aircraft located: no</span>';
+      '<span><i class="lamp green"></i>Terminal responses: 90 flights</span><span><i class="lamp"></i>Aircraft located: no</span>';
     let legacyCatalogue = isFlightLab && document.body.dataset.flightCatalogue === 'legacy';
     const strip = el('section', 'ix-strip',
       '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +

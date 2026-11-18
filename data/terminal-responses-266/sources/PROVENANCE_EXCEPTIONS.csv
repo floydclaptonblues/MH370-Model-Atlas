@@ -1,0 +1,2 @@
+response,flight_id,bank_deg,onset_minus_0019_29_s,outcome_of_the_retained_computation,continued,exception
+A052_TO275.F1|L1.000|-60|O+2,A052_TO275.F1,-60.0,2,FREQUENCY_NOT_MET_UNDER_ANY_DECLARED_TREATMENT,False,Computed twice because publication erased its first stored result and settlement. The second computation is retained. Equality with the lost first computation cannot be established.

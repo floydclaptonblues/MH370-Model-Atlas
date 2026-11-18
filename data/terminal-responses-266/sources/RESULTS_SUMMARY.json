@@ -1,0 +1,118 @@
+{
+ "revision": "c370b2cf70b9",
+ "batches": {
+  "first": {
+   "flights": 4,
+   "onset_runs_planned": 552,
+   "onset_runs_present": 552,
+   "onset_calculations_failed": 0,
+   "onset_checks": {
+    "MET": 8
+   },
+   "continued": 61,
+   "continuations_present": 61,
+   "continuations_failed": 0,
+   "continuation_checks": {
+    "MET": 4
+   },
+   "complete": true
+  },
+  "rest": {
+   "flights": 86,
+   "onset_runs_planned": 11868,
+   "onset_runs_present": 11868,
+   "onset_calculations_failed": 0,
+   "onset_checks": {
+    "MET": 16
+   },
+   "continued": 1314,
+   "continuations_present": 1314,
+   "continuations_failed": 0,
+   "continuation_checks": {
+    "MET": 4
+   },
+   "complete": true
+  }
+ },
+ "allowances_s": {
+  "gate": 900.0,
+  "first.onset": 2400.0,
+  "first.checks": 2400.0,
+  "first.chain": 6000.0,
+  "rest.onset": 60000.0,
+  "rest.checks": 3600.0,
+  "rest.chain": 72000.0
+ },
+ "used_s": {
+  "gate": 19.6,
+  "first.onset": 902.6,
+  "first.checks": 26.2,
+  "first.chain": 193.9,
+  "rest.onset": 19281.1,
+  "rest.checks": 45.6,
+  "rest.chain": 4163.2
+ },
+ "responses": 12420,
+ "outcomes": {
+  "FREQUENCY_NOT_MET_UNDER_ANY_DECLARED_TREATMENT": 3086,
+  "CONTINUED": 1375,
+  "MODEL_LIMIT_STOP_BEFORE_0019_37": 1423,
+  "MODEL_LIMIT_STOP_BEFORE_0019_29": 6536
+ },
+ "stop_kinds": {
+  "OPERATIONAL_MACH_OR_CAS_LIMIT": 7959
+ },
+ "continued": 1375,
+ "continuation_endings": {
+  "WEATHER_VERTICAL_DOMAIN_EXIT": 2731,
+  "CL_MODEL_SUPPORT": 2769
+ },
+ "entries": {
+  "published chain": 1375
+ },
+ "rollout_begun_inside_transition": 0,
+ "ended_before_last_stage": {
+  "None": 1375
+ },
+ "query_rectangle": {
+  "note": "a query on finished results; the rectangle entered no calculation, selection or rule",
+  "latitude": [
+   -33.0,
+   -32.0
+  ],
+  "longitude": [
+   94.0,
+   96.0
+  ],
+  "responses_supported_to_0019_29": 5884,
+  "of_which_inside_at_0019_29": 1860,
+  "continued_responses": 1375,
+  "of_which_inside_at_0019_37": 454,
+  "last_stage_endings": 5500,
+  "of_which_last_propagated_position_inside": 1672,
+  "flights_with_any_continued_position_inside_at_0019_37": 30,
+  "flights_with_a_continued_response": 90,
+  "by_group_last_propagated_inside": {
+   "300.9 hPa, Mach 0.78": [
+    0,
+    728
+   ],
+   "331.655 hPa, Mach 0.75": [
+    0,
+    1344
+   ],
+   "365.113 hPa, Mach 0.67": [
+    1672,
+    1816
+   ],
+   "365.113 hPa, Mach 0.75": [
+    0,
+    1612
+   ]
+  }
+ },
+ "flights_not_propagated": {
+  "FUEL_EVENT_AFTER_BOTH_FINAL_TRANSMISSIONS": 139,
+  "POWERED_AT_0040_NO_FUEL_EVENT": 37
+ }
+}

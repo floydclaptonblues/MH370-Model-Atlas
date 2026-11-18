@@ -43,3 +43,14 @@ Historical note, 12 November: adding the lower-speed results row to `index.html`
 Those historical baselines are not a claim that later authorized Atlas edits are unchanged. For a new display repair, compare the scientific data, source manifest, signed assessment, and held drift files directly against that repair's actual base commit as well.
 
 Historical note, 13 November: the northern closing-run row and the two new list items in `index.html` were rewritten for the completed run, so `check_preservation.py` and `check_editorial_preservation.py` report `index.html` as changed against the pre-recovery baseline. No other file is reported changed. The signed assessment, the drift pages and the Flight Lab data are byte-identical to the previous commit.
+
+## Terminal-response import, 18 November 2026
+
+```sh
+python3 scripts/build_terminal_responses.py --check
+python3 gen.py
+```
+
+The first command verifies the 17 copied source files against `data/terminal-responses-266/source_manifest.json` and checks that `display.json` and `validation.json` equal a fresh compilation from those tables. `gen.py` then inserts the compiled values into the `{{name}}` placeholders of the page bodies; an unknown name raises an error and no page is written past that point. This is a reconciliation of published tables with the published summary, not a scientific revalidation, and it computes no flight.
+
+Historical note, 18 November: the update adds `terminal.html`, a section and list items in `index.html`, a method section in `methods.html`, a campaign entry in `archive.html`, a paragraph in `flighthistories.html` and one sentence in `flight-lab.html`, and changes one status lamp in `common.js`. Compared with the base commit `cce1e03`, no numerical token was removed from any existing page; the removed sentences are the ones stating that the terminal stage had not run. The signed assessment, the drift pages, the Flight Lab data and assets, and the cruise-catalogue data are byte-identical to the base. `check_preservation.py` and `check_editorial_preservation.py` already reported differences against their pre-recovery baseline before this update and continue to.

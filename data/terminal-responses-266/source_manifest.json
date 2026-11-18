@@ -1,0 +1,129 @@
+{
+ "repository": "floydclaptonblues/MH370-Ocean-GLORYS-Data",
+ "commit": "429c11c4d41d7f26de46aaa71e74cba0cc3b401e",
+ "path": "reports/diagnostic/CATALOGUE_TERMINAL",
+ "package_revision": "c370b2cf70b9",
+ "cruise_runner_revision": "2a016b1294fa",
+ "imported_on": "2026-11-18",
+ "files": [
+  {
+   "name": "BY_GROUP_BANK_ONSET.csv",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/BY_GROUP_BANK_ONSET.csv",
+   "bytes": 56842,
+   "git_blob_sha": "c6f29dce77da1ca292148eeb25c2030d837d7386",
+   "sha256": "b03191511ab9913672856ec243f6cd4c4378a470c82d47869f77efe707322a48"
+  },
+  {
+   "name": "CONTINUATION_ENDINGS.csv",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/CONTINUATION_ENDINGS.csv",
+   "bytes": 3461901,
+   "git_blob_sha": "d18720a86072fdbb24f653d6ffac8d302e6ce050",
+   "sha256": "4ef8995acc4c46086d620a50e8376aa9dcd7e68cc3660e3ddff822e212c3fe8c"
+  },
+  {
+   "name": "FINDINGS.md",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/FINDINGS.md",
+   "bytes": 34564,
+   "git_blob_sha": "33ca9c152e9bec35d265bfea5d0c48e80bdab226",
+   "sha256": "bcdff057e89a7ef437b300eebb80e888517e776fef488b1c5bd98782a55588b4"
+  },
+  {
+   "name": "FLIGHTS_NOT_PROPAGATED.csv",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/FLIGHTS_NOT_PROPAGATED.csv",
+   "bytes": 22591,
+   "git_blob_sha": "1afcdcbb45c280c57546a910ef3ca25513789c76",
+   "sha256": "d0865a0077a705093bc609acbf8087ff01662c9c60326ee7293138cf0f638398"
+  },
+  {
+   "name": "FUEL_POWER_ACCOUNT.md",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/FUEL_POWER_ACCOUNT.md",
+   "bytes": 9654,
+   "git_blob_sha": "63478768d49da39a5ebe9af80756121ee4dc29b6",
+   "sha256": "7ab0194174234e02e882e65e9180e17c04114abf47be0e8206433ea0ff3ad74d"
+  },
+  {
+   "name": "HANDOFF.md",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/HANDOFF.md",
+   "bytes": 12794,
+   "git_blob_sha": "6a54281c942a10b1e3fe26c3653818e542e4b944",
+   "sha256": "dae8784158283f1dcabcfb2e583c4bcab9be29b6fd40e03eab46dc1b0e4bb6d3"
+  },
+  {
+   "name": "MAP_LAST_PROPAGATED_POSITIONS.png",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/MAP_LAST_PROPAGATED_POSITIONS.png",
+   "bytes": 439756,
+   "git_blob_sha": "7632a8a6395a491ee6b59a12066fb9aeabaf3b30",
+   "sha256": "525de6f93ca9ea4a2d0d1fec9d32440e22dc85923e47e297bf8bcbb384c81df6"
+  },
+  {
+   "name": "MAP_OVERVIEW.png",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/MAP_OVERVIEW.png",
+   "bytes": 139416,
+   "git_blob_sha": "a3f03725b9cae6096beda0e6b1cf783221a83c34",
+   "sha256": "7a615855258936adc91e79b93bff304835e577824fff8f1b720b5a3074a0db7d"
+  },
+  {
+   "name": "MAP_POSITIONS_AT_0019_29.png",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/MAP_POSITIONS_AT_0019_29.png",
+   "bytes": 327198,
+   "git_blob_sha": "5c3ca9adbfa4f10d08b01bde76d99595c7897f2d",
+   "sha256": "14f5c8f22b826c937bbd4e6f467ebbbb1b36a1bcc775fedf1f09da42297083ca"
+  },
+  {
+   "name": "METHOD.md",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/METHOD.md",
+   "bytes": 33914,
+   "git_blob_sha": "0ef6241731ea74c09aae27f944e65d0a35c11341",
+   "sha256": "4fc433e512167ca508aefd2708c8fafbc01e78a41535595c5916e3853dae336a"
+  },
+  {
+   "name": "NUMERICAL_CHECKS.csv",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/NUMERICAL_CHECKS.csv",
+   "bytes": 5710,
+   "git_blob_sha": "a5f3e68c3145524675640ab53dc94eb71a19b5af",
+   "sha256": "2825249529dc0658b36de3d56779a70ab251790281136fc40fc268a36325d5dd"
+  },
+  {
+   "name": "OUTCOME_BY_ONSET_TIME.png",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/OUTCOME_BY_ONSET_TIME.png",
+   "bytes": 180402,
+   "git_blob_sha": "36c0c4a9936bffad13e421d4d22222387671f3e7",
+   "sha256": "697c34d4601c99ec265ba08f49f739719f5a392b1c2c4f554c96c1950b5d5c97"
+  },
+  {
+   "name": "PROVENANCE_EXCEPTIONS.csv",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/PROVENANCE_EXCEPTIONS.csv",
+   "bytes": 392,
+   "git_blob_sha": "c7be31e37932be9b88233b106f1ef6c8f51a28aa",
+   "sha256": "06526e315e616b9ef36c71a816d1fb182f83de3c163159902c84987717e9e318"
+  },
+  {
+   "name": "RESPONSES.csv",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/RESPONSES.csv",
+   "bytes": 8375027,
+   "git_blob_sha": "7e1812ea45e17a9beb0ea98d54397d70846c2f1e",
+   "sha256": "ef8f3931bc8a9b20de00703e3c2e28b84937d4f22385cd22781137808ab26af3"
+  },
+  {
+   "name": "RESULTS_SUMMARY.json",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/RESULTS_SUMMARY.json",
+   "bytes": 2492,
+   "git_blob_sha": "9701610c6c2419d181e8b02a5f33f67b071e9ff0",
+   "sha256": "bf8a179649516be57952aa58cf5615199256562579ac4329cbc5a75537963bd5"
+  },
+  {
+   "name": "SUMMARY_BY_FLIGHT.csv",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/SUMMARY_BY_FLIGHT.csv",
+   "bytes": 35355,
+   "git_blob_sha": "97bf26f44565d50399c68bae29ce45efbb7e09c8",
+   "sha256": "ca8da7c2e21036a2e6bbc4b06b65b7097b6455c76a015512177e8ddf6c6d07e8"
+  },
+  {
+   "name": "SUMMARY_BY_GROUP.csv",
+   "source_path": "reports/diagnostic/CATALOGUE_TERMINAL/RESULTS/SUMMARY_BY_GROUP.csv",
+   "bytes": 3703,
+   "git_blob_sha": "b32f570ae03439ac546c5516a9a78c1dc27b703f",
+   "sha256": "8bcc7ee5091b52f192dc15eb87296457d0b21237df2d52b719a7d4c0ecb93d90"
+  }
+ ]
+}
