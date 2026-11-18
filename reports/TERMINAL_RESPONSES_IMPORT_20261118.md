@@ -8,7 +8,7 @@ Ryan Hall asked for the Atlas to be updated with the accepted terminal-response 
 
 - New page `terminal.html` (body `src/terminal_body.html`), reached from the overview, the flight-histories page, the methods and archive pages and the Flight Lab note. It is not added to the navigation bar; it highlights "Flight histories".
 - New data package `data/terminal-responses-266/`: 17 source files copied byte for byte, a source manifest with hashes, the compiled display values, the reconciliation record and a README.
-- New compiler `scripts/build_terminal_responses.py`. `gen.py` gained a `fill()` step that inserts compiled values into `{{name}}` placeholders in the terminal, overview, flight-histories, methods and archive bodies.
+- New compiler `scripts/build_terminal_responses.py`. `gen.py` gained a `fill()` step that inserts compiled values into placeholders, each a name in double braces, in the terminal, overview, flight-histories, methods and archive bodies.
 - Overview: a results section, a chapter card, two list items under "Where the evidence stands" and a population-label paragraph. The sentence saying the final-transmission tests had not run is replaced.
 - Methods: a section stating what the terminal experiment tested and the role of each measurement. Archive: a campaign entry with hypotheses not supported and the provenance exception. Flight histories: one paragraph. Flight Lab: one sentence, outside the earlier-catalogue section; the viewer itself is unchanged and does not display terminal responses.
 - `common.js`: the status lamp "Terminal follow-up: not run" now reads "Terminal responses: 90 flights". The Flight Lab's cache-refresh string for that script was updated.
@@ -27,7 +27,7 @@ Ryan Hall asked for the Atlas to be updated with the accepted terminal-response 
 - `python3 scripts/build_terminal_responses.py --check`: 17 source files match the manifest; 217 displayed values and 341 reconciliations reproduce the committed outputs.
 - The compiled values were compared with the reviewed findings document. Counts agree. Three values differ in the last digit for known reasons, listed in `data/terminal-responses-266/README.md`.
 - `python3 scripts/build_cruise_catalogue.py --check`: passed.
-- `python3 gen.py` rewrote only `terminal.html`, `index.html`, `flighthistories.html`, `methods.html`, `archive.html` and `flight-lab.html`. No `{{` remains in any generated page.
+- `python3 gen.py` rewrote only `terminal.html`, `index.html`, `flighthistories.html`, `methods.html`, `archive.html` and `flight-lab.html`. No placeholder remains in any generated page.
 - Against the base commit, no numerical token was removed from any existing page.
 - `python3 tests/check_local_links.py`: 261 local file links checked, none missing.
 - Node display suites: `flight_lab_dom` (46 passed), `flight_lab_renderer` (8), `flight_lab_readouts` (21), `cruise_production_lab` (15 checks, passed), `cruise_grid` (13).
@@ -38,3 +38,7 @@ Ryan Hall asked for the Atlas to be updated with the accepted terminal-response 
 - The optional Playwright suite `flight_lab_regression.cjs` was not run.
 - `check_preservation.py` and `check_editorial_preservation.py` compare with a pre-recovery baseline and already reported differences before this update; they were not used as evidence here.
 - Rendering in browsers other than Chromium, and on the published site after deployment.
+
+## Correction, 18 November: the first publication did not deploy
+
+Commit `5ee1624` was pushed and its site build failed. This report, as first written, contained an unterminated pair of opening braces in its text, and GitHub Pages passes Markdown files through a template engine, which stopped at it. The deployment step was skipped, so the public site kept showing the previous version; nothing incomplete was served. The braces were removed from four Markdown files and `tests/check_markdown_template_safe.py` was added. The statement above that rendering on the published site was not verified stands for `5ee1624`; the build result of the corrected commit is reported separately.

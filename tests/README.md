@@ -51,6 +51,16 @@ python3 scripts/build_terminal_responses.py --check
 python3 gen.py
 ```
 
-The first command verifies the 17 copied source files against `data/terminal-responses-266/source_manifest.json` and checks that `display.json` and `validation.json` equal a fresh compilation from those tables. `gen.py` then inserts the compiled values into the `{{name}}` placeholders of the page bodies; an unknown name raises an error and no page is written past that point. This is a reconciliation of published tables with the published summary, not a scientific revalidation, and it computes no flight.
+The first command verifies the 17 copied source files against `data/terminal-responses-266/source_manifest.json` and checks that `display.json` and `validation.json` equal a fresh compilation from those tables. `gen.py` then inserts the compiled values into the placeholders, each a name in double braces, of the page bodies; an unknown name raises an error and no page is written past that point. This is a reconciliation of published tables with the published summary, not a scientific revalidation, and it computes no flight.
 
 Historical note, 18 November: the update adds `terminal.html`, a section and list items in `index.html`, a method section in `methods.html`, a campaign entry in `archive.html`, a paragraph in `flighthistories.html` and one sentence in `flight-lab.html`, and changes one status lamp in `common.js`. Compared with the base commit `cce1e03`, no numerical token was removed from any existing page; the removed sentences are the ones stating that the terminal stage had not run. The signed assessment, the drift pages, the Flight Lab data and assets, and the cruise-catalogue data are byte-identical to the base. `check_preservation.py` and `check_editorial_preservation.py` already reported differences against their pre-recovery baseline before this update and continue to.
+
+### Site build
+
+GitHub Pages builds the published site and passes every Markdown file through a template engine. On 18 November the first publication of this update did not deploy: a report file contained an unterminated pair of opening braces, the build stopped, and the previous version of the site stayed in place. The braces were removed from the Markdown files and this check was added:
+
+```sh
+python3 tests/check_markdown_template_safe.py
+```
+
+It fails if any tracked Markdown file contains template syntax. The page bodies in `src/` are HTML without front matter, are copied unchanged by the site build, and keep their placeholders.
