@@ -4,6 +4,8 @@
 
 **Corrected the same evening, after Codex's audit of the same workbook.** The first version of this note said that all 19 entries of the project's event table were found in the log "with the same frequency and timing". That was wrong for two of them. Seventeen entries are single received units, and those are equal. The other two are voice calls, and each is the rounded mean frequency of many units; my script had matched one unit to each and called it equal. Codex's audit found the true make-up of those two entries, and I have checked each of its statements against the workbook here. Section 1 is rewritten, section 1a and section 1b are new, and the largest time difference in section 1 is corrected from 0.64 s to 0.10 s. No number in sections 2 to 4 changed.
 
+**Interpretation corrected on 18 November 2026 (America/Chicago), after review.** The earlier wording treated the 20 µs reporting grid as a bound on the true timing, treated descriptive log dispersion as a calibrated error scale for the 22:41 burst, and confused the excess beyond the 43 µs criterion with the full residual. It also overstated what could be inferred about timestamp effects. Those interpretations are withdrawn below. The recorded numbers, numerical table entries, source code, frozen inputs, predictions and labels are unchanged: 215 histories meet the fixed criterion and 51 do not. This documentation correction requires no new flight calculation.
+
 **Executed:** `crosscheck.py`, which reads recorded values and stored model results and does arithmetic on them. No flight model was imported, no flight was computed and no prediction was formed. **Not executed:** any recalibration, any refit, any change to a label.
 
 ## 1. The project's event table against the log
@@ -25,7 +27,7 @@ The table has 19 entries (`EVENT_CROSSCHECK.csv`, with the worksheet row of each
 
 So the 22:41 comparison used the value in the log, with no correction, as the protocol declared. The 4,600 µs correction of the two log-on requests is the investigation's published one; nothing in this workbook was used to derive it.
 
-**One difference, in the times.** The event table carries each time to the whole second, the log to the millisecond. The table's second is the log's time rounded to the nearest second, so the model evaluates each single unit between 0.46 s before and 0.10 s after the logged time; for the five hourly exchanges it is 0.07 to 0.10 s after. This was not known to me when the protocol was written. Its size at 22:41 is given in section 4. For the two final transmissions the model's times are 0.416 s and 0.443 s before the logged ones. The terminal study samples the onset of the response at 1 s spacing, so a common shift of 0.4 s is inside that sampling; the difference between the two shifts is 0.027 s. I did not compute its effect on the predicted frequencies.
+**One difference, in the times.** The event table carries each time to the whole second, the log to the millisecond. The table's second is the log's time rounded to the nearest second, so the model evaluates each single unit between 0.46 s before and 0.10 s after the logged time; for the five hourly exchanges it is 0.07 to 0.10 s after. This was not known to me when the protocol was written. Section 4 gives a rough scale comparison at 22:41, not a calculation of its effect on any flight. For the two final transmissions the model's times are 0.416 s and 0.443 s before the logged ones; the difference between those shifts is 0.027 s. The terminal study samples response onset at 1 s spacing, but that spacing does not bound the change in a predicted timing or frequency caused by shifting a measurement epoch by about 0.4 s. Those effects remain uncomputed.
 
 ## 1a. The two voice-call entries: the values are right, their description is incomplete
 
@@ -50,43 +52,49 @@ The last unit received from the aircraft in the log is the acknowledgement at 00
 
 ## 2. The grid on which the log reports its measurements
 
-Every one of the 816 timing offsets recorded on the R channel, the channel of all the measurements above, is a whole multiple of 20 µs. Every frequency offset is a whole number of hertz (`REPORTING_GRID.csv`). The log does not say how a measured delay is mapped to that grid (to the nearest step, or downward). Either way a reported 14,540 µs stands for a range of true values 20 µs wide.
+Every one of the 816 timing offsets recorded on the R channel, the channel of all the timing measurements above, is a whole multiple of 20 µs. Every frequency offset is a whole number of hertz (`REPORTING_GRID.csv`). This is the resolution of the reported timing estimate. The log does not specify the quantiser's rounding rule, and the estimate also contains measurement error. A reported 14,540 µs therefore does not confine the true physical BTO to a 20 µs interval.
 
-Twenty microseconds of two-way timing is 3 km of distance between aircraft and satellite.
+The [ATSB's BTO characteristics factsheet](https://www.atsb.gov.au/publications/educational-fact-sheet/2022/aviation/mh370-burst-timing-offset-bto-characteristics) identifies the 20 µs GES measurement quantisation as one of several error components. The 43 µs statistic used in the project's tolerance comes from the factsheet's measured error distribution, which already includes the quantisation. The reporting step is not an additional allowance to add to the fixed ±43 µs criterion.
 
-## 3. The scatter of a single burst
+Twenty microseconds of two-way timing corresponds to about 3 km in satellite slant range. This conversion is not a bound on the timing error or on horizontal position.
 
-From 16:00:13 to 16:11:13 UTC the aircraft was at Kuala Lumpur before departure, logged on through the Indian Ocean satellite. **It is assumed to be stationary in those eleven minutes.** The log does not hold the aircraft's position. The assumption rests on three things: the interval lies inside the half hour before take-off that the investigation used to calibrate the timing (Ashton et al., *The Search for MH370*, Journal of Navigation, 2014: seventeen measurements, mean bias −495,679 µs, largest error 17.7 km in the two-way path, which is 59 µs); the timing in the log drifts slowly and steadily there, by 4.9 µs a minute, as the satellite moves; and the frequency offsets stay between 84 and 104 Hz until 16:30 and are between 123 and 160 Hz from 16:41:52, at the take-off. In those eleven minutes the log holds 48 R-channel bursts at 1,200 bit/s:
+## 3. Dispersion in the selected log samples
 
-| Estimate | Bursts or pairs | Standard deviation, µs |
+From 16:00:13 to 16:11:13 UTC the aircraft was at Kuala Lumpur before departure, logged on through the Indian Ocean satellite. **It is assumed to be stationary in those eleven minutes.** The log does not hold its position. This interval lies within the half hour before take-off used in the investigation's timing calibration. [Ashton et al., *The Search for MH370*](https://www.cambridge.org/core/journals/journal-of-navigation/article/search-for-mh370/D2D1C4C99E7BFDE35841CFD70081114A), report seventeen calibration measurements, a mean bias of −495,679 µs, and a largest error of 17.7 km in the two-way path, equivalent to about 59 µs. That is a peak error, not a standard deviation, and does not validate a standard deviation for the present sample or the later flight.
+
+The recorded timing has a fitted trend of 4.9 µs a minute in the selected interval. The recorded frequencies stay between 84 and 104 Hz until 16:30 and are between 123 and 160 Hz from 16:41:52, around take-off. These observations provide context but do not themselves establish stationarity or separate satellite motion from measurement error. The interval contains 48 R-channel records at 1,200 bit/s:
+
+| Descriptive statistic | Records or pairs | Dispersion, µs |
 |---|---:|---:|
 | The 48 values as they are (14,740 to 14,900 µs) | 48 | 32.9 |
-| About a straight line in time, which removes the slow change of range as the satellite moves | 48 | 29.3 |
-| From differences of consecutive bursts within 2 s, at the gate | 28 pairs | 40.5 |
+| Residuals about a straight line fitted in time | 48 | 29.3 |
+| From differences of consecutive records within 2 s, at the gate | 28 pairs | 40.5 |
 | The same, over the whole log | 270 pairs | 29.1 |
 
-**A single burst's timing scatters by about 30 µs (one standard deviation), on these estimates 29 to 40 µs.** The investigation's largest calibration error of 59 µs among seventeen measurements is in keeping with that. The grid of section 2 is part of that scatter. Each hourly exchange during the flight is one burst.
+These are descriptive calculations on the selected records. The script divides the sum of squared deviations by the number of values, including after the straight-line fit; it does not make a degrees-of-freedom adjustment. The pair figures divide the dispersion of the differences by the square root of two. Interpreting them as the error of an individual measurement would require assumptions about equal error distributions, independence and negligible physical change between the paired records. Some records occur in more than one pair.
 
-In these units the criterion of the catalogue and of the 22:41 check, ±43 µs, is between about 1.1 and 1.5 standard deviations of one burst (1.5 with the 29.3 µs estimate, which the tables below use). This is the scale of the measurement, read from the log itself. It is not a new criterion and it changes no label.
+The first three rows concern the selected interval; the fourth uses the whole log, including other times and channels. Within the 48-record interval, 39 records are on IOR-R1200-0-36D3 (channel unit 8) and nine on IOR-R1200-0-36E3 (unit 11), across several message types. The 22:41 measurement is on IOR-R1200-0-36ED (unit 4). These differences, the selected interval and the unverified error assumptions limit transfer of the 29 to 40 µs figures to that measurement. They are not a calibrated in-flight error distribution.
 
-*Limits of these estimates.* Eleven minutes, two channel units, one evening. Some consecutive signalling units belong to one burst and share a value, which lowers a pair estimate; the estimate from the 600 bit/s channel (26.9 µs from 58 pairs) is mostly of that kind and is not a between-burst scatter, so it is not used. The scatter in flight, at a different signal level, is not measured by this sample.
+The fixed ±43 µs criterion is numerically about 1.1 to 1.5 times these dispersion figures, or 1.5 times the 29.3 µs value used below. Those ratios are descriptive, not normal-distribution significance levels or probabilities. Reporting quantisation is already present in the logged samples and in the ATSB provenance of the criterion; it supplies no separate allowance.
+
+The 600 bit/s calculation gives 26.9 µs from 58 pairs. The pairing and repeated values alone do not establish that the pairs are mostly units of a single burst or that they measure independent errors. This note does not adopt that figure as the channel's error standard deviation. Each hourly timing comparison uses one recorded unit; the dispersion of its in-flight error has not been calibrated by this exercise.
 
 ## 4. The project's results in the units of the log
 
 Residuals are recorded minus predicted timing, over the 266 accepted cruise flights (`RESULTS_AGAINST_LOG.csv`):
 
-| Time, UTC | Role | Residuals, µs | In standard deviations of one burst | Within ±43 µs |
+| Time, UTC | Role | Residuals, µs | Residual divided by 29.3 µs | Within ±43 µs |
 |---|---|---:|---:|---:|
 | 20:41:05 | fitted | −42.0 to +20.7 | −1.4 to +0.7 | 266 |
 | 21:41:27 | fitted | −16.5 to +34.6 | −0.6 to +1.2 | 266 |
 | 22:41:22 | not fitted | −47.2 to +13.3 | −1.6 to +0.5 | 215 |
 | 00:11:00 | fitted | −28.4 to +41.4 | −1.0 to +1.4 | 266 |
 
-At the three fitted times the residuals reach the edge of the band on one side or the other (−42.0 at 20:41, +41.4 at 00:11), because the search accepted any flight inside it. At 22:41 the residuals of the same flights run 4.2 µs past the lower edge. The spread of the 266 residuals at 22:41 (60 µs) is about the same as at the fitted times (51 to 70 µs). In the log's own units the flight farthest outside the band at 22:41 is at −1.6 standard deviations of one burst, and the flights at the edge of the band at the fitted times are at 1.4.
+At the fitted times the residuals approach the edge of the band on one side or the other (−42.0 at 20:41, +41.4 at 00:11). At 22:41 the residuals of the same flights run 4.2 µs past the lower edge. The spread of the 266 residuals at 22:41 (60 µs) is about the same as at the fitted times (51 to 70 µs). The fourth column retains the arithmetic division by 29.3 µs: −1.6 at the most negative 22:41 residual and about 1.4 in magnitude at the fitted-time edges. It does not express calibrated standard deviations of those in-flight measurements.
 
-**How the 215 and 51 respond to the recorded value** (`LABEL_SENSITIVITY_2241.csv`). Holding every prediction fixed and asking what the count would be had the log reported a slightly different timing:
+**Sensitivity of the fixed rule to an illustrative offset** (`LABEL_SENSITIVITY_2241.csv`). This arithmetic holds every prediction fixed and adds the listed offset to the comparison's reference value. The rows are not alternative observations or a probability distribution for the measurement:
 
-| Recorded timing changed by | Flights within ±43 µs | Outside |
+| Illustrative offset to the reference value | Flights within ±43 µs | Outside |
 |---:|---:|---:|
 | −20 µs (one grid step) | 89 | 177 |
 | −10 µs (half a step) | 172 | 94 |
@@ -98,29 +106,32 @@ At the three fitted times the residuals reach the edge of the band on one side o
 | +5 µs | 266 | 0 |
 | +10 µs (half a step) | 266 | 0 |
 
-Within half a grid step either way, the count of flights inside the band runs from 172 to 266. All 51 flights outside the band are outside it by less than half a grid step, and by at most about a seventh of the scatter of one burst.
+Across the illustrative offsets from −10 to +10 µs, the count inside the band runs from 172 to 266. The non-grid offsets, including ±1 µs and half a step, do not produce readings on the log's observed 20 µs grid. They describe sensitivity of the classification rule and are not possible quantised log readings or probabilities. The actual recorded value still gives 215 within the criterion and 51 outside.
 
-**The time stamp.** The model evaluates the exchange at 22:41:22.000; the log stamps the burst at 22:41:21.906, 0.094 s earlier. Around that time the recorded timing offset was rising by 0.49 to 0.65 µs each second (from the recorded values at 21:41, 22:41 and 00:11), so 0.094 s corresponds to about 0.05 to 0.06 µs. The flight nearest the band is outside it by 0.033 µs. That is one flight; the other 50 are outside by more than the time-stamp effect. I did not recompute any prediction at the logged time, and what instant of the burst the log's stamp marks is not stated in the log.
+For those 51 histories, about 0.03 to 4.20 µs is the **excess beyond the 43 µs boundary**. Their full residuals are about 43 to 47 µs in magnitude. It is incorrect to describe those residuals as inside one 20 µs reporting step or far inside the selected sample's dispersion. A small excess beyond a chosen criterion does not itself establish that a history is physically possible.
+
+**The time stamp.** The model evaluates the exchange at 22:41:22.000; the log stamps the burst at 22:41:21.906, 0.094 s earlier. Differences between the recorded values at 21:41, 22:41 and 00:11 give average slopes of 0.49 to 0.65 µs per second over those long intervals. Multiplying them by 0.094 s gives about 0.05 to 0.06 µs as a rough scale comparison. These are neither the local derivative of any flight's prediction nor a bound on its change when evaluated at the logged time. The nearest excess is 0.033 µs, but this arithmetic does not determine whether its label, or any other label, would change. No prediction was recomputed at the logged time, and the log does not state which instant of the burst its stamp marks.
 
 ## 5. What follows, and what does not
 
-- The inputs are right: the seventeen single measurements the project compared with are the ones in the log, and the two voice-call means are reproduced. The description of those two means needs the addendum of section 1a.
-- **The split of 215 and 51 at 22:41 is not resolved by the measurement.** The 51 lie inside the reporting step of the log and far inside the scatter of one burst. The statement already published stands and is now supported by the log itself: the 51 do not meet the declared criterion, they are not negated, and they remain possible.
-- The same holds in the other direction. The 215 are not confirmed by lying inside a band 1.1 to 1.5 standard deviations wide, and the flights at ±42 µs at the fitted times were accepted with the same margin by which the 51 are not.
-- The frozen labels are not changed by this note. They are the result of the criterion as declared.
-- Nothing here bears on a position.
+- The seventeen individual measurements match the supplied log, and the two voice-call means are reproduced. This supports their transcription and aggregation; the description of the two means requires section 1a's qualifications.
+- **The fixed 22:41 result remains 215 histories within the criterion and 51 outside.** The log's reporting resolution and this descriptive dispersion analysis do not cancel the 51 failures or establish those histories' physical feasibility. Failure of this criterion also does not, by itself, prove physical impossibility.
+- Meeting the criterion does not confirm the 215 histories, their probabilities or their locations. The ratios to 29.3 µs and the illustrative offset counts are not calibrated likelihoods.
+- Quantisation is already included in the ATSB error-statistic provenance of the fixed criterion. No extra grid or scatter allowance is added, and no frozen label changes.
+- The effects of using the logged millisecond epochs remain uncomputed. Neither the hourly finite differences nor the terminal onset grid supplies a bound on those effects.
+- Nothing in this note establishes an aircraft position or an impact location.
 
 ## 6. Considered and not supported, or not done
 
 | Idea | Status | Reason |
 |---|---|---|
-| Use the 600 bit/s pair estimate as that channel's burst scatter | Not supported | The pairs are mostly two units of one burst with the same value |
-| State how often a flight on the true path would fall outside ±43 µs | Not stated as a result | It needs the distribution of the timing error in flight, which this sample at the gate does not give. For a normal distribution with a 29 to 40 µs standard deviation it would be between about one time in seven and one time in three and a half; that is an illustration of scale and not a property of these flights |
-| Re-label the 22:41 outcomes with a band widened by the grid or the scatter | Not done | The criterion was fixed before the predictions; widening it afterwards would be a criterion chosen with the result in view |
+| Use the 600 bit/s pair estimate as that channel's calibrated error | Not supported | Nearby records and repeated values do not establish independent errors, equal distributions or negligible physical timing changes |
+| State how often a flight on the true path would fall outside ±43 µs | Not established | It requires a justified in-flight error distribution. The selected log dispersion and the overlapping pairs do not provide one; no normal-distribution failure probability is inferred |
+| Re-label the 22:41 outcomes with a band widened by the grid or the scatter | Not done | Quantisation is already part of the criterion's stated error provenance. An additional allowance is not justified here; the criterion was fixed before the predictions |
 | Recompute the predictions at the logged times | Not done | It needs the flight model and a new declared run |
-| Check the timing calibration against the 48 bursts at the gate | Not done | It needs the satellite model and the aircraft's gate position; a separate task |
-| Effect of the 0.4 s time difference at the final transmissions on the terminal results | Not computed | Stated in section 1 as bounded by the 1 s sampling of onset times; that is an argument, not a calculation |
+| Check the timing calibration against the 48 records at the gate | Not done | It needs the satellite model and the aircraft's gate position; a separate task |
+| Effect of the 0.4 s time difference at the final transmissions on the terminal results | Unknown; not computed | The 1 s onset spacing does not bound the change in a prediction with measurement time. A calculation or a justified local bound would be needed to quantify it; correcting this note requires no new flight |
 
 ## Files
 
-`crosscheck.py`; `SUMMARY.json`; `EVENT_CROSSCHECK.csv` (19 entries: 17 single units and 2 means); `REPORTING_GRID.csv`; `BURST_SCATTER.csv`; `RESULTS_AGAINST_LOG.csv`; `LABEL_SENSITIVITY_2241.csv`. The tables hold recorded values from a published log and results already in this repository.
+`crosscheck.py`; `SUMMARY.json`; `EVENT_CROSSCHECK.csv` (19 entries: 17 single units and 2 means); `REPORTING_GRID.csv`; `BURST_SCATTER.csv`; `RESULTS_AGAINST_LOG.csv`; `LABEL_SENSITIVITY_2241.csv`. The tables hold recorded values from the supplied log and results already in this repository.

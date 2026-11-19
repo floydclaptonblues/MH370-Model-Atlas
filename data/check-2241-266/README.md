@@ -5,7 +5,7 @@ This directory publishes the comparison of the timing recorded at 22:41:22 UTC w
 ## Source identity
 
 - Repository: `floydclaptonblues/MH370-Ocean-GLORYS-Data`
-- Commit: `5eea308ebe7043d982bd043b618a12d6a39627e2`
+- Commit: `fccbd9c54941b7cc094d056ba8e202296c12d752`
 - Source directories: `reports/diagnostic/CHECK_2241_CRUISE_266/` and, for the ground-station log cross-check, `reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/`
 - Calculation revision: `91266581e659`, applied to cruise flights of revision `2a016b1294fa`
 - Results date and import date: 18 November 2026
@@ -25,7 +25,9 @@ Typed, not compiled: the limits of 0.1 µs and 0.01 Hz on the agreement of the t
 
 ## The ground-station log
 
-The section of `check2241.html` on the scale of the measurement is compiled from the log cross-check: the 17 single units of the project's table found in the log with equal values and its two voice-call entries reproduced as means of 51 and 29 units, the 20 µs step in which the log reports timing, the scatter of single bursts before departure, the residuals at each time in those units, and the count of flights within the band had the recorded value been slightly different. The compiler recomputes that last table from the result rows and requires it to equal the copied one. The log itself is not copied here; the tables hold recorded values and results only.
+The section of `check2241.html` on the ground-station log is compiled from the log cross-check: the 17 single units of the project's table found in the log with equal values and its two voice-call entries reproduced as means of 51 and 29 units; the 20 µs step in which the log reports timing; descriptive dispersions of selected log records; the residuals at each time divided by one of those dispersions; and the count of flights within the unchanged band when a hypothetical offset is added to the recorded timing. The compiler recomputes that last table from the result rows and requires it to equal the copied one. The log itself is not copied here; the tables hold recorded values and results only.
+
+How these numbers are to be read was corrected on 18 November 2026 after Codex's follow-up review, and the copy of the cross-check findings here is the corrected one. The reporting step is the resolution of a reported estimate and does not bound the true timing or add an allowance to the criterion. The dispersions are descriptive and are not a calibrated error of the measurement in flight. The offsets are hypothetical and are not other readings the log could have given. The 0.03 to 4.20 µs is the excess beyond the 43 µs boundary; the whole residuals of those 51 flights are 43.03 to 47.20 µs in magnitude. No number in the tables changed.
 
 ## A description that is not in the source findings
 
