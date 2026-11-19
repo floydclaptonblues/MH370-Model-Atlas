@@ -1,0 +1,69 @@
+{
+ "what": "Stage B of the 22:41 check: a withheld-measurement consistency check with disclosed prior exposure. Counts are counts of sampled flights, not probabilities; residual size inside the band does not rank flights.",
+ "package_revision": "91266581e659",
+ "seal_sha256": "76b296438732738fd330b510ab2d27a9df98ebb48a78bca1df815201d871de1c",
+ "predictions_sha256": "2cd38ef3034d83621467146656eca711abaa89371ff052108587aaca70f572dd",
+ "observation": {
+  "event": {
+   "event_id": "T6_224122",
+   "timestamp_utc": "2014-03-07T22:41:22Z",
+   "channel": "IOR-R1200-0-36ED",
+   "message_type": "Log-on/Log-off Acknowledge"
+  },
+  "timing_field": "canonical_bto_us",
+  "frequency_field": "observed_bfo_hz",
+  "observed_timing_us": 14540.0,
+  "observed_frequency_hz": 204.0,
+  "correction_us": 0.0,
+  "canonical_equals_raw": true,
+  "events_sha256": "06f2684f9ff77c02d2ac13cfa9ed20e28a3ed800cb221f1b5107f5db76927642"
+ },
+ "conventions": {
+  "timing_residual": "observed - predicted",
+  "frequency_residual_raw": "observed - predicted",
+  "frequency_residual_centred": "observed - predicted - MU_BFO",
+  "MU_BFO_hz": -0.18
+ },
+ "criteria": {
+  "timing_half_width_us": 43.0,
+  "timing_full_width_us": 86.0,
+  "inclusive": true,
+  "additional_timing_thresholds_us": [
+   29.0,
+   86.0,
+   129.0
+  ],
+  "frequency_half_width_hz": 7.0,
+  "numerical_agreement": {
+   "timing_us": 0.1,
+   "frequency_hz": 0.01
+  }
+ },
+ "identities": 266,
+ "with_a_usable_pair_of_predictions": 266,
+ "timing_status": {
+  "MEETS_THE_2241_TIMING": 215,
+  "OUTSIDE_THE_2241_TIMING_BAND": 51
+ },
+ "outcome": "SOME_MEET_AND_SOME_DO_NOT",
+ "statement": "215 of 266 flights of the catalogue meet the 22:41 timing; 51 of 266 are outside the band.",
+ "additional_thresholds": {
+  "within_29_us": {
+   "outside": 94,
+   "within": 172
+  },
+  "within_86_us": {
+   "within": 266
+  },
+  "within_129_us": {
+   "within": 266
+  }
+ },
+ "frequency_diagnostic": {
+  "WITHIN_7_HZ": 266
+ },
+ "stage_a_coverage": {
+  "PREDICTED": 266
+ },
+ "stage_a_partial_reason": null
+}

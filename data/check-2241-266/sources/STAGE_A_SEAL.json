@@ -1,0 +1,164 @@
+{
+ "what": "Stage A seal of the 22:41 check: predictions only. No recorded 22:41 value was read by this stage, no residual was formed and no comparison was made.",
+ "package_revision": "91266581e659",
+ "package_hashes": {
+  "PROTOCOL.md": "6dab586ccff4f73a3540359107aed2eae438c8f8f4bf12756841d41e72a8e022",
+  "GATE_PLAN.md": "caa5046ec6a22ca2ba0aa30f8d64334ed67c1cdcda16ad65a2aeb03dd86ef8bd",
+  "IMPLEMENTATION.md": "37c8b7a740829ba561b47ad47d715e34eeed836f4fe71cc4b154ab0cc7934d11",
+  "adapter_2241.py": "3cfd7a1d3414a883718aff4062d657b9a7761f38b7f55cd3b0bab44e5b8791a8",
+  "check_2241.py": "cf3784a02e9fcff310da3c5ca1aee23baa45bd0bab55b62218fdee9f0ac2bf45",
+  "stage_b.py": "2de26fa7a3069089b0ff4c87cb036e4d0214995e05fbd1564e4dfde3a9a0cfce",
+  "build_population.py": "d7b9a49769cae97dd6c765253e02f586da7b5cf42517b9c78e93f3377dd53db5",
+  "POPULATION_266.json": "72d35ca9ffe3a9c3c0d18fdcf146050e58622d20c0cec830500ab4bd2c3c1166",
+  "POPULATION_266.csv": "565400177c19b9b0de8783a5f61d230a7800667b46381c81e69b1701702276b1",
+  "test_check_2241.py": "f0e19482b88295e3e8db5ce2fef1103e797b7f1823af63c4f0d91e841ba14276",
+  "test_stage_b.py": "422cc5b219ca7c4e76ca025812d06140657a9477601823f3ca90df0289f93edf",
+  "test_interruptions.py": "082516a54e6b7ce851c77f41fb7245b08ac252e4d180090bca3a637da134e42f",
+  "test_unusable_half_dependency.py": "5844be35bf4042be128599c3cc0d48fbc905bc94b979b159e67b6eac62f1e8d9",
+  "EXTERNAL:TERMINAL_MANIFEST_266.csv": "908a8031331ddbc2f1c8d8ecc1f1f3655c76820461057558b63bd79f92073eb8",
+  "EXTERNAL:cruise_revision": "2a016b1294fa",
+  "PINNED:common_py_sha256": "f1a374d15a5e9e898b77d7f83c60214aff33310db51055df230df60fc76931cd",
+  "PINNED:canonical_events_sha256": "06f2684f9ff77c02d2ac13cfa9ed20e28a3ed800cb221f1b5107f5db76927642"
+ },
+ "stage_b_sha256": "2de26fa7a3069089b0ff4c87cb036e4d0214995e05fbd1564e4dfde3a9a0cfce",
+ "cruise_revision": "2a016b1294fa",
+ "population": {
+  "file": "POPULATION_266.json",
+  "sha256": "72d35ca9ffe3a9c3c0d18fdcf146050e58622d20c0cec830500ab4bd2c3c1166",
+  "identities": 266,
+  "identity_order_sha256": "39939d4880fc51070bce43813fcf700ee13fa5d8a2d5abcdebd81e77ec580006",
+  "manifest_sha256": "908a8031331ddbc2f1c8d8ecc1f1f3655c76820461057558b63bd79f92073eb8"
+ },
+ "target": {
+  "utc": "22:41:22",
+  "elapsed_s": 10819.0,
+  "epoch_index": 3,
+  "kinematics": {
+   "side": -1,
+   "eps_rule": "0.125*dt/15"
+  }
+ },
+ "steps": {
+  "full": {
+   "dt_s": 15.0,
+   "eps": 0.125
+  },
+  "half": {
+   "dt_s": 7.5,
+   "eps": 0.0625
+  }
+ },
+ "calibration": {
+  "MU_BFO_hz": -0.18,
+  "satellite_and_eafc": "the frozen tables of the cruise revision; no alternative input"
+ },
+ "numerical_agreement": {
+  "timing_us": 0.1,
+  "frequency_hz": 0.01
+ },
+ "predictions": {
+  "file": "PREDICTIONS_2241_266.csv",
+  "bytes": 143944,
+  "sha256": "2cd38ef3034d83621467146656eca711abaa89371ff052108587aaca70f572dd",
+  "rows": 266,
+  "columns": [
+   "order",
+   "flight_id",
+   "group",
+   "level_pressure_altitude_ft",
+   "Mach_commanded",
+   "terminal_status",
+   "stage_a_status",
+   "reason",
+   "dt_full_s",
+   "dt_half_s",
+   "predicted_timing_full_us",
+   "predicted_timing_half_us",
+   "timing_half_minus_full_us",
+   "predicted_frequency_full_hz",
+   "predicted_frequency_half_hz",
+   "frequency_half_minus_full_hz",
+   "latitude_full",
+   "longitude_full",
+   "height_m_full",
+   "ground_speed_mps_full",
+   "track_deg_full",
+   "vertical_speed_mps_full",
+   "Mach_full",
+   "latitude_half",
+   "longitude_half",
+   "height_m_half",
+   "attempts_full",
+   "attempts_half",
+   "result_sha256_full",
+   "result_sha256_half"
+  ]
+ },
+ "coverage": {
+  "identities": 266,
+  "by_status": {
+   "PREDICTED": 266
+  },
+  "usable": 266,
+  "complete": true,
+  "clean": true,
+  "counts": {
+   "attempts": 532,
+   "attempts_by_step": {
+    "full": 266,
+    "half": 266
+   },
+   "target_evaluations_begun": 532,
+   "predictions_stored": 532,
+   "timing_calls_at_target_recorded": 532,
+   "frequency_calls_at_target_recorded": 532,
+   "target_evaluations_begun_without_a_stored_prediction": 0,
+   "gate_attempts": 22,
+   "target_evaluations_in_gate": 0
+  }
+ },
+ "partial_reason": null,
+ "statuses_sha256": "2d46434e265b2c1262c4dc7b9b9aa094d00916e83677b5289f9cf630f92ea767",
+ "accounting": {
+  "revision": "91266581e659",
+  "events": 2176,
+  "stages": {
+   "gate": {
+    "limit_s": 1200.0,
+    "charged_s": 355.80208746399995,
+    "reserved_open_s": 0,
+    "attempts": 22,
+    "settled": 22,
+    "interrupted": 0,
+    "refunded_s": 3604.197912536
+   },
+   "full": {
+    "limit_s": 8000.0,
+    "charged_s": 3606.4661189650046,
+    "reserved_open_s": 0,
+    "attempts": 266,
+    "settled": 266,
+    "interrupted": 0,
+    "refunded_s": 28313.533881034997
+   },
+   "half": {
+    "limit_s": 12000.0,
+    "charged_s": 4991.480007230995,
+    "reserved_open_s": 0,
+    "attempts": 266,
+    "settled": 266,
+    "interrupted": 0,
+    "refunded_s": 58848.519992769005
+   }
+  },
+  "total_limit_s": 21200.0,
+  "total_charged_s": 8953.74821366
+ },
+ "stops": [],
+ "journal": {
+  "file": "JOURNAL.jsonl",
+  "events": 2176,
+  "bytes": 437325,
+  "sha256": "8c158f59e12e7662c52d7323fa5749e64f6f48d48a3d2c1db31c51f1fd8b05ed"
+ }
+}

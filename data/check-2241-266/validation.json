@@ -1,0 +1,30 @@
+{
+ "commit": "18dcd823ab6a5e47004b9596325149618578c240",
+ "package_revision": "91266581e659",
+ "source_files": 14,
+ "displayed_values": 64,
+ "reconciliations_passed": 20,
+ "reconciliations": [
+  "266 rows in catalogue order, each identity once",
+  "the result rows and the predictions name the same flights in the same order",
+  "timing labels reproduce the published summary",
+  "each label follows from its two residuals and the 43 microsecond half-width",
+  "each label is the same at both integration steps",
+  "each residual is the recorded timing minus the predicted timing",
+  "frequency diagnostic counts reproduce the published summary",
+  "additional threshold counts reproduce the published summary",
+  "the summary is for this package revision and seal",
+  "eleven combinations of incoming group and cruise level",
+  "group counts reproduce the published group table",
+  "every flight outside the band entered at Mach 0.67 and cruised at one level",
+  "the other combinations hold no flight outside the band",
+  "the parents of the terminal-response catalogue are among the 266",
+  "the join to the terminal parents reproduces the published join",
+  "every flight outside the band has a negative residual: its predicted timing is above the recorded one",
+  "the predicted timing spread reproduces the Stage A report",
+  "Stage A coverage is complete: 266 usable pairs, 532 target evaluations",
+  "the two comparison programs agree on every label, threshold, diagnostic and group count",
+  "the arithmetic repeated in the Stage A container equals the published files"
+ ],
+ "scope": "Display import only. Counts and ranges are recomputed from the copied tables and reconciled with the published summary, group table and terminal-parent join. This is not a scientific revalidation; no flight was computed and no prediction was formed here."
+}

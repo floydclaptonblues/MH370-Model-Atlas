@@ -1,0 +1,49 @@
+{
+ "what": "Arithmetic repeated in the container that computed Stage A, after the Stage B release was placed. Not the original comparison: Codex ran Stage B first. No flight or prediction was computed.",
+ "when_utc": "2026-11-19T04:24:26Z",
+ "package_revision": "91266581e659",
+ "frozen_program": {
+  "command": "python3 -I stage_b.py --run-dir run/91266581e659 --events <the pinned canonical event table of the frozen dependency list> --out <new directory>",
+  "inputs": "this repository's own stage_b.py, POPULATION_266.json, sealed exports and RELEASE_STAGE_B.json; the pinned event table as held in this container (sha256 06f2684f9ff77c02d2ac13cfa9ed20e28a3ed800cb221f1b5107f5db76927642, equal to the packet's copy)",
+  "outputs": {
+   "STAGE_B_RESULTS.csv": {
+    "sha256": "20b5c2687911ab19fa6a9233c27a038d3f15adcf371a33d6679196c50635fea6",
+    "identical_to_packet": true
+   },
+   "STAGE_B_BY_GROUP.csv": {
+    "sha256": "b6de3b50a0dcb1109a00491c16bccc9e06646fb408451aa1909b5a0abe901df6",
+    "identical_to_packet": true
+   },
+   "STAGE_B_SUMMARY.json": {
+    "sha256": "41df272d6fae05cc190c8f50857b214d6350d72d52d13c395dc60bca6c66d30a",
+    "identical_to_packet": true
+   }
+  }
+ },
+ "independent_program": {
+  "command": "the packet's independent/independent_stage_b.py, run from the packet's own files",
+  "outputs": {
+   "INDEPENDENT_RESULTS.csv": {
+    "sha256": "9c3925ce631333f7e133daa57d46bdabac82e62a8fcbf77985e50e8fb3ce8496",
+    "identical_to_packet": true
+   },
+   "INDEPENDENT_BY_GROUP.csv": {
+    "sha256": "1b821e7ff789e224d74322ecc35ad5cb4b7324edadd105902035d85df8851a52",
+    "identical_to_packet": true
+   },
+   "INDEPENDENT_SUMMARY.json": {
+    "sha256": "fe0774ec6f4ed1d5d96bf3800e9d7aef59b3f83c9e1029a9f5c102d6e4c611f8",
+    "identical_to_packet": true
+   }
+  },
+  "not_regenerated": [
+   "independent/results/TERMINAL_STATUS_CROSS_TABLE.json is not written by the four commands of the packet README; its counts were checked here directly from the result table and agree"
+  ]
+ },
+ "reconciliation": {
+  "identical_to_packet": true
+ },
+ "terminal_overlap": {
+  "identical_to_packet": true
+ }
+}

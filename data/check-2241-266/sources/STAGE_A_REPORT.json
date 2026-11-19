@@ -1,0 +1,155 @@
+{
+ "revision": "91266581e659",
+ "coverage": {
+  "identities": 266,
+  "by_status": {
+   "PREDICTED": 266
+  },
+  "usable": 266,
+  "complete": true,
+  "clean": true,
+  "counts": {
+   "attempts": 532,
+   "attempts_by_step": {
+    "full": 266,
+    "half": 266
+   },
+   "target_evaluations_begun": 532,
+   "predictions_stored": 532,
+   "timing_calls_at_target_recorded": 532,
+   "frequency_calls_at_target_recorded": 532,
+   "target_evaluations_begun_without_a_stored_prediction": 0,
+   "gate_attempts": 22,
+   "target_evaluations_in_gate": 0
+  }
+ },
+ "expected_discrimination": {
+  "tolerance": {
+   "half_width_us": 43.0,
+   "full_width_us": 86.0
+  },
+  "within_group": {
+   "365.113 hPa, Mach 0.67 at 25661 ft": {
+    "flights": 30,
+    "lowest_us": 14566.054802838597,
+    "highest_us": 14566.613084071607,
+    "spread_us": 0.5582812330103479,
+    "mean_us": 14566.251152158127
+   },
+   "365.113 hPa, Mach 0.67 at 30053 ft": {
+    "flights": 37,
+    "lowest_us": 14582.725536151265,
+    "highest_us": 14587.199334605539,
+    "spread_us": 4.473798454273492,
+    "mean_us": 14585.078354311012
+   },
+   "365.113 hPa, Mach 0.75 at 33985 ft": {
+    "flights": 34,
+    "lowest_us": 14562.856093486946,
+    "highest_us": 14566.744965752296,
+    "spread_us": 3.8888722653500736,
+    "mean_us": 14564.855800570382
+   },
+   "365.113 hPa, Mach 0.75 at 31946 ft": {
+    "flights": 26,
+    "lowest_us": 14555.292089073453,
+    "highest_us": 14557.61356316111,
+    "spread_us": 2.321474087657407,
+    "mean_us": 14556.43063333604
+   },
+   "331.655 hPa, Mach 0.67 at 27830 ft": {
+    "flights": 20,
+    "lowest_us": 14575.369243590336,
+    "highest_us": 14576.708612165123,
+    "spread_us": 1.3393685747869313,
+    "mean_us": 14576.051474524924
+   },
+   "331.655 hPa, Mach 0.67 at 30053 ft": {
+    "flights": 37,
+    "lowest_us": 14576.357363272458,
+    "highest_us": 14585.69358970254,
+    "spread_us": 9.336226430081297,
+    "mean_us": 14581.820243247143
+   },
+   "331.655 hPa, Mach 0.75 at 33985 ft": {
+    "flights": 28,
+    "lowest_us": 14561.328531372244,
+    "highest_us": 14565.02725871827,
+    "spread_us": 3.6987273460254073,
+    "mean_us": 14563.417004537081
+   },
+   "331.655 hPa, Mach 0.75 at 31946 ft": {
+    "flights": 21,
+    "lowest_us": 14554.49061561987,
+    "highest_us": 14556.67633839784,
+    "spread_us": 2.185722777969204,
+    "mean_us": 14555.66734513252
+   },
+   "300.9 hPa, Mach 0.75 at 33985 ft": {
+    "flights": 12,
+    "lowest_us": 14538.718005552888,
+    "highest_us": 14563.061412426876,
+    "spread_us": 24.343406873987988,
+    "mean_us": 14558.652766491292
+   },
+   "300.9 hPa, Mach 0.75 at 31946 ft": {
+    "flights": 8,
+    "lowest_us": 14555.350052836759,
+    "highest_us": 14555.558542811836,
+    "spread_us": 0.2084899750771001,
+    "mean_us": 14555.437200206245
+   },
+   "300.9 hPa, Mach 0.78 at 33985 ft": {
+    "flights": 13,
+    "lowest_us": 14526.71539950237,
+    "highest_us": 14543.152306324337,
+    "spread_us": 16.43690682196757,
+    "mean_us": 14540.637199110563
+   }
+  },
+  "all_flights": {
+   "flights": 266,
+   "lowest_us": 14526.71539950237,
+   "highest_us": 14587.199334605539,
+   "spread_us": 60.48393510316964
+  },
+  "between_group_means_spread_us": 44.44115520044943,
+  "note": "predicted timings only; no recorded value was read and no residual was formed"
+ },
+ "accounting": {
+  "revision": "91266581e659",
+  "events": 2176,
+  "stages": {
+   "gate": {
+    "limit_s": 1200.0,
+    "charged_s": 355.80208746399995,
+    "reserved_open_s": 0,
+    "attempts": 22,
+    "settled": 22,
+    "interrupted": 0,
+    "refunded_s": 3604.197912536
+   },
+   "full": {
+    "limit_s": 8000.0,
+    "charged_s": 3606.4661189650046,
+    "reserved_open_s": 0,
+    "attempts": 266,
+    "settled": 266,
+    "interrupted": 0,
+    "refunded_s": 28313.533881034997
+   },
+   "half": {
+    "limit_s": 12000.0,
+    "charged_s": 4991.480007230995,
+    "reserved_open_s": 0,
+    "attempts": 266,
+    "settled": 266,
+    "interrupted": 0,
+    "refunded_s": 58848.519992769005
+   }
+  },
+  "total_limit_s": 21200.0,
+  "total_charged_s": 8953.74821366
+ },
+ "seal_sha256": "76b296438732738fd330b510ab2d27a9df98ebb48a78bca1df815201d871de1c"
+}

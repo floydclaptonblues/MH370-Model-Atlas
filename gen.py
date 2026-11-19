@@ -2,10 +2,12 @@ HEAD='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="v
 <title>%s</title><meta name="description" content="Part of the MH370 Model Atlas: an independent, physics-based reconstruction of the final flight of 9M-MRO from Inmarsat satellite measurements, aircraft performance and ocean transport."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav>'''
 TAIL='</div></body></html>'
-def fill(body,path="data/terminal-responses-266/display.json"):
-    """Insert compiled values for {{name}} placeholders. An unknown name is an error."""
+def fill(body,paths=("data/terminal-responses-266/display.json","data/check-2241-266/display.json")):
+    """Insert compiled values for {{name}} placeholders. An unknown name is an error; so is a name compiled twice."""
     import json,re
-    values=json.load(open(path))["values"]
+    values={}
+    for path in paths:
+        v=json.load(open(path))["values"]; assert not set(v)&set(values), "a display name is compiled twice"; values.update(v)
     return re.sub(r"\{\{(\w+)\}\}",lambda m:values[m.group(1)],body)
 pages={}
 ARCHIVED_BANNER='''<div class="note"><b>Archived chapter page.</b> This page belongs to the satellite-and-flight chapter, closed 6 October 2026 and corrected 23 October 2026. It is kept as the record; findings later withdrawn are struck through in place. The current work is on the <a href="flighthistories.html">Flight histories</a> page, and the retirement reasons are listed in the <a href="archive.html">Archive of attempts</a>.</div>'''
@@ -370,6 +372,7 @@ pages["assessment.html"]=HEAD%"Ryan's assessment — MH370 Model Atlas"+fill(ope
 pages["claude_assessment.html"]=HEAD%"Historical AI assessment — MH370 Model Atlas"+'''<div class="note"><b>Dated AI interpretation, not a current model result.</b> The assessment below records the interpretation offered during the 10–12 November discussion, with its original attribution and scope. Subsequent catalogue extensions do not automatically update it. For experiment scope and recorded results, use <a href="index.html#closure">the experiment record</a> and <a href="flight-lab.html">the Flight Dynamics Lab catalogues</a>.</div>'''+open("src/claude_assessment_body.html").read()+'<script>MH.nav("claude_assessment.html");</script>'+TAIL
 pages["flighthistories.html"]=HEAD%"MH370 Flight Histories"+fill(open("src/flighthistories_body.html").read())+'<script>MH.nav("flighthistories.html");</script>'+TAIL
 pages["terminal.html"]=HEAD%"MH370 Terminal Responses"+fill(open("src/terminal_body.html").read())+'<script>MH.nav("flighthistories.html");</script>'+TAIL
+pages["check2241.html"]=HEAD%"MH370: the 22:41 measurement"+fill(open("src/check2241_body.html").read())+'<script>MH.nav("flighthistories.html");</script>'+TAIL
 pages["archive.html"]=HEAD%"MH370 Archive of Attempts"+fill(open("src/archive_body.html").read())+'<script>MH.nav("archive.html");</script>'+TAIL
 DEMO_HEAD='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Arc 7 demonstration</title><meta name="description" content="An interactive teaching tool in the MH370 Model Atlas: illustrative seventh-arc positions, satellite geometry and a simplified fuel–mass calculation. Demonstration only.">

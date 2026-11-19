@@ -1,0 +1,108 @@
+{
+ "repository": "floydclaptonblues/MH370-Ocean-GLORYS-Data",
+ "commit": "18dcd823ab6a5e47004b9596325149618578c240",
+ "path": "reports/diagnostic/CHECK_2241_CRUISE_266",
+ "package_revision": "91266581e659",
+ "cruise_runner_revision": "2a016b1294fa",
+ "imported_on": "2026-11-18",
+ "files": [
+  {
+   "name": "GATE_FINDINGS_91266581e659.md",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/GATE_FINDINGS_91266581e659.md",
+   "bytes": 5788,
+   "git_blob_sha": "df6fbf18d82f5b36fc342a01977ed5418019f4e4",
+   "sha256": "c29d6eee8c3afbc7ce8be921ebfbb38dbb44a12721e0e34426a92e4bcdc2f3be"
+  },
+  {
+   "name": "LOCAL_REPRODUCTION.json",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/STAGE_B_OUTPUT_91266581e659/LOCAL_REPRODUCTION.json",
+   "bytes": 2119,
+   "git_blob_sha": "0d8dcb9ea73ea020da163bb1cb2dbf108a350985",
+   "sha256": "86595e16a4a994e09ef6cbd48b53431e70bcd36e1287863610be3c75cb6ffc2d"
+  },
+  {
+   "name": "PREDICTIONS_2241_266.csv",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/run/91266581e659/PREDICTIONS_2241_266.csv",
+   "bytes": 143944,
+   "git_blob_sha": "f8717590af8bcf7d2e4ac611232566d8da924f0e",
+   "sha256": "2cd38ef3034d83621467146656eca711abaa89371ff052108587aaca70f572dd"
+  },
+  {
+   "name": "PROTOCOL.md",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/PROTOCOL.md",
+   "bytes": 36177,
+   "git_blob_sha": "4b7c948a31249ea9b4d2b107d8fd9f7c35470312",
+   "sha256": "6dab586ccff4f73a3540359107aed2eae438c8f8f4bf12756841d41e72a8e022"
+  },
+  {
+   "name": "RECEIVED.md",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/stage_b_results_9a67641/RECEIVED.md",
+   "bytes": 5495,
+   "git_blob_sha": "c0e3a29fcbc5701412b486553ea6a88cbd0d3a46",
+   "sha256": "266dd9baafd9e09996948e51cf744119b0d2eeb207844ebe45a8a56d97755448"
+  },
+  {
+   "name": "RECONCILIATION.json",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/stage_b_results_9a67641/independent/RECONCILIATION.json",
+   "bytes": 2614,
+   "git_blob_sha": "39ef4ed3693ffe832704716755c99f6b07120673",
+   "sha256": "832030c4052c14c9196399ce462247ff55acd74da90d420753c4aa6890398835"
+  },
+  {
+   "name": "STAGE_A_FINDINGS.md",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/STAGE_A_FINDINGS.md",
+   "bytes": 7572,
+   "git_blob_sha": "69fa9d515177571d6e5654eaeed0d9ec5369b1cd",
+   "sha256": "a0fcacdec3f1a44f40d249c108d4265133cf88cec3ba93bdd403d325c638734e"
+  },
+  {
+   "name": "STAGE_A_REPORT.json",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/run/91266581e659/STAGE_A_REPORT.json",
+   "bytes": 4147,
+   "git_blob_sha": "5fc0e99fc806e5a606338ac95504eaf1e2ce4355",
+   "sha256": "d8902891c9b6be7aa092917b4066da687b879818843cb1b80ffb93f820aa0604"
+  },
+  {
+   "name": "STAGE_A_SEAL.json",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/run/91266581e659/STAGE_A_SEAL.json",
+   "bytes": 5132,
+   "git_blob_sha": "0e3b67e9e64340b7ba26c88d9260c8be41456e74",
+   "sha256": "76b296438732738fd330b510ab2d27a9df98ebb48a78bca1df815201d871de1c"
+  },
+  {
+   "name": "STAGE_B_BY_GROUP.csv",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/STAGE_B_OUTPUT_91266581e659/STAGE_B_BY_GROUP.csv",
+   "bytes": 724,
+   "git_blob_sha": "278df72b067ef3a4fec8436ef6f99069f1b101a4",
+   "sha256": "b6de3b50a0dcb1109a00491c16bccc9e06646fb408451aa1909b5a0abe901df6"
+  },
+  {
+   "name": "STAGE_B_FINDINGS.md",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/stage_b_results_9a67641/STAGE_B_FINDINGS.md",
+   "bytes": 11400,
+   "git_blob_sha": "de4c00f886458e708ffb912ba8ad3ea7a4a531c7",
+   "sha256": "52f2f40171e52d635223dfd26ecde5377dba0970cd68dde79e77c5eda4555feb"
+  },
+  {
+   "name": "STAGE_B_RESULTS.csv",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/STAGE_B_OUTPUT_91266581e659/STAGE_B_RESULTS.csv",
+   "bytes": 73342,
+   "git_blob_sha": "6afa224baec90cca1e6ff8557439bdf3fd4a0a6d",
+   "sha256": "20b5c2687911ab19fa6a9233c27a038d3f15adcf371a33d6679196c50635fea6"
+  },
+  {
+   "name": "STAGE_B_SUMMARY.json",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/STAGE_B_OUTPUT_91266581e659/STAGE_B_SUMMARY.json",
+   "bytes": 2020,
+   "git_blob_sha": "f9fa4801dee70d7e2946ee3f3ee7944c5e4e6a67",
+   "sha256": "41df272d6fae05cc190c8f50857b214d6350d72d52d13c395dc60bca6c66d30a"
+  },
+  {
+   "name": "TERMINAL_OVERLAP.json",
+   "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/stage_b_results_9a67641/evidence/TERMINAL_OVERLAP.json",
+   "bytes": 5893,
+   "git_blob_sha": "9c460a0dfed163408dd72593acd74a0e43d3339d",
+   "sha256": "2c2fd0d7e19a025d4d37aa7319c985d284e2d8ab5e71dfecca401089fcb89c5b"
+  }
+ ]
+}

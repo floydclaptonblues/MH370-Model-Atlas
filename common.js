@@ -112,7 +112,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
       '<span><i class="lamp green"></i>Earlier catalogue: frozen</span><span><i class="lamp"></i>Viewer: display-only</span>' +
       '<span><i class="lamp amber"></i>22:41: excluded</span><span><i class="lamp"></i>States: airborne</span>' :
       '<span><i class="lamp green"></i>Cruise run: complete</span><span><i class="lamp"></i>Checks: resolved</span>' +
-      '<span><i class="lamp green"></i>Terminal responses: 90 flights</span><span><i class="lamp"></i>Aircraft located: no</span>';
+      '<span><i class="lamp green"></i>Terminal responses: 90 flights</span><span><i class="lamp green"></i>22:41 check: compared</span><span><i class="lamp"></i>Aircraft located: no</span>';
     let legacyCatalogue = isFlightLab && document.body.dataset.flightCatalogue === 'legacy';
     const strip = el('section', 'ix-strip',
       '<div><div class="ix-cap">Aircraft and flight</div><div class="ix-id">9M-MRO · B777-200ER<small>Malaysia Airlines MH370 · 7–8 March 2014 UTC</small></div></div>' +
@@ -131,7 +131,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
       '<div><span>FINAL TRANSMISSION</span><output>00:19:37</output></div><div><span>EXCLUDED</span><output>22:41</output></div></div>' :
       '<b>Cruise study epochs, UTC</b><div class="ix-ro">' +
       '<div><span>STARTING STATE</span><output>19:41:03</output></div><div><span>LAST FITTED TIME</span><output>00:11:00</output></div>' +
-      '<div><span>FUEL HORIZON</span><output>00:40:00</output></div><div><span>NOT EVALUATED</span><output>22:41</output></div></div>';
+      '<div><span>FUEL HORIZON</span><output>00:40:00</output></div><div><span>NOT FITTED</span><output>22:41</output></div></div>';
     const b2 = el('div', 'ix-box', isFlightLab ? catalogueEpochs(legacyCatalogue) :
       '<b>Reference epochs, UTC</b><div class="ix-ro">' +
       '<div><span>RADAR HANDOFF</span><output>18:22:12</output></div><div><span>FINAL LOG-ON</span><output>00:19:29</output></div>' +

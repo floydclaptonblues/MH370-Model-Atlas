@@ -1,0 +1,12 @@
+group,level_pressure_altitude_ft,flights,meets_the_2241_timing,outside_the_band,boundary_sensitive,no_label,frequency_within_7_hz,frequency_outside_7_hz,frequency_boundary_sensitive
+"365.113 hPa, Mach 0.67",25661,30,30,0,0,0,30,0,0
+"365.113 hPa, Mach 0.67",30053,37,1,36,0,0,37,0,0
+"365.113 hPa, Mach 0.75",33985,34,34,0,0,0,34,0,0
+"365.113 hPa, Mach 0.75",31946,26,26,0,0,0,26,0,0
+"331.655 hPa, Mach 0.67",27830,20,20,0,0,0,20,0,0
+"331.655 hPa, Mach 0.67",30053,37,22,15,0,0,37,0,0
+"331.655 hPa, Mach 0.75",33985,28,28,0,0,0,28,0,0
+"331.655 hPa, Mach 0.75",31946,21,21,0,0,0,21,0,0
+"300.9 hPa, Mach 0.75",33985,12,12,0,0,0,12,0,0
+"300.9 hPa, Mach 0.75",31946,8,8,0,0,0,8,0,0
+"300.9 hPa, Mach 0.78",33985,13,13,0,0,0,13,0,0
