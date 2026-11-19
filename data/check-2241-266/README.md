@@ -5,7 +5,7 @@ This directory publishes the comparison of the timing recorded at 22:41:22 UTC w
 ## Source identity
 
 - Repository: `floydclaptonblues/MH370-Ocean-GLORYS-Data`
-- Commit: `f9315c2ea906b2509b999cf54144b57465c39ce7`
+- Commit: `5eea308ebe7043d982bd043b618a12d6a39627e2`
 - Source directories: `reports/diagnostic/CHECK_2241_CRUISE_266/` and, for the ground-station log cross-check, `reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/`
 - Calculation revision: `91266581e659`, applied to cruise flights of revision `2a016b1294fa`
 - Results date and import date: 18 November 2026
@@ -21,11 +21,11 @@ The predictions were computed on the machine that built the cruise catalogue and
 
 Typed, not compiled: the limits of 0.1 µs and 0.01 Hz on the agreement of the two integration steps, the times of the commanded second turn, and the additional thresholds of 29 and 129 µs named in the text, all quoted from the method; and the status lamp in `common.js`, which carries no number. The conversion from microseconds of timing to distance between aircraft and satellite uses the speed of light and the two-way path, about 150 m for one microsecond.
 
-`validation.json` lists the 25 reconciliations the compiler performs before writing anything. Among them: each outcome follows from its two residuals and the 43 µs half-width; each residual equals the recorded timing minus the predicted timing in the predictions table; the counts reproduce the published summary and group table; the join to the 90 terminal-response flights, made here from the Atlas's own copy of the terminal tables, reproduces the published join; and the hashes of the predictions and of the record that fixes them are the ones the comparison names.
+`validation.json` lists the 27 reconciliations the compiler performs before writing anything. Among them: each outcome follows from its two residuals and the 43 µs half-width; each residual equals the recorded timing minus the predicted timing in the predictions table; the counts reproduce the published summary and group table; the join to the 90 terminal-response flights, made here from the Atlas's own copy of the terminal tables, reproduces the published join; and the hashes of the predictions and of the record that fixes them are the ones the comparison names.
 
 ## The ground-station log
 
-The section of `check2241.html` on the scale of the measurement is compiled from the log cross-check: the 19 events of the project's table found in the log with equal values, the 20 µs step in which the log reports timing, the scatter of single bursts before departure, the residuals at each time in those units, and the count of flights within the band had the recorded value been slightly different. The compiler recomputes that last table from the result rows and requires it to equal the copied one. The log itself is not copied here; the tables hold recorded values and results only.
+The section of `check2241.html` on the scale of the measurement is compiled from the log cross-check: the 17 single units of the project's table found in the log with equal values and its two voice-call entries reproduced as means of 51 and 29 units, the 20 µs step in which the log reports timing, the scatter of single bursts before departure, the residuals at each time in those units, and the count of flights within the band had the recorded value been slightly different. The compiler recomputes that last table from the result rows and requires it to equal the copied one. The log itself is not copied here; the tables hold recorded values and results only.
 
 ## A description that is not in the source findings
 

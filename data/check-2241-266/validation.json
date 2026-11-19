@@ -1,9 +1,9 @@
 {
- "commit": "f9315c2ea906b2509b999cf54144b57465c39ce7",
+ "commit": "5eea308ebe7043d982bd043b618a12d6a39627e2",
  "package_revision": "91266581e659",
  "source_files": 21,
- "displayed_values": 94,
- "reconciliations_passed": 25,
+ "displayed_values": 106,
+ "reconciliations_passed": 27,
  "reconciliations": [
   "266 rows in catalogue order, each identity once",
   "the result rows and the predictions name the same flights in the same order",
@@ -26,7 +26,9 @@
   "the two comparison programs agree on every label, threshold, diagnostic and group count",
   "the arithmetic repeated in the Stage A container equals the published files",
   "the label-sensitivity table of the log cross-check is reproduced from the result rows",
-  "every event of the project's table is in the log with equal values",
+  "every single unit of the project's table is in the log once with equal values",
+  "the two voice-call entries are rounded means of the units of each call",
+  "the log holds no unit received from the aircraft after the last acknowledgement",
   "the log's 22:41 timing and frequency are the values the comparison used",
   "the residual range at 22:41 in the cross-check equals the result rows",
   "every R-channel timing offset in the log is a multiple of 20 microseconds"

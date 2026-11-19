@@ -2,25 +2,51 @@
 
 18 November 2026. Workbook `35200217_Logs_for_SITA_08Mar2014p_2.xlsx`, supplied by Ryan Hall as the full unredacted Inmarsat log for 9M-MRO (SHA-256 `61e662fe…2dce38b`; 7,196 signalling units from 00:51 UTC on 7 March to 01:16 UTC on 8 March 2014). The workbook is kept on the computing machine and is not in this repository. It was first opened after the 22:41 comparison was complete.
 
+**Corrected the same evening, after Codex's audit of the same workbook.** The first version of this note said that all 19 entries of the project's event table were found in the log "with the same frequency and timing". That was wrong for two of them. Seventeen entries are single received units, and those are equal. The other two are voice calls, and each is the rounded mean frequency of many units; my script had matched one unit to each and called it equal. Codex's audit found the true make-up of those two entries, and I have checked each of its statements against the workbook here. Section 1 is rewritten, section 1a and section 1b are new, and the largest time difference in section 1 is corrected from 0.64 s to 0.10 s. No number in sections 2 to 4 changed.
+
 **Executed:** `crosscheck.py`, which reads recorded values and stored model results and does arithmetic on them. No flight model was imported, no flight was computed and no prediction was formed. **Not executed:** any recalibration, any refit, any change to a label.
 
-## 1. The project's event table equals the log
+## 1. The project's event table against the log
 
-All 19 events of the project's canonical event table were found in the log on the stated channel, each with the same burst frequency offset and the same raw burst timing offset (`EVENT_CROSSCHECK.csv`). That includes every measurement the cruise catalogue, the 22:41 check and the terminal study were compared with:
+The table has 19 entries (`EVENT_CROSSCHECK.csv`, with the worksheet row of each).
 
-| Time, UTC | Log time | Timing offset, µs | Frequency offset, Hz |
-|---|---|---:|---:|
-| 19:41:03 | 19:41:02.906 | 11,500 | 111 |
-| 20:41:05 | 20:41:04.904 | 11,740 | 141 |
-| 21:41:27 | 21:41:26.905 | 12,780 | 168 |
-| 22:41:22 | 22:41:21.906 | 14,540 | 204 |
-| 00:11:00 | 00:10:59.928 | 18,040 | 252 |
-| 00:19:29 | 00:19:29.416 | 23,000 (18,400 after the published 4,600 µs correction) | 182 |
-| 00:19:37 | 00:19:37.443 | 49,660 (not used) | −2 |
+**Seventeen are single received units.** Each was found exactly once in the log on the stated channel, with the same burst frequency offset and the same raw burst timing offset. They include every timing measurement the cruise catalogue, the 22:41 check and the terminal study were compared with:
 
-So the 22:41 comparison used the value in the log, with no correction, as the protocol declared.
+| Time, UTC | Log time | Worksheet row | Timing offset, µs | Frequency offset, Hz |
+|---|---|---:|---:|---:|
+| 18:25:27 | 18:25:27.421 | 7007 | 17,120 (12,520 after the published 4,600 µs correction) | 142 |
+| 19:41:03 | 19:41:02.906 | 7126 | 11,500 | 111 |
+| 20:41:05 | 20:41:04.904 | 7128 | 11,740 | 141 |
+| 21:41:27 | 21:41:26.905 | 7130 | 12,780 | 168 |
+| 22:41:22 | 22:41:21.906 | 7132 | 14,540 | 204 |
+| 00:11:00 | 00:10:59.928 | 7187 | 18,040 | 252 |
+| 00:19:29 | 00:19:29.416 | 7188 | 23,000 (18,400 after the same correction) | 182 |
+| 00:19:37 | 00:19:37.443 | 7194 | 49,660 (not used for timing) | −2 |
 
-**One difference, in the times.** The event table carries each time to the whole second, the log to the millisecond. The table's second is the log's time rounded to the nearest second, so the model evaluates each event between 0.46 s before and 0.64 s after the logged time; for the five hourly exchanges it is 0.07 to 0.10 s after. This was not known to me when the protocol was written. Its size at 22:41 is given in section 4. For the two final transmissions the model's times are 0.416 s and 0.443 s before the logged ones. The terminal study samples the onset of the response at 1 s spacing, so a common shift of 0.4 s is inside that sampling; the difference between the two shifts is 0.027 s. I did not compute its effect on the predicted frequencies.
+So the 22:41 comparison used the value in the log, with no correction, as the protocol declared. The 4,600 µs correction of the two log-on requests is the investigation's published one; nothing in this workbook was used to derive it.
+
+**One difference, in the times.** The event table carries each time to the whole second, the log to the millisecond. The table's second is the log's time rounded to the nearest second, so the model evaluates each single unit between 0.46 s before and 0.10 s after the logged time; for the five hourly exchanges it is 0.07 to 0.10 s after. This was not known to me when the protocol was written. Its size at 22:41 is given in section 4. For the two final transmissions the model's times are 0.416 s and 0.443 s before the logged ones. The terminal study samples the onset of the response at 1 s spacing, so a common shift of 0.4 s is inside that sampling; the difference between the two shifts is 0.027 s. I did not compute its effect on the predicted frequencies.
+
+## 1a. The two voice-call entries: the values are right, their description is incomplete
+
+Found by Codex's audit; each line below was checked here against the workbook.
+
+| Entry | Units averaged | Channels | Mean frequency offset | Table value | Span of the units, UTC |
+|---|---:|---|---:|---:|---|
+| 18:39:58 | 51 | IOR-3730 (29) and IOR-373E (22) | 87.8235 Hz | 88 Hz | 18:39:55.354 to 18:40:56.354 |
+| 23:14:03 | 29 | IOR-3737 (29) | 217.2759 Hz | 217 Hz | 23:14:00.904 to 23:15:02.032 |
+
+The rounded means reproduce the table's values. Three things about them are not said by the table:
+
+- The 18:39 entry names one channel, IOR-373E. Its mean is taken over both channels of the call.
+- Both means include call-progress messages as well as telephony acknowledgements (at 18:39: 17 acknowledgements and 34 call-progress units; at 23:14: 9 and 20).
+- Each mean spans about a minute. The table's times, 18:39:58 and 23:14:03, are representative instants and not the time of each unit. Single units in those minutes range from 86 to 90 Hz and from 216 to 222 Hz.
+
+None of these units carries a timing offset. **This is a clarification of provenance. The frozen values and times are not changed by it.** Whether using the individual units at their own times would alter any fitted flight is a separate calculation and was not made. The 266 cruise flights were accepted on timing at 20:41, 21:41 and 00:11, where neither voice call enters.
+
+## 1b. No later response from the aircraft
+
+The last unit received from the aircraft in the log is the acknowledgement at 00:19:37.443 (worksheet row 7194). The log continues to 01:16:15 with four more units. All four are transmissions from the ground station (three log-on interrogations and one acknowledgement), and none carries a timing or frequency offset. The workbook holds no response from the aircraft after 00:19:37.443.
 
 ## 2. The grid on which the log reports its measurements
 
@@ -78,7 +104,7 @@ Within half a grid step either way, the count of flights inside the band runs fr
 
 ## 5. What follows, and what does not
 
-- The inputs are right: the measurements the project compared with are the ones in the log.
+- The inputs are right: the seventeen single measurements the project compared with are the ones in the log, and the two voice-call means are reproduced. The description of those two means needs the addendum of section 1a.
 - **The split of 215 and 51 at 22:41 is not resolved by the measurement.** The 51 lie inside the reporting step of the log and far inside the scatter of one burst. The statement already published stands and is now supported by the log itself: the 51 do not meet the declared criterion, they are not negated, and they remain possible.
 - The same holds in the other direction. The 215 are not confirmed by lying inside a band 1.1 to 1.5 standard deviations wide, and the flights at ±42 µs at the fitted times were accepted with the same margin by which the 51 are not.
 - The frozen labels are not changed by this note. They are the result of the criterion as declared.
@@ -97,4 +123,4 @@ Within half a grid step either way, the count of flights inside the band runs fr
 
 ## Files
 
-`crosscheck.py`; `SUMMARY.json`; `EVENT_CROSSCHECK.csv` (19 events); `REPORTING_GRID.csv`; `BURST_SCATTER.csv`; `RESULTS_AGAINST_LOG.csv`; `LABEL_SENSITIVITY_2241.csv`. The tables hold recorded values from a published log and results already in this repository.
+`crosscheck.py`; `SUMMARY.json`; `EVENT_CROSSCHECK.csv` (19 entries: 17 single units and 2 means); `REPORTING_GRID.csv`; `BURST_SCATTER.csv`; `RESULTS_AGAINST_LOG.csv`; `LABEL_SENSITIVITY_2241.csv`. The tables hold recorded values from a published log and results already in this repository.

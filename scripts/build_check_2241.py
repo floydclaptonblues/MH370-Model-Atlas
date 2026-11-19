@@ -26,7 +26,7 @@ OUT = ROOT / "data" / "check-2241-266"
 SRC = OUT / "sources"
 TERMINAL = ROOT / "data" / "terminal-responses-266" / "sources"
 REPO = "floydclaptonblues/MH370-Ocean-GLORYS-Data"
-COMMIT = "f9315c2ea906b2509b999cf54144b57465c39ce7"
+COMMIT = "5eea308ebe7043d982bd043b618a12d6a39627e2"
 SOURCE_PATH = "reports/diagnostic/CHECK_2241_CRUISE_266"
 REVISION = "91266581e659"
 CRUISE_REVISION = "2a016b1294fa"
@@ -139,7 +139,11 @@ def compile_display():
     L = json.loads((SRC / "SUMMARY.json").read_text()); sens = read("LABEL_SENSITIVITY_2241.csv"); scat = read("BURST_SCATTER.csv"); ral = read("RESULTS_AGAINST_LOG.csv"); evx = read("EVENT_CROSSCHECK.csv")
     within = lambda d: sum(1 for a, b in res.values() if abs(a + d) <= half and abs(b + d) <= half)
     ok("the label-sensitivity table of the log cross-check is reproduced from the result rows", all(int(r["flights_within_43_us"]) == within(float(r["recorded_timing_changed_by_us"])) for r in sens) and within(0.0) == st[MEETS])
-    ok("every event of the project's table is in the log with equal values", len(evx) == L["event_table"]["events"] == L["event_table"]["found_in_log_with_equal_frequency_and_timing"] and all(r["values"] == "equal" for r in evx))
+    ET = L["event_table"]; single = [r for r in evx if r["units"] == "1"]; means = [r for r in evx if r["units"] != "1"]
+    ok("every single unit of the project's table is in the log once with equal values", len(single) == ET["single_units"] == ET["single_units_found_once_with_equal_frequency_and_timing"] and all(r["values"] == "equal" for r in single))
+    ok("the two voice-call entries are rounded means of the units of each call", len(means) == ET["voice_calls"] == ET["voice_calls_with_rounded_mean_reproduced"] == 2 and len(evx) == ET["events"]
+       and all(round(float(r["log_frequency_hz"])) == float(r["table_frequency_hz"]) and int(r["units"]) == v["samples"] for r, v in zip(means, ET["voice"])))
+    ok("the log holds no unit received from the aircraft after the last acknowledgement", L["end_of_log"]["any_with_a_timing_or_frequency_offset"] is False and set(L["end_of_log"]["their_channel_types"]) == {"P-Channel TX"})
     r22 = next(r for r in evx if r["event_id"] == "T6_224122")
     ok("the log's 22:41 timing and frequency are the values the comparison used", float(r22["log_timing_us"]) == obs_t and float(r22["log_frequency_hz"]) == obs_f)
     ok("the residual range at 22:41 in the cross-check equals the result rows", next(r for r in ral if r["time_utc"].startswith("22:41"))["residual_lowest_us"] == f"{min(full):.2f}")
@@ -171,7 +175,9 @@ def compile_display():
              q_band_km=f"{half * M_PER_US / 1000.0:.1f}", q_exc_min_m=f"{exc[0] * M_PER_US:.0f}", q_exc_max_km=f"{exc[-1] * M_PER_US / 1000.0:.2f}", q_m_per_us=f"{M_PER_US:.0f}",
              q_lat_range="{:.1f} to {:.1f}°S".format(-max(float(p["latitude_full"]) for p in pred), -min(float(p["latitude_full"]) for p in pred)),
              q_lon_range="{:.1f} to {:.1f}°E".format(min(float(p["longitude_full"]) for p in pred), max(float(p["longitude_full"]) for p in pred)),
-             q_log_events=n(len(evx)), q_log_units=n(L["signalling_units"]), q_log_rbursts=n(L["bursts_with_timing"]["R_channel"]), q_log_grid=f"{GRID:.0f}", q_log_grid_km=f"{GRID * M_PER_US / 1000.0:.0f}",
+             q_log_events=n(len(evx)), q_log_single=n(len(single)), q_log_voice=n(len(means)), q_log_v1_n=n(ET["voice"][0]["samples"]), q_log_v1_mean=f"{ET['voice'][0]['mean_frequency_hz']:.2f}", q_log_v1_table=f"{ET['voice'][0]['table_frequency_hz']:.0f}",
+             q_log_v1_channels=n(len(ET["voice"][0]["channels"])), q_log_v2_n=n(ET["voice"][1]["samples"]), q_log_v2_mean=f"{ET['voice'][1]['mean_frequency_hz']:.2f}", q_log_v2_table=f"{ET['voice'][1]['table_frequency_hz']:.0f}",
+             q_log_last_rx=L["end_of_log"]["last_unit_received_from_the_aircraft"][11:23], q_log_after=n(L["end_of_log"]["units_after_it"]), q_log_end=L["end_of_log"]["last_unit_in_log"][11:19], q_log_units=n(L["signalling_units"]), q_log_rbursts=n(L["bursts_with_timing"]["R_channel"]), q_log_grid=f"{GRID:.0f}", q_log_grid_km=f"{GRID * M_PER_US / 1000.0:.0f}",
              q_log_gate_bursts=n(L["gate"]["bursts"]), q_log_gate_from=L["gate"]["interval_utc"].split(" to ")[0], q_log_gate_to=L["gate"]["interval_utc"].split(" to ")[1],
              q_log_gate_lo=n(L["gate"]["timing_lowest_us"]), q_log_gate_hi=n(L["gate"]["timing_highest_us"]), q_log_sd=f"{L['sigma_used_us']:.0f}", q_log_sd_lo=f"{min(sds):.0f}", q_log_sd_hi=f"{max(sds):.0f}",
              q_log_band_sd_lo=f"{half / max(sds):.1f}", q_log_band_sd_hi=f"{half / min(sds):.1f}", q_log_exc_sd=f"{exc[-1] / L['sigma_used_us']:.2f}",

@@ -9,11 +9,81 @@
  },
  "event_table": {
   "events": 19,
-  "found_in_log_with_equal_frequency_and_timing": 19,
+  "single_units": 17,
+  "single_units_found_once_with_equal_frequency_and_timing": 17,
   "table_time_minus_log_time_s": {
    "min": -0.461,
-   "max": 0.64
-  }
+   "max": 0.096
+  },
+  "voice_calls": 2,
+  "voice_calls_with_rounded_mean_reproduced": 2,
+  "voice": [
+   {
+    "event_id": "T6_183958",
+    "table_time": "2014-03-07T18:39:58Z",
+    "table_channel": "IOR-373E-21000",
+    "table_frequency_hz": 88.0,
+    "samples": 51,
+    "channels": {
+     "IOR-3730-21000": 29,
+     "IOR-373E-21000": 22
+    },
+    "mean_frequency_hz": 87.82352941176471,
+    "lowest_hz": 86.0,
+    "highest_hz": 90.0,
+    "first": "18:39:55.354000",
+    "last": "18:40:56.354000",
+    "unit_types": {
+     "Call Progress - Test": 16,
+     "Telephony Acknowledge": 17,
+     "Call Progress - Channel Release": 12,
+     "Call Progress - Status Report": 6
+    },
+    "any_timing_offset": false,
+    "rounded_mean_equals_table": true,
+    "table_names_every_contributing_channel": false
+   },
+   {
+    "event_id": "T6_231403",
+    "table_time": "2014-03-07T23:14:03Z",
+    "table_channel": "IOR-3737-21000",
+    "table_frequency_hz": 217.0,
+    "samples": 29,
+    "channels": {
+     "IOR-3737-21000": 29
+    },
+    "mean_frequency_hz": 217.27586206896552,
+    "lowest_hz": 216.0,
+    "highest_hz": 222.0,
+    "first": "23:14:00.904000",
+    "last": "23:15:02.032000",
+    "unit_types": {
+     "Call Progress - Test": 8,
+     "Telephony Acknowledge": 9,
+     "Call Progress - Status Report": 6,
+     "Call Progress - Channel Release": 6
+    },
+    "any_timing_offset": false,
+    "rounded_mean_equals_table": true,
+    "table_names_every_contributing_channel": true
+   }
+  ]
+ },
+ "end_of_log": {
+  "last_unit_received_from_the_aircraft": "2014-03-08 00:19:37.443000",
+  "its_channel": "IOR-R1200-0-36F6",
+  "its_type": "0x15 - Log-on/Log-off Acknowledge",
+  "worksheet_row": 7194,
+  "units_after_it": 4,
+  "their_channel_types": {
+   "P-Channel TX": 4
+  },
+  "their_types": {
+   "0x15 - Log-on/Log-off Acknowledge": 1,
+   "0x14 - Log Control - Log-on Interrogation": 3
+  },
+  "any_with_a_timing_or_frequency_offset": false,
+  "last_unit_in_log": "2014-03-08 01:16:15.407000"
  },
  "reporting_grid": {
   "R_channel_timing_all_multiples_of_20_us": true,
