@@ -1,17 +1,45 @@
 {
  "repository": "floydclaptonblues/MH370-Ocean-GLORYS-Data",
- "commit": "18dcd823ab6a5e47004b9596325149618578c240",
+ "commit": "f9315c2ea906b2509b999cf54144b57465c39ce7",
  "path": "reports/diagnostic/CHECK_2241_CRUISE_266",
  "package_revision": "91266581e659",
  "cruise_runner_revision": "2a016b1294fa",
  "imported_on": "2026-11-18",
  "files": [
   {
+   "name": "BURST_SCATTER.csv",
+   "source_path": "reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/BURST_SCATTER.csv",
+   "bytes": 597,
+   "git_blob_sha": "1b44b23c4d55434a2f605d43a0bf1d569995cf2f",
+   "sha256": "13bd22f5e80b11016482788002b6e2acc85c038a0ee811625ae023631d49a970"
+  },
+  {
+   "name": "EVENT_CROSSCHECK.csv",
+   "source_path": "reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/EVENT_CROSSCHECK.csv",
+   "bytes": 3394,
+   "git_blob_sha": "4332c8df5d14d6d0be3f1d66a02216b2bc1006c0",
+   "sha256": "4295aa6a3747f961e1d9c4c2239082d6d0ba2101b78e97ad82366511e1206884"
+  },
+  {
+   "name": "FINDINGS.md",
+   "source_path": "reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/FINDINGS.md",
+   "bytes": 10215,
+   "git_blob_sha": "e4761c8e187a950e9b05e36617894516bb0d6782",
+   "sha256": "8d36d493c87a30e4fc80e0f0fef51343d9de67d27800d47dfb229b0e908882ae"
+  },
+  {
    "name": "GATE_FINDINGS_91266581e659.md",
    "source_path": "reports/diagnostic/CHECK_2241_CRUISE_266/GATE_FINDINGS_91266581e659.md",
    "bytes": 5788,
    "git_blob_sha": "df6fbf18d82f5b36fc342a01977ed5418019f4e4",
    "sha256": "c29d6eee8c3afbc7ce8be921ebfbb38dbb44a12721e0e34426a92e4bcdc2f3be"
+  },
+  {
+   "name": "LABEL_SENSITIVITY_2241.csv",
+   "source_path": "reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/LABEL_SENSITIVITY_2241.csv",
+   "bytes": 172,
+   "git_blob_sha": "b9cea6b7f51daeaefcd4a7d1477014ebc4540931",
+   "sha256": "2b31ce58a630c366fee7d9f9e455284ab249d22c45b7bae200c4a38a866ea9be"
   },
   {
    "name": "LOCAL_REPRODUCTION.json",
@@ -47,6 +75,20 @@
    "bytes": 2614,
    "git_blob_sha": "39ef4ed3693ffe832704716755c99f6b07120673",
    "sha256": "832030c4052c14c9196399ce462247ff55acd74da90d420753c4aa6890398835"
+  },
+  {
+   "name": "REPORTING_GRID.csv",
+   "source_path": "reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/REPORTING_GRID.csv",
+   "bytes": 152,
+   "git_blob_sha": "143810c2e668abf390f8d5cad60685bbf3af868e",
+   "sha256": "42c44d3bf9d4b2d70f29096d049a14d54bea00eb8cc5b5fa1328895350e1662a"
+  },
+  {
+   "name": "RESULTS_AGAINST_LOG.csv",
+   "source_path": "reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/RESULTS_AGAINST_LOG.csv",
+   "bytes": 489,
+   "git_blob_sha": "dd7fd577dd56f391f09c9092f4b05a19c26e1edd",
+   "sha256": "e64587c0a371826002d5e6d9098729d989ba26bd0e51bbd2016cac3c433bd3d4"
   },
   {
    "name": "STAGE_A_FINDINGS.md",
@@ -96,6 +138,13 @@
    "bytes": 2020,
    "git_blob_sha": "f9fa4801dee70d7e2946ee3f3ee7944c5e4e6a67",
    "sha256": "41df272d6fae05cc190c8f50857b214d6350d72d52d13c395dc60bca6c66d30a"
+  },
+  {
+   "name": "SUMMARY.json",
+   "source_path": "reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118/SUMMARY.json",
+   "bytes": 2208,
+   "git_blob_sha": "88d100d9c14e6bb14baf1d8bec326262b32b41d3",
+   "sha256": "b99eaaa47f2e4d7cb29d11bf85b942cc15187007de154ff5fd5dbb3a2dd9bcd3"
   },
   {
    "name": "TERMINAL_OVERLAP.json",

@@ -1,0 +1,5 @@
+time_utc,log_time_utc,log_timing_us,log_frequency_hz,residual_lowest_us,residual_highest_us,flights_within_43_us,flights_outside,lowest_in_gate_sd,highest_in_gate_sd
+20:41:05 (fitted),20:41:04.904000,11740,141,-42.02,20.70,266,0,-1.43,0.71
+21:41:27 (fitted),21:41:26.905000,12780,168,-16.50,34.60,266,0,-0.56,1.18
+22:41:22 (not fitted; compared 18 November),22:41:21.906000,14540,204,-47.20,13.28,215,51,-1.61,0.45
+00:11:00 (fitted),00:10:59.928000,18040,252,-28.45,41.43,266,0,-0.97,1.41

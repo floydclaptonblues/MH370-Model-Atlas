@@ -1,0 +1,6 @@
+sample,n (bursts or pairs),timing_sd_us,how
+"at the gate, R1200, all bursts",48,32.9,standard deviation of the values themselves
+"at the gate, R1200, about a straight line in time",48,29.3,removes a steady change of range (4.94 us per minute fitted)
+"at the gate, R1200, consecutive bursts within 2 s",28,40.5,"sd of the difference of two bursts, divided by sqrt(2)"
+"whole log, R1200, consecutive bursts within 2 s",270,29.1,"sd of the difference of two bursts, divided by sqrt(2)"
+"whole log, R600, consecutive bursts within 2 s",58,26.9,"sd of the difference of two bursts, divided by sqrt(2)"

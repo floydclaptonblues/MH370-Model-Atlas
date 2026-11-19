@@ -26,7 +26,7 @@ OUT = ROOT / "data" / "check-2241-266"
 SRC = OUT / "sources"
 TERMINAL = ROOT / "data" / "terminal-responses-266" / "sources"
 REPO = "floydclaptonblues/MH370-Ocean-GLORYS-Data"
-COMMIT = "18dcd823ab6a5e47004b9596325149618578c240"
+COMMIT = "f9315c2ea906b2509b999cf54144b57465c39ce7"
 SOURCE_PATH = "reports/diagnostic/CHECK_2241_CRUISE_266"
 REVISION = "91266581e659"
 CRUISE_REVISION = "2a016b1294fa"
@@ -40,6 +40,9 @@ FILES = {
     "PREDICTIONS_2241_266.csv": "run/91266581e659/", "STAGE_A_REPORT.json": "run/91266581e659/", "STAGE_A_SEAL.json": "run/91266581e659/",
     "PROTOCOL.md": "", "STAGE_A_FINDINGS.md": "", "GATE_FINDINGS_91266581e659.md": "",
 }
+# the ground-station log set beside the results: name -> directory below reports/diagnostic/
+LOG_PATH = "reports/diagnostic/INMARSAT_LOG_CROSSCHECK_20261118"
+LOG_FILES = ("FINDINGS.md", "SUMMARY.json", "EVENT_CROSSCHECK.csv", "REPORTING_GRID.csv", "BURST_SCATTER.csv", "RESULTS_AGAINST_LOG.csv", "LABEL_SENSITIVITY_2241.csv")
 # incoming group label -> (pressure altitude of the arrival at 19:41 in ft, Mach)
 GROUPS = collections.OrderedDict([
     ("365.113 hPa, Mach 0.67", (25661, "0.67")), ("365.113 hPa, Mach 0.75", (25661, "0.75")),
@@ -132,6 +135,23 @@ def compile_display():
        and rec["all_frequency_diagnostics_equal"] is True and rec["all_group_fields_equal"] is True)
     ok("the arithmetic repeated in the Stage A container equals the published files", all(v["identical_to_packet"] for v in loc["frozen_program"]["outputs"].values()))
 
+    # ---- the ground-station log: the published cross-check, with its label-sensitivity table recomputed here from the result rows
+    L = json.loads((SRC / "SUMMARY.json").read_text()); sens = read("LABEL_SENSITIVITY_2241.csv"); scat = read("BURST_SCATTER.csv"); ral = read("RESULTS_AGAINST_LOG.csv"); evx = read("EVENT_CROSSCHECK.csv")
+    within = lambda d: sum(1 for a, b in res.values() if abs(a + d) <= half and abs(b + d) <= half)
+    ok("the label-sensitivity table of the log cross-check is reproduced from the result rows", all(int(r["flights_within_43_us"]) == within(float(r["recorded_timing_changed_by_us"])) for r in sens) and within(0.0) == st[MEETS])
+    ok("every event of the project's table is in the log with equal values", len(evx) == L["event_table"]["events"] == L["event_table"]["found_in_log_with_equal_frequency_and_timing"] and all(r["values"] == "equal" for r in evx))
+    r22 = next(r for r in evx if r["event_id"] == "T6_224122")
+    ok("the log's 22:41 timing and frequency are the values the comparison used", float(r22["log_timing_us"]) == obs_t and float(r22["log_frequency_hz"]) == obs_f)
+    ok("the residual range at 22:41 in the cross-check equals the result rows", next(r for r in ral if r["time_utc"].startswith("22:41"))["residual_lowest_us"] == f"{min(full):.2f}")
+    ok("every R-channel timing offset in the log is a multiple of 20 microseconds", L["reporting_grid"]["R_channel_timing_all_multiples_of_20_us"] is True)
+    sds = [float(r["timing_sd_us"]) for r in scat if "R1200" in r["sample"]]; S = {int(float(r["recorded_timing_changed_by_us"])): int(r["flights_within_43_us"]) for r in sens}; lag = L["at_2241"]["model_time_minus_log_time_s"]
+    tc = L["at_2241"]["timing_change_over_that_interval_us"]; GRID = 20.0
+    fit_rows = "\n".join("<tr><td>{}</td><td>{}</td><td class=\"n\">{} to {}</td><td class=\"n\">{} to {}</td><td class=\"n\">{}</td></tr>".format(
+        r["time_utc"].split(" ")[0], "not used to build the flights" if "not fitted" in r["time_utc"] else "used to build the flights", sgn(float(r["residual_lowest_us"]), 1), sgn(float(r["residual_highest_us"]), 1),
+        sgn(float(r["lowest_in_gate_sd"]), 1), sgn(float(r["highest_in_gate_sd"]), 1), r["flights_within_43_us"]) for r in ral)
+    sens_rows = "\n".join("<tr><td class=\"n\">{}</td><td class=\"n\">{}</td><td class=\"n\">{}</td></tr>".format(
+        "as recorded" if d == 0 else sgn(d, 0) + "&nbsp;&micro;s" + (" (one reporting step)" if abs(d) == GRID else " (half a step)" if abs(d) == GRID / 2 else ""), ("<b>%d</b>" % S[d]) if d == 0 else S[d], len(rows) - S[d]) for d in sorted(S))
+
     base = f"https://github.com/{REPO}/blob/{COMMIT}/{SOURCE_PATH}/"
     V = collections.OrderedDict()
     V.update(q_all=n(len(rows)), q_meet=n(st[MEETS]), q_out=n(st[OUTSIDE]), q_boundary=n(sum(1 for a, b in res.values() if (abs(a) <= half) != (abs(b) <= half))), q_nolabel=n(len(rows) - st[MEETS] - st[OUTSIDE]),
@@ -151,6 +171,13 @@ def compile_display():
              q_band_km=f"{half * M_PER_US / 1000.0:.1f}", q_exc_min_m=f"{exc[0] * M_PER_US:.0f}", q_exc_max_km=f"{exc[-1] * M_PER_US / 1000.0:.2f}", q_m_per_us=f"{M_PER_US:.0f}",
              q_lat_range="{:.1f} to {:.1f}°S".format(-max(float(p["latitude_full"]) for p in pred), -min(float(p["latitude_full"]) for p in pred)),
              q_lon_range="{:.1f} to {:.1f}°E".format(min(float(p["longitude_full"]) for p in pred), max(float(p["longitude_full"]) for p in pred)),
+             q_log_events=n(len(evx)), q_log_units=n(L["signalling_units"]), q_log_rbursts=n(L["bursts_with_timing"]["R_channel"]), q_log_grid=f"{GRID:.0f}", q_log_grid_km=f"{GRID * M_PER_US / 1000.0:.0f}",
+             q_log_gate_bursts=n(L["gate"]["bursts"]), q_log_gate_from=L["gate"]["interval_utc"].split(" to ")[0], q_log_gate_to=L["gate"]["interval_utc"].split(" to ")[1],
+             q_log_gate_lo=n(L["gate"]["timing_lowest_us"]), q_log_gate_hi=n(L["gate"]["timing_highest_us"]), q_log_sd=f"{L['sigma_used_us']:.0f}", q_log_sd_lo=f"{min(sds):.0f}", q_log_sd_hi=f"{max(sds):.0f}",
+             q_log_band_sd_lo=f"{half / max(sds):.1f}", q_log_band_sd_hi=f"{half / min(sds):.1f}", q_log_exc_sd=f"{exc[-1] / L['sigma_used_us']:.2f}",
+             q_log_half_lo=n(S[-10]), q_log_half_hi=n(S[10]), q_log_step_lo=n(S[-20]), q_log_plus5=n(S[5]), q_log_plus1=n(S[1]), q_log_minus1=n(S[-1]),
+             q_log_out_half_step=n(L["at_2241"]["flights_outside_by_less_than_half_a_grid_step"]), q_log_lag=f"{lag:.3f}", q_log_time=L["at_2241"]["log_time"][:12], q_log_lag_us=f"{tc['low']:.2f} to {tc['high']:.2f}",
+             q_log_lag_flights=n(L["at_2241"]["flights_outside_by_less_than_the_time_stamp_effect"]["high"]), q_log_fit_rows=fit_rows, q_log_sens_rows=sens_rows, q_log_base=f"https://github.com/{REPO}/blob/{COMMIT}/{LOG_PATH}/",
              q_evals=n(seal["coverage"]["counts"]["target_evaluations_begun"]), q_revision=REVISION, q_commit_short=COMMIT[:7],
              q_seal_short=summ["seal_sha256"][:12], q_source_base=base, q_local_base="data/check-2241-266/sources/", q_repo_commit=f"https://github.com/{REPO}/commit/{COMMIT}")
 
@@ -203,9 +230,9 @@ def blob(data):
 
 def manifest():
     files = []
-    for name in sorted(FILES):
+    for name in sorted(set(FILES) | set(LOG_FILES)):
         data = (SRC / name).read_bytes()
-        files.append(dict(name=name, source_path=f"{SOURCE_PATH}/{FILES[name]}{name}", bytes=len(data), git_blob_sha=blob(data), sha256=hashlib.sha256(data).hexdigest()))
+        files.append(dict(name=name, source_path=(f"{LOG_PATH}/{name}" if name in LOG_FILES else f"{SOURCE_PATH}/{FILES[name]}{name}"), bytes=len(data), git_blob_sha=blob(data), sha256=hashlib.sha256(data).hexdigest()))
     return collections.OrderedDict(repository=REPO, commit=COMMIT, path=SOURCE_PATH, package_revision=REVISION, cruise_runner_revision=CRUISE_REVISION, imported_on=IMPORTED_ON, files=files)
 
 
@@ -217,7 +244,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
-    extra = sorted(p.name for p in SRC.iterdir() if p.name not in FILES)
+    extra = sorted(p.name for p in SRC.iterdir() if p.name not in FILES and p.name not in LOG_FILES)
     assert not extra, f"files not in the declared list: {extra}"
     man = manifest()
     display, checks = compile_display()

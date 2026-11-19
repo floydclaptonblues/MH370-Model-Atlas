@@ -1,0 +1,87 @@
+{
+ "workbook_sha256": "61e662fe79687748222473ea3e9ba2ebb4691ea225e9285614c1e47632dce38b",
+ "signalling_units": 7196,
+ "first": "2014-03-07 00:51:09.729000",
+ "last": "2014-03-08 01:16:15.407000",
+ "bursts_with_timing": {
+  "R_channel": 816,
+  "T_channel": 4133
+ },
+ "event_table": {
+  "events": 19,
+  "found_in_log_with_equal_frequency_and_timing": 19,
+  "table_time_minus_log_time_s": {
+   "min": -0.461,
+   "max": 0.64
+  }
+ },
+ "reporting_grid": {
+  "R_channel_timing_all_multiples_of_20_us": true,
+  "frequency_all_whole_hz": true
+ },
+ "gate": {
+  "interval_utc": "16:00:13 to 16:11:13",
+  "bursts": 48,
+  "channels": [
+   "IOR-R1200-0-36D3",
+   "IOR-R1200-0-36E3"
+  ],
+  "timing_lowest_us": 14740.0,
+  "timing_highest_us": 14900.0,
+  "timing_sd_us": 32.914029430219166,
+  "fitted_drift_us_per_minute": 4.939368049545448,
+  "timing_sd_about_the_drift_us": 29.329281373973625,
+  "frequency_sd_from_pairs_hz": 0.6902195746459888,
+  "frequency_pairs": 28
+ },
+ "pair_estimates_us": {
+  "at the gate, R1200, consecutive bursts within 2 s": {
+   "pairs": 28,
+   "sd_us": 40.46603514059661
+  },
+  "whole log, R1200, consecutive bursts within 2 s": {
+   "pairs": 270,
+   "sd_us": 29.05762686477245
+  },
+  "whole log, R600, consecutive bursts within 2 s": {
+   "pairs": 58,
+   "sd_us": 26.87886244124838
+  }
+ },
+ "sigma_used_us": 29.329281373973625,
+ "band_in_gate_sd": 1.4661116122046403,
+ "at_2241": {
+  "log_time": "22:41:21.906000",
+  "model_time": "2014-03-07T22:41:22Z",
+  "model_time_minus_log_time_s": 0.094,
+  "recorded_timing_rate_us_per_s": {
+   "from_2141": 0.48956884561891517,
+   "to_0011": 0.6507995537374489
+  },
+  "timing_change_over_that_interval_us": {
+   "low": 0.046019471488178025,
+   "high": 0.0611751580513202
+  },
+  "flights_outside": 51,
+  "smallest_excess_us": 0.032931289926636964,
+  "flights_outside_by_less_than_the_time_stamp_effect": {
+   "low": 1,
+   "high": 1
+  },
+  "flights_outside_by_less_than_half_a_grid_step": 51,
+  "flights_outside_by_less_than_one_gate_sd": 51,
+  "within_band_if_recorded_value_changed_by_us": {
+   "-20": 89,
+   "-10": 172,
+   "-5": 199,
+   "-2": 205,
+   "-1": 207,
+   "0": 215,
+   "1": 229,
+   "2": 241,
+   "5": 266,
+   "10": 266,
+   "20": 266
+  }
+ }
+}

@@ -1,9 +1,9 @@
 {
- "commit": "18dcd823ab6a5e47004b9596325149618578c240",
+ "commit": "f9315c2ea906b2509b999cf54144b57465c39ce7",
  "package_revision": "91266581e659",
- "source_files": 14,
- "displayed_values": 64,
- "reconciliations_passed": 20,
+ "source_files": 21,
+ "displayed_values": 94,
+ "reconciliations_passed": 25,
  "reconciliations": [
   "266 rows in catalogue order, each identity once",
   "the result rows and the predictions name the same flights in the same order",
@@ -24,7 +24,12 @@
   "the predicted timing spread reproduces the Stage A report",
   "Stage A coverage is complete: 266 usable pairs, 532 target evaluations",
   "the two comparison programs agree on every label, threshold, diagnostic and group count",
-  "the arithmetic repeated in the Stage A container equals the published files"
+  "the arithmetic repeated in the Stage A container equals the published files",
+  "the label-sensitivity table of the log cross-check is reproduced from the result rows",
+  "every event of the project's table is in the log with equal values",
+  "the log's 22:41 timing and frequency are the values the comparison used",
+  "the residual range at 22:41 in the cross-check equals the result rows",
+  "every R-channel timing offset in the log is a multiple of 20 microseconds"
  ],
  "scope": "Display import only. Counts and ranges are recomputed from the copied tables and reconciled with the published summary, group table and terminal-parent join. This is not a scientific revalidation; no flight was computed and no prediction was formed here."
 }
