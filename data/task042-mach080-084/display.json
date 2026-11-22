@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "experiment_id": "TASK042_Mach080_084_20261121_001",
+    "revision": "11f3ec951da4ac4d05bccbc5a8cf620063aff97b815ab5703cf2254687efad25",
+    "note": "Formatted saved-record strings only. No model or prediction. Loss UTC is truncated to milliseconds for display; full precision and eligibility are preserved in sources.",
+    "source_manifest_sha256": "c2d44c16865a8f37f86ba44122d1b7beb8ce7d0cd75b62be3eb902a6a0ff2f16"
+  },
+  "values": {
+    "m84_results_rows": "<tr><td class=\"n\">North</td><td class=\"n\">0.800</td><td class=\"n\">264.500</td><td class=\"n\">15.179740</td><td class=\"n\">2.6064</td><td class=\"n\">0.8743</td><td class=\"n\">Cap reached</td></tr>\n<tr><td class=\"n\">North</td><td class=\"n\">0.810</td><td class=\"n\">257.277</td><td class=\"n\">6.463590</td><td class=\"n\">1.3171</td><td class=\"n\">0.8647</td><td class=\"n\">Optimizer success</td></tr>\n<tr><td class=\"n\">North</td><td class=\"n\">0.820</td><td class=\"n\">248.738</td><td class=\"n\">4.884322</td><td class=\"n\">0.9395</td><td class=\"n\">0.9535</td><td class=\"n\">Cap reached</td></tr>\n<tr><td class=\"n\">North</td><td class=\"n\">0.830</td><td class=\"n\">239.920</td><td class=\"n\">4.272901</td><td class=\"n\">0.7446</td><td class=\"n\">1.3141</td><td class=\"n\">Cap reached</td></tr>\n<tr><td class=\"n\">North</td><td class=\"n\">0.840</td><td class=\"n\">227.559</td><td class=\"n\">3.821366</td><td class=\"n\">0.5714</td><td class=\"n\">1.4185</td><td class=\"n\">Cap reached</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.800</td><td class=\"n\">264.501</td><td class=\"n\">15.169851</td><td class=\"n\">2.6068</td><td class=\"n\">0.8732</td><td class=\"n\">Cap reached</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.810</td><td class=\"n\">257.279</td><td class=\"n\">6.463199</td><td class=\"n\">1.3177</td><td class=\"n\">0.8638</td><td class=\"n\">Optimizer success</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.820</td><td class=\"n\">248.751</td><td class=\"n\">4.884449</td><td class=\"n\">0.9526</td><td class=\"n\">0.9623</td><td class=\"n\">Optimizer success</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.830</td><td class=\"n\">237.720</td><td class=\"n\">5.740477</td><td class=\"n\">1.2977</td><td class=\"n\">1.4348</td><td class=\"n\">Cap reached</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.840</td><td class=\"n\">227.556</td><td class=\"n\">3.821919</td><td class=\"n\">0.5680</td><td class=\"n\">1.4177</td><td class=\"n\">Cap reached</td></tr>",
+    "m84_states_rows": "<tr><td class=\"n\">North</td><td class=\"n\">0.800</td><td class=\"n\">-30.410180, 96.832061</td><td class=\"n\">10,421.15</td><td class=\"n\">605.414</td><td class=\"n\">598.611</td><td class=\"n\">00:17:21.054</td></tr>\n<tr><td class=\"n\">North</td><td class=\"n\">0.810</td><td class=\"n\">-30.615921, 96.593496</td><td class=\"n\">10,604.36</td><td class=\"n\">526.262</td><td class=\"n\">519.458</td><td class=\"n\">00:16:29.029</td></tr>\n<tr><td class=\"n\">North</td><td class=\"n\">0.820</td><td class=\"n\">-32.105838, 95.098130</td><td class=\"n\">10,797.10</td><td class=\"n\">520.195</td><td class=\"n\">513.391</td><td class=\"n\">00:16:29.000</td></tr>\n<tr><td class=\"n\">North</td><td class=\"n\">0.830</td><td class=\"n\">-33.797681, 93.153263</td><td class=\"n\">11,012.24</td><td class=\"n\">519.259</td><td class=\"n\">512.455</td><td class=\"n\">00:16:29.000</td></tr>\n<tr><td class=\"n\">North</td><td class=\"n\">0.840</td><td class=\"n\">-35.052484, 91.515083</td><td class=\"n\">11,348.28</td><td class=\"n\">652.968</td><td class=\"n\">646.164</td><td class=\"n\">00:17:58.999</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.800</td><td class=\"n\">-30.416097, 96.826071</td><td class=\"n\">10,420.96</td><td class=\"n\">605.418</td><td class=\"n\">598.614</td><td class=\"n\">00:17:21.058</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.810</td><td class=\"n\">-30.621873, 96.587439</td><td class=\"n\">10,604.14</td><td class=\"n\">526.202</td><td class=\"n\">519.398</td><td class=\"n\">00:16:29.000</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.820</td><td class=\"n\">-32.139122, 95.061485</td><td class=\"n\">10,796.10</td><td class=\"n\">520.334</td><td class=\"n\">513.530</td><td class=\"n\">00:16:29.000</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.830</td><td class=\"n\">-34.796951, 91.820678</td><td class=\"n\">11,066.72</td><td class=\"n\">644.547</td><td class=\"n\">637.743</td><td class=\"n\">00:17:54.740</td></tr>\n<tr><td class=\"n\">South</td><td class=\"n\">0.840</td><td class=\"n\">-35.044829, 91.525910</td><td class=\"n\">11,348.39</td><td class=\"n\">652.976</td><td class=\"n\">646.172</td><td class=\"n\">00:17:58.999</td></tr>",
+    "m84_mesh_rows": "<tr><td class=\"n\">|Δ observation χ²|</td><td class=\"n\">0.00002056</td><td class=\"n\">&lt; 0.01</td></tr>\n<tr><td class=\"n\">00:11 position shift</td><td class=\"n\">0.101110 m</td><td class=\"n\">&lt; 10 m</td></tr>\n<tr><td class=\"n\">|Δ fuel|</td><td class=\"n\">0.000525344 kg</td><td class=\"n\">&lt; 1 kg</td></tr>\n<tr><td class=\"n\">|Δ engine-loss time|</td><td class=\"n\">0.000387567 s</td><td class=\"n\">&lt; 5 s</td></tr>",
+    "m84_selected": "10",
+    "m84_comparisons": "20",
+    "m84_started": "547",
+    "m84_charged_s": "4,406.128",
+    "m84_capped": "7",
+    "m84_optimizer_success": "3",
+    "m84_revision": "11f3ec951da4ac4d05bccbc5a8cf620063aff97b815ab5703cf2254687efad25",
+    "m84_revision_short": "11f3ec951da4",
+    "m84_base": "64e090a167dd402043ddff6b8fa6fc16ac919ade",
+    "m84_base_short": "64e090a167dd",
+    "m84_archive_sha": "a55a217300bf29f67b3631690cc0cc175a4577da58b59bc2164175d8e4d48c92",
+    "m84_status": "BOUNDED_EXPERIMENT_COMPLETE",
+    "m84_source_base": "data/task042-mach080-084/",
+    "m84_flight_cap": "600",
+    "m84_time_budget_s": "7,200",
+    "m84_search_trials": "523",
+    "m84_initial_fuel_kg": "27,856.866",
+    "m84_initial_mass_kg": "202,225.866",
+    "m84_m084_north_late_margin_ms": "0.128445",
+    "m84_m084_south_late_margin_ms": "0.158061"
+  }
+}

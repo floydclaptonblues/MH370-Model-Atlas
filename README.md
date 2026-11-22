@@ -5,6 +5,7 @@ A static research atlas of the project's satellite-measurement, aircraft-perform
 ## Reading the Atlas
 
 - `index.html`: published experiment summaries and links to their source records.
+- `mach080-084.html`: the separate 21 November TASK042 starting-Mach experiment, its ten selected samples, numerical checks, fuel-window sensitivity and assumed starting-state scope. These records are not added to the 108-arrival catalogue.
 - `methods.html`: current experimental workflow first, with earlier methods and corrections in a dated, collapsed archive.
 - `flighthistories.html`: the separately identified six-history dossier and its terminal assumptions, plus links to later work.
 - `canonical.html`: measurement and source-data scope.
@@ -28,6 +29,8 @@ The completed cruise catalogue is compiled from nine byte-verified published fil
 The terminal responses of the cruise catalogue (`terminal.html`) are compiled from 17 byte-verified published files pinned to `429c11c4d41d7f26de46aaa71e74cba0cc3b401e`, held in `data/terminal-responses-266/sources/`. `python3 scripts/build_terminal_responses.py` recomputes every displayed count and range from those tables and writes `display.json`; `gen.py` inserts the values into placeholders, each a name in double braces, in the page bodies, and an unknown name stops the build. Run the script with `--check` to verify the source identities and the committed outputs. This imports results only: no flight is computed and nothing is evaluated at 22:41. See `data/terminal-responses-266/README.md`.
 
 ## Build
+
+The separate starting-Mach publication uses byte-identical saved report, CSV, audit and figure files in `data/task042-mach080-084/`, plus a labelled compact extraction of the comparison record. `python3 scripts/build_task042_mach.py --check` verifies source hashes, reconciles the selected CSV rows and checks the generated table values. Run without `--check` to regenerate its display export before `gen.py`. This reads saved results only; it imports no model and computes no flight. The full run archive is hash-identified rather than duplicated in the site repository.
 
 From the repository root:
 

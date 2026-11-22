@@ -1,0 +1,160 @@
+{
+  "experiment_id": "TASK042_Mach080_084_20261121_001",
+  "revision": "11f3ec951da4ac4d05bccbc5a8cf620063aff97b815ab5703cf2254687efad25",
+  "status": "FROZEN_FOR_AUTHORIZED_BOUNDED_RUN",
+  "authorization": "Ryan: Let's run this as a separate experiment with its own record. Proceed",
+  "created_utc": "2026-11-21T20:02:25.660740+00:00",
+  "repository_source_commit": "64e090a167dd402043ddff6b8fa6fc16ac919ade",
+  "historical_method_reference": "fa37314652f1705e4e6bf410d821a4bcd2b94d9e",
+  "experiment_source_sha256": {
+    "experiment/objective.py": "2c06078e0a1ed984a45f083e8e96570570189bf060b513f8f13a0f9a7adaef9b",
+    "experiment/prepare_runtime.py": "a2474d12d1e60d6ad88d74241505cfcfe3b8711bd7b721ac1455625aba468855",
+    "experiment/run_experiment.py": "575b97128c67040e1995b02b03bb5804b4286b9cb29d349737c86682f5e0452a",
+    "experiment/test_driver.py": "1039163ccf446978da14c371094a8bade725b731d54a924fea6732eb40dc2834",
+    "experiment/test_driver_refusals.py": "fc1e9d96239c35bb0b86449db8d8e382d9b67b75ed9a5e24bf594601d10550d0",
+    "experiment/test_objective.py": "2aa4a8ea7ec7b64d5756a5c4fcf0b463bab8ad0171ea7636d971e91a60490912"
+  },
+  "runtime_packages": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "pandas": "3.0.6",
+    "pyarrow": "25.0.1"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "interpreter": "/workspace/scratch/cd9e26a771a8/TASK042_Mach080_084_20261121_001/runtime_env/bin/python",
+  "objective": {
+    "id": "TASK042_3BTO_5BFO_MID_PRIOR_V1",
+    "BTO_fit_UTC": [
+      "20:41:05",
+      "21:41:27",
+      "00:11:00"
+    ],
+    "BFO_fit_UTC": [
+      "19:41:03",
+      "20:41:05",
+      "21:41:27",
+      "22:41:22",
+      "00:11:00"
+    ],
+    "prior": "original MID",
+    "starting_BTO": "longitude closure, not scored",
+    "2241_BTO": "No new prediction or use in fitting/selection",
+    "disclosure": "Historical anchors were selected under an objective containing22:41BTO; setup tables and historical records have prior exposure. Not a blind holdout."
+  },
+  "physics": "Original M1/Arm A, EXTENDED forcing, UF017_VECTOR_V1, k=1; path-only portability changes",
+  "first_Mach_targets": [
+    0.8,
+    0.81,
+    0.82,
+    0.83,
+    0.84
+  ],
+  "late_Mach_law": "reduce by0.01 over23:30\u201323:32 then hold",
+  "free_parameters": [
+    "start latitude",
+    "initial track/bearing",
+    "constant pressure"
+  ],
+  "parameter_bounds": {
+    "latitude_deg": [
+      -6,
+      14
+    ],
+    "bearing_deg": [
+      140,
+      215
+    ],
+    "pressure_hPa": [
+      175,
+      450
+    ]
+  },
+  "scale": [
+    0.5,
+    3,
+    10
+  ],
+  "fuel_kg": 27856.86569474842,
+  "APU_kg": 6.80388555,
+  "loss_window_seconds_from194103": [
+    16526,
+    16616
+  ],
+  "continuation_queue": [
+    [
+      "north",
+      "down",
+      [
+        0.81,
+        0.8
+      ]
+    ],
+    [
+      "north",
+      "up",
+      [
+        0.82,
+        0.83,
+        0.84
+      ]
+    ],
+    [
+      "south",
+      "down",
+      [
+        0.84,
+        0.83,
+        0.82,
+        0.81,
+        0.8
+      ]
+    ]
+  ],
+  "failed_node_rule": "Stop that direction; never switch origin silently. Later targets NOT_ASSESSED.",
+  "optimizer": {
+    "method": "SLSQP",
+    "scaled_fd_eps": 0.0001,
+    "restoration_ftol": 1e-10,
+    "score_ftol": 1e-07,
+    "restoration_max_new_flights": 20,
+    "restoration_maxiter": 12,
+    "score_maxiter": 40,
+    "finite_surrogate_for_nonfinite_refusal_constraints": -10,
+    "surrogate_never_qualifies_flight": true
+  },
+  "per_target_flight_cap": 54,
+  "flight_cap": 600,
+  "ceiling_s": 7200,
+  "qualification_ceiling_s": 900,
+  "search_ceiling_s": 5400,
+  "verification_reserve_s": 900,
+  "budget_definition": "One scientific worker. Imports, model calls, rejected calls, optimizer overhead and scientific output generation charged; no reset between phases. Setup and source authoring recorded separately. All completed and failed flights consume a call. Identical cached evaluations reused.",
+  "qualification": {
+    "calls": 4,
+    "anchors": "exact saved3.75s meshes/offsets plus15s profiled baselines",
+    "original_saved_score_arithmetic": "must reproduce bit for bit before rescoring",
+    "new_qualification": "retained score terms and full physical states/mesh/margins; historical full-score values preserved",
+    "thresholds": {
+      "abs_observation_chi2_change": 0.01,
+      "position_m": 10,
+      "fuel_kg": 1,
+      "loss_time_s": 5
+    },
+    "full_state_and_component_differences": true
+  },
+  "verification": {
+    "meshes_s": [
+      15,
+      7.5,
+      3.75
+    ],
+    "offset": "hold production fitted offset fixed on both repeats",
+    "both_refinement_comparisons_required": true,
+    "physical_eligibility_required": true,
+    "thresholds": "inherited .01 score,10m,1kg,5s"
+  },
+  "scope": "Separate cruise experiment; no LRC gate/pilot, no altitude-climb experiment, no terminal or impact calculation, no Atlas change",
+  "branch_claim": "Finite local continuation only; five cuts cannot certify global connection or disconnection",
+  "repositories_committed_or_pushed": false
+}

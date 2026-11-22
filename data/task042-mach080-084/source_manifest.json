@@ -1,0 +1,77 @@
+{
+  "schema": "TASK042_MACH080_084_PUBLICATION_SOURCES_V1",
+  "experiment_id": "TASK042_Mach080_084_20261121_001",
+  "experiment_revision": "11f3ec951da4ac4d05bccbc5a8cf620063aff97b815ab5703cf2254687efad25",
+  "repository_source_commit": "64e090a167dd402043ddff6b8fa6fc16ac919ade",
+  "source_repository": "floydclaptonblues/MH370-TASK042",
+  "source_commit_scope": "The starting source snapshot, not a claim that the new results exist at this Git commit. The result record was a separate local experiment.",
+  "record_archive": {
+    "filename": "TASK042_Mach080_084_20261121_001_Record.zip",
+    "sha256": "a55a217300bf29f67b3631690cc0cc175a4577da58b59bc2164175d8e4d48c92",
+    "bytes": 91393711,
+    "scope": "Complete separately archived experiment record; this Atlas directory is a selected publication copy."
+  },
+  "original_retained_comparisons": {
+    "path_in_experiment": "analysis/retained_comparisons.json",
+    "sha256": "6248055505bb780435d5a99f22fb4bc724ec7295b95d342ba3f31f08168683b2",
+    "bytes": 18927386
+  },
+  "files": [
+    {
+      "name": "RESULTS.csv",
+      "source_path_in_experiment": "analysis/RESULTS.csv",
+      "bytes": 12162,
+      "sha256": "0f27101d03936cf1a9dfbb5ba462f5b1c28b8185d1c7ea1f0236ba18725e747e",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "RESULTS.md",
+      "source_path_in_experiment": "analysis/RESULTS.md",
+      "bytes": 16360,
+      "sha256": "5bf3d1f56fb3888acbfedc4666403bf778b03e658f85bd758f877ac3d6a35be7",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "CLOSING_AUDIT.json",
+      "source_path_in_experiment": "analysis/CLOSING_AUDIT.json",
+      "bytes": 143193,
+      "sha256": "b0f0a6ea9124794e13e2b053cfa8ae5900f422eab924aae9be0a18589abd785b",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "Mach080_084_Sampled_Results.png",
+      "source_path_in_experiment": "analysis/Mach080_084_Sampled_Results.png",
+      "bytes": 183567,
+      "sha256": "4f219a624ea2b3fb4769be7707079b6d44ae7ccabebe5a0239e3b5b579630dc1",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "Mach080_084_Sampled_Results.pdf",
+      "source_path_in_experiment": "analysis/Mach080_084_Sampled_Results.pdf",
+      "bytes": 25536,
+      "sha256": "06b372072e12cf1231d9ae9babc937022075126956f872e7da62e9f3ebe1010c",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "design.json",
+      "source_path_in_experiment": "record/design.json",
+      "bytes": 5133,
+      "sha256": "2ad8e82d13dc4158b0b30c9d3bc2b827fe320b89c13f7c538dba94e64ae9ee0f",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "comparisons.json",
+      "source_path_in_experiment": "analysis/retained_comparisons.json",
+      "bytes": 85347,
+      "sha256": "82fd7578446614a6f10e7109734987a1e509317e468afb2aeabb3db31d486529",
+      "copy": "DECLARED_EXTRACTION",
+      "original_source_sha256": "6248055505bb780435d5a99f22fb4bc724ec7295b95d342ba3f31f08168683b2"
+    }
+  ],
+  "build_inputs": "Only the files listed here are read by scripts/build_task042_mach.py. No original workspace paths or scientific dependencies are required.",
+  "derived_outputs": [
+    "display.json",
+    "validation.json"
+  ],
+  "note": "Original evidence files are byte-identical. comparisons.json is an explicitly described extraction. README.md supplies publication qualifications without editing the original report."
+}

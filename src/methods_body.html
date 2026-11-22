@@ -1,6 +1,14 @@
 <h1>Methods: from a flight hypothesis to a checked result</h1>
 <p class="sub">The Atlas presents a sequence of conditional aircraft and ocean-transport experiments. Each experiment has its own starting states, declared parameter range, observation roles, physical assumptions and numerical checks. The catalogue records their outcomes; it does not combine them into a probability map.</p>
-<div class="note"><b>Read this page with the experiment record.</b> The completed 108-arrival cruise run has the specific contract below. The general workflow also describes earlier speed-and-climb and terminal studies, whose rules retain their dated scope. Older scoring models and corrections are preserved in the collapsed history at the end.</div>
+<div class="note"><b>Read this page with the experiment record.</b> The separate TASK042 starting-Mach experiment and the completed 108-arrival cruise run have different contracts below. The general workflow also describes earlier speed-and-climb and terminal studies, whose rules retain their dated scope. Older scoring models and corrections are preserved in the collapsed history at the end.</div>
+
+<section class="card" id="mach080-084-method" aria-labelledby="mach080-method-title">
+<h2 id="mach080-method-title">Starting Mach 0.80–0.84: separate TASK042 experiment <span class="tag ok">21 November 2026</span></h2>
+<p>The run starts from two historical TASK042 recipes at 19:41:03, retaining their assumed starting fuel and mass. It tests initial Mach plateaus 0.800, 0.810, 0.820, 0.830 and 0.840 while allowing starting latitude, bearing and constant pressure to adjust within frozen bounds. Every flight keeps the later 0.01 Mach reduction during 23:30–23:32. It does not reconstruct the incoming flight from radar.</p>
+<p><b>Its objective and eligibility rules are its own.</b> 19:41 BTO closes longitude; BTO at 20:41, 21:41 and 00:11, all five BFO terms, and the original MID prior make the modified score. 22:41 BTO receives no new prediction or role in selection; its BFO remains fitted. Prior exposure is disclosed, so this is not a blind holdout. Model support and combustion-thrust loss inside 00:16:29–00:17:59 set eligibility. No additional statistical fit threshold was imposed.</p>
+<p>All ten retained 15-second samples remain eligible at 7.5 and 3.75 seconds and pass both adjacent comparisons, with the production fitted frequency offset fixed. Seven searches hit caps; optimizer success in the other three does not establish stationarity. Some selections lie within a fraction of a millisecond of a fuel-window boundary. Numerical agreement is not a robust physical fuel allowance or an absolute error bound.</p>
+<p><a href="mach080-084.html#method">Full method and observed numerical differences</a> · <a href="data/task042-mach080-084/design.json">Frozen definition</a> · <a href="data/task042-mach080-084/RESULTS.md">Saved-record report</a>. This does not change the LRC gate or the other catalogues.</p>
+</section>
 
 <section class="card" id="cruise-production-method" aria-labelledby="cruise-method-title">
 <h2 id="cruise-method-title">The completed 108-arrival run: what was tested</h2>

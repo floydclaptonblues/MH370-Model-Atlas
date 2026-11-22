@@ -1,0 +1,70 @@
+<p class="ix-eyebrow">TASK042 · SEPARATE EXPERIMENT · COMPLETED 21 NOVEMBER 2026</p>
+<h1>Starting Mach 0.80–0.84: ten sampled histories pass numerical checks</h1>
+<p class="sub">A bounded search from two historical starting recipes retained a model-supported history at each of five starting speeds. All ten selections passed the declared step-size comparisons. The results below describe those saved samples under TASK042’s starting-state, fuel and guidance assumptions.</p>
+
+<div class="note"><b>What this establishes.</b> The ten selected histories satisfy this experiment’s model-support and engine-fuel-loss conditions and reproduce within its numerical-check limits. No statistical satellite-fit acceptance threshold was imposed. They are not certified optima, a continuous family of solutions, or aircraft locations. This post-19:41 experiment retains TASK042’s assumed starting fuel and mass; it does not establish a radar-to-19:41 history or reinstate the earlier withdrawn ancestry claims. <a href="archive.html#mach080-084">Relationship to the historical record</a>.</div>
+
+<div class="grid readouts" aria-label="Completed experiment counts">
+  <div class="card"><h2>5 × 2</h2><p>Starting Mach values, from each of two historical origins</p></div>
+  <div class="card"><h2>{{m84_selected}}</h2><p>Selected model-supported samples, all numerically verified</p></div>
+  <div class="card"><h2>{{m84_comparisons}}</h2><p>Step-size comparisons passed: 15 → 7.5 → 3.75 seconds</p></div>
+  <div class="card"><h2>{{m84_started}}</h2><p>Flight calculations completed within the frozen allowance</p></div>
+</div>
+
+<p><a href="#results">Selected results</a> · <a href="#powered-states">00:11 states</a> · <a href="#method">Method and numerical checks</a> · <a href="#record">Downloads and provenance</a></p>
+
+<section class="card" id="results" aria-labelledby="results-title">
+<h2 id="results-title">What the searches retained</h2>
+<p>“North” and “South” identify the historical recipe from which each local search began. They are origin labels, not classifications of the resulting location. Starting latitude, bearing and constant pressure were allowed to adjust. The target Mach is the <b>initial speed plateau</b>: every flight keeps TASK042’s 0.01 Mach reduction over 23:30–23:32 UTC.</p>
+<figure style="margin:12px 0">
+  <a href="data/task042-mach080-084/Mach080_084_Sampled_Results.png"><img src="data/task042-mach080-084/Mach080_084_Sampled_Results.png" alt="Ten selected samples at starting Mach 0.800, 0.810, 0.820, 0.830 and 0.840, from northern and southern origins. Selected pressure falls as starting Mach rises. The two 0.840 samples have the lowest retained modified score. Points are unconnected; the table below contains the values." width="2432" height="1292"></a>
+  <figcaption class="sub">Only selected saved samples are plotted. Lower pressure corresponds to higher altitude; it does not prescribe a constant geometric height. Filled markers denote passed numerical checks. <a href="data/task042-mach080-084/Mach080_084_Sampled_Results.pdf">Download the figure as PDF</a>.</figcaption>
+</figure>
+<div class="scroll" tabindex="0" role="region" aria-label="Ten selected starting-Mach results; scroll horizontally on a narrow screen"><table id="mach-results-table">
+<thead><tr><th scope="col">Search origin</th><th scope="col" class="n">Starting Mach</th><th scope="col" class="n">Pressure<br>hPa</th><th scope="col" class="n">Modified J</th><th scope="col" class="n">Max |BTO z|</th><th scope="col" class="n">Max |BFO z|</th><th scope="col">Search termination</th></tr></thead>
+<tbody>{{m84_results_rows}}</tbody></table></div>
+<p class="sub">Source: <a href="data/task042-mach080-084/RESULTS.csv">all ten selected recipes (CSV)</a>. J is the retained observation score plus the original MID prior. The z values are residuals divided by the experiment’s adopted measurement scales; their maxima are descriptive, not additional pass thresholds. The BFO values include 22:41. Scores cannot be compared directly with historical TASK042 scores that also fitted 22:41 BTO.</p>
+<p><b>The two Mach 0.840 starts have the lowest retained J among these targets.</b> This ranks the sampled recipes under this objective. It does not show that Mach 0.84 is generally optimal: the selected pressure and starting parameters also change, and seven searches reached their allocation caps. Even the three optimizer-success returns are not independently certified stationary points.</p>
+<div class="note"><b>The fuel condition is close to its edge.</b> At the finest 3.75-second step, the two Mach 0.840 samples fall inside the late fuel-loss limit by only about 0.000128 and 0.000158 seconds. Several other selections lie close to the early limit. Their recorded passes stand, but these are not robust margins against uncertainty in real fuel or fuel consumption. The displayed precision is numerical recordkeeping, not physical precision.</div>
+</section>
+
+<section class="card" id="powered-states" aria-labelledby="powered-title">
+<h2 id="powered-title">Where the selected model histories are at 00:11 UTC</h2>
+<p>These are the supported, powered states saved by the selected 15-second calculations. Fuel above the model’s imposed APU reserve is reported separately from total fuel. The last column is the later recorded combustion-thrust-loss time; the positions in the table are <b>00:11 positions, not fuel-loss or impact positions</b>.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Supported 00:11 states; scroll horizontally on a narrow screen"><table id="mach-states-table">
+<thead><tr><th scope="col">Search origin</th><th scope="col" class="n">Starting Mach</th><th scope="col">00:11 latitude, longitude</th><th scope="col" class="n">Geometric height<br>m</th><th scope="col" class="n">Total fuel<br>kg</th><th scope="col" class="n">Fuel above APU<br>kg</th><th scope="col">Thrust-loss time<br>UTC</th></tr></thead>
+<tbody>{{m84_states_rows}}</tbody></table></div>
+<p><b>The two searches remain distinct sets of samples.</b> At Mach 0.840 their selected 00:11 positions are about 1.30 km apart. The paired positions are much farther apart at Mach 0.830. Five Mach cuts and finite local searches do not prove that branches connect or remain separate. No interpolation between these samples, terminal trajectory or search area is established.</p>
+<p class="sub">Source: <a href="data/task042-mach080-084/RESULTS.md">saved-record report</a> and <a href="data/task042-mach080-084/comparisons.json">compact comparison extract</a>.</p>
+</section>
+
+<section class="card" id="method" aria-labelledby="method-title">
+<h2 id="method-title">Exactly what was tested</h2>
+<div class="scroll"><table>
+<thead><tr><th scope="col">Part of the experiment</th><th scope="col">Declared scope</th></tr></thead><tbody>
+<tr><td>Starting states</td><td>Two historical TASK042 anchors at 19:41:03 UTC. Starting fuel and mass are inherited assumptions, not reconstructed incoming histories. The anchors were replayed before searching. The historical southern anchor begins at Mach 0.843427…; it is distinct from the new 0.840 target.</td></tr>
+<tr><td>Speed and pressure</td><td>Starting Mach 0.800, 0.810, 0.820, 0.830 and 0.840. Constant pressure per flight; latitude, bearing and pressure adjustable within the frozen bounds. Mach decreases by 0.01 over 23:30–23:32. Guidance and performance coefficients are inherited unchanged.</td></tr>
+<tr><td>Timing measurements (BTO)</td><td>19:41 closes the starting longitude. 20:41, 21:41 and 00:11 enter the new objective. No new 22:41 BTO prediction or use in selection occurred.</td></tr>
+<tr><td>Frequency measurements (BFO)</td><td>All five terms remain fitted, including 22:41 BFO. The objective includes the original MID prior. Historical anchor selection and setup had prior exposure to 22:41; it is not a blind holdout.</td></tr>
+<tr><td>Physical eligibility in this model</td><td>Model support and the inherited engine-fuel-loss window, 00:16:29–00:17:59 UTC. This window selects the flights; it is not an independent timing prediction or a universal fuel requirement.</td></tr>
+<tr><td>Numerical verification</td><td>Each retained 15-second recipe repeated at 7.5 and 3.75 seconds, with its production fitted BFO offset held fixed. Both sides of each comparison must remain eligible, and all four numerical differences must meet their declared thresholds.</td></tr>
+<tr><td>Interpretation</td><td>Best-found samples within a bounded search. No new statistical compatibility cutoff, global minimum, continuous branch, final-transmission state or impact position is certified.</td></tr>
+</tbody></table></div>
+<h3 style="margin-top:14px">Observed step-size changes</h3>
+<div class="scroll"><table id="mach-mesh-table"><thead><tr><th scope="col">Quantity</th><th scope="col" class="n">Largest change across 20 comparisons</th><th scope="col">Declared criterion</th></tr></thead><tbody>{{m84_mesh_rows}}</tbody></table></div>
+<p class="sub">These observed differences are numerical refinement checks, not absolute error bounds. The hard fuel window was evaluated independently at every step size and was not widened to accommodate a repeat. The <a href="data/task042-mach080-084/RESULTS.md">full report</a> retains each comparison and each fuel-window margin.</p>
+<p>This experiment used {{m84_started}} completed flight calculations and {{m84_charged_s}} charged seconds within the frozen 600-flight / 7,200-second allowance. Seven of ten local searches stopped at their per-target or restoration cap; zero software failures were recorded. It is separate from the LRC pilot and from the proposed Mach 0.84 climb experiment at FL370–390. Publishing this page runs no flight model.</p>
+</section>
+
+<section class="card" id="record" aria-labelledby="record-title">
+<h2 id="record-title">Download the results and check their provenance</h2>
+<ul>
+<li><a href="data/task042-mach080-084/RESULTS.md">Full saved-record report</a> · <a href="data/task042-mach080-084/RESULTS.csv">ten selected recipes (CSV)</a>.</li>
+<li><a href="data/task042-mach080-084/comparisons.json">Compact numerical comparisons and experiment metadata</a> · <a href="data/task042-mach080-084/design.json">frozen experiment definition</a>.</li>
+<li><a href="data/task042-mach080-084/CLOSING_AUDIT.json">Closing integrity audit</a>: all 16 checks passed. This reconciles saved files and accounting; it is not another scientific validation.</li>
+<li><a href="data/task042-mach080-084/source_manifest.json">File identities and full-archive hash</a> · <a href="data/task042-mach080-084/README.md">publication scope</a>.</li>
+</ul>
+<p class="sub">Experiment <code>TASK042_Mach080_084_20261121_001</code>. Frozen scientific revision <code>{{m84_revision}}</code>. Supplied TASK042 source snapshot <code>{{m84_base}}</code>. The original report, CSV, audit and figure files are copied byte for byte. The compact JSON is a labelled extraction from the retained comparison record. The full 91 MB run archive is identified here by SHA-256; it is not a download hosted on this page.</p>
+<p class="read">Full record ZIP SHA-256: {{m84_archive_sha}}</p>
+<p><a href="index.html#mach080-084">Atlas overview</a> · <a href="flight-lab.html">Other flight experiments</a> · <a href="methods.html#mach080-084-method">Methods summary</a> · <a href="archive.html#mach080-084">Historical scope and preservation</a></p>
+</section>
