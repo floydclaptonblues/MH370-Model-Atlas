@@ -1,0 +1,93 @@
+<p class="ix-eyebrow">LRC CRUISE-CLIMB PILOT · FROZEN REVISION {{lrc_revision}} · COMPLETED 22 NOVEMBER 2026</p>
+<h1>Long-range cruise with climbs: new timing fits, none powered at the final transmissions</h1>
+<p class="sub">This pilot asks whether the aircraft could have followed the later satellite timing measurements if its speed and cruise level responded to its own falling weight, the way a long-range-cruise (LRC) schedule does, instead of holding a fixed Mach and level. The answer from the saved records: yes, the two climbing LRC schedules produce further flights that fit the three timing measurements from 20:41 to 00:11. None of them keeps engine fuel until the final transmissions at 00:19:29 and 00:19:37.</p>
+
+<div class="note"><b>What this establishes.</b> Under the stated aircraft model, starting states and search ranges, the climbing LRC schedules add accepted flights for three of the six tested starting states, including one (arrival 5) where the fixed-Mach control found none. Every retained LRC flight runs out of engine fuel between {{lrc_climb_event_first}} and {{lrc_climb_event_last}} UTC, about 2.0–6.4 minutes before 00:19:29. These are conditional model states: the fuel-event positions are airborne, at about 12 km height, and are <b>not impact points</b>. Nothing here predicts the final transmissions, calculates what the aircraft did after its engines stopped, or locates the aircraft.</div>
+
+<div class="grid readouts" aria-label="Completed pilot counts">
+  <div class="card"><h2>24 × 2</h2><p>Configurations (6 starting states × 4 cruise schedules), each searched for a left and a right first turn</p></div>
+  <div class="card"><h2>{{lrc_accepted_sides}}</h2><p>Search sides with an accepted flight; {{lrc_root_sides}} with a converged solution</p></div>
+  <div class="card"><h2>{{lrc_retained}}</h2><p>Retained flight records: {{lrc_retained_lrc}} LRC and {{lrc_controls}} fixed-Mach controls</p></div>
+  <div class="card"><h2>{{lrc_repeats_resolved}} / {{lrc_repeats}}</h2><p>Half-step numerical repeats that agree within their limits</p></div>
+</div>
+
+<p><a href="#design">The question and design</a> · <a href="#outcomes">Search outcomes</a> · <a href="#fuel">Fuel and the final transmissions</a> · <a href="#checks">Numerical checks</a> · <a href="#g6">Initial-consistency certificates</a> · <a href="#next">What comes next</a> · <a href="#record">Downloads and provenance</a></p>
+
+<section class="card" id="design" aria-labelledby="design-title">
+<h2 id="design-title">The question and the design <span class="tag frozen">frozen method</span></h2>
+<p>Each flight starts at 19:41:03 UTC from an imposed <b>arrival state</b>: a Mach number and a pressure level. Pressure level is how an aircraft's altimeter measures height; the altitudes below convert it with the standard atmosphere.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="The six arrival states; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Arrival</th><th scope="col" class="n">Mach at 19:41</th><th scope="col" class="n">Pressure level</th><th scope="col" class="n">Pressure altitude</th></tr></thead>
+<tbody>
+<tr><td>1</td><td class="n">0.67</td><td class="n">365.1 hPa</td><td class="n">about 25,700 ft</td></tr>
+<tr><td>2</td><td class="n">0.75</td><td class="n">365.1 hPa</td><td class="n">about 25,700 ft</td></tr>
+<tr><td>3</td><td class="n">0.67</td><td class="n">331.7 hPa</td><td class="n">about 27,800 ft</td></tr>
+<tr><td>4</td><td class="n">0.75</td><td class="n">331.7 hPa</td><td class="n">about 27,800 ft</td></tr>
+<tr><td>5</td><td class="n">0.75</td><td class="n">300.9 hPa</td><td class="n">about 30,000 ft</td></tr>
+<tr><td>6</td><td class="n">0.78</td><td class="n">300.9 hPa</td><td class="n">about 30,000 ft</td></tr>
+</tbody></table></div>
+<p>Each arrival was flown under four cruise schedules:</p>
+<ul>
+<li><b>Own Mach at an unchanged level</b> — the historical control, already established in the 108-arrival catalogue.</li>
+<li><b>LRC at an unchanged level</b> — the long-range-cruise Mach for the aircraft's current weight, at the arrival level.</li>
+<li><b>LRC with step climbs</b> — LRC Mach, climbing in steps as fuel burns off.</li>
+<li><b>LRC with a continuous climb</b> — LRC Mach, climbing gradually as fuel burns off.</li>
+</ul>
+<p>Under an LRC schedule the commanded speed and level depend on the aircraft's own weight and the air it is flying through, which in turn depend on the commands. The schedule is therefore found by iteration until the commands the flight implies match the commands flown.</p>
+<p>For each configuration the search adjusts a first turn and, where needed, a second turn, on each side (left and right first turns). A flight is <b>accepted</b> when the model supports it throughout and its satellite timing residual — measured burst timing offset minus the model's prediction — is within ±43 µs at all three fitted handshakes, 20:41:05, 21:41:27 and 00:11:00. This is the campaign's established tolerance. The 22:41 handshake is not fitted and plays no part in selection.</p>
+</section>
+
+<section class="card" id="outcomes" aria-labelledby="outcomes-title">
+<h2 id="outcomes-title">Search outcomes</h2>
+<figure style="margin:12px 0">
+  <a href="data/lrc-cruise-climb-pilot/pilot_outcome_grid.png"><img src="data/lrc-cruise-climb-pilot/pilot_outcome_grid.png" alt="Outcome grid of six arrival states by four cruise schedules, each split into left and right first-turn searches. Accepted flights appear only for arrivals 1, 3 and 5: under the own-Mach control for arrivals 1 and 3, and under both climbing LRC schedules for arrivals 1, 3 and 5. LRC at an unchanged level has no accepted flight for any arrival. Arrivals 2, 4 and 6 have none under any schedule; their sides either run out of fuel before 00:11 or have no starting point within 43 microseconds at 20:41."></a>
+  <figcaption class="sub">Each cell is one search side. Cell text states the outcome, so colour is not needed to read it.</figcaption>
+</figure>
+<div class="scroll" tabindex="0" role="region" aria-label="Outcome counts; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Outcome</th><th scope="col" class="n">Sides</th><th scope="col">Meaning</th></tr></thead>
+<tbody>
+<tr><td>Accepted flight found</td><td class="n">{{lrc_accepted_sides}}</td><td>{{lrc_root_sides}} sides have a converged solution; 1 (arrival 3, continuous climb) has flights inside the 43 µs band without one; 2 (arrival 5, left) have accepted flights only at the boundary of the first-turn range.</td></tr>
+<tr><td>Fuel exhausted before 00:11</td><td class="n">{{lrc_fuel_sides}}</td><td>Every trial flight ran out of engine fuel before the 00:11:00 handshake.</td></tr>
+<tr><td>No starting point</td><td class="n">{{lrc_nostart_sides}}</td><td>No first-turn sample on this side came within 43 µs at 20:41; the smallest residuals were 62–385 µs.</td></tr>
+<tr><td>Limited by model support, schedule undefined, or no usable history</td><td class="n">0</td><td>No flight was excluded by buffet, thrust, Mach-support, bank or crab limits.</td></tr>
+</tbody></table></div>
+<p><b>The pattern.</b> Accepted flights occur only for arrivals 1, 3 and 5. The faster arrivals at each level (2, 4 and 6) have none under any schedule. LRC at an unchanged level has no accepted flight for any arrival. The two climbing LRC schedules add accepted flights for arrivals 1, 3 and 5, and arrival 5 is the clearest addition: its fixed-Mach control found none. Under the climbing schedules the flights still have fuel at 00:11:00; at an unchanged LRC level they do not. Lower fuel flow higher up is the likely physical reason, but this pilot did not isolate it.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Accepted search sides; scroll horizontally on a narrow screen"><table id="lrc-accepted-table">
+<thead><tr><th scope="col">Arrival</th><th scope="col">Schedule</th><th scope="col">Side</th><th scope="col" class="n">Records</th><th scope="col" class="n">Converged</th><th scope="col" class="n">Largest of the three<br>residuals, µs</th><th scope="col" class="n">Fuel at 00:11<br>kg</th><th scope="col" class="n">Engine fuel<br>exhausted, UTC</th><th scope="col">Note</th></tr></thead>
+<tbody>{{lrc_accepted_rows}}</tbody></table></div>
+<p class="sub">Records are returned flight records, not independent routes: several solver starts can return the same route, and two arrival-3 continuous-climb records are the same route. At arrival 5 the left-side records sit at the shared boundary of the first-turn range (a first turn of 0°), while converged right-side solutions lie near +0.55°; the saved samples do not show whether the two connect. Source: <a href="data/lrc-cruise-climb-pilot/pilot_config_sides.csv">all 48 sides (CSV)</a>, <a href="data/lrc-cruise-climb-pilot/pilot_accepted_flights.csv">all {{lrc_returned}} returned records (CSV)</a>.</p>
+<p>Every retained LRC flight also passed the separate command-consistency check: the commands implied by its own weight and atmosphere history match the commands flown. All 18 LRC iterations converged in 2–4 passes without damping. Arrival 3 with step climbs needed a second round; the three superseded first-round records stay in the CSV, marked as not final.</p>
+</section>
+
+<section class="card" id="fuel" aria-labelledby="fuel-title">
+<h2 id="fuel-title">Fuel and the final transmissions</h2>
+<p>Every accepted flight ends in a <b>fuel event</b>: the fuel available to the engines reaches the model's APU reserve of 6.80 kg. For the climbing LRC flights this happens between {{lrc_climb_event_first}} and {{lrc_climb_event_last}} UTC, near 36–37° S, 89–90° E, at about 12 km geometric height. The fixed-Mach control on arrival 1 runs out at 00:13:09; the control on arrival 3 runs out at 00:29:16.</p>
+<p>The model's LRC objective is distance per unit of fuel, not maximum time aloft, so an LRC flight need not stay up longer than a slower fixed-Mach flight. Speed, height, the winds met and the fitted route all change together here; their separate effects on the fuel outcome were not isolated.</p>
+<div class="note"><b>States at 00:19:29 and 00:19:37 are unavailable for {{lrc_unavailable_0019}} of the {{lrc_retained}} retained records.</b> The recorded reason is that no powered continuation exists past the fuel event. This covers every LRC flight and the arrival-1 control. It does not show the aircraft was unpowered for the whole gap, and no powered endpoint has been substituted. Only the {{lrc_powered_0019}} arrival-3 control records have powered states at those times; they reproduce the existing control from the 108-arrival catalogue and are interpolated between stored points of their accepted history. <a href="data/lrc-cruise-climb-pilot/pilot_states_0019.csv">All 84 state rows (CSV)</a>.</div>
+</section>
+
+<section class="card" id="checks" aria-labelledby="checks-title">
+<h2 id="checks-title">Numerical checks</h2>
+<p>One flight on each accepted side was recomputed with half the integration step (7.5 s instead of 15 s). All {{lrc_repeats}} repeats agree within their limits: the largest change in the 00:11 position was {{lrc_repeat_pos_max_m}} m (limit 1 m), and the largest change in the fuel-event time was {{lrc_repeat_exh_max_s}} s (limit 1 s). Every repeat kept the same ending, and the LRC repeats remained command-consistent at the finer step.</p>
+<p class="sub">These checks show the result does not depend on the step size for the selected flights. They are not an uncertainty bound on the physical model: fuel load, performance coefficients and weather carry their own uncertainty, which was not propagated here. <a href="data/lrc-cruise-climb-pilot/pilot_numerical_repeats.csv">Numerical repeats (CSV)</a>.</p>
+</section>
+
+<section class="card" id="g6" aria-labelledby="g6-title">
+<h2 id="g6-title">Initial-consistency certificates (G6) <span class="tag prov">advisory</span></h2>
+<p>A separate check (G6) tries to certify that each LRC flight's opening commands are consistent with its starting state to within the platform's floating-point accuracy. It was recorded for every flight but, by an agreed decision on 21 November, it does not select, veto or rank any flight. For all 35 returned LRC records the outcome is <b>not demonstrated</b>, because the accuracy of the platform's maths library is not established for this run. The 10 fixed-Mach control records are recorded as control starts. The acceptance and command-consistency results above stand on their own and do not depend on G6.</p>
+</section>
+
+<section class="card" id="next" aria-labelledby="next-title">
+<h2 id="next-title">What comes next <span class="tag prov">not yet run</span></h2>
+<p>The next stage compares all {{lrc_retained}} retained flights, unchanged, with the 22:41 handshake. That handshake was not fitted and played no part in selection, but it is not a blind test: its value is public and earlier experiments used it. The assessment program is under review and no 22:41 prediction has been made for these flights. Its result will be published here when it exists.</p>
+</section>
+
+<section class="card" id="record" aria-labelledby="record-title">
+<h2 id="record-title">Downloads, provenance and limits</h2>
+<ul>
+<li><a href="data/lrc-cruise-climb-pilot/REPORT.md">Full results report</a> — the scientific report with its corrections, appendices and audit trail.</li>
+<li><a href="data/lrc-cruise-climb-pilot/pilot_config_sides.csv">Configuration sides</a> · <a href="data/lrc-cruise-climb-pilot/pilot_accepted_flights.csv">Returned flight records</a> · <a href="data/lrc-cruise-climb-pilot/pilot_numerical_repeats.csv">Numerical repeats</a> · <a href="data/lrc-cruise-climb-pilot/pilot_states_0019.csv">00:19 states</a></li>
+<li><a href="data/lrc-cruise-climb-pilot/source_manifest.json">File identities</a> — SHA-256 of each published file and the commits it came from.</li>
+</ul>
+<p class="sub">Frozen revision <code>{{lrc_revision}}</code>; report commit <code>{{lrc_report_commit_short}}</code> in the private source repository. The run used {{lrc_charged_total_s}} s of computing time against a {{lrc_ceiling_s}} s ceiling, with no interrupted attempts and no unresolved stops. Codex reviewed the saved records and the report; its corrections are applied, and its disposition is to keep the results and close the pilot. Kernel setup loaded the observation set, including the 22:41 measurement, as in every earlier run; no 22:41 calculation was made. The arrival states and schedules are imposed inputs: a configuration with no accepted flight means none was found within the searched turn ranges, not that every flight with that speed, level or schedule is impossible.</p>
+</section>

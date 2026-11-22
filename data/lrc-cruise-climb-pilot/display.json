@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "experiment": "LRC cruise-climb pilot",
+    "revision": "e80252c47000",
+    "source_manifest_sha256": "204477a1674f2c9fecfefc0c289f01c9dc283ce64df78bd77446a3139885bbe2",
+    "note": "Formatted saved-record values only. No model or prediction."
+  },
+  "values": {
+    "lrc_sides": "48",
+    "lrc_accepted_sides": "10",
+    "lrc_root_sides": "7",
+    "lrc_fuel_sides": "18",
+    "lrc_nostart_sides": "20",
+    "lrc_returned": "45",
+    "lrc_retained": "42",
+    "lrc_retained_lrc": "32",
+    "lrc_controls": "10",
+    "lrc_unavailable_0019": "37",
+    "lrc_powered_0019": "5",
+    "lrc_climb_event_first": "00:13:07.14",
+    "lrc_climb_event_last": "00:17:28.07",
+    "lrc_repeats": "10",
+    "lrc_repeats_resolved": "10",
+    "lrc_repeat_pos_max_m": "0.191",
+    "lrc_repeat_exh_max_s": "0.159",
+    "lrc_charged_total_s": "20,432.6",
+    "lrc_ceiling_s": "90,000",
+    "lrc_revision": "e80252c47000",
+    "lrc_report_commit_short": "be1c59f",
+    "lrc_accepted_rows": "<tr><td>Arrival 1</td><td>Own Mach, unchanged level (control)</td><td>Left</td><td class=\"n\">5</td><td class=\"n\">5</td><td class=\"n\">0.05</td><td class=\"n\">208</td><td class=\"n\">00:13:09.4</td><td></td></tr>\n<tr><td>Arrival 1</td><td>LRC, step climb</td><td>Left</td><td class=\"n\">5</td><td class=\"n\">3</td><td class=\"n\">0.01–16.26</td><td class=\"n\">202</td><td class=\"n\">00:13:13.2–13:13.3</td><td></td></tr>\n<tr><td>Arrival 1</td><td>LRC, continuous climb</td><td>Left</td><td class=\"n\">4</td><td class=\"n\">2</td><td class=\"n\">0.08–4.92</td><td class=\"n\">248</td><td class=\"n\">00:13:43.2</td><td></td></tr>\n<tr><td>Arrival 3</td><td>Own Mach, unchanged level (control)</td><td>Left</td><td class=\"n\">5</td><td class=\"n\">5</td><td class=\"n\">0.05</td><td class=\"n\">1,616</td><td class=\"n\">00:29:16.3</td><td></td></tr>\n<tr><td>Arrival 3</td><td>LRC, step climb</td><td>Left</td><td class=\"n\">3</td><td class=\"n\">2</td><td class=\"n\">0.34–7.96</td><td class=\"n\">543</td><td class=\"n\">00:17:05.1</td><td></td></tr>\n<tr><td>Arrival 3</td><td>LRC, continuous climb</td><td>Left</td><td class=\"n\">5</td><td class=\"n\">0</td><td class=\"n\">9.60–16.38</td><td class=\"n\">581</td><td class=\"n\">00:17:28.1</td><td>in band, no converged root</td></tr>\n<tr><td>Arrival 5</td><td>LRC, step climb</td><td>Left</td><td class=\"n\">4</td><td class=\"n\">0</td><td class=\"n\">28.68–40.53</td><td class=\"n\">194</td><td class=\"n\">00:13:07.2</td><td>range boundary (first turn 0°)</td></tr>\n<tr><td>Arrival 5</td><td>LRC, step climb</td><td>Right</td><td class=\"n\">4</td><td class=\"n\">3</td><td class=\"n\">0.01–8.52</td><td class=\"n\">195</td><td class=\"n\">00:13:07.1–13:07.3</td><td></td></tr>\n<tr><td>Arrival 5</td><td>LRC, continuous climb</td><td>Left</td><td class=\"n\">3</td><td class=\"n\">0</td><td class=\"n\">28.47</td><td class=\"n\">226</td><td class=\"n\">00:13:28.1</td><td>range boundary (first turn 0°)</td></tr>\n<tr><td>Arrival 5</td><td>LRC, continuous climb</td><td>Right</td><td class=\"n\">4</td><td class=\"n\">4</td><td class=\"n\">0.07</td><td class=\"n\">226</td><td class=\"n\">00:13:28.1</td><td></td></tr>"
+  }
+}

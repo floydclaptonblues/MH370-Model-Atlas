@@ -1,7 +1,7 @@
 const MH={};
 MH.J=async u=>(await fetch(u)).json();
 MH.css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-MH.nav=function(cur){const p=[["index.html","Overview"],["assessment.html","Ryan’s assessment"],["flighthistories.html","Flight histories"],["flight-lab.html","Flight Dynamics Lab"],["mach080-084.html","Mach 0.80–0.84"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
+MH.nav=function(cur){const p=[["index.html","Overview"],["assessment.html","Ryan’s assessment"],["flighthistories.html","Flight histories"],["flight-lab.html","Flight Dynamics Lab"],["mach080-084.html","Mach 0.80–0.84"],["lrc-cruise-climb.html","LRC cruise climb"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
  document.getElementById("nav").innerHTML=p.map(([h,l])=>`<a href="${h}"${h===cur?' aria-current="page"':''}>${l}</a>`).join("")};
 MH.fit=function(c,h){const r=c.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);c.width=Math.round(r.width*d);c.height=Math.round(h*d);c.style.height=h+"px";const x=c.getContext("2d");x.setTransform(d,0,0,d,0,0);return {x,w:r.width,h}};
 MH.fmt=(v,d=0)=>v==null?"–":Number(v).toLocaleString("en",{maximumFractionDigits:d,minimumFractionDigits:d});
@@ -86,7 +86,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
 (() => {
   'use strict';
   const SECTIONS = [
-    ['index.html','Overview'],['assessment.html','Ryan’s assessment'],['flighthistories.html','Flight histories'],['flight-lab.html','Flight Dynamics Lab'],['mach080-084.html','Mach 0.80–0.84'],
+    ['index.html','Overview'],['assessment.html','Ryan’s assessment'],['flighthistories.html','Flight histories'],['flight-lab.html','Flight Dynamics Lab'],['mach080-084.html','Mach 0.80–0.84'],['lrc-cruise-climb.html','LRC cruise climb'],
     ['canonical.html','Canonical data'],['archive.html','Archive of attempts'],['methods.html','Methods'],null,
     ['drift.html','Drift'],['drift2.html','Drift diagnostics'],['drift3.html','Forward transport'],['drift4.html','Four years']
   ];
@@ -98,11 +98,15 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
     const file = location.pathname.split('/').pop() || 'index.html';
     const isFlightLab = file === 'flight-lab.html';
     const isMachStudy = file === 'mach080-084.html';
+    const isLrcPilot = file === 'lrc-cruise-climb.html';
     nav.setAttribute('aria-label', 'Atlas sections');
     const rest = [...app.children].filter(n => n !== nav);
     const title = el('header', 'ix-title', '<i aria-hidden="true"></i><span>MH370 Model Atlas — ' + here + '</span>');
     app.insertBefore(title, nav);
-    const catalogueSummary = legacy => isMachStudy ?
+    const catalogueSummary = legacy => isLrcPilot ?
+      '<div class="ix-cap">LRC cruise-climb pilot · 22 November</div><div class="ix-ro">' +
+      '<div><span>CONFIGS</span><output>24</output></div><div><span>ACCEPTED SIDES</span><output>10</output></div>' +
+      '<div><span>RETAINED RECORDS</span><output>42</output></div><div><span>REPEATS RESOLVED</span><output>10</output></div></div>' : isMachStudy ?
       '<div class="ix-cap">Separate TASK042 experiment · 21 November</div><div class="ix-ro">' +
       '<div><span>ORIGINS</span><output>2</output></div><div><span>STARTING SPEEDS</span><output>5</output></div>' +
       '<div><span>SELECTED SAMPLES</span><output>10</output></div><div><span>CHECKS PASSED</span><output>20</output></div></div>' : legacy ?
@@ -112,7 +116,9 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
       '<div class="ix-cap">Completed cruise study · 16 November</div><div class="ix-ro">' +
       '<div><span>ARRIVALS</span><output>108</output></div><div><span>CONFIGS</span><output>424</output></div>' +
       '<div><span>ACCEPTED FLIGHTS</span><output>266</output></div><div><span>CHECKS RESOLVED</span><output>218</output></div></div>';
-    const catalogueStatus = legacy => isMachStudy ?
+    const catalogueStatus = legacy => isLrcPilot ?
+      '<span><i class="lamp green"></i>Pilot run: complete</span><span><i class="lamp"></i>Checks: resolved</span>' +
+      '<span><i class="lamp amber"></i>Powered at 00:19: control only</span><span><i class="lamp amber"></i>22:41: not yet assessed</span><span><i class="lamp"></i>Aircraft located: no</span>' : isMachStudy ?
       '<span><i class="lamp green"></i>Bounded search: complete</span><span><i class="lamp amber"></i>Starting fuel: assumed</span>' +
       '<span><i class="lamp"></i>Numerical checks: passed</span><span><i class="lamp"></i>Fit acceptance: not certified</span>' : legacy ?
       '<span><i class="lamp green"></i>Earlier catalogue: frozen</span><span><i class="lamp"></i>Viewer: display-only</span>' +
@@ -138,7 +144,10 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
       '<b>Cruise study epochs, UTC</b><div class="ix-ro">' +
       '<div><span>STARTING STATE</span><output>19:41:03</output></div><div><span>LAST FITTED TIME</span><output>00:11:00</output></div>' +
       '<div><span>FUEL HORIZON</span><output>00:40:00</output></div><div><span>NOT FITTED</span><output>22:41</output></div></div>';
-    const b2 = el('div', 'ix-box', isMachStudy ?
+    const b2 = el('div', 'ix-box', isLrcPilot ?
+      '<b>LRC pilot epochs, UTC</b><div class="ix-ro">' +
+      '<div><span>STARTING STATE</span><output>19:41:03</output></div><div><span>LAST FITTED TIME</span><output>00:11:00</output></div>' +
+      '<div><span>LRC FUEL EVENTS</span><output>00:13:07–00:17:28</output></div><div><span>NOT FITTED</span><output>22:41</output></div></div>' : isMachStudy ?
       '<b>TASK042 epochs, UTC</b><div class="ix-ro">' +
       '<div><span>ASSUMED START</span><output>19:41:03</output></div><div><span>POWERED STATE</span><output>00:11:00</output></div>' +
       '<div><span>FUEL WINDOW</span><output>00:16:29–00:17:59</output></div><div><span>22:41</span><output>BTO excluded; BFO fitted</output></div></div>' : isFlightLab ? catalogueEpochs(legacyCatalogue) :

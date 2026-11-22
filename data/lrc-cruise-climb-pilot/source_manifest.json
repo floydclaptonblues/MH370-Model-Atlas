@@ -1,0 +1,39 @@
+{
+  "schema": "LRC_CRUISE_CLIMB_PILOT_PUBLICATION_SOURCES_V1",
+  "experiment": "LRC cruise-climb pilot",
+  "frozen_revision": "e80252c47000",
+  "source_repository": "floydclaptonblues/MH370-Ocean-GLORYS-Data (private)",
+  "source_branch": "claude/post1941-full-population-campaign",
+  "source_directory": "reports/diagnostic/LRC_CRUISE_CLIMB_PILOT/results_pilot_e80252c47000",
+  "report_commit": "be1c59fa1530b446afe42e60c934fb27062f03aa",
+  "record_commits": {
+    "candidate_revision": "2f0fcd4",
+    "gate_records": "1b772b7",
+    "pilot_release": "e91b05621e45a8268b2655a23ac912d5a331fc91",
+    "completed_run": "728ce0979c4c185c0bc42969797bb86bf42b20b8",
+    "results_report": "d54a1d7f7f49044763c067ca06bc0596c4b32ee4",
+    "report_corrections": "be1c59fa1530b446afe42e60c934fb27062f03aa"
+  },
+  "review": {
+    "reviewer": "Codex",
+    "package": "LRC_Pilot_Results_Review_2026-11-22_e80252c47000.zip",
+    "package_sha256": "8c7787f70c84f0be4dc17b6663e1c4a9a0c646ea628d778b79293c38f7235750",
+    "disposition": "Results retained; report-only corrections applied; pilot closed. G6 advisory."
+  },
+  "recorded_account_s": {
+    "worker_0": 13699.8,
+    "worker_1": 6074.7,
+    "gate": 658.0,
+    "total": 20432.6,
+    "ceiling": 90000.0
+  },
+  "files": [
+    {"name": "REPORT.md", "sha256": "32e89fe004a486244c38657b5fef82ed0a995bebc89fa99142da067c560a30ee", "copy": "BYTE_IDENTICAL"},
+    {"name": "pilot_config_sides.csv", "sha256": "0fbe8dba91a8dde6cbbf0d4a6230bf254824135bb626e85e3098ed38ae636199", "copy": "BYTE_IDENTICAL"},
+    {"name": "pilot_accepted_flights.csv", "sha256": "6ccc24aa76bb9791f961ea72170fe894d0ad1d8e85c52c46ac772c4f5005932e", "copy": "BYTE_IDENTICAL"},
+    {"name": "pilot_numerical_repeats.csv", "sha256": "06aba6081c50af39a8ce1ee83da7282fc50f9ac92d8ab841b05999255b974673", "copy": "BYTE_IDENTICAL"},
+    {"name": "pilot_states_0019.csv", "sha256": "fc966053944f982c37697df229a7b9d6a69e515f13d498ce1449d6f86662c560", "copy": "BYTE_IDENTICAL"},
+    {"name": "pilot_outcome_grid.png", "sha256": "5e0bfd51be63bf16e0395fdb062c0a56bf5055bae253817c7a46d7b7e8c46a5d", "copy": "BYTE_IDENTICAL"}
+  ],
+  "scope": "Saved-record publication copy. No model was imported, no flight was computed and nothing was evaluated at 22:41 to build this page."
+}
