@@ -13,7 +13,7 @@
   <div class="card"><h2>547</h2><p>Flight calculations completed within the frozen allowance</p></div>
 </div>
 
-<p><a href="#results">Selected results</a> · <a href="#powered-states">00:11 states</a> · <a href="#method">Method and numerical checks</a> · <a href="#record">Downloads and provenance</a></p>
+<p><a href="#results">Selected results</a> · <a href="#fuel-window-sensitivity">Fuel-window follow-up</a> · <a href="#powered-states">00:11 states</a> · <a href="#method">Method and numerical checks</a> · <a href="#record">Downloads and provenance</a></p>
 
 <section class="card" id="results" aria-labelledby="results-title">
 <h2 id="results-title">What the searches retained</h2>
@@ -37,6 +37,31 @@
 <p class="sub">Source: <a href="data/task042-mach080-084/RESULTS.csv">all ten selected recipes (CSV)</a>. J is the retained observation score plus the original MID prior. The z values are residuals divided by the experiment’s adopted measurement scales; their maxima are descriptive, not additional pass thresholds. The BFO values include 22:41. Scores cannot be compared directly with historical TASK042 scores that also fitted 22:41 BTO.</p>
 <p><b>The two Mach 0.840 starts have the lowest retained J among these targets.</b> This ranks the sampled recipes under this objective. It does not show that Mach 0.84 is generally optimal: the selected pressure and starting parameters also change, and seven searches reached their allocation caps. Even the three optimizer-success returns are not independently certified stationary points.</p>
 <div class="note"><b>The fuel condition is close to its edge.</b> At the finest 3.75-second step, the two Mach 0.840 samples fall inside the late fuel-loss limit by only about 0.000128 and 0.000158 seconds. Several other selections lie close to the early limit. Their recorded passes stand, but these are not robust margins against uncertainty in real fuel or fuel consumption. The displayed precision is numerical recordkeeping, not physical precision.</div>
+</section>
+
+<section class="card" id="fuel-window-sensitivity" aria-labelledby="fuel-window-title">
+<h2 id="fuel-window-title">Fuel-window sensitivity and numerical checks <span class="tag ok">22 November 2026</span></h2>
+<p><b>Mach 0.840 has the lowest saved combined score under the original window. At a two-second minimum buffer, Mach 0.830 leads among the saved trials.</b> A separate audit screened all 523 unique saved search trials without running a flight. Of these, 238 met the original model-support and fuel-window conditions. Headroom means the time from modeled combustion-thrust loss to the nearer edge of the imposed 00:16:29–00:17:59 UTC window. The audit filters saved 15-second trials; it does not re-optimize them.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Saved-trial fuel-window screen; scroll horizontally on a narrow screen"><table id="mach-fuel-screen-table">
+<thead><tr><th scope="col">Required headroom</th><th scope="col">Trials left</th><th scope="col">Best starting Mach</th><th scope="col">Modified J</th><th scope="col">Winner’s headroom</th></tr></thead>
+<tbody>
+<tr><th scope="row">0 s</th><td class="n">238</td><td class="n">0.840</td><td class="n">3.8214</td><td class="n">0.000325 s</td></tr>
+<tr><th scope="row">1 s</th><td class="n">101</td><td class="n">0.840</td><td class="n">3.8355</td><td class="n">1.013722 s</td></tr>
+<tr><th scope="row">2 s</th><td class="n">96</td><td class="n">0.830</td><td class="n">4.3009</td><td class="n">33.781239 s</td></tr>
+<tr><th scope="row">5 s</th><td class="n">82</td><td class="n">0.830</td><td class="n">4.3009</td><td class="n">33.781239 s</td></tr>
+<tr><th scope="row">15 s</th><td class="n">82</td><td class="n">0.830</td><td class="n">4.3009</td><td class="n">33.781239 s</td></tr>
+</tbody></table></div>
+<p class="sub">The five- and fifteen-second screens retain the same 82 trials; they are not independent checks. The two-second threshold is a sensitivity test, not a physical error allowance. Eligibility is not a satellite-fit acceptance threshold. <a href="data/task042-mach080-084/fuel_window_screen.csv">Saved-trial screen (CSV)</a>.</p>
+<h3>Two buffered Mach 0.830 histories checked at finer steps</h3>
+<p>Both archived 15-second results were reproduced, then repeated at 7.5 and 3.75 seconds with the same starting recipes, commands and frequency offsets. Both remained model-supported and inside the fuel window. The table gives the finest-step values. Observation χ² is evaluated at each history’s fixed offset; J also includes the original MID offset penalty.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Finest-step Mach 0.830 results; scroll horizontally on a narrow screen"><table id="mach083-finest-table">
+<thead><tr><th scope="col">Saved trial</th><th scope="col">Modeled thrust loss UTC</th><th scope="col">Headroom</th><th scope="col">Observation χ²</th><th scope="col">Modified J</th></tr></thead>
+<tbody>
+<tr><th scope="row"><code>a440e124</code></th><td>00:17:02.781</td><td class="n">33.78 s</td><td class="n">2.6334</td><td class="n">4.3009</td></tr>
+<tr><th scope="row"><code>d06b1e7c</code></th><td>00:17:36.282</td><td class="n">22.72 s</td><td class="n">2.5098</td><td class="n">4.3346</td></tr>
+</tbody></table></div>
+<p>The largest adjacent-step change was 0.205 ms in modeled thrust-loss time and 4.48 cm in 00:11 position. These comparisons check numerical stability for two fixed histories under this model. They do not validate the physical fuel-loss time, establish a best speed beyond the saved sample, or locate the aircraft at impact. The follow-up made no new 22:41 BTO prediction; the 22:41 BFO term was retained.</p>
+<p class="sub"><a href="data/task042-mach080-084/mach083_fixed_step_checks.csv">Six fixed-step calculations (CSV)</a> · <a href="data/task042-mach080-084/fuel_window_followup.md">Method, scope and record identities</a>. These follow-up calculations do not change the counts or selections of the original experiment above.</p>
 </section>
 
 <section class="card" id="powered-states" aria-labelledby="powered-title">
