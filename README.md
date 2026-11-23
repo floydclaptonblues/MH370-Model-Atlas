@@ -5,7 +5,7 @@ A static research atlas of the project's satellite-measurement, aircraft-perform
 ## Reading the Atlas
 
 - `index.html`: published experiment summaries and links to their source records.
-- `lrc-cruise-climb.html`: the 22 November long-range-cruise (LRC) cruise-climb pilot: 24 configurations of six arrival states and four cruise schedules, the accepted flights they add, their fuel events before the final transmissions, numerical repeats and the advisory G6 outcomes. Saved-record publication; the 22:41 assessment is a later stage.
+- `lrc-cruise-climb.html`: the 22 November long-range-cruise (LRC) cruise-climb pilot: 24 configurations of six arrival states and four cruise schedules, the accepted flights they add, their fuel events before the final transmissions, numerical repeats and the advisory G6 outcomes. Its [completed satellite assessment](lrc-cruise-climb.html#satellite-assessment) compares all 42 retained records (41 distinct recipes) with the 22:41 timing and frequency and the 23:14 voice frequency, with prior exposure disclosed and the voice-channel offset unknown.
 - `mach080-084.html`: the separate 21 November TASK042 starting-Mach experiment, its ten selected samples, numerical checks, fuel-window sensitivity and assumed starting-state scope. These records are not added to the 108-arrival catalogue.
 - `methods.html`: current experimental workflow first, with earlier methods and corrections in a dated, collapsed archive.
 - `flighthistories.html`: the separately identified six-history dossier and its terminal assumptions, plus links to later work.
@@ -34,6 +34,8 @@ The terminal responses of the cruise catalogue (`terminal.html`) are compiled fr
 The separate starting-Mach publication uses byte-identical saved report, CSV, audit and figure files in `data/task042-mach080-084/`, plus a labelled compact extraction of the comparison record. `python3 scripts/build_task042_mach.py --check` verifies source hashes, reconciles the selected CSV rows and checks the generated table values. Run without `--check` to regenerate its display export before `gen.py`. This reads saved results only; it imports no model and computes no flight. The full run archive is hash-identified rather than duplicated in the site repository.
 
 The LRC pilot publication uses byte-identical saved report, CSV and figure files in `data/lrc-cruise-climb-pilot/`, copied from the private source repository at report commit `be1c59f`. `python3 scripts/build_lrc_pilot.py --check` verifies their hashes against `source_manifest.json` and recomputes every displayed count from the CSVs. Run without `--check` to regenerate `display.json` before `gen.py`. This reads saved results only; it imports no model and computes no flight.
+
+The pilot's separate 22:41 and 23:14 assessment uses saved results in `data/lrc-cruise-climb-assessment/`. `python3 scripts/build_lrc_assessment.py --check` verifies the source identities and recomputes the displayed classifications and ranges. Run without `--check` to regenerate its display export before `gen.py`. This reads saved results only; it does not replay a flight or make a new prediction. The assessment does not change the 266-flight catalogue, apply a fuel-event screen or add a final-transmission or impact result.
 
 From the repository root:
 

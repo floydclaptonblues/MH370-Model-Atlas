@@ -1,0 +1,84 @@
+{
+  "G6": "ADVISORY_UNCHANGED",
+  "distinct_evaluation_counts": {
+    "MEETS_THE_2241_TIMING": 38,
+    "OUTSIDE_THE_2241_TIMING_BAND": 3
+  },
+  "distinct_evaluations": 41,
+  "frequency_is_diagnostic_only": true,
+  "fuel_window_screen_applied": false,
+  "observation": {
+    "canonical_equals_raw": true,
+    "correction_us": 0.0,
+    "event": {
+      "channel": "IOR-R1200-0-36ED",
+      "event_id": "T6_224122",
+      "message_type": "Log-on/Log-off Acknowledge",
+      "timestamp_utc": "2014-03-07T22:41:22Z"
+    },
+    "events_sha256": "06f2684f9ff77c02d2ac13cfa9ed20e28a3ed800cb221f1b5107f5db76927642",
+    "frequency_field": "observed_bfo_hz",
+    "observed_frequency_hz": 204.0,
+    "observed_timing_us": 14540.0,
+    "timing_field": "canonical_bto_us"
+  },
+  "record_counts": {
+    "MEETS_THE_2241_TIMING": 38,
+    "OUTSIDE_THE_2241_TIMING_BAND": 4
+  },
+  "retained_records": 42,
+  "source_seal_sha256": "c13672ac972d8abaf89332f95b8e049cc592a3b94e75499c6962a2514d84457c",
+  "stage_a_status": "SEALED_COMPLETE",
+  "statement": "A consistency assessment with disclosed prior exposure. No fitting, route ranking, terminal prediction or impact finding.",
+  "voice_2314_observation": {
+    "definition": {
+      "handshake_MU_BFO_applied": false,
+      "measurement_standard_uncertainty_hz": null,
+      "mixed_message_types": true,
+      "primary_elapsed_s": 12780.0,
+      "primary_timestamp_utc": "2014-03-07T23:14:03Z",
+      "primary_utc": "23:14:03",
+      "prior_exposure_disclosed": true,
+      "reference_band_basis": "Predeclared reuse of the 7 Hz diagnostic width for descriptive comparison only; not a calibrated uncertainty for this voice aggregate.",
+      "reference_half_width_hz": 7.0,
+      "residual_convention": "observed aggregate - predicted frequency",
+      "sample_count": 29,
+      "sample_time_range_utc": [
+        "23:14:00.904",
+        "23:15:02.032"
+      ],
+      "selection_ranking_or_veto": false,
+      "single_sample_range_hz": [
+        216.0,
+        222.0
+      ],
+      "step_agreement_hz": 0.01,
+      "time_treatment": "Point prediction at the canonical representative instant; not an average of predictions over the contributing units.",
+      "unweighted_mean_sample_time_utc_approx": "23:14:21.109",
+      "voice_channel_offset_estimated": false,
+      "voice_channel_offset_hz": null
+    },
+    "event": {
+      "channel": "IOR-3737-21000",
+      "classification": "canonical_observation",
+      "event_id": "T6_231403",
+      "included_for_bfo": "True",
+      "included_for_bto": "False",
+      "message_type": "Telephony Acknowledge",
+      "note": "Average of 29 BFO values spanning 216-222 Hz; voice channel has no BTO.",
+      "timestamp_utc": "2014-03-07T23:14:03Z"
+    },
+    "events_sha256": "06f2684f9ff77c02d2ac13cfa9ed20e28a3ed800cb221f1b5107f5db76927642",
+    "frequency_field": "observed_bfo_hz",
+    "no_timing_observation": true,
+    "observed_frequency_hz": 217.0
+  },
+  "voice_reference_distinct_evaluation_counts": {
+    "OUTSIDE_REFERENCE_BAND": 31,
+    "WITHIN_REFERENCE_BAND": 10
+  },
+  "voice_reference_record_counts": {
+    "OUTSIDE_REFERENCE_BAND": 32,
+    "WITHIN_REFERENCE_BAND": 10
+  }
+}

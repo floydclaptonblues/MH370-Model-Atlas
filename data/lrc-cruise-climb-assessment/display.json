@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "experiment": "LRC fixed-recipe 22:41 timing/frequency assessment and 23:14 voice-frequency diagnostic",
+    "revision": "5a05740c69d6c81f0562b76c30d4de5fe8503767070893fb3cd34a5609eccc7a",
+    "source_manifest_sha256": "4172b093ff5a93f08ac8d89421e0510dd655c87e14792a152dad4291c8013e4c",
+    "note": "Formatted saved-record comparisons only. No model, new prediction, offset fit or route selection."
+  },
+  "values": {
+    "lrca_record_count": "42",
+    "lrca_distinct_count": "41",
+    "lrca_timing_within_records": "38",
+    "lrca_timing_within_distinct": "38",
+    "lrca_timing_outside_records": "4",
+    "lrca_timing_outside_distinct": "3",
+    "lrca_frequency_within_records": "42",
+    "lrca_voice_control_records": "10",
+    "lrca_voice_lrc_records": "32",
+    "lrca_voice_lrc_distinct": "31",
+    "lrca_configuration_rows": "<tr><td>Arrival 1</td><td>Own Mach, unchanged level (control)</td><td class=\"n\">5 (5)</td><td class=\"n\">5</td><td class=\"n\">0</td><td class=\"n\">0.073</td><td class=\"n\">-5.122</td></tr>\n<tr><td>Arrival 1</td><td>LRC, step climb</td><td class=\"n\">5 (5)</td><td class=\"n\">5</td><td class=\"n\">0</td><td class=\"n\">0.290 to 0.295</td><td class=\"n\">-7.481 to -7.477</td></tr>\n<tr><td>Arrival 1</td><td>LRC, continuous climb</td><td class=\"n\">4 (4)</td><td class=\"n\">4</td><td class=\"n\">0</td><td class=\"n\">-0.076 to -0.075</td><td class=\"n\">-7.887</td></tr>\n<tr><td>Arrival 3</td><td>Own Mach, unchanged level (control)</td><td class=\"n\">5 (5)</td><td class=\"n\">5</td><td class=\"n\">0</td><td class=\"n\">0.286</td><td class=\"n\">-4.739</td></tr>\n<tr><td>Arrival 3</td><td>LRC, step climb</td><td class=\"n\">3 (3)</td><td class=\"n\">1</td><td class=\"n\">2</td><td class=\"n\">0.727 to 0.730</td><td class=\"n\">-7.056 to -7.053</td></tr>\n<tr><td>Arrival 3</td><td>LRC, continuous climb</td><td class=\"n\">5 (4)</td><td class=\"n\">3</td><td class=\"n\">2</td><td class=\"n\">0.300 to 0.312</td><td class=\"n\">-7.467 to -7.455</td></tr>\n<tr><td>Arrival 5</td><td>LRC, step climb</td><td class=\"n\">8 (8)</td><td class=\"n\">8</td><td class=\"n\">0</td><td class=\"n\">-1.062 to -1.029</td><td class=\"n\">-8.670 to -8.637</td></tr>\n<tr><td>Arrival 5</td><td>LRC, continuous climb</td><td class=\"n\">7 (7)</td><td class=\"n\">7</td><td class=\"n\">0</td><td class=\"n\">-1.474 to -1.464</td><td class=\"n\">-9.090 to -9.080</td></tr>",
+    "lrca_outside_rows": "<tr><td><code>L3_STEP:L:r2:i1</code></td><td class=\"n\">+43.103604</td><td class=\"n\">0.103604</td></tr>\n<tr><td><code>L3_STEP:L:r2:i2</code></td><td class=\"n\">+43.209908</td><td class=\"n\">0.209908</td></tr>\n<tr><td><code>L3_CC:L:r1:i0</code><br><code>L3_CC:L:r1:i1</code></td><td class=\"n\">+44.459171</td><td class=\"n\">1.459171</td></tr>",
+    "lrca_repeat_bto_us": "0.000564977",
+    "lrca_repeat_bfo_hz": "0.000002761",
+    "lrca_repeat_voice_hz": "0.000002815",
+    "lrca_control_voice_range_hz": "-5.122 to -4.739",
+    "lrca_lrc_voice_range_hz": "-9.090 to -7.053",
+    "lrca_control_frequency_range_hz": "0.073 to 0.286",
+    "lrca_lrc_frequency_range_hz": "-1.474 to 0.730",
+    "lrca_revision": "5a05740c69d6",
+    "lrca_seal_sha256": "c13672ac972d8abaf89332f95b8e049cc592a3b94e75499c6962a2514d84457c",
+    "lrca_assessment_csv_sha256": "527abe0189a3f5f3795719f312199a5e89291ce9b22d0db5b43a220ef72d3565"
+  }
+}

@@ -1,0 +1,22 @@
+The fixed-recipe assessment compared all 42 retained LRC-pilot records,
+representing 41 distinct histories, with the previously specified 22:41 and
+23:14 observations. At 22:41, 38 records (38 distinct histories) fall inside the
+predeclared +/-43 microsecond timing band. Four records representing three
+arrival-3 histories are outside by 0.104-1.459 microseconds; those classifications
+are unchanged at the smaller integration step. All 42 records are inside the
+existing +/-7 Hz 22:41 frequency diagnostic band.
+
+At the representative 23:14:03 instant, the ten own-Mach control histories have
+raw voice-frequency residuals between approximately -5.12 and -4.74 Hz. The 32
+climbing-LRC records, representing 31 histories, range from approximately -9.09
+to -7.05 Hz. The controls therefore lie inside the predeclared descriptive
++/-7 Hz reference band and the LRC records outside it under the raw convention.
+This shows a clear difference between their predicted frequencies. It does not
+establish which family is more likely: the voice-channel offset is unestimated,
+the aggregate's standard uncertainty is unassigned, and a common offset can
+change which family lies closer to the observation. No route is selected, ranked
+or vetoed by this diagnostic.
+
+Both observations have disclosed prior exposure. The assessment applies to these
+fixed histories, preserves G6 as advisory and applies no fuel-event timing screen.
+It does not calculate final-transmission compatibility or an impact location.

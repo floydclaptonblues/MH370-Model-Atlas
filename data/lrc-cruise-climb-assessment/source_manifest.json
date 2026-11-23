@@ -1,0 +1,44 @@
+{
+  "schema": "LRC_FIXED_RECIPE_ASSESSMENT_PUBLICATION_SOURCES_V1",
+  "experiment": "LRC fixed-recipe 22:41 timing/frequency assessment and 23:14 voice-frequency diagnostic",
+  "pilot_revision": "e80252c47000",
+  "assessment_revision": "5a05740c69d6c81f0562b76c30d4de5fe8503767070893fb3cd34a5609eccc7a",
+  "stage_a_seal_sha256": "c13672ac972d8abaf89332f95b8e049cc592a3b94e75499c6962a2514d84457c",
+  "stage_a_predictions_sha256": "fbcab64a9bcd35ac1a2b05074df107e650417ce0971d7a62f6bf3dd839e15711",
+  "plan_sha256": "4cd6bde4a5e6066a240bec2923c001518614afd3280f638c41475bbe87b6bf90",
+  "stage_b_release_sha256": "b9e81d35caa3b4c17579ad0034896265029d5c00b3eb19d00e78aa91ba0de7a3",
+  "canonical_events_sha256": "06f2684f9ff77c02d2ac13cfa9ed20e28a3ed800cb221f1b5107f5db76927642",
+  "returned_archive": {
+    "name": "LRC_2241_2314_Stage_B_Return_20261122.zip",
+    "sha256": "09020d7f6fd0c5fbff98bad40fc3ce1bc643c0b44b671e2f11f772d9eb4b784a"
+  },
+  "review": {
+    "reviewer": "Codex",
+    "package": "LRC_2241_2314_Stage_B_Review_2026-11-22.zip",
+    "package_sha256": "f278cb493635e02d1985311fb007438a2dc11ee96058759ec908dd99e446843a",
+    "disposition": "Completed comparison accepted; original labels preserved; reviewed interpretation distinguishes prediction separation from offset-independent preference."
+  },
+  "files": [
+    {
+      "name": "ASSESSMENT_42_ROWS.csv",
+      "sha256": "527abe0189a3f5f3795719f312199a5e89291ce9b22d0db5b43a220ef72d3565",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "ASSESSMENT_42_ROWS.json",
+      "sha256": "56b0a0eef9b7b16f9690edf6e914dc203f1d5436b4a6d9a47831df14f8ba4407",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "SUMMARY.json",
+      "sha256": "d3fcf1848cd2244f4e3c51bec0f5a267421b7d3e4cbc932a0179dbd96b81fcde",
+      "copy": "BYTE_IDENTICAL"
+    },
+    {
+      "name": "REVIEWED_INTERPRETATION.txt",
+      "sha256": "944cbd5dc9f97906b9279a05ccb4916fdf6b077871238b5ce39b38c05d510197",
+      "copy": "BYTE_IDENTICAL"
+    }
+  ],
+  "scope": "Saved-record publication. Both targets were assessed before publication. The display compiler imports no model, computes no flight or new prediction, fits no offset and changes no comparison rule. Prior observation exposure is disclosed; G6 remains advisory."
+}

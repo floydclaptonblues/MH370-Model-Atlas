@@ -2,7 +2,7 @@ HEAD='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="v
 <title>%s</title><meta name="description" content="Part of the MH370 Model Atlas: an independent, physics-based reconstruction of the final flight of 9M-MRO from Inmarsat satellite measurements, aircraft performance and ocean transport."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="common.css"><script src="common.js"></script></head><body><div class="wrap"><nav id="nav"></nav>'''
 TAIL='</div></body></html>'
-def fill(body,paths=("data/terminal-responses-266/display.json","data/check-2241-266/display.json","data/task042-mach080-084/display.json","data/lrc-cruise-climb-pilot/display.json")):
+def fill(body,paths=("data/terminal-responses-266/display.json","data/check-2241-266/display.json","data/task042-mach080-084/display.json","data/lrc-cruise-climb-pilot/display.json","data/lrc-cruise-climb-assessment/display.json")):
     """Insert compiled values for {{name}} placeholders. An unknown name is an error; so is a name compiled twice."""
     import json,re
     values={}
@@ -389,7 +389,7 @@ MACH_HEAD='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta na
 <link rel="canonical" href="https://mh370atlasmodel.y2kneverended.net/mach080-084.html"><link rel="stylesheet" href="common.css"><script src="common.js?v=mach-20261121"></script></head><body><div class="wrap"><nav id="nav"></nav>'''
 pages["mach080-084.html"]=MACH_HEAD+fill(open("src/mach080_084_body.html").read())+'<script>MH.nav("mach080-084.html");</script>'+TAIL
 LRC_HEAD='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LRC cruise-climb pilot — MH370 Model Atlas</title><meta name="description" content="Long-range-cruise schedules with climbs: 24 configurations searched against the satellite timing measurements, the flights they add, their fuel events before the final transmissions, numerical checks and saved source records. Conditional model results, not aircraft locations.">
+<title>LRC cruise-climb pilot — MH370 Model Atlas</title><meta name="description" content="Completed LRC pilot and fixed-recipe 22:41 timing and 23:14 voice-frequency assessment: 42 retained records, 41 distinct recipes, numerical checks, fuel events and interpretation limits. Conditional model results, not aircraft locations.">
 <link rel="canonical" href="https://mh370atlasmodel.y2kneverended.net/lrc-cruise-climb.html"><link rel="stylesheet" href="common.css"><script src="common.js?v=lrc-20261122"></script></head><body><div class="wrap"><nav id="nav"></nav>'''
 pages["lrc-cruise-climb.html"]=LRC_HEAD+fill(open("src/lrc_pilot_body.html").read())+'<script>MH.nav("lrc-cruise-climb.html");</script>'+TAIL
 pages["closing.html"]=HEAD%"MH370 Closing Report"+ARCHIVED_BANNER+'''<details class="card"><summary>Open the archived chapter closeout and correction record</summary>'''+open("src/closing_body.html").read()+"</details>"+'<script>MH.nav("closing.html");</script>'+TAIL
