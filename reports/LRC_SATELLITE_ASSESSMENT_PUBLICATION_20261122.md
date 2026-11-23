@@ -4,7 +4,7 @@ This update publishes the completed fixed-recipe assessment of the LRC pilot at 
 
 ## Publication scope
 
-The LRC page now includes the completed assessment, its record and distinct-recipe counts, the three distinct recipes outside the timing band, frequency ranges by arrival and schedule, numerical agreement and the reviewed interpretation. The Overview, Flight Lab, Methods, Archive and existing 22:41 page link to that section. Stale statements that this LRC assessment had not run are removed.
+The LRC page now includes the completed assessment, its record and distinct-recipe counts, the three distinct recipes outside the timing band, frequency ranges by arrival and schedule, numerical agreement and the reviewed interpretation. The Overview, Flight Lab, Methods, Archive and existing 22:41 page link to that section. Stale statements that this LRC assessment had not run are removed, including the LRC-specific status in the shared sidebar. Its script version is refreshed on the LRC page so browsers receive the updated status.
 
 The assessment covers all 42 retained pilot records, representing 41 distinct recipes. It does not add records to the separate 266-flight cruise-catalogue comparison. The pilot report, tables, figure and original publication record remain unchanged.
 

@@ -118,7 +118,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
       '<div><span>ACCEPTED FLIGHTS</span><output>266</output></div><div><span>CHECKS RESOLVED</span><output>218</output></div></div>';
     const catalogueStatus = legacy => isLrcPilot ?
       '<span><i class="lamp green"></i>Pilot run: complete</span><span><i class="lamp"></i>Checks: resolved</span>' +
-      '<span><i class="lamp amber"></i>Powered at 00:19: control only</span><span><i class="lamp amber"></i>22:41: not yet assessed</span><span><i class="lamp"></i>Aircraft located: no</span>' : isMachStudy ?
+      '<span><i class="lamp amber"></i>Powered at 00:19: control only</span><span><i class="lamp green"></i>22:41: compared</span><span><i class="lamp amber"></i>23:14: diagnostic</span><span><i class="lamp"></i>Aircraft located: no</span>' : isMachStudy ?
       '<span><i class="lamp green"></i>Bounded search: complete</span><span><i class="lamp amber"></i>Starting fuel: assumed</span>' +
       '<span><i class="lamp"></i>Numerical checks: passed</span><span><i class="lamp"></i>Fit acceptance: not certified</span>' : legacy ?
       '<span><i class="lamp green"></i>Earlier catalogue: frozen</span><span><i class="lamp"></i>Viewer: display-only</span>' +
