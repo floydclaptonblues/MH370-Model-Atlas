@@ -4,13 +4,13 @@ A static research atlas of the project's satellite-measurement, aircraft-perform
 
 ## Reading the Atlas
 
-- `index.html`: published experiment summaries and links to their source records.
+- `index.html`: published experiment summaries and links to their source records. Includes the 24 November lower bound on the aircraft's movement between the 22:41 and 00:11 exchanges, with its use of the 22:41 timing disclosed.
 - `lrc-cruise-climb.html`: the 22 November long-range-cruise (LRC) cruise-climb pilot: 24 configurations of six arrival states and four cruise schedules, the accepted flights they add, their fuel events before the final transmissions, numerical repeats and the advisory G6 outcomes. Its [completed satellite assessment](lrc-cruise-climb.html#satellite-assessment) compares all 42 retained records (41 distinct recipes) with the 22:41 timing and frequency and the 23:14 voice frequency, with prior exposure disclosed and the voice-channel offset unknown.
 - `mach080-084.html`: the separate 21 November TASK042 starting-Mach experiment, its ten selected samples, numerical checks, fuel-window sensitivity and assumed starting-state scope. These records are not added to the 108-arrival catalogue.
 - `methods.html`: current experimental workflow first, with earlier methods and corrections in a dated, collapsed archive.
 - `flighthistories.html`: the separately identified six-history dossier and its terminal assumptions, plus links to later work.
 - `canonical.html`: measurement and source-data scope.
-- `archive.html`: attempts, retirement reasons and provenance.
+- `archive.html`: attempts, retirement reasons and provenance. Its first entry records the 23 November free-turn continuation to 19:41, which stopped at its reproduction check and produced no flights.
 - `assessment.html`: Ryan's signed interpretation, separate from numerical results.
 - `flight-lab.html`: the completed 108-arrival cruise catalogue, with filters, saved airborne positions, directional search outcomes, fuel and numerical-check scope. The earlier terminal catalogue remains a separately labelled view. See `flight-lab/README.md` for both pinned sources.
 - `terminal.html`: terminal responses of the accepted cruise flights at the two final transmissions, with their conditional airborne positions, endings, limits and provenance exception.
