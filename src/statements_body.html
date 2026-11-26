@@ -8,7 +8,7 @@
   <div class="card"><h2>&ge;530 km</h2><p>Minimum straight-line movement between the 22:41 and 00:11 exchanges, from timing and satellite position alone</p></div>
   <div class="card"><h2>375 km</h2><p>Stretch of the 19:41 ring that every tested flight crosses</p></div>
   <div class="card"><h2>29.9&deg;S – 37.9&deg;S</h2><p>Stretch of arc 7 where every fully tested flight is at 00:19:37</p></div>
-  <div class="card"><h2>~41&deg;S</h2><p>South of this, no ocean reanalysis carries debris west to 50&deg;E within the record</p></div>
+  <div class="card"><h2>5&times; – 15&times;</h2><p>More modelled debris reaches the African rim than Australia, in all four ocean reanalyses</p></div>
 </div>
 
 <p><a href="#geometry">A. Geometry and timing</a> &middot; <a href="#flights">B. Where the tested flights go</a> &middot; <a href="#ocean">C. Ocean transport</a> &middot; <a href="#method">D. The method itself</a> &middot; <a href="#provisional">E. Provisional</a> &middot; <a href="#nottested">F. Not tested and not run</a> &middot; <a href="#rules">How these statements are maintained</a></p>
@@ -84,39 +84,57 @@
 </section>
 
 <h2 class="section" id="ocean">C. Ocean transport</h2>
-<p class="sub">From the debris-drift runs. No satellite measurement enters these; the arc is used only as a place to release objects.</p>
+<p class="sub">From the debris-drift runs. No satellite measurement enters these; the arc is used only as a place to release objects. The current statements come from the coastal-arrival run of 21 October 2026, the first experiment in this project in which reaching a coast is a recorded physical event rather than a discarded particle.</p>
 
 <section class="card" id="c1" aria-labelledby="c1-t">
-<h2 id="c1-t">C1 &middot; Nothing from south of about 41&deg;S <span class="tag ok">reproducible across four reanalyses</span></h2>
-<p><b>Objects released on arc 7 south of about 41&deg;S do not reach 50&deg;E within the record, in any of four independently built ocean reanalyses.</b> Below that latitude every model falls to zero or near it. This is the strongest cross-model agreement the project has found, and it holds in the two systems otherwise most pessimistic about westward transport.</p>
-<p class="sub"><b>Scope.</b> GLORYS12V1, GLORYS2V4, ORAS5 and C-GLORS; 14 latitudes from 24.5 to 43&deg;S; 30 objects per latitude per model over 1,638 days; frozen physics (<code>dx/dt = u_ocean + 0.012&middot;U_10m</code>, RK2 at 6&nbsp;h) with no Stokes drift, no leeway spectrum, no fouling or sinking and no stranding. With 30 objects the 95 per cent interval is about &plusmn;18 percentage points at mid-range, so the shape of the curve is robust and individual latitudes are not. The models still disagree by 17 to 57 percentage points on absolute rates.</p>
-<p class="sub"><b>Would be overturned by.</b> A windage or Stokes treatment that materially changes westward transport at high southern latitudes; or a fifth product behaving differently.</p>
-<p class="sub"><b>Record.</b> <a href="drift4.html">Four years</a>, <a href="drift3.html">Forward transport</a>.</p>
-</section>
-
-<section class="card" id="c2" aria-labelledby="c2-t">
-<h2 id="c2-t">C2 &middot; In-time R&eacute;union arrivals come from north of 35&deg;S <span class="tag prov">model-split</span></h2>
-<p><b>Every object that reaches within 100&nbsp;km of R&eacute;union by day 508 &mdash; the flaperon's discovery date &mdash; was released north of 35&deg;S.</b> None came from south of it, in any model that produced an arrival at all.</p>
-<p class="sub"><b>Scope.</b> The counts are small and the models disagree on whether it happens: GLORYS12V1 6 of 420, GLORYS2V4 10, C-GLORS 1, ORAS5 none. A binary that one of four products returns as zero cannot be leaned on. What is consistent is the latitude signature within the arrivals that do occur, not the rate. Beaching is not modelled; "arrival" means passing within 100&nbsp;km.</p>
-<p class="sub"><b>Would be overturned by.</b> A product or physics treatment that delivers in-time arrivals from further south; or a beaching model, which the project does not have.</p>
+<h2 id="c1-t">C1 &middot; The African rim receives far more than Australia <span class="tag ok">all four reanalyses agree</span></h2>
+<p><b>Material released along arc 7 reaches the African and Madagascan rim between 5 and 15 times more often than it reaches Australia, in every one of four independently built ocean reanalyses.</b> Per field: ORAS5 14.6, GLORYS2V4 10.7, GLORYS12V1 5.8, C-GLORS 5.0. Nothing was tuned to produce it &mdash; the release design, the slip coefficient and the region boxes were all fixed before the run.</p>
+<p class="sub"><b>Scope.</b> 420 objects per field released 8 March 2014 and run to 31 August 2018, from 14 latitudes between 24.5 and 43&deg;S. A coastal arrival is a land-boundary intersection under the declared beaching policy, <i>or</i> a velocity failure within a declared 60&nbsp;km halo of a mapped coast &mdash; the second is a candidate landfall at the ocean model's own resolution and is never described as a verified beaching. It dominates by an order of magnitude. <b>The ratio is an upper bound</b>, because the coastline product is clipped at 130&deg;E: only Australia's west and south-west coast exists in the model, so Australian arrivals are undercounted everywhere. Region boxes are a declared assumption of the analysis, not data. The beaching policy's production default is never-refloat; its four sensitivity policies were not run, and there is no stranding probability or beach residence model. One object class, one release instant, generic 1.2 per cent windage.</p>
+<p class="sub"><b>What it is not.</b> The observational record shows recovery on the African rim and nothing on Western Australian coasts, and the ratio is consistent with that &mdash; but Western Australia's coast is sparsely populated and was never searched the way R&eacute;union, Mozambique and Madagascar were after July 2015. Absence of recovery there is not absence of arrival, so this is not confirmation of the debris record.</p>
+<p class="sub"><b>Would be overturned by.</b> Unclipped shoreline data east of 130&deg;E, which would also let Australia be counted properly; or an object-specific windage response in place of the generic coefficient.</p>
 <p class="sub"><b>Record.</b> <a href="drift4.html">Four years</a>.</p>
 </section>
 
+<section class="card" id="c2" aria-labelledby="c2-t">
+<h2 id="c2-t">C2 &middot; Where material goes turns over near 38&deg;S <span class="tag ok">reproduced by all four fields</span></h2>
+<p><b>North of about 38&deg;S, released material goes to the African rim almost exclusively. Between 38 and 41&deg;S, Australia takes over. South of 41&deg;S, the measurement does not exist.</b></p>
+<p class="sub"><b>Scope.</b> Same run and same limits as C1, 30 objects per latitude per field. <b>The southern band is unmeasured, not empty.</b> The coastline product is clipped at 130&deg;E and 53.2&deg;S; objects released at 41, 42.5 and 43&deg;S travel east out of that window and the model has no land to put them on. For ORAS5 and C-GLORS all 90 such objects end with no land coverage and their fate is unknown; GLORYS12V1 loses the same objects at the edge of its ocean field instead. The censor differs, the ignorance is the same.</p>
+<p class="sub"><b>Would be overturned by.</b> The same acquisition &mdash; unclipped shoreline geometry east of 130&deg;E. The sub-41&deg;S question has now been blocked twice, first by a wind file and then by a coastline file, and remains open.</p>
+<p class="sub"><b>Record.</b> <a href="drift4.html">Four years</a>. See also D2 below, on the claim this replaces.</p>
+</section>
+
 <section class="card" id="c3" aria-labelledby="c3-t">
-<h2 id="c3-t">C3 &middot; Position across the arc hardly matters <span class="tag ok">established within the sweep</span></h2>
+<h2 id="c3-t">C3 &middot; No field delivers to R&eacute;union in time <span class="tag ok">clean negative result</span></h2>
+<p><b>No ocean field puts material on R&eacute;union by day 508, the date the flaperon was found there.</b> Two of the four deliver nothing to R&eacute;union at all across 420 objects; the two that do arrive on day 572 and day 1,551, both after the discovery. Madagascar is the opposite case and is reproduced comfortably: all four fields deliver between day 216 and day 577 against an upper bound of 827, with 49 to 112 arrivals each.</p>
+<p class="sub"><b>Scope, and why this is not evidence against an arc origin.</b> Three readings stay open and this run does not choose between them. R&eacute;union is a target of roughly 2,500&nbsp;km&sup2;: GLORYS12V1 puts 12 objects on Mauritius, 220&nbsp;km away, by day 503, so the Mascarene region is reached in time and R&eacute;union specifically is not. The run uses the generic 1.2 per cent windage, not the flaperon's own measured response, which is larger and rotated &mdash; under that object-specific response the flaperon does reach R&eacute;union in the project's separate reachability work. And 14 release latitudes with 420 objects is a coarse instrument. Arrival counts are not probabilities: a zero is not zero physical likelihood.</p>
+<p class="sub"><b>Would be overturned by.</b> An object-specific windage run on this coastal machinery, which has not been done.</p>
+<p class="sub"><b>Record.</b> <a href="drift4.html">Four years</a>, <a href="drift2.html">Drift diagnostics</a>.</p>
+</section>
+
+<section class="card" id="c4" aria-labelledby="c4-t">
+<h2 id="c4-t">C4 &middot; Position across the arc hardly matters <span class="tag ok">established within the sweep</span></h2>
 <p><b>Latitude along the arc outweighs position across the arc by between 7 and 61 times.</b> Moving a release 130&nbsp;km either side of the ring changes westward transport by 5.5 percentage points on average, against a latitude spread of 43 to 87 points. A 260&nbsp;km band across the ring behaves as a single release.</p>
-<p class="sub"><b>Scope.</b> Same sweep and same frozen physics as C1. It means drift results cannot discriminate where across the arc an object started, so drift cannot be used to refine a crossing position &mdash; only a latitude.</p>
+<p class="sub"><b>Scope.</b> The four-reanalysis arc-7 latitude sweep of 15 October 2026: three cross-arc positions at each of 14 latitudes, on the ring and 130&nbsp;km either side. It means drift results cannot discriminate where across the arc an object started, so drift can speak to a latitude but never to a crossing position. The 15 October censoring audit, which withdrew that sweep's southern result (D2), examined this claim specifically and left it standing: a boundary that acts on all latitudes in the same direction does not create a gradient between them, and the curves correlate at r = +0.76 to +0.95 between models.</p>
 <p class="sub"><b>Would be overturned by.</b> A finer release grid or a product with much stronger cross-arc structure.</p>
 <p class="sub"><b>Record.</b> <a href="drift4.html">Four years</a>.</p>
 </section>
 
-<h2 class="section" id="method">D. The method itself</h2>
+<h2 class="section" id="method">D. The method, and our own errors</h2>
 
 <section class="card" id="d1" aria-labelledby="d1-t">
 <h2 id="d1-t">D1 &middot; A fixed-course grid cannot meet a one-microsecond band <span class="tag ok">established, and it was our own error</span></h2>
 <p><b>Searching by stepping through a grid of fixed courses cannot be expected to land inside the acceptance bands, so a grid of that design measures the grid spacing rather than the aircraft.</b> In the attempt, 1 cell of 1,546 was accepted at the one-microsecond 19:41 band and 0 of 2,292 at the later 43-microsecond bands. The run was stopped at 4,206 of 1,115,784 cells and replaced by a method that solves the course to the band instead of sampling toward it.</p>
 <p class="sub"><b>Scope.</b> A statement about search design, not about the aircraft. It is recorded here because the grid was designed by Claude and the flaw was Claude's; the preserved partial run is the audit trail.</p>
 <p class="sub"><b>Record.</b> <a href="archive.html">Archive of attempts</a>, <a href="crossing-and-endings.html#crossing">Crossing and endings</a>.</p>
+</section>
+
+<section class="card" id="d2" aria-labelledby="d2-t">
+<h2 id="d2-t">D2 &middot; A zero among deleted objects is not a zero rate <span class="tag blocked">claim withdrawn</span></h2>
+<p><b>Withdrawn: that no ocean reconstruction carries material west from south of about 41&deg;S.</b> It was published as the clearest cross-model result in the project and it is not demonstrated. Between 89 and 100 per cent of objects released at or south of 41&deg;S terminated at the 129.375&deg;E edge of the wind field, carried east by the westerlies, and were removed from the run before they could reach any western gate. Four models agreeing on zero, having each deleted almost every relevant object at the same boundary, is agreement about the boundary.</p>
+<p class="sub"><b>What survives.</b> A physical expectation, not a measurement: at those latitudes the circumpolar flow and the overlying westerlies both set eastward, so material would be expected to leave the Indian Ocean to the east and not return inside four and a half years. That is an argument from circulation. The runs establish only that the objects left the eastern edge of the available forcing.</p>
+<p class="sub"><b>Still unmeasured.</b> The 21 October run removed the wind censor entirely &mdash; zero wind exits in 1,680 trajectories &mdash; but the coastline product is clipped at 130&deg;E, so the same band became unmeasurable for a new reason (C2). The question has been blocked twice and needs unclipped shoreline data east of 130&deg;E. That is an acquisition, not a computation.</p>
+<p class="sub"><b>Recorded because this page got it wrong.</b> An earlier version of this page, published and corrected on 26 November 2026, carried the withdrawn claim as an established statement and as a headline figure. The error was Claude's: the statement was built from the October sweep without checking what had superseded it. The <a href="drift4.html">Four years</a> page had carried the withdrawal correctly throughout.</p>
+<p class="sub"><b>Record.</b> <a href="drift4.html">Four years</a>, <a href="archive.html">Archive of attempts</a>.</p>
 </section>
 
 <h2 class="section" id="provisional">E. Provisional &mdash; one check outstanding</h2>
@@ -152,6 +170,7 @@
 <li><b>A sweep from the last radar contact to arc 7.</b> Designed and written, never started.</li>
 <li><b>The debris-source drift inversion.</b> Designed and preregistered on 30 October 2026, tested on synthetic forcing, <b>never run on real ocean data</b>. It is the only test the project has that is independent of the flight modelling.</li>
 <li><b>Ocean Infinity coverage geometry, 2018 and 2025&ndash;26.</b> Not held. B4 and B5 both depend on it.</li>
+<li><b>Unclipped shoreline geometry east of 130&deg;E.</b> Not held. Without it the drift work cannot measure the band south of 41&deg;S at all, and cannot count Australian arrivals properly. See C2 and D2.</li>
 <li><b>Detection.</b> Nothing in this project models whether sonar would have detected the wreckage where data exists.</li>
 <li><b>Any location for the aircraft.</b> No statement on this page, and none elsewhere on this site, places it.</li>
 </ul>
@@ -163,7 +182,7 @@
 <h2 id="g1-t">Rules <span class="tag frozen">applies to the whole site</span></h2>
 <ul>
 <li>A statement moves from E to A&ndash;D only when its named open question is answered, not when it has been believed for long enough.</li>
-<li>A statement found to be flawed is withdrawn from this page and the reason is recorded in the <a href="archive.html">Archive of attempts</a>. It is not left up behind a caveat.</li>
+<li>A statement found to be flawed is withdrawn. The claim itself comes off the page; a short record of what it was and why it fell stays, as D2 does, so that a reader who saw the earlier version can find out what happened. A flawed result is never left standing behind a caveat.</li>
 <li>Where the model cannot resolve a difference, the result is reported as possible, not as a negation. A near miss is a near miss.</li>
 <li>No model parameter is ever adjusted toward a wanted answer. Acceptance rules are fixed before a run and are not revised after seeing its output.</li>
 <li>Scores and areas on this site are never probabilities. The size of an area says nothing about likelihood.</li>
