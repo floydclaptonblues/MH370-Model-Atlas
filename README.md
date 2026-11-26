@@ -10,6 +10,7 @@ A static research atlas of the project's satellite-measurement, aircraft-perform
 - `methods.html`: current experimental workflow first, with earlier methods and corrections in a dated, collapsed archive.
 - `flighthistories.html`: the separately identified six-history dossier and its terminal assumptions, plus links to later work.
 - `canonical.html`: measurement and source-data scope.
+- `crossing-and-endings.html`: where 700 accepted flights cross the 19:41 ring, and where the 221 flights tested through the final transmissions end, against documented and reported search coverage. Built from `src/crossing_endings_body.html`; data in `data/crossing-1941/` and `data/combined-endings/`.
 - `archive.html`: attempts, retirement reasons and provenance. Its first entry records the 23 November free-turn continuation to 19:41, which stopped at its reproduction check and produced no flights.
 - `assessment.html`: Ryan's signed interpretation, separate from numerical results.
 - `flight-lab.html`: the completed 108-arrival cruise catalogue, with filters, saved airborne positions, directional search outcomes, fuel and numerical-check scope. The earlier terminal catalogue remains a separately labelled view. See `flight-lab/README.md` for both pinned sources.

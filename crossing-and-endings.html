@@ -1,0 +1,112 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>19:41 crossing and end-of-flight areas — MH370 Model Atlas</title><meta name="description" content="Where 700 accepted model flights cross the 19:41 satellite timing ring, and where the 221 flights that pass every test through the final transmissions end, compared with documented and reported search coverage. Conditional model results, not aircraft locations.">
+<link rel="canonical" href="https://mh370atlasmodel.y2kneverended.net/crossing-and-endings.html"><link rel="stylesheet" href="common.css"><script src="common.js?v=crossing-20261125"></script></head><body><div class="wrap"><nav id="nav"></nav><p class="ix-eyebrow">19:41 CROSSING AND END-OF-FLIGHT AREAS · RECORDS TO 25 NOVEMBER 2026</p>
+<h1>Where the tested flights cross the 19:41 ring, and where they end</h1>
+<p class="sub">Two results from the flights computed so far. The first is where flights that turn south between 18:40 and 19:41 meet the satellite timing ring at 19:41. The second puts every flight that has passed all of the project's tests against the seabed that has been searched. Both are statements about model flights under stated assumptions. Neither is a location for the aircraft.</p>
+
+<div class="note"><b>How to read this page.</b> A shaded area or a band of points shows where tested model flights go. Its size says nothing about likelihood. "Searched" means sonar data exists there, not that wreckage would have been detected. Only the flight types the project has flown are represented; a flight type not yet flown could cross or end elsewhere.</div>
+
+<div class="grid readouts" aria-label="Headline counts">
+  <div class="card"><h2>700</h2><p>Distinct accepted 19:41 arrivals from 102 starting flights in 13 families</p></div>
+  <div class="card"><h2>2.1°S – 1.3°N</h2><p>Stretch of the 19:41 ring they cross, about 375 km long</p></div>
+  <div class="card"><h2>221</h2><p>Flights that pass every test through the final transmissions</p></div>
+  <div class="card"><h2>29.9°S – 37.9°S</h2><p>Stretch of arc 7 where those flights are at 00:19:37</p></div>
+</div>
+
+<p><a href="#crossing">The 19:41 crossing</a> · <a href="#endings">Where the tested flights end</a> · <a href="#coverage">Against searched seabed</a> · <a href="#glide">If the descent was arrested</a> · <a href="#limits">What this does not establish</a> · <a href="#record">Downloads and provenance</a></p>
+
+<section class="card" id="crossing" aria-labelledby="crossing-title">
+<h2 id="crossing-title">The 19:41 crossing <span class="tag ok">102 starting flights complete</span></h2>
+<p>Each flight starts from one of the project's accepted aircraft states at 18:40:12 UTC, makes one turn toward the south, and flies to 19:41:03. For each starting flight, turn time and speed, the computer adjusts the course after the turn until the flight's distance from the satellite at 19:41:03 matches the measured timing to within one microsecond (about 150 m of range). A flight is then accepted as an arrival if its Doppler frequency at that moment is also within 7 Hz of the measurement.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Design of the crossing run; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Part</th><th scope="col">This run</th></tr></thead><tbody>
+<tr><td>Starting flights</td><td>102 of the 809 accepted 18:40:12 states, drawn evenly through the list, covering all 13 families of earlier flight history</td></tr>
+<tr><td>Turn time</td><td>18:40:12, 19:00 and 19:20 UTC, and no further turn</td></tr>
+<tr><td>Speed after the turn</td><td>Mach 0.62, 0.67, 0.72, 0.78 and 0.84, at the starting flight's own level</td></tr>
+<tr><td>Course after the turn</td><td>Solved, not chosen: six trial courses from 170° to 220°, then stepwise refinement wherever the timing error changes sign</td></tr>
+<tr><td>Accepted arrival</td><td>Timing within 1 microsecond and frequency within 7 Hz at 19:41:03, inside the aircraft model's limits</td></tr>
+</tbody></table></div>
+<p><b>Result.</b> The run returned 765 accepted arrivals, 700 of them distinct. Every one meets the 19:41 ring between <b>2.10°S and 1.27°N</b>, at longitudes from 93.49°E to 93.75°E. The ring runs almost north–south there, so the narrow range of longitude follows from requiring the flights to be on the ring; the informative quantity is the stretch of ring they occupy, about 375 km.</p>
+<figure style="margin:12px 0">
+  <a href="data/crossing-1941/crossing_latitude_by_speed.png"><img src="data/crossing-1941/crossing_latitude_by_speed.png" alt="Strip chart of the latitude at which each of 700 distinct accepted flights crosses the 19:41 ring, in five rows by speed. Median crossing latitude moves south as speed rises: 0.28 degrees north at Mach 0.62, 0.03 south at 0.67, 0.57 south at 0.72, 1.14 south at 0.78 and 1.60 south at 0.84. The rows overlap widely." style="max-width:100%;height:auto"></a>
+  <figcaption class="sub">Crossing latitude of each distinct accepted arrival, by speed. Faster flights cross further south on average, but the ranges overlap: the starting flight matters about as much as the speed.</figcaption>
+</figure>
+<div class="scroll" tabindex="0" role="region" aria-label="Crossing latitude by speed; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Speed</th><th scope="col" class="n">Distinct arrivals</th><th scope="col" class="n">Southernmost</th><th scope="col" class="n">Median</th><th scope="col" class="n">Northernmost</th></tr></thead><tbody>
+<tr><td>Mach 0.62</td><td class="n">90</td><td class="n">0.32°S</td><td class="n">0.28°N</td><td class="n">1.08°N</td></tr>
+<tr><td>Mach 0.67</td><td class="n">200</td><td class="n">0.84°S</td><td class="n">0.03°S</td><td class="n">0.99°N</td></tr>
+<tr><td>Mach 0.72</td><td class="n">234</td><td class="n">1.36°S</td><td class="n">0.57°S</td><td class="n">1.27°N</td></tr>
+<tr><td>Mach 0.78</td><td class="n">144</td><td class="n">1.90°S</td><td class="n">1.14°S</td><td class="n">0.71°N</td></tr>
+<tr><td>Mach 0.84</td><td class="n">32</td><td class="n">2.10°S</td><td class="n">1.60°S</td><td class="n">0.41°S</td></tr>
+</tbody></table></div>
+<p><b>What the turn itself looks like.</b> All three turn times produce accepted arrivals. A turn at 18:40:12 needs a course of 187–198° afterwards; a turn at 19:00, 180–226°; a turn at 19:20, 165–227°. The satellite measurements at 19:41 therefore constrain where the turn delivers the aircraft far more tightly than they constrain when the turn was made or how sharp it was.</p>
+<p class="sub"><b>Conditions.</b> The result holds for the reconstruction of the flight up to 18:40 that these starting states come from, and for the speeds, levels and turn times tested. A different reconstruction before 18:40 has not been tested. Eight further turn times and the remaining 707 starting flights have not been run. All 13 families are represented; 700 arrivals from related starting flights are not 700 independent confirmations.</p>
+</section>
+
+<section class="card" id="endings" aria-labelledby="endings-title">
+<h2 id="endings-title">Where the tested flights end <span class="tag ok">221 flights, through the final transmissions</span></h2>
+<p>A flight is counted here only if it has passed every test the project applies, in order: an accepted arrival at 19:41:03; satellite timing within 43 microseconds at 20:41:05, 21:41:27 and 00:11:00; support by the aircraft performance model throughout; fuel exhaustion at a time from which the end of the flight can be computed; and at least one computed end-of-flight response that agrees with the two final transmissions at 00:19:29 and 00:19:37. The 22:41 measurements are withheld from all of these tests.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Flights that pass every test; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Group</th><th scope="col" class="n">Flights</th><th scope="col" class="n">Compatible end states</th><th scope="col">Latitude at 00:19:37</th></tr></thead><tbody>
+<tr><td>Earlier campaigns (five sets)</td><td class="n">91</td><td class="n">1,422</td><td>29.9°S – 34.1°S</td></tr>
+<tr><td>Cruise-level and long-range-cruise flights, tested 24 November</td><td class="n">130</td><td class="n">1,823</td><td>32.3°S – 33°S and 35°S – 37.9°S</td></tr>
+<tr><td><b>All</b></td><td class="n"><b>221</b></td><td class="n"><b>3,245</b></td><td><b>29.9°S – 37.9°S</b></td></tr>
+</tbody></table></div>
+<p>At 00:19:37 every one of these states is within 21 km of arc 7, between 3.8 and 11.1 km above the surface, and descending at 69 to 121 m/s (roughly 14,000 to 24,000 ft/min) in a banked turn. No tested flight ends between about 34.1°S and 35.5°S. Flights do pass through that stretch: some run out of fuel there and reach the final transmissions further south. It is a gap in the flights flown, not evidence that no flight ends there.</p>
+<p class="sub">Passing the final-transmission test did not separate the northern flights from the southern ones: all 130 flights of the second group have at least one compatible response.</p>
+</section>
+
+<section class="card" id="coverage" aria-labelledby="coverage-title">
+<h2 id="coverage-title">Against searched seabed <span class="tag prov">coverage partly unverified</span></h2>
+<p>The rules for this comparison were written down before any area was computed. Two layers of search coverage are used, and they are of different quality.</p>
+<ul>
+<li><b>Documented.</b> The Geoscience Australia deep-tow sonar footprint from the 2014–2017 search, 103,969 km². The project holds this geometry.</li>
+<li><b>Reported, not verified.</b> Ocean Infinity's 2018 search, described by an independent analyst as covering the arc to 25°S at widths of 22 nautical miles or more either side. The project holds no map of it. It is modelled here as that band between 25°S and 36°S.</li>
+</ul>
+<p>Not included: Ocean Infinity's 2025–26 search (no map held), and gaps, poor-quality lines and terrain shadows inside either layer (not located).</p>
+<figure style="margin:12px 0">
+  <a href="data/combined-endings/map_all_tested.png"><img src="data/combined-endings/map_all_tested.png" alt="Map of arc 7 from about 28 to 40 degrees south. Orange patches along the arc show where tested flights reach the sea if their descent continues. Dark blue areas beyond the arc show where a recovered glide within 45 degrees of track could reach; light blue shows a glide in any direction. Grey shows documented sonar data, concentrated south of 33 degrees south; a grey outline shows the reported 2018 search band north of 36 degrees south." style="max-width:100%;height:auto"></a>
+  <figcaption class="sub">Tested end states and the areas they can reach, against documented sonar data (grey) and the reported 2018 search band (outline). Model outputs, not wreck locations.</figcaption>
+</figure>
+<p><b>If the descent continued to the surface</b> at the rate each state has at 00:19:37, the flights reach the sea within 7 to 33 km of their 00:19:37 position. The area they can reach is 43,300 km².</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Continued-descent area by coverage; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Continued descent, all 221 flights</th><th scope="col" class="n">Area, km²</th><th scope="col" class="n">Share</th></tr></thead><tbody>
+<tr><td>Inside documented sonar data</td><td class="n">17,245</td><td class="n">39.8%</td></tr>
+<tr><td>Inside the reported 2018 band only</td><td class="n">25,956</td><td class="n">60.0%</td></tr>
+<tr><td>Outside both</td><td class="n">78</td><td class="n">0.2%</td></tr>
+</tbody></table></div>
+<p>South of about 35°S the coverage is documented sonar data. North of about 34°S it rests almost entirely on the reported 2018 band, which could not be checked here. Obtaining that coverage, with its gaps, is the most useful missing input.</p>
+</section>
+
+<section class="card" id="glide" aria-labelledby="glide-title">
+<h2 id="glide-title">If the descent was arrested <span class="tag prov">conditional</span></h2>
+<p>Every tested state is high enough at 00:19:37 to glide if the descent were arrested. The data do not show that it was: the states are steep banked descents, and recovering from one takes deliberate, correct control inputs. The calculation below shows what a recovery would make reachable, under three stated assumptions: a glide ratio of 17, still air, and a recovery from the 00:19:37 state.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Recovered-glide areas; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Glide direction</th><th scope="col" class="n">Area, km²</th><th scope="col" class="n">Documented or reported as searched</th><th scope="col" class="n">Outside both</th><th scope="col" class="n">of which beyond the arc</th></tr></thead><tbody>
+<tr><td>Within 45° of the 00:19:37 track</td><td class="n">231,014</td><td class="n">119,419</td><td class="n">111,595</td><td class="n">107,586</td></tr>
+<tr><td>Forward half (within 90°)</td><td class="n">330,961</td><td class="n">137,461</td><td class="n">193,500</td><td class="n">116,999</td></tr>
+<tr><td>Any direction</td><td class="n">414,504</td><td class="n">152,244</td><td class="n">262,261</td><td class="n">116,999</td></tr>
+</tbody></table></div>
+<p>For a glide that continues roughly the way the aircraft was moving, the area outside both coverage layers is about 111,600 km², nearly all of it beyond the arc (the side farther from the satellite). It forms two strips: about 61,000 km² between 29°S and 35°S, starting at the outer edge of the reported 2018 band, and about 50,600 km² between 35°S and 40°S, beyond the outer edge of the documented footprint. The northern strip is spread evenly along its length (about 10,400 to 13,900 km² in each degree of latitude from 30°S to 35°S); the southern strip lies mostly between 36°S and 39°S. Nothing in the records favours one part over another.</p>
+<div class="note"><b>The conditional statement the records support.</b> If the tested flights represent the real one, and if the searches would have detected the wreckage, then the aircraft did not continue its descent to the sea near the arc, and a recovered glide is the remaining possibility. Each "if" is an assumption that has not been tested. An empty search is equally consistent with wreckage that was not detected, with gaps in the reported 2018 coverage, and with a flight of a type not yet modelled. This page does not assert that the aircraft glided.</div>
+</section>
+
+<section class="card" id="limits" aria-labelledby="limits-title">
+<h2 id="limits-title">What this does not establish</h2>
+<ul>
+<li><b>A location.</b> These are endings of model flights. No probability is attached to any area.</li>
+<li><b>Completeness.</b> Only flight types already flown appear: great-circle steering after 19:41, the speeds, levels and turns of the earlier runs, and their starting points. The 700 new 19:41 arrivals above have not yet been carried forward to arc 7; a fixed subset of 74 is being continued now.</li>
+<li><b>Detection.</b> Coverage means sonar data exists. It is not a statement that wreckage there would have been found.</li>
+<li><b>The 2018 coverage.</b> It is modelled from a published description, with an assumed southern limit at 36°S.</li>
+<li><b>The glide.</b> The glide ratio, still air and direction are assumptions. The 00:19:37 track is a moment in a turn, not a settled heading.</li>
+<li><b>Drift.</b> Debris drift is not used as a filter here. Earlier runs found drift timing unable to separate positions along this stretch of the arc; a separate preregistered drift test is in preparation.</li>
+</ul>
+</section>
+
+<section class="card" id="record" aria-labelledby="record-title">
+<h2 id="record-title">Downloads and provenance</h2>
+<p><b>19:41 crossing.</b> <a href="data/crossing-1941/priority_102_arrivals.csv">All accepted arrivals</a> (position, course, speed, turn time, both residuals, fuel and height) · <a href="data/crossing-1941/priority_102_crossings_by_family_speed.csv">crossings by family and speed</a> · <a href="data/crossing-1941/priority_102_distinct_counts.csv">distinct counts</a>. Two arrivals count as one only when they agree in position within 2 km, course within 0.5°, speed within 0.005 Mach, fuel within 50 kg and height within 50 ft. The run was executed on rented cloud processors with the project's frozen flight engine; before production, four saved flights were re-flown and returned the same decisions.</p>
+<p><b>Endings and coverage.</b> <a href="data/combined-endings/REPORT.md">Report</a> · <a href="data/combined-endings/METHOD.md">method, with the rules as fixed in advance</a> · <a href="data/combined-endings/areas_after_tier2_test.csv">areas by scenario</a> · <a href="data/combined-endings/areas_after_tier2_test_by_latitude.csv">areas by latitude</a> · <a href="data/combined-endings/all_tested_end_states.csv">all 3,245 tested end states</a>.</p>
+<p class="sub">Sources: the project's flight-state catalogue v1.1; the cruise-level run of 16 November and the long-range-cruise pilot of 22 November; the final-transmission test of 24 November (16,284 computed responses); Geoscience Australia deep-tow coverage (GA 120969); V. Iannello, "End-of-Flight Simulations of MH370", 19 August 2018, for the reported 2018 search extent. Two errors in an early version of the coverage script (dropped footprint polygons and mis-read fuel-exhaustion times) were caught by its checks and corrected before any figure here was produced. An earlier reading on this project, that speed alone fixes the crossing latitude, came from one starting flight per family and is replaced by the table above.</p>
+</section>
+<script>MH.nav("crossing-and-endings.html");</script></div></body></html>

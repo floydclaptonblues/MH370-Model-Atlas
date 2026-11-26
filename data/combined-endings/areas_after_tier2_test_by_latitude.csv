@@ -1,0 +1,45 @@
+scenario,lat_band,area_km2,in_A_documented_km2,in_C_reported_outside_A_km2,outside_A_and_C_km2
+S1 continued descent,38-39 S,519,513,0,6
+S1 continued descent,37-38 S,7827,7755,0,72
+S1 continued descent,36-37 S,4289,4289,0,0
+S1 continued descent,35-36 S,4268,4264,4,0
+S1 continued descent,34-35 S,577,57,520,0
+S1 continued descent,33-34 S,6145,313,5832,0
+S1 continued descent,32-33 S,6563,55,6509,0
+S1 continued descent,31-32 S,4576,0,4576,0
+S1 continued descent,30-31 S,6817,0,6817,0
+S1 continued descent,29-30 S,1698,0,1698,0
+"S2 recovered glide, any direction",39-40 S,4259,623,0,3636
+"S2 recovered glide, any direction",38-39 S,38436,19288,0,19148
+"S2 recovered glide, any direction",37-38 S,51580,25236,0,26344
+"S2 recovered glide, any direction",36-37 S,52271,20070,481,31720
+"S2 recovered glide, any direction",35-36 S,43515,13049,2835,27632
+"S2 recovered glide, any direction",34-35 S,34816,2025,9578,23212
+"S2 recovered glide, any direction",33-34 S,36544,452,12071,24020
+"S2 recovered glide, any direction",32-33 S,40217,71,12054,28092
+"S2 recovered glide, any direction",31-32 S,40522,0,11781,28741
+"S2 recovered glide, any direction",30-31 S,38111,0,11480,26630
+"S2 recovered glide, any direction",29-30 S,29705,0,10492,19213
+"S2 recovered glide, any direction",28-29 S,4529,0,658,3872
+"S2b recovered glide, forward half (90 deg)",39-40 S,4244,611,0,3633
+"S2b recovered glide, forward half (90 deg)",38-39 S,38424,19258,0,19165
+"S2b recovered glide, forward half (90 deg)",37-38 S,50985,25236,0,25749
+"S2b recovered glide, forward half (90 deg)",36-37 S,43200,17854,481,24865
+"S2b recovered glide, forward half (90 deg)",35-36 S,26306,10117,2103,14086
+"S2b recovered glide, forward half (90 deg)",34-35 S,19621,364,7812,11445
+"S2b recovered glide, forward half (90 deg)",33-34 S,35236,452,12071,22713
+"S2b recovered glide, forward half (90 deg)",32-33 S,34686,71,12006,22609
+"S2b recovered glide, forward half (90 deg)",31-32 S,31183,0,11685,19498
+"S2b recovered glide, forward half (90 deg)",30-31 S,34732,0,11480,23252
+"S2b recovered glide, forward half (90 deg)",29-30 S,12344,0,5858,6485
+"S2a recovered glide, along track (45 deg)",39-40 S,4244,611,0,3633
+"S2a recovered glide, along track (45 deg)",38-39 S,37939,19058,0,18881
+"S2a recovered glide, along track (45 deg)",37-38 S,36568,23687,0,12881
+"S2a recovered glide, along track (45 deg)",36-37 S,27170,13647,481,13041
+"S2a recovered glide, along track (45 deg)",35-36 S,8987,6020,778,2189
+"S2a recovered glide, along track (45 deg)",34-35 S,18530,347,7789,10393
+"S2a recovered glide, along track (45 deg)",33-34 S,24689,452,11882,12354
+"S2a recovered glide, along track (45 deg)",32-33 S,22588,71,10883,11634
+"S2a recovered glide, along track (45 deg)",31-32 S,25549,0,11650,13899
+"S2a recovered glide, along track (45 deg)",30-31 S,23242,0,11177,12065
+"S2a recovered glide, along track (45 deg)",29-30 S,1509,0,885,624

@@ -1,0 +1,37 @@
+flights,scenario,side,end_states,area_km2,in_A_documented_km2,in_C_reported_outside_A_km2,outside_A_and_C_km2
+Tier 1 (earlier runs),S1 continued descent,all,1422,26368,425,25944,0
+Tier 1 (earlier runs),S1 continued descent,beyond the arc,1422,4565,0,4565,0
+Tier 1 (earlier runs),S1 continued descent,inside the arc,1422,21803,425,21379,0
+Tier 1 (earlier runs),"S2 recovered glide, any direction",all,1422,209254,887,66349,142019
+Tier 1 (earlier runs),"S2 recovered glide, any direction",beyond the arc,1422,93967,130,33254,60583
+Tier 1 (earlier runs),"S2 recovered glide, any direction",inside the arc,1422,115287,757,33094,81436
+Tier 1 (earlier runs),"S2b recovered glide, forward half (90 deg)",all,1422,167802,887,60914,106002
+Tier 1 (earlier runs),"S2b recovered glide, forward half (90 deg)",beyond the arc,1422,93570,130,32862,60578
+Tier 1 (earlier runs),"S2b recovered glide, forward half (90 deg)",inside the arc,1422,74232,757,28052,45424
+Tier 1 (earlier runs),"S2a recovered glide, along track (45 deg)",all,1422,115475,870,53951,60654
+Tier 1 (earlier runs),"S2a recovered glide, along track (45 deg)",beyond the arc,1422,86725,130,28974,57621
+Tier 1 (earlier runs),"S2a recovered glide, along track (45 deg)",inside the arc,1422,28751,740,24977,3034
+Second group (tested 24 Nov),S1 continued descent,all,1823,18846,16820,1947,78
+Second group (tested 24 Nov),S1 continued descent,beyond the arc,1823,5304,5233,0,70
+Second group (tested 24 Nov),S1 continued descent,inside the arc,1823,13542,11587,1947,8
+Second group (tested 24 Nov),"S2 recovered glide, any direction",all,1823,231824,80148,20382,131294
+Second group (tested 24 Nov),"S2 recovered glide, any direction",beyond the arc,1823,107167,37529,10924,58714
+Second group (tested 24 Nov),"S2 recovered glide, any direction",inside the arc,1823,124657,42619,9458,72579
+Second group (tested 24 Nov),"S2b recovered glide, forward half (90 deg)",all,1823,182589,73298,15505,93785
+Second group (tested 24 Nov),"S2b recovered glide, forward half (90 deg)",beyond the arc,1823,105685,37189,9779,58717
+Second group (tested 24 Nov),"S2b recovered glide, forward half (90 deg)",inside the arc,1823,76904,36109,5727,35068
+Second group (tested 24 Nov),"S2a recovered glide, along track (45 deg)",all,1823,127886,63245,11467,53174
+Second group (tested 24 Nov),"S2a recovered glide, along track (45 deg)",beyond the arc,1823,93925,34806,6938,52180
+Second group (tested 24 Nov),"S2a recovered glide, along track (45 deg)",inside the arc,1823,33962,28439,4529,994
+All tested flights,S1 continued descent,all,3245,43279,17245,25956,78
+All tested flights,S1 continued descent,beyond the arc,3245,9869,5233,4565,70
+All tested flights,S1 continued descent,inside the arc,3245,33411,12012,21391,8
+All tested flights,"S2 recovered glide, any direction",all,3245,414504,80814,71430,262261
+All tested flights,"S2 recovered glide, any direction",beyond the arc,3245,191499,37553,36946,116999
+All tested flights,"S2 recovered glide, any direction",inside the arc,3245,223005,43260,34483,145262
+All tested flights,"S2b recovered glide, forward half (90 deg)",all,3245,330961,73963,63498,193500
+All tested flights,"S2b recovered glide, forward half (90 deg)",beyond the arc,3245,189654,37213,35442,116999
+All tested flights,"S2b recovered glide, forward half (90 deg)",inside the arc,3245,141307,36750,28056,76501
+All tested flights,"S2a recovered glide, along track (45 deg)",all,3245,231014,63894,55525,111595
+All tested flights,"S2a recovered glide, along track (45 deg)",beyond the arc,3245,172646,34831,30229,107586
+All tested flights,"S2a recovered glide, along track (45 deg)",inside the arc,3245,58369,29063,25296,4009
