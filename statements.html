@@ -13,7 +13,7 @@
   <div class="card"><h2>5&times; – 15&times;</h2><p>More modelled debris reaches the African rim than Australia, in all four ocean reanalyses</p></div>
 </div>
 
-<p><a href="#geometry">A. Geometry and timing</a> &middot; <a href="#flights">B. Where the tested flights go</a> &middot; <a href="#ocean">C. Ocean transport</a> &middot; <a href="#provisional">D. Provisional</a> &middot; <a href="#nottested">E. Not tested and not run</a> &middot; <a href="#rules">How these statements are maintained</a></p>
+<p><a href="#geometry">A. Geometry and timing</a> &middot; <a href="#flights">B. Where the tested flights go</a> &middot; <a href="#ocean">C. Ocean transport</a> &middot; <a href="#nottested">D. Not tested and not run</a> &middot; <a href="#rules">How these statements are maintained</a></p>
 
 <h2 class="section" id="geometry">A. Geometry and timing</h2>
 <p class="sub">These follow from the published Inmarsat measurements and the satellite's position. No flight model, aircraft performance figure or ocean product enters them.</p>
@@ -121,34 +121,13 @@
 <p class="sub"><b>Record.</b> <a href="drift4.html">Four years</a>.</p>
 </section>
 
-<h2 class="section" id="provisional">D. Provisional &mdash; one check outstanding</h2>
-<p class="sub">Results that look firm but have a specific, named question still open. They are listed here rather than above, and they will move up or be withdrawn when the question is answered.</p>
+<h2 class="section" id="nottested">D. Not tested and not run</h2>
 
 <section class="card" id="d1" aria-labelledby="d1-t">
-<h2 id="d1-t">D1 &middot; Mach 0.84 after 19:41 <span class="tag prov">provisional, 26 November 2026</span></h2>
-<p><b>No flight holding Mach 0.84 from 19:41, with a first turn within 20&deg; of the arrival course, satisfies the timing at 20:41, 21:41 and 00:11 &mdash; for any of the ten Mach 0.84 arrivals tested.</b></p>
-<div class="scroll" tabindex="0" role="region" aria-label="Mach 0.84 continuation search; scroll horizontally on a narrow screen"><table>
-<thead><tr><th scope="col">Quantity</th><th scope="col" class="n">Value</th></tr></thead><tbody>
-<tr><td>Arrivals tested (one per latitude bin and height class)</td><td class="n">10 of 32 distinct Mach 0.84 arrivals</td></tr>
-<tr><td>Configurations: arrival &times; level &times; turn direction</td><td class="n">80</td></tr>
-<tr><td>Short flights / full flights computed</td><td class="n">407 / 125</td></tr>
-<tr><td>Configurations reaching a full two-turn search</td><td class="n">5 (all left turns)</td></tr>
-<tr><td>Accepted flights</td><td class="n">0</td></tr>
-<tr><td>Right turn: smallest 20:41 miss, all 40 configurations</td><td class="n">1,078 &micro;s (162 km of range)</td></tr>
-<tr><td>Left turn: smallest 20:41 miss among those with no anchor</td><td class="n">54.65 &micro;s (8.2 km of range)</td></tr>
-<tr><td>Acceptance band for comparison</td><td class="n">43 &micro;s (6.4 km of range)</td></tr>
-</tbody></table></div>
-<p class="sub"><b>Why it is provisional, and not listed above.</b> Two reasons. First, the first-turn search only scans 0&ndash;20&deg; either side of the arrival course; if the turn the geometry needs is larger than that, "no flight found" describes the search and not the aircraft. Second, three of the misses are only 1.8 to 5.0&nbsp;km of range outside the band, and the 43-microsecond band is the measurement tolerance &mdash; it carries no allowance for the reconstruction's own position error after an hour of integration through modelled winds. A miss of a few kilometres is not something this model can resolve.</p>
-<p class="sub"><b>The check that would settle it.</b> The turn angle at which the smallest residual occurred, for each configuration with no anchor. If those minima sit at the 20&deg; edge of the scan, the scan range is the binding constraint and the statement says little about the speed. If they sit at 0&deg; or in the interior, the statement stands for the modelled flight type. This is a read of output already saved, not a new run.</p>
-<p class="sub"><b>What it does not do.</b> It removes entry conditions at 19:41, not endpoints. No Mach 0.84 flight reached arc 7 here, so nothing was removed from B2's 29.9&ndash;37.9&deg;S range.</p>
-</section>
-
-<h2 class="section" id="nottested">E. Not tested and not run</h2>
-
-<section class="card" id="e1" aria-labelledby="e1-t">
-<h2 id="e1-t">E1 &middot; The open list <span class="tag prov">not computed</span></h2>
+<h2 id="d1-t">D1 &middot; The open list <span class="tag prov">not computed</span></h2>
 <p>Listed so that silence is not read as a negative result.</p>
 <ul>
+<li><b>Mach 0.84 after 19:41 with a first turn larger than 20&deg;.</b> The continuation search limited the first turn to 20&deg; either side of the arrival course. For the ten Mach 0.84 arrivals, every left-turn search that found no starting point was still closing on the 20:41 measurement when it reached that limit, so larger turns are untested and no result about that speed is claimed. In the two arrivals where a starting point was found, every trial flight ran out of fuel before 00:11.</li>
 <li><b>A single constant course after 19:41.</b> The search for one was paused after 66 cells with nothing accepted and a best miss of 152.6&nbsp;km; the reference flights it was compared against contain further turns. Whether another single-course flight can be accepted remains open.</li>
 <li><b>The 22:41 measurements.</b> Withheld from acceptance throughout, so that they stay available as an independent check. The one place they are used &mdash; statement A2 &mdash; says so.</li>
 <li><b>A sweep from the last radar contact to arc 7.</b> Designed and written, never started.</li>
@@ -165,7 +144,7 @@
 <section class="card" id="g1" aria-labelledby="g1-t">
 <h2 id="g1-t">Rules <span class="tag frozen">applies to the whole site</span></h2>
 <ul>
-<li>A statement moves from E to A&ndash;D only when its named open question is answered, not when it has been believed for long enough.</li>
+<li>A result with a named open question is held back from this page until that question is answered.</li>
 <li>A statement found to be flawed comes off this page entirely. The reason is recorded once, in the <a href="archive.html">Archive of attempts</a>, which is where the project keeps what it has retired. Nothing on this page is a result that is no longer held.</li>
 <li>Where the model cannot resolve a difference, the result is reported as possible, not as a negation. A near miss is a near miss.</li>
 <li>No model parameter is ever adjusted toward a wanted answer. Acceptance rules are fixed before a run and are not revised after seeing its output.</li>
