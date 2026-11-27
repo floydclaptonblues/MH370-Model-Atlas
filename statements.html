@@ -98,6 +98,40 @@
 <p class="sub"><b>Record.</b> <a href="crossing-and-endings.html#crossing">Crossing and endings</a>.</p>
 </section>
 
+<section class="card" id="b7" aria-labelledby="b7-t">
+<h2 id="b7-t">B7 &middot; What each frequency reading requires <span class="tag ok">from the link equation, at every contact</span></h2>
+<p><b>At each satellite contact the timing fixes how far the aircraft was from the satellite, and the frequency fixes how fast it was moving south. The two together tie position to motion at every arc.</b> The frequency responds almost only to the southward part of the aircraft's ground speed; east&ndash;west speed changes it by a few tenths of a hertz at most.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Southward speed required by the frequency reading at each contact; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Contact</th><th scope="col" class="n">Change in frequency per knot of southward speed</th><th scope="col" class="n">Southward speed that matches exactly, level flight</th><th scope="col" class="n">Range allowed by 7 Hz</th></tr></thead><tbody>
+<tr><td>19:41</td><td class="n">0.093 Hz</td><td class="n">408 kt, the same all along the ring</td><td class="n">&plusmn;75 kt</td></tr>
+<tr><td>20:41</td><td class="n">0.088 Hz</td><td class="n">463 to 490 kt, rising to the south</td><td class="n">&plusmn;80 kt</td></tr>
+<tr><td>21:41</td><td class="n">0.075 Hz</td><td class="n">430 to 507 kt, rising to the south</td><td class="n">&plusmn;92 kt</td></tr>
+<tr><td>00:11</td><td class="n">0.027 Hz</td><td class="n">111 kt at 27&deg;S, 310 kt at 32&deg;S, 518 kt at 36&deg;S</td><td class="n">&plusmn;245 to 270 kt</td></tr>
+</tbody></table></div>
+<p>At 19:41 the reading is a pure speed gauge: an aircraft at 370 knots can fly due south, while one at 500 knots must point at least 15&deg; away from south to bring its southward speed inside the band. By 00:11 the reading has changed character. Its response to speed has fallen to under a third, and the speed it asks for rises by about 47 knots for each degree further south along the arc. At 00:11 the frequency therefore links southward speed to latitude: 400 knots matches exactly at 33.6&deg;S, 440 knots at 34.4&deg;S.</p>
+<p class="sub"><b>Scope.</b> Computed from the flight model's own frequency equation at three positions on each arc, and confirmed by a fit to 134,000 saved flight states with wind included. At the final two transmissions the descent rate dominates (about 1.75&nbsp;Hz for each 100&nbsp;ft/min) and no level-flight speed applies. The 22:41 contact is withheld. Seven hertz is this project's band, not a physical limit. That the frequency responds mainly to north&ndash;south motion is established in the published analyses of this satellite link; the per-contact values and ranges here are this project's.</p>
+<p class="sub"><b>Would be overturned by.</b> An error in the satellite's published motion or in the frequency calibration.</p>
+<p class="sub"><b>Record.</b> Saved-state frequency analysis of 27 November 2026, held in the project's run record. The relationship was first pointed out by Ryan Hall from the 19:41 crossing plot.</p>
+</section>
+
+<section class="card" id="b8" aria-labelledby="b8-t">
+<h2 id="b8-t">B8 &middot; The frequency fit through all four contacts <span class="tag ok">established within the flights flown</span></h2>
+<p><b>Followed flight by flight through 19:41, 20:41, 21:41 and 00:11, the accepted flights match the frequency most easily when they are between 32&deg;S and 35&deg;S at 00:11, and the 00:11 reading is matched exactly between 34&deg;S and 35&deg;S.</b> North of that the 00:11 residual lies on one side of an exact match, south of it on the other.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Median frequency residual at each contact by latitude at 00:11; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Latitude at 00:11</th><th scope="col" class="n">Flights</th><th scope="col" class="n">19:41</th><th scope="col" class="n">20:41</th><th scope="col" class="n">21:41</th><th scope="col" class="n">00:11</th></tr></thead><tbody>
+<tr><td>27&ndash;29&deg;S</td><td class="n">12</td><td class="n">&minus;2.3</td><td class="n">&minus;6.6</td><td class="n">&minus;5.0</td><td class="n">+7.2</td></tr>
+<tr><td>30&ndash;32&deg;S</td><td class="n">152</td><td class="n">+0.8</td><td class="n">&minus;5.3</td><td class="n">&minus;4.3</td><td class="n">+3.5</td></tr>
+<tr><td>32&ndash;34&deg;S</td><td class="n">39</td><td class="n">+3.3</td><td class="n">&minus;3.8</td><td class="n">&minus;3.0</td><td class="n">+1.1</td></tr>
+<tr><td>34&ndash;35&deg;S</td><td class="n">129</td><td class="n">+5.0</td><td class="n">&minus;3.2</td><td class="n">&minus;2.8</td><td class="n">&minus;0.4</td></tr>
+<tr><td>35&ndash;37&deg;S</td><td class="n">19</td><td class="n">+6.5</td><td class="n">&minus;2.0</td><td class="n">&minus;2.2</td><td class="n">&minus;1.8</td></tr>
+</tbody></table></div>
+<p class="sub">Median frequency residual in hertz; plus and minus are the two sides of an exact match. Each row follows the same flights across all four contacts.</p>
+<p>The two ends of the range are strained. The northernmost flights, the slow ones at Mach 0.62, sit at the edge of the band at 20:41 and seven of them are beyond it at 00:11. The southernmost flights sit near the edge at 19:41. Flights in the middle stay within about 6&nbsp;Hz at every contact.</p>
+<p class="sub"><b>Scope.</b> 355 accepted flights that have all four contacts, from the cruise-level run and its continuation; they belong to 13 related families and are not independent tests. Nearly all are inside 7&nbsp;Hz at every contact, so no latitude between 30&deg;S and 37&deg;S is negated by this. Differences of one or two hertz between neighbouring rows are within the known slow drift of the frequency data and do not rank them. The latitude is the position at 00:11; these flights end roughly half a degree to a degree further south. This is where the fit is easy, not a location and not a probability.</p>
+<p class="sub"><b>Would be overturned by.</b> A flight type not yet flown that matches the frequency as well from a different latitude; or a different treatment of the frequency bias.</p>
+<p class="sub"><b>Record.</b> Saved-state frequency analysis of 27 November 2026, held in the project's run record.</p>
+</section>
+
 <h2 class="section" id="ocean">C. Ocean transport</h2>
 <p class="sub">From the debris-drift runs. No satellite measurement enters these; the arc is used only as a place to release objects. The current statements come from the coastal-arrival run of 21 October 2026, the first experiment in this project in which reaching a coast is a recorded physical event rather than a discarded particle.</p>
 
