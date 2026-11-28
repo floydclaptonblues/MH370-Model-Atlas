@@ -55,8 +55,8 @@
 
 <section class="card" id="b2" aria-labelledby="b2-t">
 <h2 id="b2-t">B2 &middot; Where fully tested flights end <span class="tag ok">established within the flights flown</span></h2>
-<p><b>Every flight on file that satisfies the satellite timing at 20:41, 21:41 and 00:11, the aircraft performance model, the fuel, and the two final transmissions is on arc 7 between 29.9&deg;S and 37.9&deg;S at 00:19:37</b> &mdash; 221 flights and 3,245 compatible end states, all within 21&nbsp;km of the arc, 3.8 to 11.1&nbsp;km above the surface.</p>
-<p class="sub"><b>Scope.</b> Only the flight types flown are represented: great-circle steering after 19:41, the speeds and levels of five runs, and the starting points of those runs. The 22:41 measurements are withheld from acceptance throughout. A continuation carrying 74 further 19:41 arrivals to arc 7 completed its search on 26 November 2026 and returned 89 accepted flights; those are not in the counts above and are being folded in.</p>
+<p><b>Every flight on file that satisfies the satellite timing at 20:41, 21:41 and 00:11, the aircraft performance model, the fuel, and the two final transmissions is on arc 7 between 29.9&deg;S and 37.9&deg;S at 00:19:37</b> &mdash; 3,750 compatible end states, all within 21&nbsp;km of the arc, 3.8 to 11.1&nbsp;km above the surface. That is 3,245 from 221 flights of the earlier runs, and 505 more from the continuation of 74 further arrivals, which lie between 31.2&deg;S and 37.0&deg;S and fill the stretch from 34.2&deg;S to 34.9&deg;S that the earlier runs had left empty.</p>
+<p class="sub"><b>Scope.</b> Only the flight types flown are represented: great-circle steering after 19:41, the speeds and levels of five runs, and the starting points of those runs. The 22:41 measurements are not used for acceptance. The continuation of 74 further 19:41 arrivals, completed on 27 November 2026, returned 89 accepted flights; the twelve at Mach 0.62 run out of fuel after the last transmission and have no eligible ending. The 22:41 comparison for all accepted flights is in B10.</p>
 <p class="sub"><b>Would be overturned by.</b> A flight type not yet flown that satisfies the same tests and ends outside the range &mdash; for example a profile with more turns, a speed schedule not tested, or a different reconstruction before 19:41.</p>
 <p class="sub"><b>Record.</b> <a href="crossing-and-endings.html#endings">Crossing and endings</a>.</p>
 </section>
@@ -205,6 +205,23 @@
 <p class="sub"><b>Record.</b> Sealed 22:41 comparisons of 18 and 28 November 2026, held in the project's run record; <a href="flighthistories.html">Flight histories</a>. Statement A2 also uses the 22:41 timing and says so.</p>
 </section>
 
+<section class="card" id="b11" aria-labelledby="b11-t">
+<h2 id="b11-t">B11 &middot; How the endings move if the aircraft burned more fuel than the model <span class="tag prov">first-order estimate, no flights re-flown</span></h2>
+<p><b>If the aircraft burned up to 3 per cent more fuel than the model assumes, the flights whose fuel runs out between 00:11 and the last transmission end between about 31&deg;S and 36&deg;S. At 4.5 per cent more, they move north to 27&deg;S to 32&deg;S. At 7 per cent more, no saved flight has fuel left at 00:11.</b></p>
+<div class="scroll" tabindex="0" role="region" aria-label="Flights whose fuel runs out in the final window, by fuel-burn factor; scroll horizontally on a narrow screen"><table>
+<thead><tr><th scope="col">Fuel burn relative to the model</th><th scope="col" class="n">Flights of 356 running out between 00:11 and 00:19:37</th><th scope="col" class="n">Latitude where the fuel runs out</th></tr></thead><tbody>
+<tr><td>1.000 (as modelled)</td><td class="n">122</td><td class="n">30.5 to 36.8&deg;S</td></tr>
+<tr><td>1.005</td><td class="n">97</td><td class="n">32.8 to 36.4&deg;S</td></tr>
+<tr><td>1.019</td><td class="n">72</td><td class="n">31.4 to 35.0&deg;S</td></tr>
+<tr><td>1.030</td><td class="n">42</td><td class="n">31.2 to 34.7&deg;S</td></tr>
+<tr><td>1.045</td><td class="n">102</td><td class="n">27.4 to 31.7&deg;S</td></tr>
+<tr><td>1.071</td><td class="n">0</td><td class="n">&mdash;</td></tr>
+</tbody></table></div>
+<p class="sub"><b>Scope.</b> The factor is applied to the whole flight from take-off. Each saved flight's fuel record is rescaled and the time and position at which the fuel runs out are read off its saved track; the track itself is left unchanged, and no flight is flown again. The flight model's fuel burn is a general model for the aircraft type and is not a measured burn for this airframe. Against Boeing's published tables it reads 0.5 to 1.5 per cent high in two like-for-like comparisons; neither correction has been adopted. At a factor of 1.045 the slower Mach 0.62 flights enter the window, which is why the count rises again.</p>
+<p class="sub"><b>Would be overturned by.</b> Re-flying the flights with the changed burn, if the lighter or heavier aircraft follows a materially different track; or a measured fuel burn for this airframe.</p>
+<p class="sub"><b>Record.</b> Fuel scaling of saved flights and the fuel reconciliation against Boeing tables, held in the project's run record.</p>
+</section>
+
 <h2 class="section" id="ocean">C. Ocean transport</h2>
 <p class="sub">From the debris-drift runs. No satellite measurement enters these; the arc is used only as a place to release objects. The current statements come from the coastal-arrival run of 21 October 2026, the first experiment in this project in which reaching a coast is a recorded physical event rather than a discarded particle.</p>
 
@@ -226,11 +243,19 @@
 </section>
 
 <section class="card" id="c3" aria-labelledby="c3-t">
-<h2 id="c3-t">C3 &middot; No field delivers to R&eacute;union in time <span class="tag ok">clean negative result</span></h2>
-<p><b>No ocean field puts material on R&eacute;union by day 508, the date the flaperon was found there.</b> Two of the four deliver nothing to R&eacute;union at all across 420 objects; the two that do arrive on day 572 and day 1,551, both after the discovery. Madagascar is the opposite case and is reproduced comfortably: all four fields deliver between day 216 and day 577 against an upper bound of 827, with 49 to 112 arrivals each.</p>
-<p class="sub"><b>Scope, and why this is not evidence against an arc origin.</b> Three readings stay open and this run does not choose between them. R&eacute;union is a target of roughly 2,500&nbsp;km&sup2;: GLORYS12V1 puts 12 objects on Mauritius, 220&nbsp;km away, by day 503, so the Mascarene region is reached in time and R&eacute;union specifically is not. The run uses CSIRO's 1.2 per cent wind coefficient for non-flaperon debris, not the flaperon's own measured response, which is larger and rotated &mdash; under that object-specific response the flaperon does reach R&eacute;union in the project's separate reachability work. And 14 release latitudes with 420 objects is a coarse instrument. Arrival counts are not probabilities: a zero is not zero physical likelihood.</p>
-<p class="sub"><b>Would be overturned by.</b> An object-specific windage run on this coastal machinery, which has not been done.</p>
-<p class="sub"><b>Record.</b> <a href="drift4.html">Four years</a>, <a href="drift2.html">Drift diagnostics</a>.</p>
+<h2 id="c3-t">C3 &middot; The flaperon reaches R&eacute;union in time, from most of the arc <span class="tag ok">run completed 27 November 2026</span></h2>
+<p><b>Carried with its own measured wind response, the flaperon reaches R&eacute;union by day 508, the date it was found, in all four ocean current records. It does so from so many parts of arc 7, and so differently from one current record to the next, that it does not show where on the arc it started.</b></p>
+<div class="scroll" tabindex="0" role="region" aria-label="Flaperon objects of 2,000 within 250 km of R&eacute;union by day 508, by release latitude and ocean record; scroll horizontally on a narrow screen"><table>
+<caption>Objects of 2,000 within 250&nbsp;km of R&eacute;union by day 508 (flaperon, 16&deg; setting)</caption>
+<thead><tr><th scope="col">Ocean current record</th><th scope="col" class="n">Range across the 16 stretches</th><th scope="col">Where arrivals come from</th></tr></thead><tbody>
+<tr><td>GLORYS12V1</td><td class="n">29 to 134</td><td>every stretch, most from north of 30&deg;S</td></tr>
+<tr><td>GLORYS2V4</td><td class="n">up to 382</td><td>every stretch; one high value at 26.6&deg;S, otherwise level</td></tr>
+<tr><td>ORAS5</td><td class="n">0 to 14</td><td>only north of 34&deg;S</td></tr>
+<tr><td>C-GLORS</td><td class="n">0 to 30</td><td>a few from most stretches</td></tr>
+</tbody></table></div>
+<p class="sub"><b>Scope.</b> 2,000 objects per stretch, released 8 March 2014. The flaperon's response is CSIRO's measurement from the replica tests: the 1.2 per cent wind coefficient plus an extra drift of 10&nbsp;cm/s per 10&nbsp;m/s of wind, turned 16&deg; to the left of the wind. Of the 120 possible pairs of stretches, none differs in the same direction in all four current records. The 20&deg; setting gives the same disagreement between records. Counts are not probabilities.</p>
+<p class="sub"><b>Would be overturned by.</b> A current record, or a measured response for the flaperon, under which arrivals at R&eacute;union come from one part of the arc only.</p>
+<p class="sub"><b>Record.</b> Dense arc release of 27 November 2026, held in the project's run record.</p>
 </section>
 
 <section class="card" id="c4" aria-labelledby="c4-t">
@@ -261,9 +286,11 @@
 <li><b>The same shape appears for Rodrigues, north-east Madagascar and Tanzania.</b> One current record, GLORYS2V4, stays level to about 36.5&deg;S before falling.</li>
 <li><b>Mozambique.</b> In the two GLORYS records, arrivals come only from releases north of about 34&deg;S. The other two records deliver almost nothing to Mozambique from anywhere on the arc, so they cannot test it.</li>
 <li><b>The flaperon found on R&eacute;union does not separate latitudes.</b> The four current records disagree with one another about where it could have come from, and no pair of stretches differs in the same direction in all four.</li>
+<li><b>Australia.</b> Counting every object that ends on or beside the Australian coast: from releases north of 33&deg;S it is 0.5 to 1.9 per cent, and from releases south of 36&deg;S it is 25 to 41 per cent, across the four current records. No debris from the aircraft has been found in Australia.</li>
+<li><b>The result holds when wave drift is computed directly.</b> The runs were repeated with the 1.2 per cent wind term replaced by hourly surface wave drift from the ERA5 reanalysis, object by object. The Australian shares become 0.3 to 2.1 per cent from the north and 21 to 38 per cent from the south, and at Mauritius northern releases still outnumber southern ones by 3 to 12 times. Surface wave drift is an upper case, since an object with any depth in the water feels less than the surface value; it runs 1.3 to 1.75 times the wind term at the arc and points further north and east.</li>
 <li><b>The result does not depend on the size of the time step.</b> Repeating the runs at half and at a quarter of the step gave the same differences between stretches.</li>
 </ul>
-<p class="sub"><b>Scope.</b> These are counts from a model, not probabilities that the aircraft is at a given latitude. The released objects carry CSIRO's wind coefficient for non-flaperon debris and are not any one recovered piece. GLORYS12V1 and GLORYS2V4 come from the same institution and count as one line of evidence, so the three-in-four agreement rests on ORAS5, C-GLORS and one of the GLORYS pair. South of about 38.5&deg;S, hundreds of objects per stretch left the area covered by the current records before the discovery dates; low counts there are not observed failures to arrive. That coefficient, 1.2 per cent of the wind speed, is the value CSIRO measured for the official search from undrogued drifters and replica debris at sea; it already includes wave-driven drift, so none is added separately. An earlier version with 20 objects per stretch could not show any of this.</p>
+<p class="sub"><b>Scope.</b> These are counts from a model, not probabilities that the aircraft is at a given latitude. The released objects carry CSIRO's wind coefficient for non-flaperon debris and are not any one recovered piece. GLORYS12V1 and GLORYS2V4 come from the same institution and count as one line of evidence, so the three-in-four agreement rests on ORAS5, C-GLORS and one of the GLORYS pair. South of about 38.5&deg;S, hundreds of objects per stretch left the area covered by the current records before the discovery dates; low counts there are not observed failures to arrive. That coefficient, 1.2 per cent of the wind speed, is the value CSIRO measured for the official search from undrogued drifters and replica debris at sea; it already includes wave-driven drift, so none is added to it; in the wave-drift runs it is replaced, not supplemented. In those runs the wave record has no data close to land, so an object stops being followed when it nears any coast, including islands on the way; counts for Madagascar, Tanzania and Mozambique under wave drift are therefore incomplete and are not used here. The wave record ends on 31 December 2017. An earlier version with 20 objects per stretch could not show any of this.</p>
 <p class="sub"><b>Would be overturned by.</b> Current records that carry debris from south of 36&deg;S to the western Indian Ocean as readily as from the north; a different wind or wave response for the recovered pieces; discovery dates that are much later than the dates the pieces came ashore.</p>
 <p class="sub"><b>Record.</b> Preregistered source inversion (30 October 2026); production run of 24 simulations and dense arc release of 36 simulations, 27 November 2026, held in the project's run record. Consistent with the University of Western Australia's published range of 28&deg;S to 33&deg;S.</p>
 </section>
@@ -296,11 +323,11 @@
 <h2 id="d1-t">D1 &middot; The open list <span class="tag prov">not computed</span></h2>
 <p>Listed so that silence is not read as a negative result.</p>
 <ul>
-<li><b>A single constant course after 19:41.</b> A search across 4,999 cases (874 arrivals at 19:41, each at its own speed and at each cruise level used for that speed) began on 27 November 2026 and is running. An earlier search was paused after 66 cells with nothing accepted. Whether a single-course flight can be accepted remains open until the run completes.</li>
+<li><b>A single constant course after 19:41.</b> A search across 4,999 cases (874 arrivals at 19:41, each at its own speed and at each cruise level used for that speed) began on 27 November 2026. At the last report 195 cases were settled and none had produced an accepted flight; in the first 120 the closest approach was 59 microseconds against a band of 43, in flights that run out of fuel before 00:11. The search is not complete, and whether a single-course flight can be accepted remains open.</li>
 <li><b>The broad sweep from 18:40 to arc 7.</b> Designed and written, not run. It steps through 931,968 flights from 809 saved positions at 18:40 (12 turn times, 16 courses from 176&deg; to 206&deg;, six speeds), then continues the arrivals to arc 7: about seven weeks of computing on the machines available. The 809 positions are themselves what remained of 11,403 flight histories after the six measurements up to 18:40 were applied. The later searches, which solve the course instead of stepping it, used 102 of them, drawn from all 13 starting conditions. The other 707 occupy the same area, heights, speeds and fuel, and lie a median of 3&nbsp;km (at most 20&nbsp;km) from one of the 102, so the sweep would mostly repeat ground already covered.</li>
 <li><b>Ocean Infinity coverage geometry, 2018 and 2025&ndash;26.</b> Not held. B4 and B5 both depend on it.</li>
 <li><b>Detection.</b> Nothing in this project models whether sonar would have detected the wreckage where data exists.</li>
-<li><b>Any location for the aircraft.</b> No statement on this page, and none elsewhere on this site, places it.</li>
+<li><b>A located wreck.</b> No run on this site outputs a position for the aircraft. T1 gives the best-supported crossing of arc 7 and, separately, the author's assessment.</li>
 </ul>
 </section>
 
