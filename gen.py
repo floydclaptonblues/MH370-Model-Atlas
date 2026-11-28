@@ -364,6 +364,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>setTime
 pages["drift2.html"]=HEAD%"MH370 Drift Diagnostics"+open("src/drift2_body.html").read()+'<script>MH.nav("drift2.html");</script>'+TAIL
 pages["drift3.html"]=HEAD%"MH370 Forward Transport"+open("src/drift3_body.html").read()+'<script>MH.nav("drift3.html");</script>'+TAIL
 pages["drift4.html"]=HEAD%"MH370 Four Years of Transport"+open("src/drift4_body.html").read()+'<script>MH.nav("drift4.html");</script>'+TAIL
+pages["drift5.html"]=HEAD%"MH370 Debris Source Along Arc 7"+open("src/drift5_body.html").read()+'<script>MH.nav("drift5.html");</script>'+TAIL
 pages["methods.html"]=HEAD%"MH370 Methods"+fill(open("src/methods_body.html").read())+'<script>MH.nav("methods.html");</script>'+TAIL
 pages["reference.html"]=HEAD%"MH370 Reference Map"+open("src/reference_body.html").read()+"<script>"+open("src/reference_script.js").read()+"</script>"+TAIL
 pages["canonical.html"]=HEAD%"MH370 Canonical Map"+open("src/canonical_body.html").read()+"<script>"+open("src/canonical_script.js").read()+"</script>"+TAIL

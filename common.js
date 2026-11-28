@@ -1,7 +1,7 @@
 const MH={};
 MH.J=async u=>(await fetch(u)).json();
 MH.css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-MH.nav=function(cur){const p=[["index.html","Overview"],["statements.html","Statements and scope"],["assessment.html","Ryan’s assessment"],["flighthistories.html","Flight histories"],["flight-lab.html","Flight Dynamics Lab"],["mach080-084.html","Mach 0.80–0.84"],["lrc-cruise-climb.html","LRC cruise climb"],["crossing-and-endings.html","Crossing and endings"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"]];
+MH.nav=function(cur){const p=[["index.html","Overview"],["statements.html","Statements and scope"],["assessment.html","Ryan’s assessment"],["flighthistories.html","Flight histories"],["flight-lab.html","Flight Dynamics Lab"],["mach080-084.html","Mach 0.80–0.84"],["lrc-cruise-climb.html","LRC cruise climb"],["crossing-and-endings.html","Crossing and endings"],["canonical.html","Canonical data"],["archive.html","Archive of attempts"],["methods.html","Methods"],["drift.html","Drift"],["drift2.html","Drift diagnostics"],["drift3.html","Forward transport"],["drift4.html","Four years"],["drift5.html","Debris source on arc 7"]];
  document.getElementById("nav").innerHTML=p.map(([h,l])=>`<a href="${h}"${h===cur?' aria-current="page"':''}>${l}</a>`).join("")};
 MH.fit=function(c,h){const r=c.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);c.width=Math.round(r.width*d);c.height=Math.round(h*d);c.style.height=h+"px";const x=c.getContext("2d");x.setTransform(d,0,0,d,0,0);return {x,w:r.width,h}};
 MH.fmt=(v,d=0)=>v==null?"–":Number(v).toLocaleString("en",{maximumFractionDigits:d,minimumFractionDigits:d});
@@ -88,7 +88,7 @@ MH.L.peaks=(R)=>({on:true,draw(x,m){const cols={shuffled_regions:"--c1",random_c
   const SECTIONS = [
     ['index.html','Overview'],['statements.html','Statements and scope'],['assessment.html','Ryan’s assessment'],['flighthistories.html','Flight histories'],['flight-lab.html','Flight Dynamics Lab'],['mach080-084.html','Mach 0.80–0.84'],['lrc-cruise-climb.html','LRC cruise climb'],['crossing-and-endings.html','Crossing and endings'],
     ['canonical.html','Canonical data'],['archive.html','Archive of attempts'],['methods.html','Methods'],null,
-    ['drift.html','Drift'],['drift2.html','Drift diagnostics'],['drift3.html','Forward transport'],['drift4.html','Four years']
+    ['drift.html','Drift'],['drift2.html','Drift diagnostics'],['drift3.html','Forward transport'],['drift4.html','Four years'],['drift5.html','Debris source on arc 7']
   ];
   const el = (tag, cls, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; };
   function init() {
