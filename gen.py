@@ -298,6 +298,7 @@ map.draw();
 pages["drift.html"]=HEAD%"MH370 Drift"+'''
 <h1>Drift and currents <span class="tag prov">assumption-dependent</span></h1>
 <p class="sub">Ocean currents (GLORYS12V1 via Copernicus Marine), the debris reverse-drift density, and the three follow-up diagnostics.</p>
+<div class="note ok"><b>Newer results, 27&ndash;28 November 2026.</b> The release of 2,000 objects from each of 16 stretches of arc 7 in four ocean current records, and its repeat with wave drift computed directly, are on <a href="drift5.html" style="color:var(--accent)">Debris source on arc 7</a>. Those runs supersede the latitude comparisons on this page where they differ.</div>
 <div class="note ok"><b>Newer results:</b> Task 10 (origin of the western focus), the Task 11 drifter hindcast, the forward release from 24.5–41°S, 80–100°E and the gyre/mean-flow check are on <a href="drift2.html" style="color:var(--accent)">Drift diagnostics</a>.</div>
 <div class="note ok"><b>The one-year forward experiment has now been run.</b> 481 floating objects carried by the real daily circulation from 8 March 2014 to 7 March 2015: where the water actually took them, which latitudes stir and which run, and why the proposed cartwheel does not happen. See <a href="drift3.html" style="color:var(--accent)">Forward transport</a>.</div>
 <div class="card"><h2>Surface currents, March 2014 – July 2015</h2>
